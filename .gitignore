@@ -1,1 +1,11 @@
 .vercel
+
+# Sensitive files
+recovery-codes.txt
+
+# Claude session files
+.claude/
+
+# OS files
+Thumbs.db
+.DS_Store
