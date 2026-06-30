@@ -3,6 +3,10 @@
 # Sensitive files
 recovery-codes.txt
 
+# Allow images in the images folder
+!images/
+!images/*
+
 # Claude session files
 .claude/
 
