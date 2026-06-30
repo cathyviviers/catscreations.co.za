@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cat's Creations | Digital Content & Graphic Design</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --pink: #E8197A;
+      --pink-light: #ff4fa0;
+      --pink-dark: #b8115e;
+      --black: #111111;
+      --dark: #1e1e1e;
+      --gray: #6b6b6b;
+      --light: #f8f8f8;
+      --white: #ffffff;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--black);
+      background: var(--white);
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 60px;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .nav-logo {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.6rem;
+      color: var(--black);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-logo span { color: var(--pink); }
+
+    nav ul {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    nav ul a {
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--black);
+      transition: color 0.2s;
+    }
+
+    nav ul a:hover { color: var(--pink); }
+
+    .nav-cta {
+      background: var(--pink);
+      color: var(--white) !important;
+      padding: 10px 22px;
+      border-radius: 50px;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--pink-dark) !important; color: var(--white) !important; }
+
+    /* ── HERO ── */
+    #home {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 60px 80px;
+      background: var(--white);
+    }
+
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .hero-text h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(3rem, 5vw, 5rem);
+      line-height: 1.1;
+      color: var(--black);
+      margin-bottom: 8px;
+    }
+
+    .hero-text h1 em {
+      font-style: normal;
+      color: var(--pink);
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 24px;
+    }
+
+    .hero-text p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--gray);
+      max-width: 480px;
+      margin-bottom: 40px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 34px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.25s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--pink);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background: var(--pink-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(232,25,122,0.3);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--black);
+      border: 2px solid var(--black);
+      margin-left: 16px;
+    }
+
+    .btn-outline:hover {
+      background: var(--black);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .hero-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-image img {
+      width: 100%;
+      max-width: 440px;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff0f6;
+      border: 1px solid #ffd0e8;
+      border-radius: 50px;
+      padding: 6px 16px 6px 8px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--pink);
+      margin-bottom: 20px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .hero-badge-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--pink);
+    }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 100px 60px; }
+
+    .section-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--pink);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+      color: var(--black);
+      margin-bottom: 16px;
+    }
+
+    .section-desc {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--gray);
+      max-width: 560px;
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--light); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      margin-top: 60px;
+    }
+
+    .about-img-wrap {
+      position: relative;
+    }
+
+    .about-img-wrap::before {
+      content: '';
+      position: absolute;
+      top: 16px; left: 16px;
+      right: -16px; bottom: -16px;
+      border: 2px solid var(--pink);
+      border-radius: 16px;
+      z-index: 0;
+    }
+
+    .about-img-placeholder {
+      position: relative;
+      z-index: 1;
+      background: linear-gradient(135deg, #1e1e1e 0%, #3a3a3a 100%);
+      border-radius: 16px;
+      height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .about-img-placeholder .cat-icon {
+      font-size: 7rem;
+      opacity: 0.15;
+    }
+
+    .about-img-placeholder .about-img-text {
+      position: absolute;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .about-text h2 { margin-bottom: 20px; }
+
+    .about-text p {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--gray);
+      margin-bottom: 20px;
+    }
+
+    .about-stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    .stat-num {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.4rem;
+      color: var(--pink);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 4px;
+    }
+
+    /* ── SERVICES ── */
+    #services { background: var(--white); }
+
+    .services-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 60px;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .service-card {
+      background: var(--white);
+      border: 1px solid #ebebeb;
+      border-radius: 20px;
+      padding: 40px 32px;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--pink);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+
+    .service-card:hover {
+      border-color: transparent;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.09);
+      transform: translateY(-4px);
+    }
+
+    .service-card:hover::before { transform: scaleX(1); }
+
+    .service-icon {
+      width: 54px; height: 54px;
+      border-radius: 14px;
+      background: #fff0f6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      margin-bottom: 24px;
+    }
+
+    .service-card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 12px;
+    }
+
+    .service-card p {
+      font-size: 0.92rem;
+      line-height: 1.75;
+      color: var(--gray);
+    }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--light); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+      margin-top: 60px;
+    }
+
+    .contact-info h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 8px;
+    }
+
+    .contact-info p, .contact-info a {
+      font-size: 0.95rem;
+      color: var(--gray);
+      text-decoration: none;
+      line-height: 1.7;
+    }
+
+    .contact-info a:hover { color: var(--pink); }
+
+    .contact-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 32px;
+    }
+
+    .contact-item-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: #fff0f6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--black);
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 13px 16px;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: var(--black);
+      background: var(--white);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--pink);
+      box-shadow: 0 0 0 3px rgba(232,25,122,0.1);
+    }
+
+    textarea { height: 140px; resize: vertical; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 32px 60px;
+      font-size: 0.85rem;
+    }
+
+    footer a { color: var(--pink); text-decoration: none; }
+
+    /* ── DIVIDER ── */
+    .pink-divider {
+      width: 48px;
+      height: 3px;
+      background: var(--pink);
+      border-radius: 2px;
+      margin-bottom: 32px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      nav ul { display: none; }
+
+      section { padding: 80px 24px; }
+
+      #home { padding: 120px 24px 60px; }
+
+      .hero-inner, .about-grid, .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .hero-image { order: -1; }
+      .hero-image img { max-width: 280px; }
+
+      .services-grid { grid-template-columns: 1fr; }
+
+      .services-header { flex-direction: column; align-items: flex-start; }
+
+      .about-stats { gap: 24px; }
+
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#home" class="nav-logo">Cat's <em style="font-style:normal;color:var(--pink)">Creations</em></a>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home">
+    <div class="hero-inner section-inner">
+      <div class="hero-text">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          Available for new projects
+        </div>
+        <p class="hero-subtitle">Digital Content & Graphic Design</p>
+        <h1>Creative<br />Designs That<br /><em>Captivate</em></h1>
+        <p>Bringing your brand to life with bold visuals, compelling content, and designs that make a lasting impression.</p>
+        <a href="#services" class="btn btn-primary">See My Services</a>
+        <a href="#contact" class="btn btn-outline">Get a Quote</a>
+      </div>
+      <div class="hero-image">
+        <img src="logo.png" alt="Cat's Creations Logo" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-img-wrap">
+          <div class="about-img-placeholder">
+            <span class="cat-icon">🐱</span>
+            <span class="about-img-text">Add your photo here</span>
+          </div>
+        </div>
+        <div class="about-text">
+          <p class="section-label">About Me</p>
+          <h2 class="section-title">Hello, I'm Cat</h2>
+          <div class="pink-divider"></div>
+          <p>I'm a passionate digital content creator and graphic designer with a love for bringing creative visions to life. Whether it's a striking logo, engaging social media content, or a full brand identity — I put heart and craft into every project.</p>
+          <p>My work blends clean, modern design with personality and flair. I believe great design isn't just beautiful — it tells your story and connects you with your audience.</p>
+          <p>Based in South Africa, I work with clients locally and around the world to create visuals that stand out.</p>
+          <div class="about-stats">
+            <div>
+              <div class="stat-num">100+</div>
+              <div class="stat-label">Projects Delivered</div>
+            </div>
+            <div>
+              <div class="stat-num">50+</div>
+              <div class="stat-label">Happy Clients</div>
+            </div>
+            <div>
+              <div class="stat-num">5★</div>
+              <div class="stat-label">Client Rating</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="section-inner">
+      <div class="services-header">
+        <div>
+          <p class="section-label">What I Do</p>
+          <h2 class="section-title">Services</h2>
+        </div>
+        <a href="#contact" class="btn btn-primary">Start a Project</a>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🎨</div>
+          <h3>Logo & Brand Identity</h3>
+          <p>Custom logo design and full brand identity packages including color palettes, typography, and brand guidelines that make your business unforgettable.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">📱</div>
+          <h3>Social Media Graphics</h3>
+          <p>Eye-catching posts, stories, banners, and templates designed for Instagram, Facebook, TikTok, and more — consistent, on-brand, and scroll-stopping.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">✍️</div>
+          <h3>Digital Content Creation</h3>
+          <p>Engaging written and visual content tailored to your audience — from captions and copywriting to infographics and digital marketing materials.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🖨️</div>
+          <h3>Print Design</h3>
+          <p>Business cards, flyers, posters, menus, and more — designed to look stunning in print with full attention to detail and print-ready file delivery.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">💡</div>
+          <h3>Brand Strategy</h3>
+          <p>Clarity on who you are, who you serve, and how to position yourself. I help you build a cohesive brand that resonates and grows with your business.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🌐</div>
+          <h3>Web & Digital Assets</h3>
+          <p>Banners, email headers, digital ads, presentation decks, and other digital assets designed to elevate your online presence across every platform.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-inner">
+      <p class="section-label">Let's Work Together</p>
+      <h2 class="section-title">Get in Touch</h2>
+      <div class="pink-divider"></div>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <p class="section-desc" style="margin-bottom:40px">Have a project in mind? I'd love to hear about it. Send me a message and I'll get back to you as soon as possible.</p>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">📧</div>
+            <div>
+              <h3>Email</h3>
+              <a href="mailto:cathyviviers@gmail.com">cathyviviers@gmail.com</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">📍</div>
+            <div>
+              <h3>Location</h3>
+              <p>South Africa (Remote-friendly worldwide)</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">⏱️</div>
+            <div>
+              <h3>Response Time</h3>
+              <p>Usually within 24 hours</p>
+            </div>
+          </div>
+        </div>
+
+        <form action="https://formspree.io/f/mgojlnla" method="POST">
+          <div class="form-row">
+            <div>
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" placeholder="Jane Smith" required />
+            </div>
+            <div>
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="jane@example.com" required />
+            </div>
+          </div>
+          <div>
+            <label for="service">Service Interested In</label>
+            <select id="service" name="service">
+              <option value="">Select a service...</option>
+              <option>Logo & Brand Identity</option>
+              <option>Social Media Graphics</option>
+              <option>Digital Content Creation</option>
+              <option>Print Design</option>
+              <option>Brand Strategy</option>
+              <option>Web & Digital Assets</option>
+              <option>Other / Not sure yet</option>
+            </select>
+          </div>
+          <div>
+            <label for="message">Tell Me About Your Project</label>
+            <textarea id="message" name="message" placeholder="Share a bit about what you need, your timeline, and any other details..." required></textarea>
+          </div>
+          <input type="hidden" name="_subject" value="New enquiry from Cat's Creations website" />
+          <input type="text" name="_gotcha" style="display:none" />
+          <button type="submit" class="btn btn-primary" style="align-self:flex-start">Send Message →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Cat's Creations · Digital Content & Graphic Design · Made with ♥</p>
+  </footer>
+
+  <script>
+    // Smooth active nav highlight
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('nav ul a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 100) current = s.id;
+      });
+      navLinks.forEach(a => {
+        a.style.color = a.getAttribute('href') === '#' + current ? 'var(--pink)' : '';
+      });
+    });
+  </script>
+
+</body>
+</html>
