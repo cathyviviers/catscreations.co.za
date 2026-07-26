@@ -238,6 +238,7 @@
     .hero-image img {
       width: 100%;
       max-width: 440px;
+      border-radius: 5px;
       animation: float 4s ease-in-out infinite;
     }
 
@@ -357,28 +358,6 @@
       margin-bottom: 20px;
     }
 
-    .about-stats {
-      display: flex;
-      gap: 40px;
-      margin-top: 40px;
-    }
-
-    .stat-num {
-      font-family: 'Dancing Script', cursive;
-      font-size: 2.4rem;
-      color: var(--pink);
-      line-height: 1;
-    }
-
-    .stat-label {
-      font-size: 0.78rem;
-      font-weight: 500;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-top: 4px;
-    }
-
     /* ── SERVICES ── */
     #services { background: var(--bg); transition: background-color 0.25s ease; }
 
@@ -426,13 +405,13 @@
     .service-card:hover::before { transform: scaleX(1); }
 
     .service-icon {
-      width: 54px; height: 54px;
-      border-radius: 14px;
+      width: 68px; height: 68px;
+      border-radius: 16px;
       background: var(--pink-tint);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.6rem;
+      font-size: 2.2rem;
       margin-bottom: 24px;
     }
 
@@ -577,8 +556,6 @@
 
       .services-header { flex-direction: column; align-items: flex-start; }
 
-      .about-stats { gap: 24px; }
-
       .form-row { grid-template-columns: 1fr; }
     }
   </style>
@@ -612,7 +589,7 @@
         <a href="#contact" class="btn btn-outline">Get a Quote</a>
       </div>
       <div class="hero-image">
-        <img src="https://raw.githubusercontent.com/cathyviviers/catscreations.co.za/main/images/cats-logo.png" alt="Cat's Creations Logo" />
+        <img src="https://raw.githubusercontent.com/cathyviviers/catscreations.co.za/main/images/catscreations.gif" alt="Cat's Creations Logo" />
       </div>
     </div>
   </section>
@@ -630,23 +607,9 @@
           <p class="section-label">About Me</p>
           <h2 class="section-title">Hello, I'm Cat</h2>
           <div class="pink-divider"></div>
-          <p>I'm a passionate digital content creator and graphic designer with a love for bringing creative visions to life. Whether it's a striking logo, engaging social media content, or a full brand identity — I put heart and craft into every project.</p>
-          <p>My work blends clean, modern design with personality and flair. I believe great design isn't just beautiful — it tells your story and connects you with your audience.</p>
-          <p>Based in South Africa, I work with clients locally and around the world to create visuals that stand out.</p>
-          <div class="about-stats">
-            <div>
-              <div class="stat-num">100+</div>
-              <div class="stat-label">Projects Delivered</div>
-            </div>
-            <div>
-              <div class="stat-num">50+</div>
-              <div class="stat-label">Happy Clients</div>
-            </div>
-            <div>
-              <div class="stat-num">5★</div>
-              <div class="stat-label">Client Rating</div>
-            </div>
-          </div>
+          <p>I'm a passionate digital content creator and graphic designer with a love for bringing creative visions to life. Alongside my talented team, I bring striking logos, engaging social media content, and full brand identities to life — with heart and craft in every project.</p>
+          <p>My team and I blend clean, modern design with personality and flair. We believe great design isn't just beautiful — it tells your story and connects you with your audience.</p>
+          <p>Based in South Africa, my team and I work with clients locally and around the world to create visuals that stand out.</p>
         </div>
       </div>
     </div>
