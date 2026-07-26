@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Web & Digital Assets | Cat's Creations</title>
+  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/cathyviviers/catscreations.co.za/main/images/cats-logo.png" />
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "xrz0a41c05");
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script>
+    (function () {
+      var stored = localStorage.getItem('theme');
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', stored || (prefersDark ? 'dark' : 'light'));
+    })();
+  </script>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="../index.html#home" class="nav-logo">Cat's <em style="font-style:normal;color:var(--pink)">Creations</em></a>
+    <ul>
+      <li><a href="../index.html#home">Home</a></li>
+      <li><a href="../index.html#about">About</a></li>
+      <li class="has-dropdown">
+        <a href="../index.html#services">Services</a>
+        <ul class="dropdown">
+          <li><a href="logo-brand-identity.html">Logo & Brand Identity</a></li>
+          <li><a href="social-media-graphics.html">Social Media Graphics</a></li>
+          <li><a href="digital-content-creation.html">Digital Content Creation</a></li>
+          <li><a href="print-design.html">Print Design</a></li>
+          <li><a href="brand-strategy.html">Brand Strategy</a></li>
+          <li><a href="web-digital-assets.html">Web & Digital Assets</a></li>
+        </ul>
+      </li>
+      <li><a href="../index.html#contact" class="nav-cta">Get in Touch</a></li>
+    </ul>
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" type="button">🌙</button>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="section-inner">
+      <p class="breadcrumb"><a href="../index.html">Home</a> / <a href="../index.html#services">Services</a> / Web & Digital Assets</p>
+      <div class="page-hero-icon">🌐</div>
+      <h1>Web & <em>Digital Assets</em></h1>
+      <p class="page-hero-desc">Banners, email headers, ad creative, and presentation decks — the digital assets that keep your brand looking sharp everywhere it shows up online.</p>
+      <a href="../index.html#contact" class="btn btn-primary">Start This Project</a>
+      <a href="../index.html#services" class="btn btn-outline">All Services</a>
+    </div>
+  </section>
+
+  <!-- WHAT'S INCLUDED -->
+  <section>
+    <div class="section-inner">
+      <p class="section-label">What's Included</p>
+      <h2 class="section-title">Here's What You Get</h2>
+      <div class="pink-divider"></div>
+      <p class="section-desc">Every digital touchpoint designed to match, whatever platform it's headed for.</p>
+      <ul class="feature-list">
+        <li class="feature-item"><span class="feature-item-icon">✓</span> Website banners & headers</li>
+        <li class="feature-item"><span class="feature-item-icon">✓</span> Email & newsletter graphics</li>
+        <li class="feature-item"><span class="feature-item-icon">✓</span> Digital ad creative</li>
+        <li class="feature-item"><span class="feature-item-icon">✓</span> Presentation deck design</li>
+        <li class="feature-item"><span class="feature-item-icon">✓</span> Export-ready formats for every platform</li>
+        <li class="feature-item"><span class="feature-item-icon">✓</span> Consistent branding across every asset</li>
+      </ul>
+
+      <div class="service-cta">
+        <div>
+          <h3>Ready to get started?</h3>
+          <p>Let's make sure your brand looks just as sharp online as it does everywhere else — reach out and tell me about your project.</p>
+        </div>
+        <a href="../index.html#contact" class="btn btn-primary">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Cat's Creations · Digital Content & Graphic Design · Made with ♥</p>
+  </footer>
+
+  <script>
+    // Theme toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const rootEl = document.documentElement;
+
+    function setToggleIcon(theme) {
+      themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+    }
+
+    setToggleIcon(rootEl.getAttribute('data-theme'));
+
+    themeToggle.addEventListener('click', () => {
+      const next = rootEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      rootEl.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      setToggleIcon(next);
+    });
+  </script>
+
+</body>
+</html>
