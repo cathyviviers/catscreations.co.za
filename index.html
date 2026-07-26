@@ -14,6 +14,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script>
+    (function () {
+      var stored = localStorage.getItem('theme');
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', stored || (prefersDark ? 'dark' : 'light'));
+    })();
+  </script>
   <style>
     :root {
       --pink: #E8197A;
@@ -24,6 +31,30 @@
       --gray: #6b6b6b;
       --light: #f8f8f8;
       --white: #ffffff;
+
+      --text: var(--black);
+      --text-muted: var(--gray);
+      --bg: var(--white);
+      --bg-alt: var(--light);
+      --surface: var(--white);
+      --border: #ebebeb;
+      --input-border: #e0e0e0;
+      --nav-bg: rgba(255,255,255,0.95);
+      --pink-tint: #fff0f6;
+      --pink-tint-border: #ffd0e8;
+    }
+
+    :root[data-theme="dark"] {
+      --text: #f2f2f2;
+      --text-muted: #a8a8a8;
+      --bg: #121212;
+      --bg-alt: #181818;
+      --surface: #1c1c1c;
+      --border: #2c2c2c;
+      --input-border: #333333;
+      --nav-bg: rgba(18,18,18,0.9);
+      --pink-tint: rgba(232,25,122,0.15);
+      --pink-tint-border: rgba(232,25,122,0.35);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -32,8 +63,9 @@
 
     body {
       font-family: 'Inter', sans-serif;
-      color: var(--black);
-      background: var(--white);
+      color: var(--text);
+      background: var(--bg);
+      transition: background-color 0.25s ease, color 0.25s ease;
     }
 
     /* ── NAV ── */
@@ -45,15 +77,16 @@
       align-items: center;
       justify-content: space-between;
       padding: 18px 60px;
-      background: rgba(255,255,255,0.95);
+      background: var(--nav-bg);
       backdrop-filter: blur(8px);
-      border-bottom: 1px solid #f0f0f0;
+      border-bottom: 1px solid var(--border);
+      transition: background-color 0.25s ease, border-color 0.25s ease;
     }
 
     .nav-logo {
       font-family: 'Dancing Script', cursive;
       font-size: 1.6rem;
-      color: var(--black);
+      color: var(--text);
       text-decoration: none;
       letter-spacing: -0.5px;
     }
@@ -62,6 +95,7 @@
 
     nav ul {
       display: flex;
+      align-items: center;
       gap: 36px;
       list-style: none;
     }
@@ -72,7 +106,7 @@
       font-weight: 500;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--black);
+      color: var(--text);
       transition: color 0.2s;
     }
 
@@ -88,13 +122,34 @@
 
     .nav-cta:hover { background: var(--pink-dark) !important; color: var(--white) !important; }
 
+    .theme-toggle {
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      border: 1.5px solid var(--border);
+      background: var(--surface);
+      cursor: pointer;
+      font-size: 1rem;
+      line-height: 1;
+      transition: border-color 0.2s, background-color 0.25s ease, transform 0.2s;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--pink);
+      transform: translateY(-1px);
+    }
+
     /* ── HERO ── */
     #home {
       min-height: 100vh;
       display: flex;
       align-items: center;
       padding: 120px 60px 80px;
-      background: var(--white);
+      background: var(--bg);
+      transition: background-color 0.25s ease;
     }
 
     .hero-inner {
@@ -110,7 +165,7 @@
       font-family: 'Dancing Script', cursive;
       font-size: clamp(3rem, 5vw, 5rem);
       line-height: 1.1;
-      color: var(--black);
+      color: var(--text);
       margin-bottom: 8px;
     }
 
@@ -124,14 +179,14 @@
       font-weight: 500;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--gray);
+      color: var(--text-muted);
       margin-bottom: 24px;
     }
 
     .hero-text p {
       font-size: 1.05rem;
       line-height: 1.8;
-      color: var(--gray);
+      color: var(--text-muted);
       max-width: 480px;
       margin-bottom: 40px;
     }
@@ -163,14 +218,14 @@
 
     .btn-outline {
       background: transparent;
-      color: var(--black);
-      border: 2px solid var(--black);
+      color: var(--text);
+      border: 2px solid var(--text);
       margin-left: 16px;
     }
 
     .btn-outline:hover {
-      background: var(--black);
-      color: var(--white);
+      background: var(--text);
+      color: var(--bg);
       transform: translateY(-2px);
     }
 
@@ -195,8 +250,8 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: #fff0f6;
-      border: 1px solid #ffd0e8;
+      background: var(--pink-tint);
+      border: 1px solid var(--pink-tint-border);
       border-radius: 50px;
       padding: 6px 16px 6px 8px;
       font-size: 0.78rem;
@@ -233,19 +288,19 @@
     .section-title {
       font-family: 'Dancing Script', cursive;
       font-size: clamp(2.2rem, 3.5vw, 3.2rem);
-      color: var(--black);
+      color: var(--text);
       margin-bottom: 16px;
     }
 
     .section-desc {
       font-size: 1rem;
       line-height: 1.8;
-      color: var(--gray);
+      color: var(--text-muted);
       max-width: 560px;
     }
 
     /* ── ABOUT ── */
-    #about { background: var(--light); }
+    #about { background: var(--bg-alt); transition: background-color 0.25s ease; }
 
     .about-grid {
       display: grid;
@@ -298,7 +353,7 @@
     .about-text p {
       font-size: 1rem;
       line-height: 1.85;
-      color: var(--gray);
+      color: var(--text-muted);
       margin-bottom: 20px;
     }
 
@@ -318,14 +373,14 @@
     .stat-label {
       font-size: 0.78rem;
       font-weight: 500;
-      color: var(--gray);
+      color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 0.1em;
       margin-top: 4px;
     }
 
     /* ── SERVICES ── */
-    #services { background: var(--white); }
+    #services { background: var(--bg); transition: background-color 0.25s ease; }
 
     .services-header {
       display: flex;
@@ -343,8 +398,8 @@
     }
 
     .service-card {
-      background: var(--white);
-      border: 1px solid #ebebeb;
+      background: var(--surface);
+      border: 1px solid var(--border);
       border-radius: 20px;
       padding: 40px 32px;
       transition: all 0.3s;
@@ -373,7 +428,7 @@
     .service-icon {
       width: 54px; height: 54px;
       border-radius: 14px;
-      background: #fff0f6;
+      background: var(--pink-tint);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -384,18 +439,18 @@
     .service-card h3 {
       font-size: 1.1rem;
       font-weight: 600;
-      color: var(--black);
+      color: var(--text);
       margin-bottom: 12px;
     }
 
     .service-card p {
       font-size: 0.92rem;
       line-height: 1.75;
-      color: var(--gray);
+      color: var(--text-muted);
     }
 
     /* ── CONTACT ── */
-    #contact { background: var(--light); }
+    #contact { background: var(--bg-alt); transition: background-color 0.25s ease; }
 
     .contact-grid {
       display: grid;
@@ -408,13 +463,13 @@
     .contact-info h3 {
       font-size: 1rem;
       font-weight: 600;
-      color: var(--black);
+      color: var(--text);
       margin-bottom: 8px;
     }
 
     .contact-info p, .contact-info a {
       font-size: 0.95rem;
-      color: var(--gray);
+      color: var(--text-muted);
       text-decoration: none;
       line-height: 1.7;
     }
@@ -431,7 +486,7 @@
     .contact-item-icon {
       width: 44px; height: 44px;
       border-radius: 12px;
-      background: #fff0f6;
+      background: var(--pink-tint);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -456,7 +511,7 @@
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--black);
+      color: var(--text);
       display: block;
       margin-bottom: 6px;
     }
@@ -464,13 +519,13 @@
     input, textarea, select {
       width: 100%;
       padding: 13px 16px;
-      border: 1.5px solid #e0e0e0;
+      border: 1.5px solid var(--input-border);
       border-radius: 10px;
       font-family: 'Inter', sans-serif;
       font-size: 0.95rem;
-      color: var(--black);
-      background: var(--white);
-      transition: border-color 0.2s, box-shadow 0.2s;
+      color: var(--text);
+      background: var(--surface);
+      transition: border-color 0.2s, box-shadow 0.2s, background-color 0.25s ease;
       outline: none;
     }
 
@@ -539,6 +594,7 @@
       <li><a href="#services">Services</a></li>
       <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
     </ul>
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" type="button">🌙</button>
   </nav>
 
   <!-- HERO -->
@@ -642,7 +698,7 @@
   </section>
 
   <!-- INSTAGRAM -->
-  <section id="instagram" style="background:var(--light);padding:100px 60px;">
+  <section id="instagram" style="background:var(--bg-alt);padding:100px 60px;transition:background-color 0.25s ease;">
     <div class="section-inner">
       <p class="section-label">Follow Along</p>
       <h2 class="section-title">On Instagram</h2>
@@ -736,6 +792,23 @@
   </script>
 
   <script>
+    // Theme toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const rootEl = document.documentElement;
+
+    function setToggleIcon(theme) {
+      themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+    }
+
+    setToggleIcon(rootEl.getAttribute('data-theme'));
+
+    themeToggle.addEventListener('click', () => {
+      const next = rootEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      rootEl.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      setToggleIcon(next);
+    });
+
     // Smooth active nav highlight
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('nav ul a');
