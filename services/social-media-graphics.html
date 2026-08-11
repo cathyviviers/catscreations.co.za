@@ -26,24 +26,59 @@
 </head>
 <body>
 
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="contactModal" onclick="closeModalOnOverlay(event)">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <h3>Get in Touch</h3>
+      <p class="modal-sub">Fill in the form and I'll get back to you within 24 hours.</p>
+      <form action="https://formspree.io/f/mgojlnla" method="POST">
+        <div class="form-row">
+          <div>
+            <label for="modal-name">Your Name</label>
+            <input type="text" id="modal-name" name="name" placeholder="Jane Smith" required />
+          </div>
+          <div>
+            <label for="modal-email">Email Address</label>
+            <input type="email" id="modal-email" name="email" placeholder="jane@example.com" required />
+          </div>
+        </div>
+        <div style="margin-top:18px">
+          <label for="modal-service">Service Interested In</label>
+          <select id="modal-service" name="service">
+            <option value="">Select a service...</option>
+            <option>Logo &amp; Brand Identity</option>
+            <option>Social Media Graphics</option>
+            <option>Digital Content Creation</option>
+            <option>Print Design</option>
+            <option>Brand Strategy</option>
+            <option>Web &amp; Digital Assets</option>
+            <option>Other / Not sure yet</option>
+          </select>
+        </div>
+        <div style="margin-top:18px">
+          <label for="modal-message">Tell Me About Your Project</label>
+          <textarea id="modal-message" name="message" placeholder="Share a bit about what you need..." required></textarea>
+        </div>
+        <input type="hidden" name="_subject" value="New enquiry from Cat's Creations website" />
+        <input type="text" name="_gotcha" style="display:none" />
+        <button type="submit" class="btn btn-primary" style="margin-top:20px">Send Message →</button>
+      </form>
+    </div>
+  </div>
+
   <!-- NAV -->
   <nav>
-    <a href="../index.html#home" class="nav-logo">Cat's <em style="font-style:normal;color:var(--pink)">Creations</em></a>
+    <a href="../index.html" class="nav-logo">Cat's <em style="font-style:normal;color:var(--pink)">Creations</em></a>
     <ul>
-      <li><a href="../index.html#home">Home</a></li>
-      <li><a href="../index.html#about">About</a></li>
-      <li class="has-dropdown">
-        <a href="../index.html#services">Services</a>
-        <ul class="dropdown">
-          <li><a href="logo-brand-identity.html">Logo & Brand Identity</a></li>
-          <li><a href="social-media-graphics.html">Social Media Graphics</a></li>
-          <li><a href="digital-content-creation.html">Digital Content Creation</a></li>
-          <li><a href="print-design.html">Print Design</a></li>
-          <li><a href="brand-strategy.html">Brand Strategy</a></li>
-          <li><a href="web-digital-assets.html">Web & Digital Assets</a></li>
-        </ul>
-      </li>
-      <li><a href="../index.html#contact" class="nav-cta">Get in Touch</a></li>
+      <li><a href="logo-brand-identity.html">Logo &amp; Brand</a></li>
+      <li><a href="social-media-graphics.html">Social Media</a></li>
+      <li><a href="digital-content-creation.html">Content</a></li>
+      <li><a href="print-design.html">Print</a></li>
+      <li><a href="brand-strategy.html">Brand Strategy</a></li>
+      <li><a href="web-digital-assets.html">Web &amp; Digital</a></li>
+      <li><a href="#" class="nav-cta" onclick="openModal(event)">Get in Touch</a></li>
     </ul>
     <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" type="button">🌙</button>
   </nav>
@@ -51,7 +86,7 @@
   <!-- PAGE HERO -->
   <section class="page-hero">
     <div class="section-inner">
-      <p class="breadcrumb"><a href="../index.html">Home</a> / <a href="../index.html#services">Services</a> / Social Media Graphics</p>
+      <p class="breadcrumb"><a href="../index.html">Home</a> /  / Social Media Graphics</p>
       <div class="page-hero-icon">📱</div>
       <h1>Social Media <em>Graphics</em></h1>
       <p class="page-hero-desc">Scroll-stopping, on-brand content designed for how people actually use Instagram, Facebook, and TikTok — templates and one-off graphics that keep your feed consistent without eating up your week.</p>
@@ -74,7 +109,7 @@
         <li class="feature-item"><span class="feature-item-icon">✓</span> Highlight covers & profile branding</li>
         <li class="feature-item"><span class="feature-item-icon">✓</span> Editable templates you can reuse yourself</li>
         <li class="feature-item"><span class="feature-item-icon">✓</span> Quick turnaround for time-sensitive posts</li>
-      </ul>
+      
 
       <div class="service-cta">
         <div>
@@ -108,6 +143,22 @@
       localStorage.setItem('theme', next);
       setToggleIcon(next);
     });
+  </script>
+
+  <script>
+    function openModal(e) {
+      e.preventDefault();
+      document.getElementById('contactModal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+      document.getElementById('contactModal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function closeModalOnOverlay(e) {
+      if (e.target === document.getElementById('contactModal')) closeModal();
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
   </script>
 
 </body>
