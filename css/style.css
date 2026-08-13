@@ -438,7 +438,7 @@ section { padding: 100px 60px; }
 }
 
 /* ── TEAM ── */
-#team { background: var(--bg); }
+#team { background: var(--bg); padding-bottom: 40px; }
 
 .team-grid {
   display: grid;
