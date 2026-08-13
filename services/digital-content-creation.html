@@ -90,8 +90,6 @@
       <div class="page-hero-icon">✍️</div>
       <h1>Digital <em>Content Creation</em></h1>
       <p class="page-hero-desc">From captions that sound like you to infographics that explain the complicated stuff simply — I create the written and visual content that keeps your audience engaged and coming back.</p>
-      <a href="../index.html#contact" class="btn btn-primary">Start This Project</a>
-      <a href="../index.html#services" class="btn btn-outline">All Services</a>
     </div>
   </section>
 
@@ -109,14 +107,37 @@
         <li class="feature-item"><span class="feature-item-icon">✓</span> Editing & proofreading</li>
         <li class="feature-item"><span class="feature-item-icon">✓</span> Content tailored to your specific audience</li>
         <li class="feature-item"><span class="feature-item-icon">✓</span> Consistent, posting-ready formats</li>
-      
+      </ul>
+    </div>
+  </section>
 
-      <div class="service-cta">
-        <div>
-          <h3>Ready to get started?</h3>
-          <p>Let's find your voice and put it into words — reach out and tell me about your project.</p>
-        </div>
-        <a href="../index.html#contact" class="btn btn-primary">Get in Touch</a>
+  <!-- CTA FORM -->
+  <section style="background:var(--bg-alt)">
+    <div class="section-inner">
+      <div class="service-cta-form">
+
+        <h3>Ready to get started?</h3>
+        <p>Let's create content that connects with your audience.</p>
+        <form action="https://formspree.io/f/mgojlnla" method="POST" class="cta-form">
+          <input type="hidden" name="service" value="Digital Content Creation" />
+          <input type="hidden" name="_subject" value="New enquiry: Digital Content Creation" />
+          <input type="text" name="_gotcha" style="display:none" />
+          <div class="cta-form-row">
+            <div>
+              <label for="cta-name">Name</label>
+              <input type="text" id="cta-name" name="name" placeholder="Your name" required />
+            </div>
+            <div>
+              <label for="cta-email">Email</label>
+              <input type="email" id="cta-email" name="email" placeholder="your@email.com" required />
+            </div>
+          </div>
+          <div style="margin-top:14px">
+            <label for="cta-message">Tell us about your project</label>
+            <textarea id="cta-message" name="message" placeholder="A little about what you need..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="margin-top:16px">Send Message →</button>
+        </form>
       </div>
     </div>
   </section>
