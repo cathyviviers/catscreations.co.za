@@ -79,6 +79,9 @@
       <li><a href="services/web-digital-assets.html">Web</a></li>
       <li><a href="#" class="nav-cta" onclick="openModal(event)">Get in Touch</a></li>
     </ul>
+    <button class="burger" id="burger" aria-label="Toggle menu" type="button">
+      <span></span><span></span><span></span>
+    </button>
     <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" type="button">🌙</button>
   </nav>
 
@@ -176,7 +179,6 @@
           <p class="section-label">What We Do</p>
           <h2 class="section-title">Services</h2>
         </div>
-        <a href="#contact" class="btn btn-primary">Start a Project</a>
       </div>
       <div class="services-grid">
         <a href="services/logo-brand-identity.html" class="service-card">
@@ -361,5 +363,21 @@
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
   </script>
 
+
+  <script>
+    const burger = document.getElementById('burger');
+    const navUl = document.querySelector('nav ul');
+    burger.addEventListener('click', () => {
+      burger.classList.toggle('open');
+      navUl.classList.toggle('open');
+    });
+    // Close on nav link click
+    navUl.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        burger.classList.remove('open');
+        navUl.classList.remove('open');
+      });
+    });
+  </script>
 </body>
 </html>
