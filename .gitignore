@@ -13,3 +13,11 @@ recovery-codes.txt
 # OS files
 Thumbs.db
 .DS_Store
+
+# Root-level loose files
+*.msi
+*.exe
+*.dmg
+banner.png
+cats-logo.png
+"CD Viviers.png"
