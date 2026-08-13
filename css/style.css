@@ -194,10 +194,9 @@ nav ul a.nav-active { color: var(--pink); }
 
 /* ── HERO ── */
 #home {
-  min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: 120px 60px 80px;
+  padding: 120px 60px 60px;
   background: var(--bg);
   transition: background-color 0.25s ease;
 }
