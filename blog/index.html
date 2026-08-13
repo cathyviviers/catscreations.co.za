@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Brand Strategy | Cat's Creations</title>
+  <title>Blog | Cat's Creations</title>
   <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/cathyviviers/catscreations.co.za/main/images/cats-logo.png" />
   <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
@@ -25,7 +25,6 @@
   <link rel="stylesheet" href="../css/style.css" />
 </head>
 <body>
-
 
   <!-- MODAL -->
   <div class="modal-overlay" id="contactModal" onclick="closeModalOnOverlay(event)">
@@ -72,81 +71,49 @@
   <nav>
     <a href="../index.html" class="nav-logo">Cat's <em style="font-style:normal;color:var(--pink)">Creations</em></a>
     <ul>
-      <li><a href="digital-content-creation.html">Content</a></li>
-      <li><a href="logo-brand-identity.html">Brand</a></li>
-      <li><a href="print-design.html">Print</a></li>
-      <li><a href="social-media-graphics.html">Social</a></li>
-      <li><a href="brand-strategy.html" class="nav-active">Strategy</a></li>
-      <li><a href="web-digital-assets.html">Web</a></li>
+      <li><a href="../services/digital-content-creation.html">Content</a></li>
+      <li><a href="../services/logo-brand-identity.html">Brand</a></li>
+      <li><a href="../services/print-design.html">Print</a></li>
+      <li><a href="../services/social-media-graphics.html">Social</a></li>
+      <li><a href="../services/brand-strategy.html">Strategy</a></li>
+      <li><a href="../services/web-digital-assets.html">Web</a></li>
       <li class="mobile-cta-li"><a href="#" class="nav-cta" onclick="openModal(event)">Get in Touch</a></li>
     </ul>
     <div class="nav-right">
-      <a href="../blog/index.html" class="nav-blog">Blog</a>
+      <a href="../blog/index.html" class="nav-blog nav-active">Blog</a>
       <a href="#" class="nav-cta" onclick="openModal(event)">Get in Touch</a>
       <button class="burger" id="burger" aria-label="Toggle menu" type="button">
-      <span></span><span></span><span></span>
-    </button>
+        <span></span><span></span><span></span>
+      </button>
       <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" type="button">🌙</button>
     </div>
   </nav>
 
   <!-- PAGE HERO -->
   <section class="page-hero">
-    <div class="page-hero-banner" style="background-image:url('https://raw.githubusercontent.com/cathyviviers/catscreations.co.za/main/images/Strategy.jpg')"></div>
     <div class="section-inner">
-      <p class="breadcrumb"><a href="../index.html">Home</a> /  / Brand Strategy</p>
-      <div class="page-hero-icon">💡</div>
-      <h1>Brand <em>Strategy</em></h1>
-      <p class="page-hero-desc">Before the visuals, we get clear on the fundamentals — who you are, who you're speaking to, and what makes you different. A strong strategy makes every design decision after it easier.</p>
+      <p class="breadcrumb"><a href="../index.html">Home</a> / Blog</p>
+      <div class="page-hero-icon">✍️</div>
+      <h1>The Cat's Creations <em>Blog</em></h1>
+      <p class="page-hero-desc">Tips, insights, and behind-the-scenes stories on design, branding, and digital content.</p>
     </div>
   </section>
 
-  <!-- WHAT'S INCLUDED -->
+  <!-- BLOG POSTS -->
   <section>
     <div class="section-inner">
-      <p class="section-label">What's Included</p>
-      <h2 class="section-title">Here's What You Get</h2>
-      <div class="pink-divider"></div>
-      <p class="section-desc">Clarity first — so every logo, post, and page that follows actually says what you mean.</p>
-      <ul class="feature-list">
-        <li class="feature-item"><span class="feature-item-icon">✓</span> Brand audit & positioning session</li>
-        <li class="feature-item"><span class="feature-item-icon">✓</span> Target audience clarity</li>
-        <li class="feature-item"><span class="feature-item-icon">✓</span> Core messaging pillars</li>
-        <li class="feature-item"><span class="feature-item-icon">✓</span> Competitor snapshot</li>
-        <li class="feature-item"><span class="feature-item-icon">✓</span> A practical roadmap for consistent growth</li>
-        <li class="feature-item"><span class="feature-item-icon">✓</span> One-on-one strategy consultation</li>
-      </ul>
-    </div>
-  </section>
+      <div class="blog-grid">
 
-  <!-- CTA FORM -->
-  <section class="service-cta-section" style="background:var(--bg-alt)">
-    <video class="service-cta-bg-video" id="cta-bg-video" src="https://raw.githubusercontent.com/cathyviviers/catscreations.co.za/main/images/the%20team.mp4" preload="auto" muted playsinline></video>
-    <div class="section-inner">
-      <div class="service-cta-form">
+        <a href="posts/5-signs-your-brand-needs-a-refresh.html" class="blog-card">
+          <div class="blog-card-meta">
+            <span class="blog-tag">Branding</span>
+            <span class="blog-date">August 2026</span>
+          </div>
+          <h2 class="blog-card-title">5 Signs Your Brand Needs a Refresh</h2>
+          <p class="blog-card-excerpt">Your logo looked great five years ago — but does it still represent who you are today? Here's how to tell when it's time for a brand glow-up.</p>
+          <span class="blog-card-link">Read more →</span>
+        </a>
 
-        <h3>Ready to get started?</h3>
-        <p>Let's get clear on your brand before we design a single thing.</p>
-        <form action="https://formspree.io/f/mgojlnla" method="POST" class="cta-form">
-          <input type="hidden" name="service" value="Brand Strategy" />
-          <input type="hidden" name="_subject" value="New enquiry: Brand Strategy" />
-          <input type="text" name="_gotcha" style="display:none" />
-          <div class="cta-form-row">
-            <div>
-              <label for="cta-name">Name</label>
-              <input type="text" id="cta-name" name="name" placeholder="Your name" required />
-            </div>
-            <div>
-              <label for="cta-email">Email</label>
-              <input type="email" id="cta-email" name="email" placeholder="your@email.com" required />
-            </div>
-          </div>
-          <div style="margin-top:14px">
-            <label for="cta-message">Tell us about your project</label>
-            <textarea id="cta-message" name="message" placeholder="A little about what you need..." required></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary" style="margin-top:16px">Send Message →</button>
-        </form>
       </div>
     </div>
   </section>
@@ -157,16 +124,10 @@
   </footer>
 
   <script>
-    // Theme toggle
     const themeToggle = document.getElementById('theme-toggle');
     const rootEl = document.documentElement;
-
-    function setToggleIcon(theme) {
-      themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
-    }
-
+    function setToggleIcon(theme) { themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙'; }
     setToggleIcon(rootEl.getAttribute('data-theme'));
-
     themeToggle.addEventListener('click', () => {
       const next = rootEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       rootEl.setAttribute('data-theme', next);
@@ -174,7 +135,6 @@
       setToggleIcon(next);
     });
   </script>
-
   <script>
     function openModal(e) {
       e.preventDefault();
@@ -190,8 +150,6 @@
     }
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
   </script>
-
-
   <script>
     const burger = document.getElementById('burger');
     const navUl = document.querySelector('nav ul');
@@ -199,7 +157,6 @@
       burger.classList.toggle('open');
       navUl.classList.toggle('open');
     });
-    // Close on nav link click
     navUl.querySelectorAll('a').forEach(a => {
       a.addEventListener('click', () => {
         burger.classList.remove('open');
@@ -208,20 +165,5 @@
     });
   </script>
 
-  <script>
-    (function() {
-      const video = document.getElementById('cta-bg-video');
-      if (!video) return;
-      const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            video.play();
-            observer.disconnect();
-          }
-        });
-      }, { threshold: 0.3 });
-      observer.observe(video.closest('section'));
-    })();
-  </script>
 </body>
 </html>
