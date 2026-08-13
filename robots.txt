@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://catscreations.co.za/sitemap.xml
