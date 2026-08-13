@@ -1,0 +1,7 @@
+{
+  "name": "catscreations",
+  "version": "1.0.0",
+  "scripts": {
+    "sitemap": "node generate-sitemap.js"
+  }
+}
