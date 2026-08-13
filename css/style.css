@@ -88,13 +88,17 @@ nav ul a {
 
 nav ul a:hover { color: var(--pink); }
 
-nav ul li:not(:last-child)::after {
+nav ul li:not(:last-child):not(:nth-last-child(2))::after {
   content: '•';
   color: var(--pink);
   margin-left: 16px;
   font-size: 0.6rem;
   vertical-align: middle;
   pointer-events: none;
+}
+
+nav ul li:last-child {
+  margin-left: auto;
 }
 
 .nav-cta {
@@ -259,6 +263,14 @@ nav ul li:not(:last-child)::after {
   color: var(--text);
   border: 2px solid var(--text);
   margin-left: 16px;
+}
+
+@media (max-width: 600px) {
+  .btn-outline {
+    margin-left: 0;
+    margin-top: 12px;
+    display: block;
+  }
 }
 
 .btn-outline:hover {
