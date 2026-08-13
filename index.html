@@ -227,7 +227,7 @@
       <p class="section-label">Follow Along</p>
       <h2 class="section-title">On Instagram</h2>
       <div class="pink-divider"></div>
-      <behold-widget feed-id="JvXfU8Irl4BlwgSTj24u"></behold-widget>
+      <behold-widget feed-id="JvXfU8Irl4BlwgSTj24u" style="--columns:3"></behold-widget>
     </div>
   </section>
 
@@ -312,6 +312,12 @@
       if(window.__bhldScript)return;window.__bhldScript=true;
       const d=document,s=d.createElement("script");s.type="module";
       s.src="https://w.behold.so/widget.js";setTimeout(()=>{d.head.append(s);},0);
+    })();
+    (function() {
+      const w = document.querySelector('behold-widget');
+      function setCols() { w.style.setProperty('--columns', window.innerWidth <= 900 ? '2' : '3'); }
+      setCols();
+      window.addEventListener('resize', setCols);
     })();
   </script>
 
