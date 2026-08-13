@@ -190,6 +190,34 @@ nav ul a.nav-active { color: var(--pink); }
   letter-spacing: 0.03em;
 }
 
+/* Blog author */
+.blog-author {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 40px;
+  max-width: 720px;
+}
+.blog-author-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 2px solid var(--pink);
+}
+.blog-author-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+.blog-author-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 2px 0 0;
+  color: var(--text);
+}
+
 /* Blog post article */
 .blog-post {
   max-width: 720px;
