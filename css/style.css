@@ -332,7 +332,23 @@ nav ul a.nav-active { color: var(--pink); }
 .page-hero {
   padding: 150px 60px 80px;
   background: var(--bg-alt);
+  position: relative;
+  overflow: hidden;
   transition: background-color 0.25s ease;
+}
+
+.page-hero-banner {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.18;
+  z-index: 0;
+}
+
+:root[data-theme="dark"] .page-hero-banner { opacity: 0.25; }
+
+.page-hero .section-inner { position: relative; z-index: 1; }
 }
 
 .breadcrumb {
