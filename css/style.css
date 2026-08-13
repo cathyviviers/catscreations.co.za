@@ -962,16 +962,21 @@ footer a { color: var(--pink); text-decoration: none; }
   nav ul li { margin-left: 0 !important; }
   nav ul li::before { display: none !important; }
 
+  nav ul li:not(.mobile-cta-li) {
+    border-bottom: 1px solid var(--pink);
+  }
+
   nav ul a {
     display: block;
     padding: 14px 28px;
     font-size: 1rem;
     letter-spacing: 0.04em;
+    text-align: right;
   }
 
   /* Hide Get In Touch pill from nav-right on mobile; show it in dropdown instead */
   .nav-right .nav-cta { display: none; }
-  .mobile-cta-li { display: block; margin-top: 8px; }
+  .mobile-cta-li { display: block; margin-top: 16px; }
   .mobile-cta-li a {
     margin: 0 24px;
     display: block;
