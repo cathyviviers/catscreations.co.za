@@ -72,8 +72,10 @@ nav {
 nav ul {
   display: flex;
   align-items: center;
-  gap: 36px;
+  gap: 0;
   list-style: none;
+  flex: 1;
+  justify-content: center;
 }
 
 nav ul a {
@@ -84,22 +86,27 @@ nav ul a {
   text-transform: uppercase;
   color: var(--text);
   transition: color 0.2s;
+  padding: 0 18px;
 }
 
 nav ul a:hover { color: var(--pink); }
 
-nav ul li:not(:last-child):not(:nth-last-child(2))::after {
+nav ul li:not(:first-child)::before {
   content: '•';
   color: var(--pink);
-  margin-left: 16px;
   font-size: 0.6rem;
-  vertical-align: middle;
   pointer-events: none;
 }
 
-nav ul li:last-child {
-  margin-left: auto;
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
+
+nav ul a.nav-active { color: var(--pink); }
+
+.mobile-cta-li { display: none; }
 
 .nav-cta {
   background: var(--pink);
@@ -915,7 +922,7 @@ footer a { color: var(--pink); text-decoration: none; }
   nav ul.open { display: flex; }
 
   nav ul li { margin-left: 0 !important; }
-  nav ul li::after { display: none !important; }
+  nav ul li::before { display: none !important; }
 
   nav ul a {
     display: block;
@@ -923,12 +930,16 @@ footer a { color: var(--pink); text-decoration: none; }
     font-size: 1rem;
     letter-spacing: 0.04em;
   }
-  nav ul li:last-child { margin-top: 8px; }
-  nav ul .nav-cta {
+
+  /* Hide Get In Touch pill from nav-right on mobile; show it in dropdown instead */
+  .nav-right .nav-cta { display: none; }
+  .mobile-cta-li { display: block; margin-top: 8px; }
+  .mobile-cta-li a {
     margin: 0 24px;
+    display: block;
     text-align: center;
     border-radius: 50px;
-    padding: 14px 20px;
+    padding: 14px 20px !important;
   }
 
   section { padding: 52px 24px; }
