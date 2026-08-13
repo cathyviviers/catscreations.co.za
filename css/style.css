@@ -88,6 +88,15 @@ nav ul a {
 
 nav ul a:hover { color: var(--pink); }
 
+nav ul li:not(:last-child)::after {
+  content: '•';
+  color: var(--pink);
+  margin-left: 16px;
+  font-size: 0.6rem;
+  vertical-align: middle;
+  pointer-events: none;
+}
+
 .nav-cta {
   background: var(--pink);
   color: var(--white) !important;
