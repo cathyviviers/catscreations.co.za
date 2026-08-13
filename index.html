@@ -230,7 +230,7 @@
       <p class="section-label">Follow Along</p>
       <h2 class="section-title">On Instagram</h2>
       <div class="pink-divider"></div>
-      <behold-widget feed-id="JvXfU8Irl4BlwgSTj24u" style="--columns:3"></behold-widget>
+      <behold-widget feed-id="JvXfU8Irl4BlwgSTj24u" columns="3" rows="2"></behold-widget>
     </div>
   </section>
 
@@ -320,10 +320,13 @@
       const w = document.querySelector('behold-widget');
       function setGrid() {
         const mobile = window.innerWidth <= 900;
+        w.setAttribute('columns', mobile ? '2' : '3');
+        w.setAttribute('rows', mobile ? '3' : '2');
         w.style.setProperty('--columns', mobile ? '2' : '3');
         w.style.setProperty('--rows', mobile ? '3' : '2');
       }
       setGrid();
+      setTimeout(setGrid, 800);
       window.addEventListener('resize', setGrid);
     })();
   </script>
