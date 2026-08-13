@@ -438,7 +438,7 @@ section { padding: 100px 60px; }
 }
 
 /* ── TEAM ── */
-#team { background: var(--white); }
+#team { background: var(--bg); }
 
 .team-grid {
   display: grid;
@@ -450,7 +450,7 @@ section { padding: 100px 60px; }
 .team-card {
   text-align: center;
   padding: 40px 28px;
-  border: 1px solid #ebebeb;
+  border: 1px solid var(--border);
   border-radius: 20px;
   transition: all 0.3s;
 }
@@ -485,7 +485,7 @@ section { padding: 100px 60px; }
 .team-name {
   font-size: 1.1rem;
   font-weight: 600;
-  color: var(--black);
+  color: var(--text);
   margin-bottom: 4px;
 }
 
@@ -806,7 +806,7 @@ footer a { color: var(--pink); text-decoration: none; }
 }
 
 .modal {
-  background: var(--white);
+  background: var(--surface);
   border-radius: 24px;
   padding: 48px;
   width: 100%;
@@ -825,7 +825,7 @@ footer a { color: var(--pink); text-decoration: none; }
 .modal-close {
   position: absolute;
   top: 20px; right: 20px;
-  background: var(--light);
+  background: var(--bg-alt);
   border: none;
   border-radius: 50%;
   width: 36px; height: 36px;
@@ -842,7 +842,7 @@ footer a { color: var(--pink); text-decoration: none; }
 .modal h3 {
   font-family: 'Dancing Script', cursive;
   font-size: 2rem;
-  color: var(--black);
+  color: var(--text);
   margin-bottom: 6px;
 }
 
