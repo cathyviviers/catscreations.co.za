@@ -358,7 +358,7 @@ nav ul a.nav-active { color: var(--pink); }
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin-bottom: 32px;
+  margin-bottom: 48px;
 }
 
 .breadcrumb a { color: var(--text-muted); text-decoration: none; }
