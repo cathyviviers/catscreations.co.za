@@ -318,9 +318,13 @@
     })();
     (function() {
       const w = document.querySelector('behold-widget');
-      function setCols() { w.style.setProperty('--columns', window.innerWidth <= 900 ? '2' : '3'); }
-      setCols();
-      window.addEventListener('resize', setCols);
+      function setGrid() {
+        const mobile = window.innerWidth <= 900;
+        w.style.setProperty('--columns', mobile ? '2' : '3');
+        w.style.setProperty('--rows', mobile ? '3' : '2');
+      }
+      setGrid();
+      window.addEventListener('resize', setGrid);
     })();
   </script>
 
