@@ -893,8 +893,8 @@ textarea { height: 140px; resize: vertical; }
 
 /* ── FOOTER ── */
 footer {
-  background: var(--black);
-  color: rgba(255,255,255,0.5);
+  background: var(--bg-alt);
+  color: var(--text-muted);
   text-align: center;
   padding: 32px 60px;
   font-size: 0.85rem;
