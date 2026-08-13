@@ -485,7 +485,7 @@ section { padding: 100px 60px; }
 }
 
 /* ── TEAM ── */
-#team { background: var(--bg); padding-top: 60px; padding-bottom: 40px; }
+#team { background: var(--bg); padding-top: 60px; padding-bottom: 60px; }
 
 .team-grid {
   display: grid;
@@ -574,7 +574,7 @@ section { padding: 100px 60px; }
 }
 
 /* ── SERVICES ── */
-#services { background: var(--bg); transition: background-color 0.25s ease; }
+#services { background: var(--bg); padding-top: 60px; transition: background-color 0.25s ease; }
 
 .services-header {
   display: flex;
