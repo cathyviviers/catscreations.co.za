@@ -427,7 +427,7 @@ section { padding: 100px 60px; }
 }
 
 /* ── ABOUT ── */
-#about { background: var(--bg-alt); transition: background-color 0.25s ease; }
+#about { background: var(--bg-alt); padding-bottom: 60px; transition: background-color 0.25s ease; }
 
 .about-grid {
   display: grid;
@@ -485,7 +485,7 @@ section { padding: 100px 60px; }
 }
 
 /* ── TEAM ── */
-#team { background: var(--bg); padding-bottom: 40px; }
+#team { background: var(--bg); padding-top: 60px; padding-bottom: 40px; }
 
 .team-grid {
   display: grid;
