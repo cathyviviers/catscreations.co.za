@@ -3,7 +3,7 @@
 
   <url>
     <loc>https://catscreations.co.za/blog/index.html</loc>
-    <lastmod>2026-08-13</lastmod>
+    <lastmod>2026-08-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -11,6 +11,13 @@
   <url>
     <loc>https://catscreations.co.za/blog/posts/5-signs-your-brand-needs-a-refresh.html</loc>
     <lastmod>2026-08-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://catscreations.co.za/blog/posts/how-a-website-boosts-social-media-and-youtube.html</loc>
+    <lastmod>2026-08-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
