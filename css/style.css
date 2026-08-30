@@ -1145,6 +1145,58 @@ input:focus, textarea:focus, select:focus {
 
 textarea { height: 140px; resize: vertical; }
 
+/* ── SERVICE PAGE PULL-QUOTE TESTIMONIAL ── */
+.service-testimonial {
+  margin: 0 auto;
+  max-width: 780px;
+  padding: 48px 40px;
+  text-align: center;
+  position: relative;
+}
+.service-testimonial::before {
+  content: '\201C';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 8rem;
+  line-height: 1;
+  color: var(--pink);
+  opacity: 0.18;
+  font-family: Georgia, serif;
+  pointer-events: none;
+}
+.service-testimonial-quote {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: var(--text);
+  font-style: italic;
+  position: relative;
+  z-index: 1;
+}
+.service-testimonial-author {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.service-testimonial-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--pink);
+}
+.service-testimonial-role {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+.service-testimonial-stars {
+  color: var(--pink);
+  font-size: 1rem;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
 /* ── INSTAGRAM GRID ── */
 .ig-grid {
   display: grid;
