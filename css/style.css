@@ -36,7 +36,8 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 a, a *, button, button *, [role="button"], input[type="submit"], select, label[for],
-.btn, .btn *, .nav-cta, .nav-cta *, .theme-toggle, .burger {
+.btn, .btn *, .nav-cta, .nav-cta *, .theme-toggle, .burger,
+behold-widget, behold-widget * {
   cursor: url('https://raw.githubusercontent.com/cathyviviers/catscreations.co.za/main/images/cc-over-sm.png') 0 0, pointer !important;
 }
 a:active, button:active, [role="button"]:active, input[type="submit"]:active,
