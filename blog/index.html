@@ -152,6 +152,15 @@
   <!-- FOOTER -->
   <footer>
     <p>© 2026 Cat's Creations · Digital Content & Graphic Design · Made with <span style="color:var(--pink)">♥</span></p>
+    <div class='admin-btn-wrap'>
+    <button class='admin-btn' onclick='toggleAdmin(event)' title='Admin'>⚙</button>
+    <div class='admin-dropdown' id='adminDropdown'>
+      <a href='https://github.com/cathyviviers/catscreations.co.za' target='_blank' rel='noopener'>GitHub</a>
+      <a href='https://vercel.com' target='_blank' rel='noopener'>Vercel</a>
+      <a href='https://search.google.com/search-console' target='_blank' rel='noopener'>Search Console</a>
+      <a href='https://clarity.microsoft.com' target='_blank' rel='noopener'>Clarity</a>
+    </div>
+  </div>
   </footer>
 
   <script>
@@ -196,5 +205,15 @@
     });
   </script>
 
+  <script>
+    function toggleAdmin(e) {
+      e.stopPropagation();
+      document.getElementById('adminDropdown').classList.toggle('open');
+    }
+    document.addEventListener('click', function() {
+      var d = document.getElementById('adminDropdown');
+      if (d) d.classList.remove('open');
+    });
+  </script>
 </body>
 </html>

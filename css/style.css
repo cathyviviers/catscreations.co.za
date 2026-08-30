@@ -1142,6 +1142,50 @@ input:focus, textarea:focus, select:focus {
 
 textarea { height: 140px; resize: vertical; }
 
+/* ── ADMIN BUTTON ── */
+.admin-btn-wrap {
+  position: relative;
+  display: inline-block;
+  margin-top: 12px;
+}
+.admin-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.7rem;
+  opacity: 0.2;
+  color: var(--text-muted);
+  padding: 4px 6px;
+  transition: opacity 0.2s;
+  line-height: 1;
+}
+.admin-btn:hover { opacity: 0.6; }
+.admin-dropdown {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 6px;
+  min-width: 160px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  z-index: 999;
+}
+.admin-dropdown.open { display: block; }
+.admin-dropdown a {
+  display: block;
+  padding: 8px 12px;
+  font-size: 0.8rem;
+  color: var(--text);
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+.admin-dropdown a:hover { background: var(--bg-alt); }
+
 /* ── FOOTER ── */
 footer {
   background: var(--bg-alt);
