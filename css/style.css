@@ -38,6 +38,12 @@
 a, button, [role="button"], input[type="submit"], select, label[for] {
   cursor: url('https://raw.githubusercontent.com/cathyviviers/catscreations.co.za/main/images/cc-over.png') 25 25, pointer;
 }
+a:active, button:active, [role="button"]:active, input[type="submit"]:active {
+  cursor: url('https://raw.githubusercontent.com/cathyviviers/catscreations.co.za/main/images/cc-over.png') 25 25, pointer;
+}
+body:active {
+  cursor: url('https://raw.githubusercontent.com/cathyviviers/catscreations.co.za/main/images/cc-over.png') 25 25, auto;
+}
 
 html { scroll-behavior: smooth; }
 
