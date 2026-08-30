@@ -35,6 +35,10 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
+a, button, [role="button"], input[type="submit"], select, label[for] {
+  cursor: url('https://raw.githubusercontent.com/cathyviviers/catscreations.co.za/main/images/cc-over.png') 25 25, pointer;
+}
+
 html { scroll-behavior: smooth; }
 
 body {
@@ -42,6 +46,7 @@ body {
   color: var(--text);
   background: var(--bg);
   transition: background-color 0.25s ease, color 0.25s ease;
+  cursor: url('https://raw.githubusercontent.com/cathyviviers/catscreations.co.za/main/images/cc-up.png') 25 25, auto;
 }
 
 /* ── NAV ── */
