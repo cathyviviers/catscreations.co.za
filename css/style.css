@@ -37,14 +37,14 @@
 
 a, a *, button, button *, [role="button"], input[type="submit"], select, label[for],
 .btn, .btn *, .nav-cta, .nav-cta *, .theme-toggle, .burger {
-  cursor: url('https://raw.githubusercontent.com/cathyviviers/catscreations.co.za/main/images/cc-over.png') 0 0, pointer !important;
+  cursor: url('https://raw.githubusercontent.com/cathyviviers/catscreations.co.za/main/images/cc-over-sm.png') 0 0, pointer !important;
 }
 a:active, button:active, [role="button"]:active, input[type="submit"]:active,
 .btn:active, .nav-cta:active {
-  cursor: url('https://raw.githubusercontent.com/cathyviviers/catscreations.co.za/main/images/cc-over.png') 0 0, pointer !important;
+  cursor: url('https://raw.githubusercontent.com/cathyviviers/catscreations.co.za/main/images/cc-over-sm.png') 0 0, pointer !important;
 }
 body:active {
-  cursor: url('https://raw.githubusercontent.com/cathyviviers/catscreations.co.za/main/images/cc-over.png') 0 0, auto !important;
+  cursor: url('https://raw.githubusercontent.com/cathyviviers/catscreations.co.za/main/images/cc-over-sm.png') 0 0, auto !important;
 }
 
 html { scroll-behavior: smooth; }
@@ -54,7 +54,7 @@ body {
   color: var(--text);
   background: var(--bg);
   transition: background-color 0.25s ease, color 0.25s ease;
-  cursor: url('https://raw.githubusercontent.com/cathyviviers/catscreations.co.za/main/images/cc-up.png') 0 0, auto;
+  cursor: url('https://raw.githubusercontent.com/cathyviviers/catscreations.co.za/main/images/cc-up-sm.png') 0 0, auto;
 }
 
 /* ── NAV ── */
