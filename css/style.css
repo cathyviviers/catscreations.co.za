@@ -917,6 +917,9 @@ section { padding: 100px 60px; }
   gap: 20px 40px;
   margin-top: 40px;
 }
+.blog-post .feature-list {
+  grid-template-columns: 1fr;
+}
 
 .feature-item {
   display: flex;
