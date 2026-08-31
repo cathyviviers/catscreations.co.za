@@ -5,7 +5,7 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.clarity.ms https://*.clarity.ms https://w.behold.so https://*.behold.so; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://raw.githubusercontent.com https://*.clarity.ms https://*.behold.so; media-src 'self' https://raw.githubusercontent.com; connect-src 'self' https://www.clarity.ms https://*.clarity.ms https://formspree.io https://*.behold.so; frame-src 'self'; form-action 'self' https://formspree.io; base-uri 'self'; object-src 'none'; frame-ancestors 'self'"
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.clarity.ms https://*.clarity.ms https://w.behold.so https://*.behold.so https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://raw.githubusercontent.com https://*.clarity.ms https://*.behold.so https://www.googletagmanager.com https://www.google-analytics.com; media-src 'self' https://raw.githubusercontent.com; connect-src 'self' https://www.clarity.ms https://*.clarity.ms https://formspree.io https://*.behold.so https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com; frame-src 'self' https://www.googletagmanager.com; form-action 'self' https://formspree.io; base-uri 'self'; object-src 'none'; frame-ancestors 'self'"
         },
         {
           "key": "X-Content-Type-Options",
