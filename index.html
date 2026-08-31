@@ -428,7 +428,7 @@
       <p class="section-label">Follow Along</p>
       <h2 class="section-title">On Instagram</h2>
       <div class="pink-divider"></div>
-      <behold-widget feed-id="JvXfU8Irl4BlwgSTj24u" columns="3" rows="2"></behold-widget>
+      <div data-behold-id="xr9BfOZLqxKxxmIER2O8"></div>
     </div>
   </section>
 
@@ -518,38 +518,10 @@
   </footer>
 
   <script>
-    (() => {
+    (function() {
       if(window.__bhldScript)return;window.__bhldScript=true;
       const d=document,s=d.createElement("script");s.type="module";
       s.src="https://w.behold.so/widget.js";setTimeout(()=>{d.head.append(s);},0);
-    })();
-    (function() {
-      const cursorOver = "url('https://raw.githubusercontent.com/cathyviviers/catscreations.co.za/main/images/cc-over-sm.png') 0 0, pointer";
-      function patchBeholdCursor() {
-        const w = document.querySelector('behold-widget');
-        if (!w) return;
-        w.style.cursor = cursorOver;
-        if (w.shadowRoot) {
-          const style = document.createElement('style');
-          style.textContent = '* { cursor: ' + cursorOver + ' !important; }';
-          w.shadowRoot.appendChild(style);
-        }
-      }
-      setTimeout(patchBeholdCursor, 1500);
-      setTimeout(patchBeholdCursor, 3000);
-    })();
-    (function() {
-      const w = document.querySelector('behold-widget');
-      function setGrid() {
-        const mobile = window.innerWidth <= 900;
-        w.setAttribute('columns', mobile ? '2' : '3');
-        w.setAttribute('rows', mobile ? '3' : '2');
-        w.style.setProperty('--columns', mobile ? '2' : '3');
-        w.style.setProperty('--rows', mobile ? '3' : '2');
-      }
-      setGrid();
-      setTimeout(setGrid, 800);
-      window.addEventListener('resize', setGrid);
     })();
   </script>
 
