@@ -19,8 +19,45 @@
   <meta property="og:url" content="https://catscreations.co.za/services/print-design.html" />
   <meta property="og:title" content="Print Design Pretoria | Cat's Creations" />
   <meta property="og:description" content="Professional print design for Pretoria businesses. Flyers, business cards, posters, menus — every file delivered print-ready." />
-  <meta property="og:image" content="https://raw.githubusercontent.com/cathyviviers/catscreations.co.za/main/images/cats-logo.png" />
-  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/cathyviviers/catscreations.co.za/main/images/cats-logo.png" />
+  <meta property="og:image" content="https://catscreations.co.za/images/Print.jpg" />
+  <meta property="og:image:width" content="1890" />
+  <meta property="og:image:height" content="945" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Print Design Pretoria | Cat's Creations" />
+  <meta name="twitter:description" content="Professional print design for Pretoria businesses. Flyers, business cards, posters, menus — every file delivered print-ready." />
+  <meta name="twitter:image" content="https://catscreations.co.za/images/Print.jpg" />
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+  <link rel="manifest" href="/manifest.json" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://catscreations.co.za/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Services",
+        "item": "https://catscreations.co.za/#services"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Print Design",
+        "item": "https://catscreations.co.za/services/print-design.html"
+      }
+    ]
+  }
+  </script>
   <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -113,9 +150,9 @@
 
   <!-- PAGE HERO -->
   <section class="page-hero">
-    <div class="page-hero-banner" style="background-image:url('https://raw.githubusercontent.com/cathyviviers/catscreations.co.za/main/images/Print.jpg')"></div>
+    <div class="page-hero-banner" style="background-image:url('/images/Print.jpg');background-image:image-set(url('/images/Print.webp') type('image/webp'), url('/images/Print.jpg') type('image/jpeg'))"></div>
     <div class="section-inner">
-      <p class="breadcrumb"><a href="../">Home</a> /  / Print Design</p>
+      <p class="breadcrumb"><a href="../">Home</a> / <a href="../#services">Services</a> / Print Design</p>
       <div class="page-hero-icon">🖨️</div>
       <h1>Print <em>Design</em> for Pretoria Businesses</h1>
       <p class="page-hero-desc">Business cards, flyers, menus, and posters designed to make a strong impression in the real world — with every file delivered print-ready, so there are no surprises at the printer. Serving businesses in Pretoria, Gauteng, and across South Africa.</p>
@@ -142,7 +179,7 @@
 
   <!-- CTA FORM -->
   <section class="service-cta-section" style="background:var(--bg-alt)">
-    <video class="service-cta-bg-video" id="cta-bg-video" src="https://raw.githubusercontent.com/cathyviviers/catscreations.co.za/main/images/the%20team.mp4" preload="auto" muted playsinline></video>
+    <video class="service-cta-bg-video" id="cta-bg-video" data-src="/images/the%20team.mp4" preload="none" muted playsinline></video>
     <div class="section-inner">
       <div class="service-cta-form">
 
@@ -259,7 +296,8 @@
       const observer = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
           if (entry.isIntersecting) {
-            video.play();
+            if (video.dataset.src) { video.src = video.dataset.src; video.load(); }
+            video.play().catch(function(){});
             observer.disconnect();
           }
         });
