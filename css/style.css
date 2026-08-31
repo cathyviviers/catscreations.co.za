@@ -311,13 +311,13 @@ nav ul a.nav-active { color: var(--pink); }
     -webkit-overflow-scrolling: touch;
     gap: 16px;
     padding-bottom: 12px;
-    /* hide scrollbar */
+    padding-right: 48px;
     scrollbar-width: none;
   }
   .testimonial-grid::-webkit-scrollbar { display: none; }
   .testimonial-card {
-    flex: 0 0 85vw;
-    max-width: 340px;
+    flex: 0 0 78vw;
+    max-width: 320px;
     scroll-snap-align: start;
   }
 }
