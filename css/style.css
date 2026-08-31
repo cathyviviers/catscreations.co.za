@@ -302,8 +302,24 @@ nav ul a.nav-active { color: var(--pink); }
   color: var(--text-muted);
 }
 @media (max-width: 900px) {
-  .testimonial-grid { grid-template-columns: 1fr; }
   .testimonial-stats { gap: 24px; }
+  .testimonial-grid {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 16px;
+    padding-bottom: 12px;
+    /* hide scrollbar */
+    scrollbar-width: none;
+  }
+  .testimonial-grid::-webkit-scrollbar { display: none; }
+  .testimonial-card {
+    flex: 0 0 85vw;
+    max-width: 340px;
+    scroll-snap-align: start;
+  }
 }
 
 /* Blog author */
