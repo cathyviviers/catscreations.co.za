@@ -630,7 +630,6 @@ nav ul a.nav-active { color: var(--pink); }
 :root[data-theme="dark"] .page-hero-banner { opacity: 0.25; }
 
 .page-hero .section-inner { position: relative; z-index: 1; }
-}
 
 .breadcrumb {
   font-size: 0.78rem;
