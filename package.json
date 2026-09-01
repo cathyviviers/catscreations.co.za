@@ -2,6 +2,8 @@
   "name": "catscreations",
   "version": "1.0.0",
   "scripts": {
-    "sitemap": "node generate-sitemap.js"
+    "sitemap": "node generate-sitemap.js",
+    "feed": "node generate-feed.js",
+    "build": "node generate-sitemap.js && node generate-feed.js"
   }
 }

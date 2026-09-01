@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Cat&apos;s Creations Blog</title>
+    <link>https://catscreations.co.za/blog/</link>
+    <description>Design, branding, and digital content tips from Cat’s Creations — a Pretoria-based graphic design studio. Practical insights for South African small businesses and entrepreneurs.</description>
+    <language>en</language>
+    <atom:link href="https://catscreations.co.za/feed.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 30 Aug 2026 09:00:00 +0200</lastBuildDate>
+    <image>
+      <url>https://catscreations.co.za/images/social-card.png</url>
+      <title>Cat&apos;s Creations Blog</title>
+      <link>https://catscreations.co.za/blog/</link>
+    </image>
+
+    <item>
+      <title>Client Love &amp; Why I Do This</title>
+      <link>https://catscreations.co.za/blog/posts/client-love-and-why-i-do-this.html</link>
+      <guid isPermaLink="true">https://catscreations.co.za/blog/posts/client-love-and-why-i-do-this.html</guid>
+      <pubDate>Sun, 30 Aug 2026 09:00:00 +0200</pubDate>
+      <dc:creator>Cathy Viviers</dc:creator>
+      <category>Behind the Studio</category>
+      <description>Cat&apos;s Creations founder Cathy reflects on the client feedback that keeps her going — and shares how you can work together safely and easily through Upwork.</description>
+      <enclosure url="https://catscreations.co.za/images/Blog.jpg" type="image/jpeg" />
+    </item>
+
+    <item>
+      <title>How a Website Boosts Your Social Media &amp; YouTube</title>
+      <link>https://catscreations.co.za/blog/posts/how-a-website-boosts-social-media-and-youtube.html</link>
+      <guid isPermaLink="true">https://catscreations.co.za/blog/posts/how-a-website-boosts-social-media-and-youtube.html</guid>
+      <pubDate>Sat, 15 Aug 2026 09:00:00 +0200</pubDate>
+      <dc:creator>Wallace</dc:creator>
+      <category>Web</category>
+      <description>You&apos;ve got Instagram and YouTube — so why do you need a website too? Here&apos;s how a website makes all your other online activity work harder, from a Pretoria design studio.</description>
+      <enclosure url="https://catscreations.co.za/images/Web.jpg" type="image/jpeg" />
+    </item>
+
+    <item>
+      <title>5 Signs Your Brand Needs a Refresh</title>
+      <link>https://catscreations.co.za/blog/posts/5-signs-your-brand-needs-a-refresh.html</link>
+      <guid isPermaLink="true">https://catscreations.co.za/blog/posts/5-signs-your-brand-needs-a-refresh.html</guid>
+      <pubDate>Sat, 01 Aug 2026 09:00:00 +0200</pubDate>
+      <dc:creator>Sabine</dc:creator>
+      <category>Branding</category>
+      <description>Is your logo outdated? Here are 5 signs your South African business needs a brand refresh — and what to do about it. Branding advice from Cat&apos;s Creations, Pretoria.</description>
+      <enclosure url="https://catscreations.co.za/images/Blog.jpg" type="image/jpeg" />
+    </item>
+
+  </channel>
+</rss>
