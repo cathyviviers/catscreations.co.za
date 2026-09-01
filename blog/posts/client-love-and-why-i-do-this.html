@@ -162,7 +162,7 @@
       <button class="burger" id="burger" aria-label="Toggle menu" type="button">
         <span></span><span></span><span></span>
       </button>
-      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" type="button">🌙</button>
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" type="button">☀️</button>
     </div>
   </nav>
 
@@ -260,7 +260,7 @@
   <script>
     const themeToggle = document.getElementById('theme-toggle');
     const rootEl = document.documentElement;
-    function setToggleIcon(theme) { themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙'; }
+    function setToggleIcon(theme) { themeToggle.textContent = theme === 'dark' ? '🌙' : '☀️'; }
     setToggleIcon(rootEl.getAttribute('data-theme'));
     themeToggle.addEventListener('click', () => {
       const next = rootEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
