@@ -1470,18 +1470,19 @@ footer a { color: var(--pink); text-decoration: none; }
   position: absolute;
   top: 20px; right: 20px;
   background: var(--bg-alt);
-  border: none;
+  border: 1px solid var(--border);
   border-radius: 50%;
   width: 36px; height: 36px;
   font-size: 1.1rem;
+  color: var(--text);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
 
-.modal-close:hover { background: #e8e8e8; }
+.modal-close:hover { background: var(--pink); color: var(--white); border-color: var(--pink); }
 
 .modal h3 {
   font-family: 'Dancing Script', cursive;
