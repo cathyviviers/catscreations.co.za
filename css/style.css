@@ -103,6 +103,8 @@ nav ul a {
   padding: 0 18px;
 }
 
+.nav-label-full { display: none; }
+
 nav ul a:hover { color: var(--pink); }
 
 nav ul li:not(:first-child)::before {
@@ -1389,8 +1391,11 @@ footer a { color: var(--pink); text-decoration: none; }
     padding: 14px 28px;
     font-size: 1rem;
     letter-spacing: 0.04em;
-    text-align: right;
+    text-align: center;
   }
+
+  .nav-label-full { display: inline; }
+  .nav-label-short { display: none; }
 
   /* Hide Get In Touch pill from nav-right on mobile; show it in dropdown instead */
   .nav-right .nav-cta { display: none; }
