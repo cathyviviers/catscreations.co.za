@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <!-- Google Tag Manager -->
@@ -468,12 +468,15 @@
   </section>
 
   <!-- INSTAGRAM -->
-  <section id="instagram" style="display:none;background:var(--bg-alt);padding:100px 60px;transition:background-color 0.25s ease;">
+  <section id="instagram" style="background:var(--bg-alt);padding:100px 60px;transition:background-color 0.25s ease;">
     <div class="section-inner">
       <p class="section-label">Follow Along</p>
       <h2 class="section-title">On Instagram</h2>
       <div class="pink-divider"></div>
-      <div data-behold-id="xr9BfOZLqxKxxmIER2O8"></div>
+      <div class="instagram-grid" id="instagram-grid"></div>
+      <div style="text-align:center;margin-top:40px;">
+        <a href="https://www.instagram.com/REPLACE_WITH_IG_HANDLE" target="_blank" rel="noopener" class="btn btn-outline">Follow on Instagram →</a>
+      </div>
     </div>
   </section>
 
@@ -563,22 +566,40 @@
   </footer>
 
   <script>
-    // Lazy-load the Instagram widget script only once the section nears the viewport
+    // Fetches the public Behold feed JSON directly and renders a plain
+    // <img> grid, instead of loading Behold's third-party widget script.
+    // The widget component was unreliable — several browsers'
+    // built-in tracking protection and ad blockers silently block
+    // known third-party "widget" embed scripts, which left the whole
+    // section blank with no fallback. A background fetch to Behold's
+    // feed API isn't caught by those same filters. Kept the existing
+    // lazy-load-near-viewport behaviour, now gating the fetch instead
+    // of the old widget script tag.
     (function() {
-      function loadBehold() {
-        if (window.__bhldScript) return;
-        window.__bhldScript = true;
-        const d = document, s = d.createElement("script");
-        s.type = "module";
-        s.src = "https://w.behold.so/widget.js";
-        d.head.append(s);
+      const grid = document.getElementById('instagram-grid');
+      if (!grid) return;
+      function loadFeed() {
+        fetch('https://feeds.behold.so/xr9BfOZLqxKxxmIER2O8')
+          .then(function(r) { return r.json(); })
+          .then(function(data) {
+            const posts = (data.posts || []).slice(0, 6);
+            grid.innerHTML = posts.map(function(post) {
+              const img = post.mediaType === 'VIDEO'
+                ? (post.thumbnailUrl || post.mediaUrl)
+                : ((post.sizes && post.sizes.medium && post.sizes.medium.mediaUrl) || post.mediaUrl);
+              const caption = (post.prunedCaption || '').replace(/"/g, '&quot;').slice(0, 80);
+              return '<a class="ig-thumb" href="' + post.permalink + '" target="_blank" rel="noopener noreferrer">'
+                + '<img src="' + img + '" alt="' + (caption || 'Instagram post') + '" loading="lazy" width="1080" height="1080" decoding="async" /></a>';
+            }).join('');
+          })
+          .catch(function() {});
       }
       const target = document.getElementById('instagram');
-      if (!target || !('IntersectionObserver' in window)) { loadBehold(); return; }
+      if (!target || !('IntersectionObserver' in window)) { loadFeed(); return; }
       const observer = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
           if (entry.isIntersecting) {
-            loadBehold();
+            loadFeed();
             observer.disconnect();
           }
         });
