@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Internal Dashboard | Cat's Creations</title>
+  <link rel="icon" type="image/png" href="/images/cats-logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --pink: #E8197A;
+      --pink-tint: #fff0f6;
+      --pink-tint-border: #ffd0e8;
+      --bg: #ffffff;
+      --bg-alt: #f7f5f4;
+      --text: #1a1a1a;
+      --text-muted: #6b6b6b;
+      --border: #e6e2e0;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #121212;
+        --bg-alt: #181818;
+        --text: #f2f2f2;
+        --text-muted: #a8a8a8;
+        --border: #2a2a2a;
+        --pink-tint: rgba(232,25,122,0.15);
+        --pink-tint-border: rgba(232,25,122,0.35);
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 24px;
+    }
+    .card {
+      width: 100%;
+      max-width: 420px;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px 36px;
+    }
+    .card h1 {
+      font-size: 1.4rem;
+      margin: 0 0 6px;
+    }
+    .card p.sub {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin: 0 0 28px;
+    }
+    label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+    input[type="password"] {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 1rem;
+      margin-bottom: 16px;
+    }
+    button {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: none;
+      background: var(--pink);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    button:hover { opacity: 0.9; }
+    .error {
+      color: var(--pink);
+      font-size: 0.85rem;
+      margin: 0 0 16px;
+      display: none;
+    }
+    .links {
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .links a {
+      display: block;
+      padding: 14px 16px;
+      border-radius: 10px;
+      background: var(--pink-tint);
+      border: 1px solid var(--pink-tint-border);
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .links a:hover { color: var(--pink); }
+    .links a span {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 400;
+      margin-top: 2px;
+    }
+    .brand {
+      font-weight: 600;
+      color: var(--pink);
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Internal Dashboard</h1>
+    <p class="sub">Cat's <span class="brand">Creations</span> — staff access only</p>
+
+    <div id="gate">
+      <p class="error" id="gate-error">Incorrect password.</p>
+      <label for="password">Password</label>
+      <input type="password" id="password" autocomplete="current-password" />
+      <button type="button" id="unlock">Unlock</button>
+    </div>
+
+    <nav class="links" id="links">
+      <a href="/admin/">
+        Content Manager
+        <span>Edit site content via the CMS (GitHub sign-in required)</span>
+      </a>
+      <a href="/sitemap.xml">
+        Sitemap
+        <span>View the generated sitemap.xml</span>
+      </a>
+      <a href="/">
+        Live Site
+        <span>Back to catscreations.co.za</span>
+      </a>
+    </nav>
+  </div>
+
+  <script>
+    // Client-side gate only — this is a convenience speed bump, not real
+    // security. The actual content editing is protected by GitHub OAuth
+    // in /admin/. Password hash below is SHA-256; see the PR description
+    // for the plaintext password.
+    var PASSWORD_HASH = '4b66c1416c7cf35621c8734a10298df179c5fba602a336c74c1fa89ecbccc95e';
+    var SESSION_KEY = 'cc-admin-unlocked';
+
+    function toHex(buffer) {
+      return Array.from(new Uint8Array(buffer))
+        .map(function (b) { return b.toString(16).padStart(2, '0'); })
+        .join('');
+    }
+
+    function showLinks() {
+      document.getElementById('gate').style.display = 'none';
+      document.getElementById('links').style.display = 'flex';
+    }
+
+    async function tryUnlock() {
+      var input = document.getElementById('password').value;
+      var digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(input));
+      var hex = toHex(digest);
+      if (hex === PASSWORD_HASH) {
+        sessionStorage.setItem(SESSION_KEY, '1');
+        showLinks();
+      } else {
+        document.getElementById('gate-error').style.display = 'block';
+      }
+    }
+
+    document.getElementById('unlock').addEventListener('click', tryUnlock);
+    document.getElementById('password').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') tryUnlock();
+    });
+
+    if (sessionStorage.getItem(SESSION_KEY) === '1') showLinks();
+  </script>
+</body>
+</html>

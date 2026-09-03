@@ -4,6 +4,7 @@
   "scripts": {
     "sitemap": "node generate-sitemap.js",
     "feed": "node generate-feed.js",
+    "rss": "node generate-rss.js",
     "build": "node generate-sitemap.js && node generate-feed.js"
   }
 }
