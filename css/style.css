@@ -103,6 +103,8 @@ nav ul a {
   padding: 0 18px;
 }
 
+.nav-label-full { display: none; }
+
 nav ul a:hover { color: var(--pink); }
 
 nav ul li:not(:first-child)::before {
@@ -1389,8 +1391,11 @@ footer a { color: var(--pink); text-decoration: none; }
     padding: 14px 28px;
     font-size: 1rem;
     letter-spacing: 0.04em;
-    text-align: right;
+    text-align: center;
   }
+
+  .nav-label-full { display: inline; }
+  .nav-label-short { display: none; }
 
   /* Hide Get In Touch pill from nav-right on mobile; show it in dropdown instead */
   .nav-right .nav-cta { display: none; }
@@ -1494,4 +1499,35 @@ footer a { color: var(--pink); text-decoration: none; }
   font-size: 0.9rem;
   color: var(--gray);
   margin-bottom: 28px;
+}
+
+/* INSTAGRAM GRID */
+.instagram-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  margin-top: 48px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.ig-thumb {
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: var(--surface);
+  display: block;
+  position: relative;
+}
+
+.ig-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.ig-thumb:hover img { transform: scale(1.05); }
+
+@media (max-width: 900px) {
+  .instagram-grid { grid-template-columns: repeat(2, 1fr); }
 }

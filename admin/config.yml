@@ -1,0 +1,121 @@
+backend:
+  name: github
+  repo: cathyviviers/catscreations.co.za
+  branch: main
+  base_url: https://catscreations.co.za
+  auth_endpoint: api/auth
+
+# This site is plain static HTML with no build step and no data files
+# (no JSON/YAML/front-matter driving content) — every page is a
+# self-contained .html file. Editing a page below opens its full raw
+# HTML source in a code editor. Be careful editing tags/scripts; a
+# broken tag can break the page layout or the contact form / theme
+# toggle scripts.
+media_folder: images
+public_folder: /images
+
+collections:
+  - name: pages
+    label: Pages
+    files:
+      - name: home
+        label: Home Page
+        file: index.html
+        fields:
+          - label: Page Source (HTML)
+            name: body
+            widget: code
+            default_language: html
+            allow_language_selection: false
+            output_code_only: true
+
+      - name: blog_landing
+        label: Blog Landing Page
+        file: blog/index.html
+        fields:
+          - label: Page Source (HTML)
+            name: body
+            widget: code
+            default_language: html
+            allow_language_selection: false
+            output_code_only: true
+
+      - name: service_logo_brand_identity
+        label: "Service: Logo & Brand Identity"
+        file: services/logo-brand-identity.html
+        fields:
+          - label: Page Source (HTML)
+            name: body
+            widget: code
+            default_language: html
+            allow_language_selection: false
+            output_code_only: true
+
+      - name: service_social_media_graphics
+        label: "Service: Social Media Graphics"
+        file: services/social-media-graphics.html
+        fields:
+          - label: Page Source (HTML)
+            name: body
+            widget: code
+            default_language: html
+            allow_language_selection: false
+            output_code_only: true
+
+      - name: service_digital_content_creation
+        label: "Service: Digital Content Creation"
+        file: services/digital-content-creation.html
+        fields:
+          - label: Page Source (HTML)
+            name: body
+            widget: code
+            default_language: html
+            allow_language_selection: false
+            output_code_only: true
+
+      - name: service_print_design
+        label: "Service: Print Design"
+        file: services/print-design.html
+        fields:
+          - label: Page Source (HTML)
+            name: body
+            widget: code
+            default_language: html
+            allow_language_selection: false
+            output_code_only: true
+
+      - name: service_brand_strategy
+        label: "Service: Brand Strategy"
+        file: services/brand-strategy.html
+        fields:
+          - label: Page Source (HTML)
+            name: body
+            widget: code
+            default_language: html
+            allow_language_selection: false
+            output_code_only: true
+
+      - name: service_web_digital_assets
+        label: "Service: Web & Digital Assets"
+        file: services/web-digital-assets.html
+        fields:
+          - label: Page Source (HTML)
+            name: body
+            widget: code
+            default_language: html
+            allow_language_selection: false
+            output_code_only: true
+
+  - name: blog_posts
+    label: Blog Posts
+    folder: blog/posts
+    extension: html
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - label: Page Source (HTML)
+        name: body
+        widget: code
+        default_language: html
+        allow_language_selection: false
+        output_code_only: true
