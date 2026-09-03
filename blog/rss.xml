@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>Cat's Creations Blog</title>
+  <link>https://catscreations.co.za/blog/</link>
+  <atom:link href="https://catscreations.co.za/blog/rss.xml" rel="self" type="application/rss+xml" />
+  <description>Design, branding, and digital content tips from Cat's Creations — a Pretoria-based graphic design studio.</description>
+  <language>en-za</language>
+  <lastBuildDate>Sun, 30 Aug 2026 09:00:00 GMT</lastBuildDate>
+
+  <item>
+    <title>Client Love &amp; Why I Do This</title>
+    <link>https://catscreations.co.za/blog/posts/client-love-and-why-i-do-this.html</link>
+    <guid isPermaLink="true">https://catscreations.co.za/blog/posts/client-love-and-why-i-do-this.html</guid>
+    <pubDate>Sun, 30 Aug 2026 09:00:00 GMT</pubDate>
+    <description>Cathy reflects on the client feedback that keeps her going — and shares how you can work together safely through Upwork.</description>
+    <author>Cathy Viviers</author>
+  </item>
+
+  <item>
+    <title>How a Website Boosts Your Social Media &amp; YouTube</title>
+    <link>https://catscreations.co.za/blog/posts/how-a-website-boosts-social-media-and-youtube.html</link>
+    <guid isPermaLink="true">https://catscreations.co.za/blog/posts/how-a-website-boosts-social-media-and-youtube.html</guid>
+    <pubDate>Sat, 15 Aug 2026 09:00:00 GMT</pubDate>
+    <description>Social media and YouTube get you seen — a website is what turns that attention into something you actually own. Here&apos;s how the two work together.</description>
+    <author>Wallace</author>
+  </item>
+
+  <item>
+    <title>5 Signs Your Brand Needs a Refresh</title>
+    <link>https://catscreations.co.za/blog/posts/5-signs-your-brand-needs-a-refresh.html</link>
+    <guid isPermaLink="true">https://catscreations.co.za/blog/posts/5-signs-your-brand-needs-a-refresh.html</guid>
+    <pubDate>Sat, 01 Aug 2026 09:00:00 GMT</pubDate>
+    <description>Is your logo outdated? Here are 5 signs your business needs a brand refresh — with practical advice from a Pretoria-based graphic design studio.</description>
+    <author>Sabine</author>
+  </item>
+
+</channel>
+</rss>
