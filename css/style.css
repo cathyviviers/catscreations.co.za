@@ -767,6 +767,21 @@ section { padding: 100px 60px; }
   margin-bottom: 20px;
 }
 
+.about-credential {
+  border-left: 3px solid var(--pink);
+  padding: 16px 20px;
+  margin-top: 24px;
+  background: var(--pink-tint);
+  border-radius: 0 8px 8px 0;
+}
+.about-credential p {
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+  margin-bottom: 0;
+  font-style: italic;
+}
+
 /* ── TEAM ── */
 #team { background: var(--bg); padding-top: 60px; padding-bottom: 60px; }
 
