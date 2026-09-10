@@ -10,6 +10,7 @@ Cat's Creations serves clients in Pretoria, Gauteng, and across South Africa, as
 - [Social Media Graphics](https://catscreations.co.za/services/social-media-graphics.html): Posts, stories, banners, and templates for Instagram, Facebook, TikTok, and more.
 - [Digital Content Creation](https://catscreations.co.za/services/digital-content-creation.html): Copywriting, captions, infographics, and digital marketing content.
 - [Print Design](https://catscreations.co.za/services/print-design.html): Business cards, flyers, posters, menus, and print-ready files.
+- [Packaging & Large Format](https://catscreations.co.za/services/packaging-large-format.html): Product packaging, vehicle wraps, signage, and exhibition displays.
 - [Brand Strategy](https://catscreations.co.za/services/brand-strategy.html): Brand positioning and identity strategy.
 - [Web & Digital Assets](https://catscreations.co.za/services/web-digital-assets.html): Banners, email headers, digital ads, and presentation decks.
 
@@ -19,7 +20,14 @@ Cat's Creations serves clients in Pretoria, Gauteng, and across South Africa, as
 - Location: Pretoria, Gauteng, South Africa (remote-friendly worldwide)
 - Upwork profile: https://www.upwork.com/freelancers/~01990fb60ff6372e03
 
+## Blog
+
+- [Blog index](https://catscreations.co.za/blog/index.html): Design and branding tips for South African small businesses.
+- [How to Use Claude to Streamline & Power Up Your Work](https://catscreations.co.za/blog/posts/how-claude-powers-up-your-work.html): Using Claude as a thinking partner, not just a faster typist.
+- [How a Website Boosts Your Social Media & YouTube](https://catscreations.co.za/blog/posts/how-a-website-boosts-social-media-and-youtube.html): Why a website makes your other online activity work harder.
+- [Client Love & Why I Do This](https://catscreations.co.za/blog/posts/client-love-and-why-i-do-this.html): Cathy on client feedback and working together via Upwork.
+- [5 Signs Your Brand Needs a Refresh](https://catscreations.co.za/blog/posts/5-signs-your-brand-needs-a-refresh.html): How to tell when a logo or brand identity is due for an update.
+
 ## Other
 
-- [Blog](https://catscreations.co.za/blog/index.html): Design and branding tips for South African small businesses.
 - [Sitemap](https://catscreations.co.za/sitemap.xml)

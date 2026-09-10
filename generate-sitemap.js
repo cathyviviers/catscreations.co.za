@@ -25,7 +25,7 @@ function findHtmlFiles(dir, base = ROOT) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     const fullPath = path.join(dir, entry.name);
     if (entry.isDirectory()) {
-      if (['node_modules', '.git', '.claude'].includes(entry.name)) continue;
+      if (['node_modules', '.git', '.claude', 'admin', 'admin-index', 'api'].includes(entry.name)) continue;
       results.push(...findHtmlFiles(fullPath, base));
     } else if (entry.name.endsWith('.html')) {
       results.push(fullPath);
@@ -34,7 +34,15 @@ function findHtmlFiles(dir, base = ROOT) {
   return results;
 }
 
-const files = findHtmlFiles(ROOT);
+// A page marked noindex isn't meant to show up in search results, so it
+// has no business in the sitemap either — skip it even if it's not under
+// one of the excluded directories above.
+function isNoindex(file) {
+  const html = fs.readFileSync(file, 'utf8');
+  return /<meta\s+name=["']robots["']\s+content=["'][^"']*noindex/i.test(html);
+}
+
+const files = findHtmlFiles(ROOT).filter(file => !isNoindex(file));
 
 const urls = files.map(file => {
   let relPath = path.relative(ROOT, file).replace(/\\/g, '/');
