@@ -381,7 +381,11 @@
     })();
     function setCookieConsent(val) {
       localStorage.setItem('cookie-consent', val);
-      document.getElementById('cookieBanner').setAttribute('hidden', ''); var wa = document.querySelector('.whatsapp-float'); if (wa) wa.classList.add('consent-done');
+      document.getElementById('cookieBanner').setAttribute('hidden', '');
+      var wa = document.querySelector('.whatsapp-float'); if (wa) wa.classList.add('consent-done');
+      if (val === 'accepted' && typeof gtag === 'function') {
+        gtag('consent', 'update', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted' });
+      }
     }
   </script>
 </body>

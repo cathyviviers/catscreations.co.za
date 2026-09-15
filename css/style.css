@@ -1548,6 +1548,9 @@ footer a { color: var(--pink); text-decoration: none; }
   .instagram-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
+/* Ensure [hidden] attribute always hides elements even when CSS sets display */
+[hidden] { display: none !important; }
+
 /* COOKIE BANNER */
 .cookie-banner {
   position: fixed;
