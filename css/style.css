@@ -5,7 +5,7 @@
   --black: #111111;
   --dark: #1e1e1e;
   --gray: #6b6b6b;
-  --light: #f8f8f8;
+  --light: #f0f0f0;
   --white: #ffffff;
 
   --text: var(--black);
@@ -13,7 +13,7 @@
   --bg: var(--white);
   --bg-alt: var(--light);
   --surface: var(--white);
-  --border: #ebebeb;
+  --border: #e0e0e0;
   --input-border: #e0e0e0;
   --nav-bg: rgba(255,255,255,0.95);
   --pink-tint: #fff0f6;
