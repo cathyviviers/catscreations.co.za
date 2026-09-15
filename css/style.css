@@ -872,7 +872,7 @@ section { padding: 100px 60px; }
 }
 
 /* ── SERVICES ── */
-#services { background: var(--bg); padding-top: 60px; transition: background-color 0.25s ease; }
+#services { background: var(--bg-alt); padding-top: 60px; transition: background-color 0.25s ease; }
 
 .services-header {
   display: flex;
@@ -1106,7 +1106,7 @@ section { padding: 100px 60px; }
 }
 
 /* ── CONTACT ── */
-#contact { background: var(--bg-alt); transition: background-color 0.25s ease; }
+#contact { background: var(--bg); transition: background-color 0.25s ease; }
 
 .contact-grid {
   display: grid;
