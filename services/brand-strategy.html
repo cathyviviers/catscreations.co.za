@@ -377,11 +377,11 @@
   <script>
     (function(){
       var consent = localStorage.getItem('cookie-consent');
-      if (!consent) { document.getElementById('cookieBanner').removeAttribute('hidden'); }
+      if (!consent) { document.getElementById('cookieBanner').removeAttribute('hidden'); } else { var wa = document.querySelector('.whatsapp-float'); if (wa) wa.classList.add('consent-done'); }
     })();
     function setCookieConsent(val) {
       localStorage.setItem('cookie-consent', val);
-      document.getElementById('cookieBanner').setAttribute('hidden', '');
+      document.getElementById('cookieBanner').setAttribute('hidden', ''); var wa = document.querySelector('.whatsapp-float'); if (wa) wa.classList.add('consent-done');
     }
   </script>
 </body>
