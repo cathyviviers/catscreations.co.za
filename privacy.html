@@ -129,15 +129,64 @@
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
+  <div class="modal-overlay" id="contactModal" onclick="closeModalOnOverlay(event)">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <h3>Get in Touch</h3>
+      <p class="modal-sub">Fill in the form and I'll get back to you within 24 hours.</p>
+      <form action="https://formspree.io/f/mgojlnla" method="POST">
+        <div class="form-row">
+          <div>
+            <label for="modal-name">Your Name</label>
+            <input type="text" id="modal-name" name="name" placeholder="Jane Smith" required />
+          </div>
+          <div>
+            <label for="modal-email">Email Address</label>
+            <input type="email" id="modal-email" name="email" placeholder="jane@example.com" required />
+          </div>
+        </div>
+        <div style="margin-top:18px">
+          <label for="modal-service">Service Interested In</label>
+          <select id="modal-service" name="service">
+            <option value="">Select a service...</option>
+            <option>Logo &amp; Brand Identity</option>
+            <option>Social Media Graphics</option>
+            <option>Digital Content Creation</option>
+            <option>Print Design</option>
+            <option>Brand Strategy</option>
+            <option>Web &amp; Digital Assets</option>
+            <option>Other / Not sure yet</option>
+          </select>
+        </div>
+        <div style="margin-top:18px">
+          <label for="modal-message">Tell Me About Your Project</label>
+          <textarea id="modal-message" name="message" placeholder="Share a bit about what you need..." required></textarea>
+        </div>
+        <input type="hidden" name="_next" value="https://catscreations.co.za/thank-you.html" />
+        <input type="hidden" name="_subject" value="New enquiry from Cat's Creations website" />
+        <input type="text" name="_gotcha" style="display:none" />
+        <button type="submit" class="btn btn-primary" style="margin-top:20px">Send Message →</button>
+      </form>
+    </div>
+  </div>
+
   <nav>
     <a href="/" class="nav-logo">Cat's <em style="font-style:normal;color:var(--pink)">Creations</em></a>
     <ul>
-      <li><a href="/#services">Services</a></li>
-      <li><a href="/#portfolio">Portfolio</a></li>
-      <li><a href="/blog/">Blog</a></li>
-      <li><a href="/#contact" class="nav-cta">Get in Touch</a></li>
+      <li><a href="/services/logo-brand-identity.html"><span class="nav-label-full">Logo &amp; Brand Identity</span><span class="nav-label-short">Brand</span></a></li>
+      <li><a href="/services/brand-strategy.html"><span class="nav-label-full">Brand Strategy</span><span class="nav-label-short">Strategy</span></a></li>
+      <li><a href="/services/print-design.html"><span class="nav-label-full">Print Design</span><span class="nav-label-short">Print</span></a></li>
+      <li><a href="/services/packaging-large-format.html"><span class="nav-label-full">Packaging &amp; Large Format</span><span class="nav-label-short">Packaging</span></a></li>
+      <li><a href="/services/social-media-graphics.html"><span class="nav-label-full">Social Media Graphics</span><span class="nav-label-short">Social</span></a></li>
+      <li><a href="/services/web-digital-assets.html"><span class="nav-label-full">Web &amp; Digital Assets</span><span class="nav-label-short">Web</span></a></li>
+      <li class="mobile-cta-li"><a href="#" class="nav-cta" onclick="openModal(event)">Get in Touch</a></li>
     </ul>
     <div class="nav-right">
+      <a href="/blog/" class="nav-blog">Blog</a>
+      <a href="#" class="nav-cta" onclick="openModal(event)">Get in Touch</a>
+      <button class="burger" id="burger" aria-label="Toggle menu" type="button">
+        <span></span><span></span><span></span>
+      </button>
       <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" type="button">☀️</button>
     </div>
   </nav>
@@ -248,6 +297,35 @@
       rootEl.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
       setToggleIcon(next);
+    });
+  </script>
+  <script>
+    function openModal(e) {
+      e.preventDefault();
+      document.getElementById('contactModal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+      document.getElementById('contactModal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function closeModalOnOverlay(e) {
+      if (e.target === document.getElementById('contactModal')) closeModal();
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  </script>
+  <script>
+    const burger = document.getElementById('burger');
+    const navUl = document.querySelector('nav ul');
+    burger.addEventListener('click', () => {
+      burger.classList.toggle('open');
+      navUl.classList.toggle('open');
+    });
+    navUl.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        burger.classList.remove('open');
+        navUl.classList.remove('open');
+      });
     });
   </script>
   <script src="/js/tracking.js" defer></script>
