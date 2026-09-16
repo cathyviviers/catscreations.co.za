@@ -12,7 +12,7 @@
       analytics_storage: 'denied',
       functionality_storage: 'granted',
       security_storage: 'granted',
-      wait_for_update: 500
+      wait_for_update: 300
     });
     // Restore granted state for returning visitors
     if (localStorage.getItem('cookie-consent') === 'accepted') {
@@ -125,13 +125,8 @@
     }
   }
   </script>
-  <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "xrz0a41c05");
-  </script>
+  <link rel="preconnect" href="https://www.googletagmanager.com" />
+  <link rel="dns-prefetch" href="https://www.clarity.ms" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@300;400;500;600&display=swap" />
@@ -232,7 +227,7 @@
         <a href="#contact" class="btn btn-outline">Get a Quote</a>
       </div>
       <div class="hero-image">
-        <video src="/images/logo-animation.mp4" poster="/images/cats-logo.webp" autoplay loop muted playsinline preload="auto" fetchpriority="high" aria-label="Cat's Creations Logo"></video>
+        <video src="/images/logo-animation.mp4" poster="/images/cats-logo.webp" autoplay loop muted playsinline preload="metadata" fetchpriority="high" aria-label="Cat's Creations Logo"></video>
       </div>
     </div>
   </section>
@@ -766,6 +761,13 @@
         gtag('consent', 'update', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted' });
       }
     }
+  </script>
+  <script>
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "xrz0a41c05");
   </script>
   <script src="/js/tracking.js" defer></script>
 </body>
