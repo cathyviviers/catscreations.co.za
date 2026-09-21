@@ -1,5 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /admin-index/
+Disallow: /thank-you.html
 
 Sitemap: https://catscreations.co.za/sitemap.xml
 Sitemap: https://catscreations.co.za/feed.xml

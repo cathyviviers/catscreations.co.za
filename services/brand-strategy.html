@@ -12,7 +12,7 @@
       analytics_storage: 'denied',
       functionality_storage: 'granted',
       security_storage: 'granted',
-      wait_for_update: 500
+      wait_for_update: 300
     });
     // Restore granted state for returning visitors
     if (localStorage.getItem('cookie-consent') === 'accepted') {
@@ -118,7 +118,34 @@
     })();
   </script>
   <link rel="stylesheet" href="../css/style.css" />
-</head>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is brand strategy?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Brand strategy defines who you are, who you serve, and how you position yourself in the market. It covers your brand purpose, target audience, core messaging, tone of voice, and competitive positioning — the thinking that gives your visual identity meaning." }
+      },
+      {
+        "@type": "Question",
+        "name": "How is brand strategy different from logo design?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Logo design creates visual assets. Brand strategy is the thinking that goes before it — defining what your brand stands for, who it speaks to, and how it should communicate. Good strategy ensures your visual identity is built on a clear foundation rather than guesswork." }
+      },
+      {
+        "@type": "Question",
+        "name": "What do I receive at the end of a brand strategy project?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A practical brand strategy document covering your positioning, target audience, brand personality, tone of voice, core messages, and a basic growth roadmap — something you can hand to any designer, copywriter, or marketer." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need brand strategy before getting a logo?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Not always, but it helps. If you are a new business or repositioning, starting with strategy ensures your visual identity is built on a clear foundation. Cat's Creations can do both together or strategy first." }
+      }
+    ]
+  }
+  </script></head>
 <body>
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5STL4FL5"

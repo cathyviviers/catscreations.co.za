@@ -12,7 +12,7 @@
       analytics_storage: 'denied',
       functionality_storage: 'granted',
       security_storage: 'granted',
-      wait_for_update: 500
+      wait_for_update: 300
     });
     // Restore granted state for returning visitors
     if (localStorage.getItem('cookie-consent') === 'accepted') {
@@ -118,7 +118,34 @@
     })();
   </script>
   <link rel="stylesheet" href="../css/style.css" />
-</head>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What types of print design do you offer?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Business cards, letterheads, flyers, posters, brochures, menus, event programmes, certificates, pull-up banners, and any other print collateral your business needs." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you deliver print-ready files?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes — every file is delivered bleed-ready, in CMYK colour mode, at the correct resolution, and checked against standard printer specifications. With 19 years of print experience, no surprises at the printer." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can you work with my existing printer?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. File specifications can be adjusted to match your printer's requirements. Alternatively, printing can be arranged through trusted local South African suppliers." }
+      },
+      {
+        "@type": "Question",
+        "name": "I have an existing design — can you prepare it for print?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, print preparation and prepress services are available for existing designs. This includes checking bleed, colour mode, resolution, and font embedding." }
+      }
+    ]
+  }
+  </script></head>
 <body>
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5STL4FL5"

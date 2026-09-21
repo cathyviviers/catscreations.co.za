@@ -12,7 +12,7 @@
       analytics_storage: 'denied',
       functionality_storage: 'granted',
       security_storage: 'granted',
-      wait_for_update: 500
+      wait_for_update: 300
     });
     // Restore granted state for returning visitors
     if (localStorage.getItem('cookie-consent') === 'accepted') {
@@ -103,7 +103,34 @@
     })();
   </script>
   <link rel="stylesheet" href="../css/style.css" />
-</head>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What types of packaging design do you offer?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Product boxes, labels, pouches, bottles, bags, and any packaging that requires print-ready artwork. Both retail packaging and e-commerce packaging are covered." }
+      },
+      {
+        "@type": "Question",
+        "name": "What large format design work do you do?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Vehicle wraps, building signage, banners, pull-up stands, exhibition displays, window graphics, and billboard layouts. All files are built to the fabricator's specifications." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you have print production experience?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes — with 19 years in the industry including running a print shop, every file is delivered knowing exactly what printers and fabricators need: correct bleed, safe zones, colour profiles, and material constraints are all factored in." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can you design packaging to match my existing brand?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes — packaging and signage can be created to match your existing brand identity, or designed as part of a new branding project." }
+      }
+    ]
+  }
+  </script></head>
 <body>
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5STL4FL5"

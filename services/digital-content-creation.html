@@ -12,7 +12,7 @@
       analytics_storage: 'denied',
       functionality_storage: 'granted',
       security_storage: 'granted',
-      wait_for_update: 500
+      wait_for_update: 300
     });
     // Restore granted state for returning visitors
     if (localStorage.getItem('cookie-consent') === 'accepted') {
@@ -118,7 +118,29 @@
     })();
   </script>
   <link rel="stylesheet" href="../css/style.css" />
-</head>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What does digital content creation include?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Captions, copywriting, infographics, social media carousels, blog posts, and digital marketing materials — all tailored to your brand voice and target audience." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can you write content that sounds like my brand?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Content is written to match your brand's tone of voice. A brand voice brief is discussed at the start of the project to ensure the writing feels authentic to your business." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you create content for South African audiences?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Based in Pretoria, the studio understands the South African market and creates content that resonates locally — while also serving international clients online." }
+      }
+    ]
+  }
+  </script></head>
 <body>
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5STL4FL5"

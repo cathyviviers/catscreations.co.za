@@ -12,7 +12,7 @@
       analytics_storage: 'denied',
       functionality_storage: 'granted',
       security_storage: 'granted',
-      wait_for_update: 500
+      wait_for_update: 300
     });
     // Restore granted state for returning visitors
     if (localStorage.getItem('cookie-consent') === 'accepted') {
@@ -118,7 +118,34 @@
     })();
   </script>
   <link rel="stylesheet" href="../css/style.css" />
-</head>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What web and digital assets do you design?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Website banners, email headers, digital advertisements (Google Display, Facebook, Instagram), presentation decks (PowerPoint/Google Slides), social media ad creative, and newsletter templates." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you build websites?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No — Cat's Creations focuses on the visual assets that go on or around a website, not website development. This includes banners, ad creative, email templates, and presentation decks." }
+      },
+      {
+        "@type": "Question",
+        "name": "What file formats are delivered for digital assets?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Depending on the asset: PNG, JPEG, PDF, SVG, or native presentation files (PPTX, Google Slides). Each asset is delivered in the format your platform or developer needs." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can you create digital ads in multiple sizes?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes — a single campaign can be adapted across multiple standard ad sizes (leaderboard, rectangle, half-page, mobile banner, and more) to suit your media buy." }
+      }
+    ]
+  }
+  </script></head>
 <body>
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5STL4FL5"

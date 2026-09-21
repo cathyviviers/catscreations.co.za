@@ -12,7 +12,7 @@
       analytics_storage: 'denied',
       functionality_storage: 'granted',
       security_storage: 'granted',
-      wait_for_update: 500
+      wait_for_update: 300
     });
     // Restore granted state for returning visitors
     if (localStorage.getItem('cookie-consent') === 'accepted') {
@@ -118,7 +118,39 @@
     })();
   </script>
   <link rel="stylesheet" href="../css/style.css" />
-</head>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is included in a logo and brand identity package?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Every package includes a custom primary and secondary logo, a curated colour palette, a typography system, a brand guidelines document, business card and stationery concepts, revisions until it feels right, and source files in all formats (AI, EPS, PDF, PNG, SVG)." }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does logo and brand identity design take?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A typical logo and brand identity project takes 5–10 business days from briefing to final delivery, depending on revision rounds and client feedback turnaround." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you design logos for businesses outside Pretoria?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. While based in Pretoria, Cat's Creations works with clients across South Africa and internationally via email and online collaboration." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can you refresh or update an existing logo?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, logo refreshes and brand updates are offered as a service. You bring what you have and the design is evolved — not discarded — to meet where your business is now." }
+      },
+      {
+        "@type": "Question",
+        "name": "What file formats will I receive?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Source files are delivered in every format you need: AI (Adobe Illustrator), EPS, PDF, PNG (transparent background), and SVG. Print-ready and web-ready versions are both included." }
+      }
+    ]
+  }
+  </script></head>
 <body>
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5STL4FL5"
