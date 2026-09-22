@@ -211,6 +211,7 @@
       <li><a href="services/packaging-large-format.html"><span class="nav-label-full">Packaging &amp; Large Format</span><span class="nav-label-short">Packaging</span></a></li>
       <li><a href="services/social-media-graphics.html"><span class="nav-label-full">Social Media Graphics</span><span class="nav-label-short">Social</span></a></li>
       <li><a href="services/web-digital-assets.html"><span class="nav-label-full">Web &amp; Digital Assets</span><span class="nav-label-short">Web</span></a></li>
+      <li><a href="services/digital-content-creation.html"><span class="nav-label-full">Digital Content Creation</span><span class="nav-label-short">Content</span></a></li>
       <li class="mobile-cta-li"><a href="#" class="nav-cta" onclick="openModal(event)">Get in Touch</a></li>
     </ul>
     <div class="nav-right">
@@ -600,15 +601,6 @@
       </a>
     </div>
     <p>© 2026 Cat's Creations · Brand Identity & Graphic Design · Made with <span style="color:var(--pink)">♥</span> · <a href="/privacy.html" style="color:var(--text-muted);text-decoration:none;">Privacy Policy</a></p>
-    <div class='admin-btn-wrap'>
-    <button class='admin-btn' onclick='toggleAdmin(event)' title='Admin'>⚙</button>
-    <div class='admin-dropdown' id='adminDropdown'>
-      <a href='https://github.com/cathyviviers/catscreations.co.za' target='_blank' rel='noopener'>GitHub</a>
-      <a href='https://vercel.com' target='_blank' rel='noopener'>Vercel</a>
-      <a href='https://search.google.com/search-console' target='_blank' rel='noopener'>Search Console</a>
-      <a href='https://clarity.microsoft.com' target='_blank' rel='noopener'>Clarity</a>
-    </div>
-  </div>
   </footer>
 
   <script>
@@ -628,14 +620,21 @@
         fetch('https://feeds.behold.so/4sbj3zuaghCSSR7sUHY9')
           .then(function(r) { return r.json(); })
           .then(function(data) {
-            const posts = (data.posts || []).slice(0, 6);
+            // Prefer posts Behold has already cached (sizes.*). Raw Instagram
+            // CDN links (mediaUrl / thumbnailUrl) expire after a few days and
+            // leave blank tiles, so only fall back to them if we are short.
+            function beholdImg(post) {
+              const s = post.sizes || {};
+              return (s.medium && s.medium.mediaUrl) || (s.large && s.large.mediaUrl) || (s.small && s.small.mediaUrl) || '';
+            }
+            const all = data.posts || [];
+            const cached = all.filter(function(p) { return beholdImg(p); });
+            const posts = (cached.length >= 6 ? cached : cached.concat(all.filter(function(p) { return !beholdImg(p); }))).slice(0, 6);
             grid.innerHTML = posts.map(function(post) {
-              const img = post.mediaType === 'VIDEO'
-                ? (post.thumbnailUrl || post.mediaUrl)
-                : ((post.sizes && post.sizes.medium && post.sizes.medium.mediaUrl) || post.mediaUrl);
+              const img = beholdImg(post) || (post.mediaType === 'VIDEO' ? (post.thumbnailUrl || post.mediaUrl) : post.mediaUrl);
               const caption = (post.prunedCaption || '').replace(/"/g, '&quot;').slice(0, 80);
               return '<a class="ig-thumb" href="' + post.permalink + '" target="_blank" rel="noopener noreferrer">'
-                + '<img src="' + img + '" alt="' + (caption || 'Instagram post') + '" loading="lazy" width="1080" height="1080" decoding="async" /></a>';
+                + '<img src="' + img + '" alt="' + (caption || 'Instagram post') + '" loading="lazy" width="1080" height="1080" decoding="async" onerror="this.parentNode.style.display=\'none\'" /></a>';
             }).join('');
           })
           .catch(function() {});
@@ -716,16 +715,6 @@
         burger.classList.remove('open');
         navUl.classList.remove('open');
       });
-    });
-  </script>
-  <script>
-    function toggleAdmin(e) {
-      e.stopPropagation();
-      document.getElementById('adminDropdown').classList.toggle('open');
-    }
-    document.addEventListener('click', function() {
-      var d = document.getElementById('adminDropdown');
-      if (d) d.classList.remove('open');
     });
   </script>
 
