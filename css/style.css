@@ -140,6 +140,21 @@ nav ul li:not(:first-child)::before {
 
 nav ul a.nav-active { color: var(--pink); }
 
+/* Keep the logo and pills on one line, and tighten the menu on
+   laptop-width screens so all eight links fit without wrapping. */
+.nav-logo, .nav-right a { white-space: nowrap; }
+@media (min-width: 901px) and (max-width: 1400px) {
+  nav { padding: 18px 32px; }
+  nav ul a { padding: 0 10px; font-size: 0.8rem; letter-spacing: 0.06em; }
+  .nav-right { gap: 8px; }
+  .nav-blog { padding: 7px 14px; font-size: 0.8rem; }
+}
+@media (min-width: 901px) and (max-width: 1100px) {
+  nav { padding: 16px 20px; }
+  nav ul a { padding: 0 6px; font-size: 0.72rem; letter-spacing: 0.04em; }
+  .nav-logo { font-size: 1.35rem; }
+}
+
 /* ── BLOG ── */
 .blog-grid {
   display: grid;
@@ -1281,50 +1296,6 @@ textarea { height: 140px; resize: vertical; }
   transition: opacity 0.25s ease;
 }
 .ig-item:hover .ig-overlay { opacity: 1; }
-
-/* ── ADMIN BUTTON ── */
-.admin-btn-wrap {
-  position: relative;
-  display: inline-block;
-  margin-top: 12px;
-}
-.admin-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 0.7rem;
-  opacity: 0.2;
-  color: var(--text-muted);
-  padding: 4px 6px;
-  transition: opacity 0.2s;
-  line-height: 1;
-}
-.admin-btn:hover { opacity: 0.6; }
-.admin-dropdown {
-  display: none;
-  position: absolute;
-  bottom: calc(100% + 6px);
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 6px;
-  min-width: 160px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
-  z-index: 999;
-}
-.admin-dropdown.open { display: block; }
-.admin-dropdown a {
-  display: block;
-  padding: 8px 12px;
-  font-size: 0.8rem;
-  color: var(--text);
-  text-decoration: none;
-  border-radius: 6px;
-  transition: background 0.15s;
-}
-.admin-dropdown a:hover { background: var(--bg-alt); }
 
 /* ── FOOTER ── */
 footer {
