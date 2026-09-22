@@ -388,5 +388,63 @@
     }
   </script>
   <script src="/js/tracking.js" defer></script>
+<script>
+(function () {
+  var THANK_YOU_URL = "/thank-you.html";
+
+  document.querySelectorAll('form[action*="formspree.io"]').forEach(function (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      var button = form.querySelector('button[type="submit"], input[type="submit"]');
+      var originalText = button ? button.innerHTML : "";
+      var status = form.querySelector(".form-status");
+
+      // Create a small message area under the form if there isn't one yet
+      if (!status) {
+        status = document.createElement("p");
+        status.className = "form-status";
+        status.setAttribute("role", "status");
+        status.style.marginTop = "12px";
+        status.style.fontSize = "0.95em";
+        form.appendChild(status);
+      }
+      status.textContent = "";
+
+      if (button) {
+        button.disabled = true;
+        button.innerHTML = "Sending...";
+      }
+
+      fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { "Accept": "application/json" }
+      })
+        .then(function (response) {
+          if (response.ok) {
+            window.location.href = THANK_YOU_URL;
+            return;
+          }
+          return response.json().then(function (data) {
+            var msg = (data && data.errors)
+              ? data.errors.map(function (err) { return err.message; }).join(", ")
+              : "Something went wrong.";
+            throw new Error(msg);
+          });
+        })
+        .catch(function (err) {
+          status.style.color = "#c0392b";
+          status.textContent = "Sorry, your message couldn't be sent (" + err.message +
+            "). Please try again, or WhatsApp us on 061 501 7695.";
+          if (button) {
+            button.disabled = false;
+            button.innerHTML = originalText;
+          }
+        });
+    });
+  });
+})();
+</script>
 </body>
 </html>
