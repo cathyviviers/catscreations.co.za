@@ -401,6 +401,97 @@ nav ul a.nav-active { color: var(--pink); }
   margin-bottom: 20px;
 }
 
+/* ── Related content: blog posts ────────────────────────────────────── */
+.blog-related {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.blog-related-block {
+  margin-bottom: 1.5rem;
+}
+.blog-related-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 0.75rem;
+}
+.blog-related-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.related-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: border-color 0.2s, color 0.2s;
+}
+.related-pill:hover {
+  border-color: var(--pink);
+  color: var(--pink);
+}
+.related-pill-service {
+  color: var(--pink);
+  border-color: var(--pink-tint-border);
+  background: var(--pink-tint);
+}
+.related-pill-service:hover {
+  border-color: var(--pink);
+}
+
+/* ── Related content: service pages ─────────────────────────────────── */
+.service-related-section {
+  padding: 4rem 1rem;
+  background: var(--bg-alt);
+}
+.related-blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+.related-blog-card {
+  display: block;
+  padding: 1.5rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--text);
+  transition: border-color 0.2s, transform 0.2s;
+}
+.related-blog-card:hover {
+  border-color: var(--pink);
+  transform: translateY(-2px);
+}
+.related-blog-cat {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 0.4rem;
+}
+.related-blog-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  margin: 0 0 0.75rem;
+  color: var(--text);
+}
+.related-blog-read {
+  font-size: 0.85rem;
+  color: var(--pink);
+}
+
 .mobile-cta-li { display: none; }
 
 .nav-cta {
