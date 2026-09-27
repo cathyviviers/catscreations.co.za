@@ -1,9 +1,22 @@
 // GitHub OAuth handshake for the Sveltia/Decap CMS "github" backend.
 // Step 2: exchange the authorization code for an access token, then
-// postMessage it back to the CMS popup's opener window.
+// postMessage it back to the CMS window that opened this popup.
+// Requires OAUTH_CLIENT_ID and OAUTH_CLIENT_SECRET set as Vercel environment variables.
 export default async function handler(req, res) {
-  const { code } = req.query;
+  const { code, state } = req.query;
   if (!code) return res.status(400).send('Missing code parameter');
+
+  // Check the state value set by /api/auth so a login can't be forged from another site.
+  const cookies = Object.fromEntries(
+    (req.headers.cookie || '')
+      .split(';')
+      .map((c) => c.trim().split('='))
+      .filter((p) => p.length === 2)
+  );
+  if (!state || state !== cookies.cms_oauth_state) {
+    return res.status(403).send('Login session expired or invalid. Close this window and try again.');
+  }
+  res.setHeader('Set-Cookie', 'cms_oauth_state=; Path=/api; HttpOnly; Secure; SameSite=Lax; Max-Age=0');
 
   let payload;
   try {
@@ -11,9 +24,7 @@ export default async function handler(req, res) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify({
-        // TODO(owner): replace with the Client ID from the GitHub OAuth App
-        // registered for this site. See the PR description for setup steps.
-        client_id: 'REPLACE_WITH_NEW_OAUTH_CLIENT_ID',
+        client_id: process.env.OAUTH_CLIENT_ID,
         client_secret: process.env.OAUTH_CLIENT_SECRET,
         code,
       }),
@@ -26,15 +37,21 @@ export default async function handler(req, res) {
     payload = `authorization:github:error:${JSON.stringify({ message: 'Server error' })}`;
   }
 
+  // Escape "<" so nothing in the payload can break out of the script tag.
+  const safePayload = JSON.stringify(payload).replace(/</g, '\\u003c');
+
   res.setHeader('Content-Type', 'text/html');
+  res.setHeader('Cache-Control', 'no-store');
   res.send(`<!DOCTYPE html><html><body><script>
 (function () {
   function onMessage(e) {
+    // Only hand the token to this site (catscreations.co.za or its own preview URL).
+    if (e.origin !== window.location.origin) return;
     window.removeEventListener('message', onMessage);
-    window.opener.postMessage(${JSON.stringify(payload)}, e.origin);
+    window.opener.postMessage(${safePayload}, e.origin);
   }
   window.addEventListener('message', onMessage);
-  window.opener && window.opener.postMessage('authorizing:github', '*');
+  window.opener && window.opener.postMessage('authorizing:github', window.location.origin);
 })();
 </script></body></html>`);
 }
