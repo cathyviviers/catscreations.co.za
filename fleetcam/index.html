@@ -7,22 +7,27 @@
   <meta name="description" content="A website redesign concept for FleetCam by Cat's Creations. AI vehicle cameras, live video telematics and a 24/7/365 monitoring bureau for South African fleets." />
   <!-- Pitch concept: keep out of search engines and the sitemap -->
   <meta name="robots" content="noindex, nofollow" />
-  <meta name="theme-color" content="#0b1220" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
+  <meta name="theme-color" content="#06182b" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/fleetcam/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
   <style>
     /* Brand tokens. Swap these for FleetCam's official palette once supplied. */
     :root {
-      --ink: #0b1220;
-      --ink-2: #111a2e;
-      --panel: #16213a;
+      --ink: #06182b;
+      --ink-2: #0b2038;
+      --panel: #10294a;
       --line: rgba(255,255,255,0.09);
       --text: #eef2f8;
       --muted: #9aa7bd;
-      --signal: #ff3b30;       /* the "REC" red */
-      --accent: #2ee6a6;       /* live / OK green */
+      /* FleetCam brand, sampled from the official logo */
+      --brand: #218dce;        /* FleetCam blue */
+      --brand-dark: #1a72a8;   /* blue for text on light backgrounds */
+      --green: #8dc63f;        /* swoosh green */
+      --green-deep: #2e9e45;   /* swoosh shadow green */
+      --rec: #ff3b30;          /* recording / alert red, used sparingly */
+      --accent: var(--green);
       --amber: #ffb020;        /* AI warning */
       --paper: #f5f7fb;
       --paper-text: #0b1220;
@@ -44,37 +49,38 @@
     .concept a { text-decoration: underline; font-weight: 600; }
 
     /* Nav */
-    header { position: sticky; top: 0; z-index: 50; background: rgba(11,18,32,0.82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
-    .nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 72px; }
-    .logo { display: flex; align-items: center; gap: 10px; font-family: 'Sora', sans-serif; font-weight: 800; font-size: 21px; letter-spacing: -0.02em; }
-    .logo-mark { width: 34px; height: 34px; border-radius: 10px; background: var(--panel); border: 1px solid var(--line); display: grid; place-items: center; position: relative; }
-    .logo-mark::after { content: ""; width: 12px; height: 12px; border-radius: 50%; background: var(--signal); box-shadow: 0 0 0 4px rgba(255,59,48,0.18); }
-    .logo b { color: var(--signal); font-weight: 800; }
-    .nav ul { display: flex; gap: 28px; list-style: none; font-size: 15px; color: var(--muted); }
-    .nav ul a:hover { color: var(--text); }
+    header { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.94); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid #e3e8f0; color: var(--paper-text); }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 82px; }
+    .logo { display: inline-flex; align-items: center; }
+    .logo img { height: 54px; width: auto; }
+    .foot .logo { background: #fff; border-radius: 14px; padding: 10px 14px; }
+    .foot .logo img { height: 40px; }
+    .nav ul { display: flex; gap: 28px; list-style: none; font-size: 15px; font-weight: 500; color: var(--paper-muted); }
+    .nav ul a:hover { color: var(--brand-dark); }
     .nav-right { display: flex; align-items: center; gap: 16px; }
-    .nav-phone { font-size: 14px; color: var(--muted); }
-    .nav-phone strong { color: var(--text); }
-    .burger { display: none; background: none; border: 1px solid var(--line); color: var(--text); border-radius: 10px; width: 42px; height: 42px; font-size: 18px; cursor: pointer; }
+    .nav-phone { font-size: 14px; color: var(--paper-muted); }
+    .nav-phone strong { color: var(--paper-text); }
+    .burger { display: none; background: none; border: 1px solid #d5dce6; color: var(--paper-text); border-radius: 10px; width: 42px; height: 42px; font-size: 18px; cursor: pointer; }
 
     .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 13px 22px; border-radius: 999px; font-weight: 600; font-size: 15px; border: 1px solid transparent; transition: transform .15s ease, background .2s ease, border-color .2s ease; cursor: pointer; font-family: inherit; }
     .btn:hover { transform: translateY(-1px); }
-    .btn-primary { background: var(--signal); color: #fff; }
-    .btn-primary:hover { background: #ff5247; }
+    .btn-primary { background: var(--brand); color: #fff; }
+    .btn-primary:hover { background: #1b7dba; }
     .btn-ghost { border-color: rgba(255,255,255,0.22); color: var(--text); background: transparent; }
     .btn-ghost:hover { border-color: rgba(255,255,255,0.5); }
     .btn-sm { padding: 10px 18px; font-size: 14px; }
 
     /* Hero */
     .hero { position: relative; padding: 88px 0 72px; overflow: hidden; }
-    .hero::before { content: ""; position: absolute; inset: -20% -10% auto auto; width: 720px; height: 720px; background: radial-gradient(circle, rgba(255,59,48,0.16), transparent 60%); pointer-events: none; }
+    .hero::before { content: ""; position: absolute; inset: -20% -10% auto auto; width: 720px; height: 720px; background: radial-gradient(circle, rgba(33,141,206,0.22), transparent 60%); pointer-events: none; }
+    .hero-swoosh { position: absolute; left: -180px; top: 40px; width: 1100px; height: auto; opacity: .22; pointer-events: none; }
     .hero::after { content: ""; position: absolute; inset: 0; background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 56px 56px; mask-image: radial-gradient(ellipse at 30% 20%, #000 10%, transparent 70%); -webkit-mask-image: radial-gradient(ellipse at 30% 20%, #000 10%, transparent 70%); opacity: .5; pointer-events: none; }
     .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.02fr 1fr; gap: 56px; align-items: center; }
     .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; color: var(--muted); border: 1px solid var(--line); background: rgba(255,255,255,0.03); border-radius: 999px; padding: 6px 14px 6px 10px; }
-    .rec { width: 8px; height: 8px; border-radius: 50%; background: var(--signal); animation: blink 1.4s infinite; }
+    .rec { width: 8px; height: 8px; border-radius: 50%; background: var(--rec); animation: blink 1.4s infinite; }
     @keyframes blink { 50% { opacity: .25; } }
     .hero h1 { font-size: clamp(40px, 5.6vw, 66px); margin: 22px 0 20px; }
-    .hero h1 em { font-style: normal; color: var(--signal); }
+    .hero h1 em { font-style: normal; background: linear-gradient(90deg, var(--green), #4fb848); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .hero p.lead { font-size: 18px; color: var(--muted); max-width: 540px; }
     .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
     .hero-stats { display: grid; grid-template-columns: repeat(3, auto); gap: 32px; margin-top: 44px; padding-top: 28px; border-top: 1px solid var(--line); width: fit-content; }
@@ -93,7 +99,7 @@
     .cam.main { grid-row: span 2; aspect-ratio: auto; }
     .cam svg { width: 100%; height: 100%; }
     .cam-label { position: absolute; top: 8px; left: 8px; font-size: 10px; background: rgba(0,0,0,0.55); padding: 3px 7px; border-radius: 6px; color: #dfe6f2; display: flex; align-items: center; gap: 5px; }
-    .cam-label::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--signal); animation: blink 1.4s infinite; }
+    .cam-label::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--rec); animation: blink 1.4s infinite; }
     .cam-time { position: absolute; bottom: 8px; right: 8px; font-size: 10px; color: #cfd8e6; background: rgba(0,0,0,0.5); padding: 2px 6px; border-radius: 5px; }
     .scan { position: absolute; left: 0; right: 0; height: 40%; background: linear-gradient(180deg, transparent, rgba(46,230,166,0.10), transparent); animation: scan 4s linear infinite; }
     @keyframes scan { from { top: -40%; } to { top: 100%; } }
@@ -108,36 +114,38 @@
     .trust li { padding: 22px 20px; font-size: 14px; color: var(--muted); display: flex; gap: 12px; align-items: center; border-right: 1px solid var(--line); }
     .trust li:last-child { border-right: 0; }
     .trust li strong { color: var(--text); display: block; font-size: 15px; }
-    .trust .t-ico { flex: none; width: 36px; height: 36px; border-radius: 10px; background: rgba(255,255,255,0.05); display: grid; place-items: center; color: var(--signal); }
+    .trust .t-ico { flex: none; width: 36px; height: 36px; border-radius: 10px; background: rgba(255,255,255,0.05); display: grid; place-items: center; color: var(--brand); }
 
     /* Sections */
     section { padding: 104px 0; }
-    .kicker { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--signal); font-weight: 600; }
+    .kicker { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--brand); font-weight: 600; }
     .sec-head { max-width: 720px; margin-bottom: 56px; }
     .sec-head h2 { font-size: clamp(32px, 4vw, 46px); margin: 14px 0 16px; }
     .sec-head p { color: var(--muted); font-size: 17px; }
     .light { background: var(--paper); color: var(--paper-text); }
     .light .sec-head p, .light .muted { color: var(--paper-muted); }
+    .kicker, .sec-head p.kicker { color: var(--green); }
+    .light .kicker, .light .sec-head p.kicker, .light .problem .num, .light .steps li::before, .light .big-stat span, .light .faq summary::after { color: var(--brand-dark); }
 
     /* Problem */
     .problem-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
     .problem { background: #fff; border: 1px solid #e3e8f0; border-radius: var(--radius); padding: 28px 24px; }
-    .problem .num { font-family: 'Sora', sans-serif; font-size: 15px; color: var(--signal); font-weight: 700; }
+    .problem .num { font-family: 'Sora', sans-serif; font-size: 15px; color: var(--brand); font-weight: 700; }
     .problem h3 { font-size: 19px; margin: 14px 0 8px; }
     .problem p { font-size: 15px; color: var(--paper-muted); }
 
     /* Solutions */
     .solutions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
     .sol { position: relative; background: var(--ink-2); border: 1px solid var(--line); border-radius: 22px; padding: 36px; overflow: hidden; transition: border-color .25s ease, transform .25s ease; }
-    .sol:hover { border-color: rgba(255,59,48,0.45); transform: translateY(-3px); }
+    .sol:hover { border-color: rgba(33,141,206,0.45); transform: translateY(-3px); }
     .sol-tag { font-size: 12px; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; display: inline-block; }
     .sol h3 { font-size: 26px; margin: 18px 0 10px; }
     .sol p { color: var(--muted); font-size: 15.5px; }
     .sol ul { list-style: none; margin-top: 20px; display: grid; gap: 9px; font-size: 14.5px; }
     .sol li { display: flex; gap: 10px; align-items: flex-start; }
-    .sol li::before { content: ""; flex: none; margin-top: 8px; width: 6px; height: 6px; border-radius: 50%; background: var(--signal); }
+    .sol li::before { content: ""; flex: none; margin-top: 8px; width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
     .sol .more { display: inline-block; margin-top: 24px; font-weight: 600; font-size: 14.5px; color: var(--text); }
-    .sol .more:hover { color: var(--signal); }
+    .sol .more:hover { color: var(--brand); }
 
     /* AI */
     .ai-grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 56px; align-items: center; }
@@ -158,19 +166,19 @@
     .bureau { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
     .steps { list-style: none; counter-reset: s; display: grid; gap: 14px; }
     .steps li { counter-increment: s; display: grid; grid-template-columns: 52px 1fr; gap: 16px; background: #fff; border: 1px solid #e3e8f0; border-radius: 16px; padding: 20px; }
-    .steps li::before { content: "0" counter(s); font-family: 'Sora', sans-serif; font-weight: 700; color: var(--signal); font-size: 20px; }
+    .steps li::before { content: "0" counter(s); font-family: 'Sora', sans-serif; font-weight: 700; color: var(--brand); font-size: 20px; }
     .steps h3 { font-size: 18px; margin-bottom: 4px; }
     .steps p { color: var(--paper-muted); font-size: 15px; }
     .emergency { margin-top: 28px; background: var(--ink); color: var(--text); border-radius: 18px; padding: 24px 26px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
     .emergency small { color: var(--muted); display: block; font-size: 13px; }
     .emergency strong { font-family: 'Sora', sans-serif; font-size: 28px; }
     .big-stat { font-family: 'Sora', sans-serif; font-size: clamp(64px, 9vw, 110px); font-weight: 800; letter-spacing: -0.04em; line-height: 1; color: var(--paper-text); }
-    .big-stat span { color: var(--signal); }
+    .big-stat span { color: var(--brand); }
 
     /* Industries */
     .industries { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
     .ind { border: 1px solid var(--line); border-radius: 18px; padding: 26px 22px; background: linear-gradient(180deg, rgba(255,255,255,0.03), transparent); }
-    .ind .i-ico { width: 44px; height: 44px; border-radius: 12px; background: rgba(255,59,48,0.12); color: var(--signal); display: grid; place-items: center; margin-bottom: 18px; }
+    .ind .i-ico { width: 44px; height: 44px; border-radius: 12px; background: rgba(33,141,206,0.12); color: var(--brand); display: grid; place-items: center; margin-bottom: 18px; }
     .ind h3 { font-size: 18px; margin-bottom: 6px; }
     .ind p { font-size: 14.5px; color: var(--muted); }
 
@@ -196,21 +204,21 @@
     .faq details { border-bottom: 1px solid #dfe5ee; padding: 22px 0; }
     .faq summary { cursor: pointer; font-family: 'Sora', sans-serif; font-weight: 600; font-size: 18px; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
     .faq summary::-webkit-details-marker { display: none; }
-    .faq summary::after { content: "+"; color: var(--signal); font-size: 24px; line-height: 1; transition: transform .2s ease; }
+    .faq summary::after { content: "+"; color: var(--brand); font-size: 24px; line-height: 1; transition: transform .2s ease; }
     .faq details[open] summary::after { transform: rotate(45deg); }
     .faq details p { margin-top: 12px; color: var(--paper-muted); }
 
     /* Contact */
     .contact { display: grid; grid-template-columns: 1fr 1.1fr; gap: 56px; }
     .contact-list { list-style: none; display: grid; gap: 14px; margin-top: 30px; }
-    .contact-list li { display: flex; flex-direction: column; border-left: 2px solid var(--signal); padding-left: 16px; }
+    .contact-list li { display: flex; flex-direction: column; border-left: 2px solid var(--brand); padding-left: 16px; }
     .contact-list small { color: var(--muted); font-size: 13px; }
     .contact-list a { font-size: 18px; font-weight: 600; }
     form.quote { background: var(--ink-2); border: 1px solid var(--line); border-radius: 22px; padding: 32px; display: grid; gap: 14px; }
     .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     label { font-size: 13px; color: var(--muted); display: grid; gap: 6px; }
     input, select, textarea { font: inherit; font-size: 15px; color: var(--text); background: var(--ink); border: 1px solid rgba(255,255,255,0.14); border-radius: 12px; padding: 12px 14px; width: 100%; }
-    input:focus, select:focus, textarea:focus { outline: 2px solid rgba(255,59,48,0.6); outline-offset: 1px; }
+    input:focus, select:focus, textarea:focus { outline: 2px solid rgba(33,141,206,0.6); outline-offset: 1px; }
     .form-note { font-size: 12.5px; color: var(--muted); }
 
     /* Footer */
@@ -233,7 +241,7 @@
       .trust li:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
       .nav ul, .nav-phone { display: none; }
       .burger { display: block; }
-      .nav ul.open { display: flex; flex-direction: column; position: absolute; top: 72px; left: 0; right: 0; background: var(--ink); border-bottom: 1px solid var(--line); padding: 20px 24px; gap: 18px; font-size: 17px; }
+      .nav ul.open { display: flex; flex-direction: column; position: absolute; top: 82px; left: 0; right: 0; background: #fff; border-bottom: 1px solid #e3e8f0; padding: 20px 24px; gap: 18px; font-size: 17px; }
     }
     @media (max-width: 640px) {
       .wrap { padding: 0 16px; }
@@ -266,7 +274,7 @@
 
   <header>
     <div class="wrap nav">
-      <a href="#top" class="logo" aria-label="FleetCam home"><span class="logo-mark" aria-hidden="true"></span><span>Fleet<b>Cam</b></span></a>
+      <a href="#top" class="logo" aria-label="FleetCam home"><img src="/fleetcam/fleetcam-logo.png" alt="FleetCam Vehicle Video Telematics" width="600" height="221" /></a>
       <ul id="menu">
         <li><a href="#solutions">Solutions</a></li>
         <li><a href="#ai">FleetCam AI</a></li>
@@ -285,6 +293,10 @@
   <main id="top">
     <!-- HERO -->
     <section class="hero">
+      <svg class="hero-swoosh" viewBox="0 0 1100 600" aria-hidden="true">
+        <defs><linearGradient id="sw" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#8dc63f"/><stop offset=".6" stop-color="#4fb848"/><stop offset="1" stop-color="#2e9e45"/></linearGradient></defs>
+        <path d="M720 20 C380 30 90 170 60 360 C40 480 160 560 420 580 C200 540 120 470 140 380 C170 220 420 70 720 20 Z" fill="url(#sw)"/>
+      </svg>
       <div class="wrap hero-grid">
         <div>
           <span class="eyebrow"><span class="rec"></span> AI video telematics, built in South Africa since 2014</span>
@@ -322,8 +334,8 @@
                 <rect x="176" y="150" width="48" height="34" rx="4" fill="#3a4659"/>
                 <rect x="181" y="156" width="38" height="14" rx="2" fill="#1a2231"/>
                 <rect x="180" y="176" width="8" height="4" fill="#ff3b30"/><rect x="212" y="176" width="8" height="4" fill="#ff3b30"/>
-                <rect x="168" y="142" width="64" height="48" rx="6" fill="none" stroke="#2ee6a6" stroke-width="2"/>
-                <text x="168" y="137" fill="#2ee6a6" font-size="11" font-family="JetBrains Mono, monospace">VEHICLE 38m</text>
+                <rect x="168" y="142" width="64" height="48" rx="6" fill="none" stroke="#8dc63f" stroke-width="2"/>
+                <text x="168" y="137" fill="#8dc63f" font-size="11" font-family="JetBrains Mono, monospace">VEHICLE 38m</text>
               </svg>
               <div class="scan"></div>
               <span class="cam-label mono">CH1 FRONT</span>
@@ -346,7 +358,7 @@
                 <polygon points="0,125 200,125 140,40 60,40" fill="#232c3b"/>
                 <rect x="70" y="58" width="60" height="40" rx="4" fill="#3c4a63"/>
                 <circle cx="80" cy="64" r="4" fill="#fff6c2"/><circle cx="120" cy="64" r="4" fill="#fff6c2"/>
-                <path d="M0 0 L40 125 M200 0 L160 125" stroke="#2ee6a6" stroke-width="1.5" opacity=".6"/>
+                <path d="M0 0 L40 125 M200 0 L160 125" stroke="#8dc63f" stroke-width="1.5" opacity=".6"/>
               </svg>
               <span class="cam-label mono">CH4 REAR</span>
             </div>
@@ -576,10 +588,10 @@
             <!-- stylised South Africa outline -->
             <path d="M70 92 L118 70 L170 74 L214 58 L262 66 L300 52 L338 82 L344 122 L322 168 L286 206 L238 238 L182 252 L130 246 L96 222 L84 186 L64 150 Z" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
             <g>
-              <circle cx="262" cy="96" r="7" fill="#ff3b30" class="pulse"/><circle cx="262" cy="96" r="5" fill="#ff3b30"/>
-              <circle cx="104" cy="226" r="7" fill="#ff3b30" class="pulse" style="animation-delay:.6s"/><circle cx="104" cy="226" r="5" fill="#ff3b30"/>
-              <circle cx="306" cy="176" r="7" fill="#ff3b30" class="pulse" style="animation-delay:1.2s"/><circle cx="306" cy="176" r="5" fill="#ff3b30"/>
-              <circle cx="168" cy="242" r="7" fill="#ff3b30" class="pulse" style="animation-delay:1.8s"/><circle cx="168" cy="242" r="5" fill="#ff3b30"/>
+              <circle cx="262" cy="96" r="7" fill="#218dce" class="pulse"/><circle cx="262" cy="96" r="5" fill="#218dce"/>
+              <circle cx="104" cy="226" r="7" fill="#218dce" class="pulse" style="animation-delay:.6s"/><circle cx="104" cy="226" r="5" fill="#218dce"/>
+              <circle cx="306" cy="176" r="7" fill="#218dce" class="pulse" style="animation-delay:1.2s"/><circle cx="306" cy="176" r="5" fill="#218dce"/>
+              <circle cx="168" cy="242" r="7" fill="#218dce" class="pulse" style="animation-delay:1.8s"/><circle cx="168" cy="242" r="5" fill="#218dce"/>
             </g>
             <g font-family="Inter, sans-serif" font-size="12" fill="#eef2f8">
               <text x="272" y="92">Pretoria</text>
@@ -662,7 +674,7 @@
     <div class="wrap">
       <div class="foot">
         <div>
-          <a href="#top" class="logo"><span class="logo-mark" aria-hidden="true"></span><span>Fleet<b>Cam</b></span></a>
+          <a href="#top" class="logo" aria-label="FleetCam home"><img src="/fleetcam/fleetcam-logo.png" alt="FleetCam" width="600" height="221" loading="lazy" /></a>
           <p style="margin-top:12px;max-width:340px">Real-time vehicle surveillance for South African fleets. ICASA approved. Monitored 24/7/365.</p>
         </div>
         <div>
