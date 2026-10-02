@@ -263,16 +263,18 @@
     /* Tilt toward the pointer (set by script on devices with a mouse) */
     .card { position: relative; }
     .card.tilt {
-      transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(-6px);
-      transition: transform .12s ease-out, box-shadow .35s;
-      box-shadow: calc(var(--sx, 0) * -1px) calc(22px + var(--sy, 0) * -1px) 44px rgba(31, 74, 80, .18), inset 0 1px 0 rgba(255, 255, 255, .9);
+      transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--lift, 0px));
+      transition: transform .25s ease-out, box-shadow .35s;
+      box-shadow: calc(var(--sx, 0) * -1px) calc(14px + var(--sy, 0) * -1px) 36px rgba(31, 74, 80, .14), inset 0 1px 0 rgba(255, 255, 255, .9);
     }
+    .card.tilt:hover { --lift: -6px; }
     .card::after {
       content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
       background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, .55), transparent 60%);
       opacity: 0; transition: opacity .3s;
     }
-    .card.tilt::after { opacity: 1; }
+    .card.tilt::after { opacity: .45; }
+    .card.tilt:hover::after { opacity: 1; }
     .gallery .photo:hover { transform: translateY(-4px) scale(1.015); box-shadow: 0 18px 36px rgba(31, 74, 80, .15); }
     .photo { transition: background-position 6s linear; }
     .card:hover .photo, .gallery .photo:hover { background-position: 60px -40px; }
@@ -462,32 +464,43 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Cards tilt toward the mouse pointer, with a soft light following it across the glass.
+    // Every card on screen turns to face the mouse pointer, wherever it is on the page,
+    // with a soft light on the side nearest the pointer.
     (function () {
       if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
       if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      var MAX = 9; // degrees
-      document.querySelectorAll('.card').forEach(function (card) {
-        var frame = 0;
-        card.addEventListener('pointermove', function (e) {
-          cancelAnimationFrame(frame);
-          frame = requestAnimationFrame(function () {
-            var r = card.getBoundingClientRect();
-            var x = (e.clientX - r.left) / r.width;   // 0 left, 1 right
-            var y = (e.clientY - r.top) / r.height;   // 0 top, 1 bottom
-            card.classList.add('tilt');
-            card.style.setProperty('--ry', ((x - 0.5) * 2 * MAX).toFixed(2) + 'deg');
-            card.style.setProperty('--rx', ((0.5 - y) * 2 * MAX).toFixed(2) + 'deg');
-            card.style.setProperty('--sx', ((x - 0.5) * 24).toFixed(1));
-            card.style.setProperty('--sy', ((y - 0.5) * 24).toFixed(1));
-            card.style.setProperty('--mx', (x * 100).toFixed(1) + '%');
-            card.style.setProperty('--my', (y * 100).toFixed(1) + '%');
-          });
+      var MAX = 10; // degrees
+      var cards = Array.prototype.slice.call(document.querySelectorAll('.card'));
+      var px = null, py = null, frame = 0;
+
+      function clamp(v, lo, hi) { return Math.min(hi, Math.max(lo, v)); }
+
+      function update() {
+        frame = 0;
+        if (px === null) return;
+        var vh = window.innerHeight;
+        cards.forEach(function (card) {
+          var r = card.getBoundingClientRect();
+          if (r.bottom < -100 || r.top > vh + 100) return; // off screen
+          // How far the pointer is from the card's centre, eased so far-away cards don't snap to full tilt.
+          var dx = Math.tanh((px - (r.left + r.width / 2)) / (r.width * 0.75));
+          var dy = Math.tanh((py - (r.top + r.height / 2)) / (r.height * 0.75));
+          card.classList.add('tilt');
+          card.style.setProperty('--ry', (dx * MAX).toFixed(2) + 'deg');
+          card.style.setProperty('--rx', (-dy * MAX).toFixed(2) + 'deg');
+          card.style.setProperty('--sx', (dx * 12).toFixed(1));
+          card.style.setProperty('--sy', (dy * 12).toFixed(1));
+          card.style.setProperty('--mx', clamp((px - r.left) / r.width * 100, 0, 100).toFixed(1) + '%');
+          card.style.setProperty('--my', clamp((py - r.top) / r.height * 100, 0, 100).toFixed(1) + '%');
         });
-        card.addEventListener('pointerleave', function () {
-          cancelAnimationFrame(frame);
-          card.classList.remove('tilt');
-        });
+      }
+      function schedule() { if (!frame) frame = requestAnimationFrame(update); }
+
+      document.addEventListener('pointermove', function (e) { px = e.clientX; py = e.clientY; schedule(); }, { passive: true });
+      window.addEventListener('scroll', schedule, { passive: true });
+      document.documentElement.addEventListener('pointerleave', function () {
+        px = py = null;
+        cards.forEach(function (card) { card.classList.remove('tilt'); });
       });
     })();
 
