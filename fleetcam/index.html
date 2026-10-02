@@ -460,6 +460,15 @@
     /* section seam lines */
     #solutions, #industries, .story-sec, #contact { border-top: 1px solid transparent; border-image: linear-gradient(90deg, transparent, rgba(255,255,255,.08), transparent) 1; }
 
+
+    /* Driver follows the pointer */
+    .dmove { transition: transform .35s cubic-bezier(.2,.7,.2,1); }
+    .dstate { transition: opacity .25s ease, transform .3s ease; }
+    #dLblBg, #dEyeBox, #dSide { transition: fill .3s ease, stroke .3s ease; }
+    .detect.awake #dClosed, .detect.awake #dYawn { opacity: 0; }
+    .detect.awake #dOpen, .detect.awake #dRest { opacity: 1; }
+    .detect.awake #dBrows { transform: translateY(-2.5px); }
+
     /* Responsive */
     @media (max-width: 1020px) {
       .hero-grid, .ai-grid, .bureau, .reach, .contact { grid-template-columns: 1fr; }
@@ -892,71 +901,103 @@
             <!-- neck -->
             <path d="M180 188 L180 226 C190 234 210 234 220 226 L220 188 Z" fill="#53321f"/>
             <path d="M180 206 C192 214 208 214 220 206 L220 196 L180 196 Z" fill="#40261a" opacity=".6"/>
-            <!-- ears -->
-            <ellipse cx="148" cy="144" rx="9" ry="15" fill="#5a3723"/>
-            <ellipse cx="252" cy="144" rx="9" ry="15" fill="#5a3723"/>
-            <path d="M146 136 q4 8 0 16" stroke="#40261a" stroke-width="2" fill="none"/>
-            <path d="M254 136 q-4 8 0 16" stroke="#40261a" stroke-width="2" fill="none"/>
-            <!-- head -->
-            <ellipse cx="200" cy="140" rx="52" ry="62" fill="url(#skin)"/>
-            <!-- short coily hair with fade -->
-            <path d="M150 124 C146 82 172 70 200 70 C228 70 254 82 250 124 C246 104 236 96 222 94 C208 98 192 98 178 94 C164 96 154 104 150 124 Z" fill="#141010"/>
-            <g fill="#2a2220">
-              <circle cx="170" cy="84" r="2.2"/><circle cx="182" cy="78" r="2.2"/><circle cx="196" cy="76" r="2.2"/><circle cx="210" cy="77" r="2.2"/><circle cx="224" cy="81" r="2.2"/><circle cx="236" cy="89" r="2.2"/>
-              <circle cx="162" cy="94" r="2"/><circle cx="176" cy="88" r="2"/><circle cx="190" cy="86" r="2"/><circle cx="204" cy="86" r="2"/><circle cx="218" cy="88" r="2"/><circle cx="232" cy="96" r="2"/><circle cx="244" cy="104" r="2"/><circle cx="156" cy="106" r="2"/>
+            <defs>
+              <clipPath id="dEyeClip"><ellipse cx="181" cy="136" rx="10" ry="5.6"/><ellipse cx="219" cy="136" rx="10" ry="5.6"/></clipPath>
+            </defs>
+            <!-- head (moves a little: back of the head) -->
+            <g id="dHead" class="dmove">
+              <ellipse cx="148" cy="144" rx="9" ry="15" fill="#5a3723"/>
+              <ellipse cx="252" cy="144" rx="9" ry="15" fill="#5a3723"/>
+              <path d="M146 136 q4 8 0 16" stroke="#40261a" stroke-width="2" fill="none"/>
+              <path d="M254 136 q-4 8 0 16" stroke="#40261a" stroke-width="2" fill="none"/>
+              <ellipse cx="200" cy="140" rx="52" ry="62" fill="url(#skin)"/>
+              <path d="M150 124 C146 82 172 70 200 70 C228 70 254 82 250 124 C246 104 236 96 222 94 C208 98 192 98 178 94 C164 96 154 104 150 124 Z" fill="#141010"/>
+              <g fill="#2a2220">
+                <circle cx="170" cy="84" r="2.2"/><circle cx="182" cy="78" r="2.2"/><circle cx="196" cy="76" r="2.2"/><circle cx="210" cy="77" r="2.2"/><circle cx="224" cy="81" r="2.2"/><circle cx="236" cy="89" r="2.2"/>
+                <circle cx="162" cy="94" r="2"/><circle cx="176" cy="88" r="2"/><circle cx="190" cy="86" r="2"/><circle cx="204" cy="86" r="2"/><circle cx="218" cy="88" r="2"/><circle cx="232" cy="96" r="2"/><circle cx="244" cy="104" r="2"/><circle cx="156" cy="106" r="2"/>
+              </g>
+              <path d="M150 124 C150 132 151 140 152 146" stroke="#141010" stroke-width="5" opacity=".55" fill="none"/>
+              <path d="M250 124 C250 132 249 140 248 146" stroke="#141010" stroke-width="5" opacity=".55" fill="none"/>
+              <rect x="252" y="140" width="9" height="15" rx="4" fill="#20242c"/><circle cx="256.5" cy="144" r="1.4" fill="#218dce"><animate attributeName="opacity" values="1;.2;1" dur="2.4s" repeatCount="indefinite"/></circle>
             </g>
-            <path d="M150 124 C150 132 151 140 152 146" stroke="#141010" stroke-width="5" opacity=".55" fill="none"/>
-            <path d="M250 124 C250 132 249 140 248 146" stroke="#141010" stroke-width="5" opacity=".55" fill="none"/>
-            <!-- brows -->
-            <path d="M166 120 q13 -8 27 -2" stroke="#120d0b" stroke-width="5" fill="none" stroke-linecap="round"/>
-            <path d="M207 118 q14 -6 27 2" stroke="#120d0b" stroke-width="5" fill="none" stroke-linecap="round"/>
-            <!-- closed, heavy eyes -->
-            <path d="M170 137 q11 7 22 0" stroke="#1a110d" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-            <path d="M208 137 q11 7 22 0" stroke="#1a110d" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-            <path d="M171 133 q10 -3 20 0" stroke="#4a2c1d" stroke-width="2" fill="none"/>
-            <path d="M209 133 q10 -3 20 0" stroke="#4a2c1d" stroke-width="2" fill="none"/>
-            <!-- nose -->
-            <path d="M200 140 C198 152 192 158 190 162 C194 167 206 167 210 162 C208 158 202 152 200 140 Z" fill="#4e2f1f" opacity=".55"/>
-            <ellipse cx="193" cy="163" rx="3.5" ry="2.2" fill="#2a1810"/><ellipse cx="207" cy="163" rx="3.5" ry="2.2" fill="#2a1810"/>
-            <ellipse cx="184" cy="148" rx="9" ry="5" fill="#8a5a3c" opacity=".35"/>
-            <!-- short beard and moustache -->
-            <path d="M152 156 C156 192 176 202 200 202 C224 202 244 192 248 156 C244 176 230 190 200 190 C170 190 156 176 152 156 Z" fill="#141010" opacity=".85"/>
-            <path d="M183 171 C190 166 210 166 217 171 C210 170 190 170 183 171 Z" fill="#141010"/>
-            <!-- yawn -->
-            <ellipse cx="200" cy="181" rx="11" ry="13" fill="#2b1210"/>
-            <path d="M191 172 q9 -3 18 0 l-1 3 q-8 -2 -16 0 Z" fill="#e8e2d8"/>
-            <ellipse cx="200" cy="188" rx="6" ry="4" fill="#8a3b3b"/>
-            <ellipse cx="200" cy="181" rx="12.5" ry="14.5" fill="none" stroke="#4a231a" stroke-width="3"/>
-            <path d="M193 192 q7 2 14 0 l-1 -2.5 q-6 1.5 -12 0 Z" fill="#d9d3c8"/>
-            <!-- fatigue: eye bags, lashes, creases -->
-            <path d="M171 144 q10 5 21 0" stroke="#3f2518" stroke-width="1.6" fill="none" opacity=".7"/>
-            <path d="M208 144 q11 5 21 0" stroke="#3f2518" stroke-width="1.6" fill="none" opacity=".7"/>
-            <g stroke="#1a110d" stroke-width="1.2" stroke-linecap="round"><path d="M174 141 l-1 3 M179 143 l-.5 3 M184 143 l.5 3 M189 141 l1 3"/><path d="M211 141 l-1 3 M216 143 l-.5 3 M221 143 l.5 3 M226 141 l1 3"/></g>
-            <path d="M182 108 q18 -5 36 0" stroke="#4a2c1d" stroke-width="1.5" fill="none" opacity=".55"/>
-            <path d="M186 113 q14 -3 28 0" stroke="#4a2c1d" stroke-width="1.2" fill="none" opacity=".4"/>
-            <path d="M186 158 q-9 10 -8 22" stroke="#3f2518" stroke-width="2" fill="none" opacity=".55"/>
-            <path d="M214 158 q9 10 8 22" stroke="#3f2518" stroke-width="2" fill="none" opacity=".55"/>
-            <ellipse cx="217" cy="149" rx="8" ry="4.5" fill="#8a5a3c" opacity=".3"/>
-            <ellipse cx="203" cy="146" rx="2" ry="5" fill="#8a5a3c" opacity=".35"/>
-            <!-- beard texture -->
-            <g fill="#2e2420" opacity=".9"><circle cx="160" cy="168" r="1"/><circle cx="166" cy="178" r="1"/><circle cx="173" cy="186" r="1"/><circle cx="182" cy="193" r="1"/><circle cx="218" cy="193" r="1"/><circle cx="227" cy="186" r="1"/><circle cx="234" cy="178" r="1"/><circle cx="240" cy="168" r="1"/><circle cx="192" cy="198" r="1"/><circle cx="208" cy="198" r="1"/></g>
-            <!-- bluetooth earpiece -->
-            <rect x="252" y="140" width="9" height="15" rx="4" fill="#20242c"/><circle cx="256.5" cy="144" r="1.4" fill="#218dce"><animate attributeName="opacity" values="1;.2;1" dur="2.4s" repeatCount="indefinite"/></circle>
-            <!-- AI face-mesh landmarks -->
-            <g fill="#8dc63f">
-              <circle cx="170" cy="137" r="2"/><circle cx="192" cy="137" r="2"/><circle cx="208" cy="137" r="2"/><circle cx="230" cy="137" r="2"/>
-              <circle cx="200" cy="150" r="2"/><circle cx="190" cy="163" r="2"/><circle cx="210" cy="163" r="2"/>
-              <circle cx="189" cy="181" r="2"/><circle cx="211" cy="181" r="2"/><circle cx="200" cy="195" r="2"/>
+            <!-- face (moves more: turns toward the pointer) -->
+            <g id="dFace" class="dmove">
+              <g id="dBrows" class="dstate">
+                <path d="M166 120 q13 -8 27 -2" stroke="#120d0b" stroke-width="5" fill="none" stroke-linecap="round"/>
+                <path d="M207 118 q14 -6 27 2" stroke="#120d0b" stroke-width="5" fill="none" stroke-linecap="round"/>
+              </g>
+              <path d="M182 108 q18 -5 36 0" stroke="#4a2c1d" stroke-width="1.5" fill="none" opacity=".55"/>
+              <path d="M186 113 q14 -3 28 0" stroke="#4a2c1d" stroke-width="1.2" fill="none" opacity=".4"/>
+              <path d="M171 144 q10 5 21 0" stroke="#3f2518" stroke-width="1.6" fill="none" opacity=".7"/>
+              <path d="M208 144 q11 5 21 0" stroke="#3f2518" stroke-width="1.6" fill="none" opacity=".7"/>
+              <!-- eyes: closed (fatigue) -->
+              <g id="dClosed" class="dstate">
+                <path d="M170 137 q11 7 22 0" stroke="#1a110d" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+                <path d="M208 137 q11 7 22 0" stroke="#1a110d" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+                <path d="M171 133 q10 -3 20 0" stroke="#4a2c1d" stroke-width="2" fill="none"/>
+                <path d="M209 133 q10 -3 20 0" stroke="#4a2c1d" stroke-width="2" fill="none"/>
+                <g stroke="#1a110d" stroke-width="1.2" stroke-linecap="round"><path d="M174 141 l-1 3 M179 143 l-.5 3 M184 143 l.5 3 M189 141 l1 3"/><path d="M211 141 l-1 3 M216 143 l-.5 3 M221 143 l.5 3 M226 141 l1 3"/></g>
+              </g>
+              <!-- eyes: open (awake, tracking the pointer) -->
+              <g id="dOpen" class="dstate" opacity="0">
+                <ellipse cx="181" cy="136" rx="10" ry="5.6" fill="#efe8de"/>
+                <ellipse cx="219" cy="136" rx="10" ry="5.6" fill="#efe8de"/>
+                <g clip-path="url(#dEyeClip)">
+                  <g id="dPupils" class="dmove">
+                    <circle cx="181" cy="136" r="4.6" fill="#3a2214"/><circle cx="219" cy="136" r="4.6" fill="#3a2214"/>
+                    <circle cx="181" cy="136" r="2.2" fill="#0a0605"/><circle cx="219" cy="136" r="2.2" fill="#0a0605"/>
+                    <circle cx="182.6" cy="134.4" r="1.1" fill="#fff"/><circle cx="220.6" cy="134.4" r="1.1" fill="#fff"/>
+                  </g>
+                </g>
+                <path d="M170.5 136 q10.5 -9 21 0" stroke="#1a110d" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+                <path d="M208.5 136 q10.5 -9 21 0" stroke="#1a110d" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+                <path d="M172 131 q9 -6 18 -1 M210 130 q9 -5 18 1" stroke="#4a2c1d" stroke-width="1.3" fill="none"/>
+              </g>
+              <!-- nose and cheeks -->
+              <path d="M200 140 C198 152 192 158 190 162 C194 167 206 167 210 162 C208 158 202 152 200 140 Z" fill="#4e2f1f" opacity=".55"/>
+              <ellipse cx="193" cy="163" rx="3.5" ry="2.2" fill="#2a1810"/><ellipse cx="207" cy="163" rx="3.5" ry="2.2" fill="#2a1810"/>
+              <ellipse cx="184" cy="148" rx="9" ry="5" fill="#8a5a3c" opacity=".35"/>
+              <ellipse cx="217" cy="149" rx="8" ry="4.5" fill="#8a5a3c" opacity=".3"/>
+              <ellipse cx="203" cy="146" rx="2" ry="5" fill="#8a5a3c" opacity=".35"/>
+              <path d="M186 158 q-9 10 -8 22" stroke="#3f2518" stroke-width="2" fill="none" opacity=".55"/>
+              <path d="M214 158 q9 10 8 22" stroke="#3f2518" stroke-width="2" fill="none" opacity=".55"/>
+              <!-- beard and moustache -->
+              <path d="M152 156 C156 192 176 202 200 202 C224 202 244 192 248 156 C244 176 230 190 200 190 C170 190 156 176 152 156 Z" fill="#141010" opacity=".85"/>
+              <path d="M183 171 C190 166 210 166 217 171 C210 170 190 170 183 171 Z" fill="#141010"/>
+              <g fill="#2e2420" opacity=".9"><circle cx="160" cy="168" r="1"/><circle cx="166" cy="178" r="1"/><circle cx="173" cy="186" r="1"/><circle cx="182" cy="193" r="1"/><circle cx="218" cy="193" r="1"/><circle cx="227" cy="186" r="1"/><circle cx="234" cy="178" r="1"/><circle cx="240" cy="168" r="1"/><circle cx="192" cy="198" r="1"/><circle cx="208" cy="198" r="1"/></g>
+              <!-- mouth: yawning (fatigue) -->
+              <g id="dYawn" class="dstate">
+                <ellipse cx="200" cy="181" rx="11" ry="13" fill="#2b1210"/>
+                <path d="M191 172 q9 -3 18 0 l-1 3 q-8 -2 -16 0 Z" fill="#e8e2d8"/>
+                <ellipse cx="200" cy="188" rx="6" ry="4" fill="#8a3b3b"/>
+                <ellipse cx="200" cy="181" rx="12.5" ry="14.5" fill="none" stroke="#4a231a" stroke-width="3"/>
+                <path d="M193 192 q7 2 14 0 l-1 -2.5 q-6 1.5 -12 0 Z" fill="#d9d3c8"/>
+              </g>
+              <!-- mouth: relaxed (awake) -->
+              <g id="dRest" class="dstate" opacity="0">
+                <path d="M187 177 C193 174 207 174 213 177 C207 179 193 179 187 177 Z" fill="#5a2a20"/>
+                <path d="M188 178 C194 184 206 184 212 178 C206 181 194 181 188 178 Z" fill="#6e3428"/>
+                <path d="M187 177 q13 3 26 0" stroke="#2b1210" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+              </g>
+              <!-- AI face-mesh landmarks -->
+              <g fill="#8dc63f">
+                <circle cx="170" cy="137" r="2"/><circle cx="192" cy="137" r="2"/><circle cx="208" cy="137" r="2"/><circle cx="230" cy="137" r="2"/>
+                <circle cx="200" cy="150" r="2"/><circle cx="190" cy="163" r="2"/><circle cx="210" cy="163" r="2"/>
+                <circle cx="189" cy="181" r="2"/><circle cx="211" cy="181" r="2"/><circle cx="200" cy="195" r="2"/>
+              </g>
+              <path d="M170 137 L200 150 L230 137 M200 150 L190 163 L210 163 Z M190 163 L189 181 L200 195 L211 181 L210 163" stroke="#8dc63f" stroke-width=".8" fill="none" opacity=".55"/>
             </g>
-            <path d="M170 137 L200 150 L230 137 M200 150 L190 163 L210 163 Z M190 163 L189 181 L200 195 L211 181 L210 163" stroke="#8dc63f" stroke-width=".8" fill="none" opacity=".55"/>
-            <rect x="132" y="66" width="136" height="150" class="box"/>
-            <rect x="162" y="124" width="76" height="26" fill="none" stroke="#ff3b30" stroke-width="2"/>
-            <g font-family="JetBrains Mono, monospace" font-size="11">
-              <rect x="132" y="44" width="150" height="20" rx="4" fill="#ffb020"/>
-              <text x="140" y="58" fill="#0b1220">FATIGUE · 0.94</text>
-              <text x="278" y="141" fill="#ff3b30">EYES CLOSED 1.8s</text>
-              <text x="16" y="284" fill="#9aa7bd">CH2 CABIN · DMS ACTIVE</text>
+            <!-- detection boxes and labels -->
+            <g id="dBox" class="dmove">
+              <rect x="132" y="66" width="136" height="150" class="box"/>
+              <rect id="dEyeBox" x="162" y="124" width="76" height="26" fill="none" stroke="#ff3b30" stroke-width="2"/>
+              <g font-family="JetBrains Mono, monospace" font-size="11">
+                <rect id="dLblBg" x="132" y="44" width="150" height="20" rx="4" fill="#ffb020"/>
+                <text id="dLbl" x="140" y="58" fill="#0b1220">FATIGUE · 0.94</text>
+                <text id="dSide" x="278" y="141" fill="#ff3b30">EYES CLOSED 1.8s</text>
+              </g>
             </g>
+            <text x="16" y="284" fill="#9aa7bd" font-family="JetBrains Mono, monospace" font-size="11">CH2 CABIN · DMS ACTIVE</text>
           </svg>
         </div>
       </div>
@@ -1339,6 +1380,41 @@
       setInterval(function () { if (gyro) requestAnimationFrame(touchTilt); }, 120);
       touchTilt();
     }
+
+    // DMS driver: wakes up and looks toward the pointer (or finger), dozes off
+    // again after a couple of seconds without movement
+    var det = document.querySelector('.detect');
+    var dParts = { head: document.getElementById('dHead'), face: document.getElementById('dFace'), pupils: document.getElementById('dPupils'), box: document.getElementById('dBox') };
+    var dLbl = document.getElementById('dLbl'), dLblBg = document.getElementById('dLblBg'), dSide = document.getElementById('dSide'), dEye = document.getElementById('dEyeBox');
+    var dozeTimer = null;
+    function setLook(x, y) {
+      dParts.head.style.transform = 'translate(' + (x * 3) + 'px,' + (y * 2) + 'px)';
+      dParts.face.style.transform = 'translate(' + (x * 9) + 'px,' + (y * 5) + 'px)';
+      dParts.pupils.style.transform = 'translate(' + (x * 4.5) + 'px,' + (y * 2) + 'px)';
+      dParts.box.style.transform = 'translate(' + (x * 6) + 'px,' + (y * 3) + 'px)';
+    }
+    function wake(on) {
+      det.classList.toggle('awake', on);
+      dLbl.textContent = on ? 'ATTENTIVE \u00b7 0.06' : 'FATIGUE \u00b7 0.94';
+      dLblBg.setAttribute('fill', on ? '#8dc63f' : '#ffb020');
+      dSide.textContent = on ? 'GAZE TRACKED' : 'EYES CLOSED 1.8s';
+      dSide.setAttribute('fill', on ? '#8dc63f' : '#ff3b30');
+      dEye.setAttribute('stroke', on ? '#8dc63f' : '#ff3b30');
+      if (!on) setLook(0, 0);
+    }
+    function look(e) {
+      var r = det.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > innerHeight) return;
+      var cx = r.left + r.width * .5, cy = r.top + r.height * .45;
+      var x = Math.max(-1, Math.min(1, (e.clientX - cx) / (innerWidth * .45)));
+      var y = Math.max(-1, Math.min(1, (e.clientY - cy) / (innerHeight * .45)));
+      wake(true);
+      setLook(x, y);
+      clearTimeout(dozeTimer);
+      dozeTimer = setTimeout(function () { wake(false); }, 2600);
+    }
+    document.addEventListener('pointermove', look, { passive: true });
+    document.addEventListener('pointerdown', look, { passive: true });
 
     // Concept note can be hidden for the rest of the visit
     var note = document.getElementById('concept');
