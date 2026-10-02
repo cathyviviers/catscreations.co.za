@@ -150,9 +150,7 @@
     ticking = true;
     requestAnimationFrame(function () {
       var y = window.scrollY;
-      var root = document.documentElement;
-      root.style.setProperty('--cat-p1', '0 ' + (y * 0.6).toFixed(1) + 'px');
-      root.style.setProperty('--cat-p2', '5px ' + (5 + y * 0.25).toFixed(1) + 'px');
+      document.documentElement.style.setProperty('--cat-p1', '0 ' + (y * 0.4).toFixed(1) + 'px');
       ticking = false;
     });
   }, { passive: true });
