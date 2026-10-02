@@ -46,8 +46,16 @@
     .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
 
     /* Concept ribbon */
-    .concept { background: linear-gradient(90deg, #d0177a, #a81262); color: #fff; font-size: 13px; text-align: center; padding: 8px 16px; }
-    .concept a { text-decoration: underline; font-weight: 600; }
+    .concept { position: fixed; left: 16px; bottom: 16px; z-index: 60; display: flex; align-items: center; gap: 10px; max-width: calc(100vw - 32px);
+      font-size: 12.5px; color: #c9d5e6; padding: 8px 8px 8px 14px; border-radius: 999px;
+      background: rgba(8,24,44,.72); border: 1px solid rgba(255,255,255,.14); -webkit-backdrop-filter: blur(14px) saturate(150%); backdrop-filter: blur(14px) saturate(150%);
+      box-shadow: 0 16px 40px -16px rgba(0,0,0,.7); transition: opacity .3s ease, transform .3s ease; }
+    .concept.tuck { opacity: 0; transform: translateY(16px); pointer-events: none; }
+    .concept.hide { opacity: 0; transform: translateY(12px); pointer-events: none; }
+    .concept-dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: #e0479a; box-shadow: 0 0 0 4px rgba(224,71,154,.18); }
+    .concept a { color: #ff8cc6; font-weight: 600; }
+    .concept button { flex: none; width: 26px; height: 26px; border-radius: 50%; border: 0; background: rgba(255,255,255,.08); color: #c9d5e6; font-size: 15px; line-height: 1; cursor: pointer; }
+    .concept button:hover { background: rgba(255,255,255,.16); }
 
     /* Nav */
     header { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.94); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid #e3e8f0; color: var(--paper-text); }
@@ -361,9 +369,14 @@
 
 
     /* ===== Rollover (desktop) and touch equivalents (mobile) ===== */
-    .hov { position: relative; overflow: hidden; transition: opacity .7s ease, transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s ease, border-color .35s ease; }
+    .hov { position: relative; overflow: hidden; transition: opacity .7s ease, transform .2s ease-out, box-shadow .35s ease, border-color .35s ease; }
     .hov::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .35s ease;
-      background: radial-gradient(280px circle at var(--mx, 50%) var(--my, 50%), rgba(141,198,63,.18), transparent 60%); }
+      background: radial-gradient(280px circle at var(--mx, 50%) var(--my, 50%), rgba(141,198,63,.18), transparent 60%), radial-gradient(520px circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,.08), transparent 45%); }
+    @media (hover: none) {
+      main .hov.in { transform: perspective(800px) rotateX(var(--rx, 0deg)); }
+      main .hov.focus.in { transform: perspective(800px) translateY(-6px) rotateX(var(--rx, 0deg)); }
+      .console, .detect, .map, .device { --glare: .55; }
+    }
     .hov.focus, .hov.focus.in { transform: translateY(-6px); border-color: rgba(141,198,63,.55); box-shadow: 0 26px 50px -26px rgba(33,141,206,.6), inset 0 1px 0 rgba(255,255,255,.15); }
     .hov.focus::after { opacity: 1; }
     .hov:active { transform: scale(.97) !important; transition-duration: .12s; }
@@ -383,11 +396,15 @@
     .cam-grid div { transition: transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s ease; }
     .cam-grid div:active { transform: scale(1.08); z-index: 3; box-shadow: 0 0 0 2px var(--green), 0 16px 30px -10px rgba(0,0,0,.8); }
     /* 3D tilt panels (driven by pointer on desktop) */
-    .console.in, .detect.in, .map.in, .device { transform: perspective(1100px) translateY(var(--pyc, 0px)) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform .25s ease-out, opacity .8s ease; }
+    .console.in, .detect.in, .map.in, .device { transform: perspective(900px) translateY(var(--pyc, 0px)) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) scale(var(--ts, 1)); transition: transform .18s ease-out, opacity .8s ease, box-shadow .3s ease; }
+    .map, .device { position: relative; }
+    .console::after, .detect::after, .map::after, .device::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 4; opacity: var(--glare, 0); transition: opacity .3s ease;
+      background: radial-gradient(460px circle at var(--mx, 50%) var(--my, 0%), rgba(255,255,255,.16), transparent 55%), linear-gradient(115deg, transparent 40%, rgba(255,255,255,.05) 50%, transparent 60%); }
     .faq summary { transition: color .25s ease; }
 
     @media (hover: hover) {
-      .hov:hover { transform: translateY(-6px); border-color: rgba(141,198,63,.55); box-shadow: 0 26px 50px -26px rgba(33,141,206,.6), inset 0 1px 0 rgba(255,255,255,.15); }
+      .console:hover, .detect:hover, .map:hover, .device:hover { --ts: 1.03; --glare: 1; box-shadow: 0 50px 90px -40px rgba(0,0,0,.85), 0 0 0 1px rgba(141,198,63,.25); }
+      .hov:hover { transform: perspective(800px) translateY(-8px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); border-color: rgba(141,198,63,.55); box-shadow: 0 26px 50px -26px rgba(33,141,206,.6), inset 0 1px 0 rgba(255,255,255,.15); }
       .hov:hover::after { opacity: 1; }
       .ind:hover .i-ico { transform: scale(1.12) rotate(-6deg); background: var(--green); color: var(--ink); }
       .sol:hover .sol-tag { border-color: var(--green); color: var(--green); }
@@ -402,6 +419,46 @@
       .trust li:hover { background: rgba(255,255,255,.04); }
       .trust li:hover .t-ico { color: var(--green); }
     }
+
+
+    /* ===== Texture and detail ===== */
+    :root { --steel: url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27480%27 height=%27480%27%3E%3Cfilter id=%27n%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.006 0.85%27 numOctaves=%273%27 seed=%277%27 stitchTiles=%27stitch%27/%3E%3CfeColorMatrix values=%270 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.055 0%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url%28%23n%29%27/%3E%3C/svg%3E"); --grain: url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27300%27 height=%27300%27%3E%3Cfilter id=%27g%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.8%27 numOctaves=%272%27 seed=%273%27 stitchTiles=%27stitch%27/%3E%3CfeColorMatrix values=%270 0 0 0 0.04 0 0 0 0 0.12 0 0 0 0 0.22 0 0 0 0.07 0%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url%28%23g%29%27/%3E%3C/svg%3E"); }
+    body { background: var(--steel), var(--ink); }
+    .light { background: var(--grain), var(--paper); }
+    .trust, .marquee { background: var(--steel), var(--ink-2); }
+    footer { background: linear-gradient(90deg, var(--green), var(--brand)) top / 100% 2px no-repeat, var(--steel), #051425; border-top: 0; }
+    /* kicker tick */
+    .kicker::before { content: ""; display: inline-block; width: 22px; height: 2px; margin-right: 10px; vertical-align: middle; background: currentColor; opacity: .85; }
+    /* hardware screws on the device frames */
+    .device, .console { background:
+      radial-gradient(circle at 12px 12px, rgba(255,255,255,.28) 0 1.6px, rgba(0,0,0,.4) 2.2px, transparent 3px),
+      radial-gradient(circle at calc(100% - 12px) 12px, rgba(255,255,255,.28) 0 1.6px, rgba(0,0,0,.4) 2.2px, transparent 3px),
+      radial-gradient(circle at 12px calc(100% - 12px), rgba(255,255,255,.28) 0 1.6px, rgba(0,0,0,.4) 2.2px, transparent 3px),
+      radial-gradient(circle at calc(100% - 12px) calc(100% - 12px), rgba(255,255,255,.28) 0 1.6px, rgba(0,0,0,.4) 2.2px, transparent 3px),
+      linear-gradient(160deg, rgba(255,255,255,.085), rgba(255,255,255,.02)); }
+    /* camera viewfinder corners */
+    .vvt-banner::before, .detect::before { content: ""; position: absolute; inset: 16px; z-index: 3; pointer-events: none; --c: rgba(255,255,255,.75);
+      background:
+        linear-gradient(var(--c), var(--c)) top left / 24px 2px no-repeat, linear-gradient(var(--c), var(--c)) top left / 2px 24px no-repeat,
+        linear-gradient(var(--c), var(--c)) top right / 24px 2px no-repeat, linear-gradient(var(--c), var(--c)) top right / 2px 24px no-repeat,
+        linear-gradient(var(--c), var(--c)) bottom left / 24px 2px no-repeat, linear-gradient(var(--c), var(--c)) bottom left / 2px 24px no-repeat,
+        linear-gradient(var(--c), var(--c)) bottom right / 24px 2px no-repeat, linear-gradient(var(--c), var(--c)) bottom right / 2px 24px no-repeat; }
+    .rec-tag { position: absolute; z-index: 3; top: 26px; right: 30px; display: flex; align-items: center; gap: 7px; font-size: 12px; letter-spacing: .1em; color: #fff; }
+    .rec-tag::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--rec); animation: blink 1.4s infinite; }
+    /* numbered solution cards */
+    .solutions { counter-reset: sol; }
+    .sol { counter-increment: sol; }
+    .sol::before { content: "0" counter(sol); position: absolute; top: 34px; right: 34px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: rgba(255,255,255,.35); }
+    /* sheen across the trust strip */
+    .trust { position: relative; overflow: hidden; }
+    .trust::after { content: ""; position: absolute; top: 0; bottom: 0; left: -30%; width: 30%; background: linear-gradient(90deg, transparent, rgba(255,255,255,.06), transparent); animation: sheen 8s linear infinite; pointer-events: none; }
+    @keyframes sheen { to { left: 130%; } }
+    /* hero telemetry line */
+    .geo { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin-top: 18px; font-size: 11.5px; letter-spacing: .06em; color: #6f86a6; }
+    .geo i { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: blink 1.6s infinite; }
+    .geo span + span::before { content: "/"; margin-right: 16px; color: rgba(255,255,255,.2); }
+    /* section seam lines */
+    #solutions, #industries, .story-sec, #contact { border-top: 1px solid transparent; border-image: linear-gradient(90deg, transparent, rgba(255,255,255,.08), transparent) 1; }
 
     /* Responsive */
     @media (max-width: 1020px) {
@@ -444,6 +501,8 @@
       .cams { grid-template-rows: auto; }
       .cam.main { grid-column: span 2; grid-row: auto; aspect-ratio: 16/9; }
       .alert .ack { display: none; }
+      .concept-long { display: none; }
+      .geo span:last-child { display: none; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation: none !important; transition: none !important; }
@@ -453,14 +512,17 @@
       .marquee-track { animation: none; }
       .hov:hover, .hov.focus { transform: none; }
       .console.in, .detect.in, .map.in, .device { transform: none; }
+      main .hov.in, main .hov.focus.in { transform: none; }
       html { scroll-behavior: auto; }
     }
   </style>
 </head>
 <body>
 
-  <div class="concept">
-    Website redesign concept for FleetCam, created by <a href="https://catscreations.co.za" target="_blank" rel="noopener">Cat's Creations</a>. This is not the official FleetCam website.
+  <div class="concept" id="concept" role="note">
+    <span class="concept-dot" aria-hidden="true"></span>
+    <span><b>Design concept</b> by <a href="https://catscreations.co.za" target="_blank" rel="noopener">Cat's Creations</a><span class="concept-long"> &middot; not the official FleetCam website</span></span>
+    <button type="button" id="conceptClose" aria-label="Hide concept note">&times;</button>
   </div>
 
   <header>
@@ -503,6 +565,7 @@
             <div><strong>99%+</strong><span>stolen vehicle recovery</span></div>
             <div><strong>24/7/365</strong><span>monitoring bureau</span></div>
             <div><strong>12</strong><span>HD cameras per vehicle</span></div>
+          <p class="geo mono" aria-hidden="true"><i></i><span>-25.88&deg; S, 28.22&deg; E</span><span>IRENE HQ</span><span>UPLINK LTE &middot; 23 MS</span></p>
           </div>
         </div>
 
@@ -607,6 +670,7 @@
     <section id="vvt" class="vvt-intro">
       <div class="wrap">
         <div class="vvt-banner" id="vvtBanner">
+          <span class="rec-tag mono">REC</span>
           <img src="/fleetcam/vvt-truck.jpg" alt="FleetCam-equipped truck connected to the FleetCam network" width="1287" height="665" loading="lazy" />
           <div class="vvt-copy">
             <span class="badge">FleetCam VVT AI</span>
@@ -796,6 +860,7 @@
           </div>
         </div>
         <div class="detect reveal-scale" aria-hidden="true">
+          <span class="rec-tag mono">REC</span>
           <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
             <rect width="400" height="300" fill="#141c2c"/>
             <rect width="400" height="90" fill="#1e2940"/>
@@ -1233,18 +1298,55 @@
       hovEls.forEach(function (el) { fio.observe(el); });
     }
 
-    // 3D tilt on the big panels (desktop pointer only)
-    if (canHover && !reduce) {
-      document.querySelectorAll('.console, .detect, .map, .device').forEach(function (el) {
+    // 3D tilt: panels and cards follow the pointer on desktop. On touch screens
+    // they tilt as they scroll through the viewport, plus device tilt where the
+    // phone allows it.
+    var panels = document.querySelectorAll('.console, .detect, .map, .device');
+    var tiltEls = [];
+    panels.forEach(function (el) { tiltEls.push({ el: el, amp: 16, panel: true }); });
+    hovEls.forEach(function (el) { tiltEls.push({ el: el, amp: 10, panel: false }); });
+    if (!reduce && canHover) {
+      tiltEls.forEach(function (t) {
+        var el = t.el;
         el.addEventListener('pointermove', function (e) {
           var r = el.getBoundingClientRect();
           var x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
-          el.style.setProperty('--ry', (x * 7).toFixed(2) + 'deg');
-          el.style.setProperty('--rx', (y * -7).toFixed(2) + 'deg');
+          el.style.setProperty('--ry', (x * t.amp).toFixed(2) + 'deg');
+          el.style.setProperty('--rx', (y * -t.amp).toFixed(2) + 'deg');
+          el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+          el.style.setProperty('--my', (e.clientY - r.top) + 'px');
         });
         el.addEventListener('pointerleave', function () { el.style.setProperty('--rx', '0deg'); el.style.setProperty('--ry', '0deg'); });
       });
+    } else if (!reduce) {
+      var gyro = 0, tTick = false;
+      window.addEventListener('deviceorientation', function (e) { if (e.gamma != null) gyro = Math.max(-1, Math.min(1, e.gamma / 30)); }, { passive: true });
+      function touchTilt() {
+        var vh = innerHeight;
+        tiltEls.forEach(function (t) {
+          var r = t.el.getBoundingClientRect();
+          if (r.bottom < 0 || r.top > vh) return;
+          var p = Math.max(-1, Math.min(1, (r.top + r.height / 2 - vh / 2) / vh));
+          t.el.style.setProperty('--rx', (p * t.amp * .8).toFixed(2) + 'deg');
+          if (t.panel) {
+            t.el.style.setProperty('--ry', (gyro * t.amp * .6).toFixed(2) + 'deg');
+            t.el.style.setProperty('--my', ((p + .5) * 100).toFixed(0) + '%');
+          }
+        });
+        tTick = false;
+      }
+      window.addEventListener('scroll', function () { if (!tTick) { tTick = true; requestAnimationFrame(touchTilt); } }, { passive: true });
+      setInterval(function () { if (gyro) requestAnimationFrame(touchTilt); }, 120);
+      touchTilt();
     }
+
+    // Concept note can be hidden for the rest of the visit
+    var note = document.getElementById('concept');
+    try { if (sessionStorage.getItem('fc-note') === '0') note.classList.add('hide'); } catch (e) {}
+    document.getElementById('conceptClose').addEventListener('click', function () {
+      note.classList.add('hide');
+      try { sessionStorage.setItem('fc-note', '0'); } catch (e) {}
+    });
 
     // Keep the sticky device panel centred in the viewport, level with the text
     var sv = document.querySelector('.story-visual');
@@ -1276,11 +1378,13 @@
     var consoleEl = document.querySelector('.console');
     var banner = document.getElementById('vvtBanner');
     var bannerImg = banner.querySelector('img');
-    var ticking = false;
+    var ticking = false, lastY = 0;
     function onScroll() {
       var y = window.scrollY, h = document.documentElement.scrollHeight - innerHeight;
       bar.style.transform = 'scaleX(' + (h > 0 ? y / h : 0) + ')';
       header.classList.toggle('scrolled', y > 40);
+      note.classList.toggle('tuck', y > 300 && y > lastY);
+      lastY = y;
       if (!reduce) {
         if (y < innerHeight * 1.2) {
           swoosh.style.transform = 'translateY(' + y * 0.25 + 'px) rotate(' + y * 0.01 + 'deg)';
