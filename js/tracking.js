@@ -141,20 +141,6 @@
 
 })();
 
-// ── PARALLAX PATTERN ─────────────────────────────────────────────────────────
-(function () {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var ticking = false;
-  window.addEventListener('scroll', function () {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(function () {
-      var y = window.scrollY;
-      document.documentElement.style.setProperty('--cat-p1', '0 ' + (y * 0.4).toFixed(1) + 'px');
-      ticking = false;
-    });
-  }, { passive: true });
-})();
 
 // ── SCROLL REVEAL ────────────────────────────────────────────────────────────
 (function () {
