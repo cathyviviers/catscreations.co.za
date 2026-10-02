@@ -3,6 +3,7 @@ Allow: /
 Disallow: /admin/
 Disallow: /admin-index/
 Disallow: /thank-you.html
+Disallow: /concepts/
 
 Sitemap: https://catscreations.co.za/sitemap.xml
 Sitemap: https://catscreations.co.za/feed.xml
