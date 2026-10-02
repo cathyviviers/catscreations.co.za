@@ -196,6 +196,25 @@
 })();
 
 
+// ── NAV LOGO MOUSE FOLLOW ────────────────────────────────────────────────────
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (window.matchMedia('(hover: none)').matches) return;
+
+  var logo = document.querySelector('.nav-logo');
+  if (!logo) return;
+
+  document.addEventListener('mousemove', function (e) {
+    var rect = logo.getBoundingClientRect();
+    var cx = rect.left + rect.width / 2;
+    var cy = rect.top + rect.height / 2;
+    var dx = (e.clientX - cx) / window.innerWidth;
+    var dy = (e.clientY - cy) / window.innerHeight;
+    logo.style.transform = 'translate(' + (dx * 10) + 'px, ' + (dy * 6) + 'px)';
+  });
+})();
+
+
 // ── BLOG CARD MOUSE TILT ─────────────────────────────────────────────────────
 (function () {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;

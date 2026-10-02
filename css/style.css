@@ -109,6 +109,8 @@ nav {
   color: var(--text);
   text-decoration: none;
   letter-spacing: -0.5px;
+  transition: transform 0.12s ease-out;
+  display: inline-block;
 }
 
 .nav-logo span { color: var(--pink); }
