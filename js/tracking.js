@@ -150,10 +150,9 @@
     ticking = true;
     requestAnimationFrame(function () {
       var y = window.scrollY;
+      var y1 = (y * 0.8).toFixed(1), y2 = (y * 0.4).toFixed(1), y3 = (y * 0.15).toFixed(1);
       document.body.style.backgroundPosition =
-        '0 ' + (y * 0.8).toFixed(1) + 'px, ' +
-        '0 ' + (y * 0.4).toFixed(1) + 'px, ' +
-        '0 ' + (y * 0.15).toFixed(1) + 'px';
+        '0 ' + y1 + 'px, 10px ' + (10 + parseFloat(y2)).toFixed(1) + 'px, 5px ' + (5 + parseFloat(y3)).toFixed(1) + 'px';
       ticking = false;
     });
   }, { passive: true });
