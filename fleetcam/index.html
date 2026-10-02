@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FleetCam | AI Vehicle Cameras &amp; 24/7 Fleet Surveillance (Design Concept)</title>
+  <meta name="description" content="A website redesign concept for FleetCam by Cat's Creations. AI vehicle cameras, live video telematics and a 24/7/365 monitoring bureau for South African fleets." />
+  <!-- Pitch concept: keep out of search engines and the sitemap -->
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0b1220" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+  <style>
+    /* Brand tokens. Swap these for FleetCam's official palette once supplied. */
+    :root {
+      --ink: #0b1220;
+      --ink-2: #111a2e;
+      --panel: #16213a;
+      --line: rgba(255,255,255,0.09);
+      --text: #eef2f8;
+      --muted: #9aa7bd;
+      --signal: #ff3b30;       /* the "REC" red */
+      --accent: #2ee6a6;       /* live / OK green */
+      --amber: #ffb020;        /* AI warning */
+      --paper: #f5f7fb;
+      --paper-text: #0b1220;
+      --paper-muted: #4a5568;
+      --radius: 18px;
+      --wrap: 1180px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: var(--ink); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    h1, h2, h3 { font-family: 'Sora', 'Inter', sans-serif; line-height: 1.12; letter-spacing: -0.02em; }
+    a { color: inherit; text-decoration: none; }
+    img, svg { display: block; }
+    .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
+    .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+
+    /* Concept ribbon */
+    .concept { background: linear-gradient(90deg, #d0177a, #a81262); color: #fff; font-size: 13px; text-align: center; padding: 8px 16px; }
+    .concept a { text-decoration: underline; font-weight: 600; }
+
+    /* Nav */
+    header { position: sticky; top: 0; z-index: 50; background: rgba(11,18,32,0.82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 72px; }
+    .logo { display: flex; align-items: center; gap: 10px; font-family: 'Sora', sans-serif; font-weight: 800; font-size: 21px; letter-spacing: -0.02em; }
+    .logo-mark { width: 34px; height: 34px; border-radius: 10px; background: var(--panel); border: 1px solid var(--line); display: grid; place-items: center; position: relative; }
+    .logo-mark::after { content: ""; width: 12px; height: 12px; border-radius: 50%; background: var(--signal); box-shadow: 0 0 0 4px rgba(255,59,48,0.18); }
+    .logo b { color: var(--signal); font-weight: 800; }
+    .nav ul { display: flex; gap: 28px; list-style: none; font-size: 15px; color: var(--muted); }
+    .nav ul a:hover { color: var(--text); }
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+    .nav-phone { font-size: 14px; color: var(--muted); }
+    .nav-phone strong { color: var(--text); }
+    .burger { display: none; background: none; border: 1px solid var(--line); color: var(--text); border-radius: 10px; width: 42px; height: 42px; font-size: 18px; cursor: pointer; }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 13px 22px; border-radius: 999px; font-weight: 600; font-size: 15px; border: 1px solid transparent; transition: transform .15s ease, background .2s ease, border-color .2s ease; cursor: pointer; font-family: inherit; }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: var(--signal); color: #fff; }
+    .btn-primary:hover { background: #ff5247; }
+    .btn-ghost { border-color: rgba(255,255,255,0.22); color: var(--text); background: transparent; }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.5); }
+    .btn-sm { padding: 10px 18px; font-size: 14px; }
+
+    /* Hero */
+    .hero { position: relative; padding: 88px 0 72px; overflow: hidden; }
+    .hero::before { content: ""; position: absolute; inset: -20% -10% auto auto; width: 720px; height: 720px; background: radial-gradient(circle, rgba(255,59,48,0.16), transparent 60%); pointer-events: none; }
+    .hero::after { content: ""; position: absolute; inset: 0; background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 56px 56px; mask-image: radial-gradient(ellipse at 30% 20%, #000 10%, transparent 70%); -webkit-mask-image: radial-gradient(ellipse at 30% 20%, #000 10%, transparent 70%); opacity: .5; pointer-events: none; }
+    .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.02fr 1fr; gap: 56px; align-items: center; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; color: var(--muted); border: 1px solid var(--line); background: rgba(255,255,255,0.03); border-radius: 999px; padding: 6px 14px 6px 10px; }
+    .rec { width: 8px; height: 8px; border-radius: 50%; background: var(--signal); animation: blink 1.4s infinite; }
+    @keyframes blink { 50% { opacity: .25; } }
+    .hero h1 { font-size: clamp(40px, 5.6vw, 66px); margin: 22px 0 20px; }
+    .hero h1 em { font-style: normal; color: var(--signal); }
+    .hero p.lead { font-size: 18px; color: var(--muted); max-width: 540px; }
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+    .hero-stats { display: grid; grid-template-columns: repeat(3, auto); gap: 32px; margin-top: 44px; padding-top: 28px; border-top: 1px solid var(--line); width: fit-content; }
+    .hero-stats strong { display: block; font-family: 'Sora', sans-serif; font-size: 28px; }
+    .hero-stats span { font-size: 13px; color: var(--muted); }
+
+    /* Live console mock */
+    .console { background: linear-gradient(180deg, #121c31, #0e1628); border: 1px solid var(--line); border-radius: 22px; padding: 14px; box-shadow: 0 40px 80px -30px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.02) inset; }
+    .console-bar { display: flex; align-items: center; justify-content: space-between; padding: 4px 6px 12px; font-size: 12px; color: var(--muted); }
+    .console-bar .dots { display: flex; gap: 6px; }
+    .console-bar .dots i { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.12); }
+    .live-pill { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); }
+    .live-pill::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); animation: blink 1.6s infinite; }
+    .cams { display: grid; grid-template-columns: 1.4fr 1fr; grid-template-rows: 1fr 1fr; gap: 8px; }
+    .cam { position: relative; border-radius: 12px; overflow: hidden; background: #0a1120; aspect-ratio: 16/10; }
+    .cam.main { grid-row: span 2; aspect-ratio: auto; }
+    .cam svg { width: 100%; height: 100%; }
+    .cam-label { position: absolute; top: 8px; left: 8px; font-size: 10px; background: rgba(0,0,0,0.55); padding: 3px 7px; border-radius: 6px; color: #dfe6f2; display: flex; align-items: center; gap: 5px; }
+    .cam-label::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--signal); animation: blink 1.4s infinite; }
+    .cam-time { position: absolute; bottom: 8px; right: 8px; font-size: 10px; color: #cfd8e6; background: rgba(0,0,0,0.5); padding: 2px 6px; border-radius: 5px; }
+    .scan { position: absolute; left: 0; right: 0; height: 40%; background: linear-gradient(180deg, transparent, rgba(46,230,166,0.10), transparent); animation: scan 4s linear infinite; }
+    @keyframes scan { from { top: -40%; } to { top: 100%; } }
+    .alert { display: flex; align-items: center; gap: 12px; margin-top: 10px; background: rgba(255,176,32,0.08); border: 1px solid rgba(255,176,32,0.35); border-radius: 12px; padding: 10px 12px; font-size: 13px; }
+    .alert .ico { flex: none; width: 30px; height: 30px; border-radius: 8px; background: rgba(255,176,32,0.18); color: var(--amber); display: grid; place-items: center; font-weight: 700; }
+    .alert small { display: block; color: var(--muted); font-size: 11.5px; }
+    .alert .ack { margin-left: auto; font-size: 11.5px; color: var(--accent); white-space: nowrap; }
+
+    /* Trust strip */
+    .trust { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--ink-2); }
+    .trust ul { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); }
+    .trust li { padding: 22px 20px; font-size: 14px; color: var(--muted); display: flex; gap: 12px; align-items: center; border-right: 1px solid var(--line); }
+    .trust li:last-child { border-right: 0; }
+    .trust li strong { color: var(--text); display: block; font-size: 15px; }
+    .trust .t-ico { flex: none; width: 36px; height: 36px; border-radius: 10px; background: rgba(255,255,255,0.05); display: grid; place-items: center; color: var(--signal); }
+
+    /* Sections */
+    section { padding: 104px 0; }
+    .kicker { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--signal); font-weight: 600; }
+    .sec-head { max-width: 720px; margin-bottom: 56px; }
+    .sec-head h2 { font-size: clamp(32px, 4vw, 46px); margin: 14px 0 16px; }
+    .sec-head p { color: var(--muted); font-size: 17px; }
+    .light { background: var(--paper); color: var(--paper-text); }
+    .light .sec-head p, .light .muted { color: var(--paper-muted); }
+
+    /* Problem */
+    .problem-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .problem { background: #fff; border: 1px solid #e3e8f0; border-radius: var(--radius); padding: 28px 24px; }
+    .problem .num { font-family: 'Sora', sans-serif; font-size: 15px; color: var(--signal); font-weight: 700; }
+    .problem h3 { font-size: 19px; margin: 14px 0 8px; }
+    .problem p { font-size: 15px; color: var(--paper-muted); }
+
+    /* Solutions */
+    .solutions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .sol { position: relative; background: var(--ink-2); border: 1px solid var(--line); border-radius: 22px; padding: 36px; overflow: hidden; transition: border-color .25s ease, transform .25s ease; }
+    .sol:hover { border-color: rgba(255,59,48,0.45); transform: translateY(-3px); }
+    .sol-tag { font-size: 12px; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; display: inline-block; }
+    .sol h3 { font-size: 26px; margin: 18px 0 10px; }
+    .sol p { color: var(--muted); font-size: 15.5px; }
+    .sol ul { list-style: none; margin-top: 20px; display: grid; gap: 9px; font-size: 14.5px; }
+    .sol li { display: flex; gap: 10px; align-items: flex-start; }
+    .sol li::before { content: ""; flex: none; margin-top: 8px; width: 6px; height: 6px; border-radius: 50%; background: var(--signal); }
+    .sol .more { display: inline-block; margin-top: 24px; font-weight: 600; font-size: 14.5px; color: var(--text); }
+    .sol .more:hover { color: var(--signal); }
+
+    /* AI */
+    .ai-grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 56px; align-items: center; }
+    .ai-tabs { display: flex; gap: 8px; margin-bottom: 20px; }
+    .ai-tab { font: inherit; font-size: 14px; font-weight: 600; padding: 10px 16px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--muted); cursor: pointer; }
+    .ai-tab[aria-selected="true"] { background: var(--text); color: var(--ink); border-color: var(--text); }
+    .ai-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .ai-list li { background: var(--ink-2); border: 1px solid var(--line); border-radius: 14px; padding: 16px; font-size: 14.5px; }
+    .ai-list li strong { display: block; font-size: 15px; margin-bottom: 3px; }
+    .ai-list li span { color: var(--muted); font-size: 13.5px; }
+    .ai-panel[hidden] { display: none; }
+    .detect { position: relative; border-radius: 22px; overflow: hidden; border: 1px solid var(--line); background: #0a1120; aspect-ratio: 4/3; }
+    .detect svg { width: 100%; height: 100%; }
+    .box { fill: none; stroke: var(--amber); stroke-width: 2; stroke-dasharray: 8 6; animation: dash 1.2s linear infinite; }
+    @keyframes dash { to { stroke-dashoffset: -28; } }
+
+    /* Bureau */
+    .bureau { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+    .steps { list-style: none; counter-reset: s; display: grid; gap: 14px; }
+    .steps li { counter-increment: s; display: grid; grid-template-columns: 52px 1fr; gap: 16px; background: #fff; border: 1px solid #e3e8f0; border-radius: 16px; padding: 20px; }
+    .steps li::before { content: "0" counter(s); font-family: 'Sora', sans-serif; font-weight: 700; color: var(--signal); font-size: 20px; }
+    .steps h3 { font-size: 18px; margin-bottom: 4px; }
+    .steps p { color: var(--paper-muted); font-size: 15px; }
+    .emergency { margin-top: 28px; background: var(--ink); color: var(--text); border-radius: 18px; padding: 24px 26px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
+    .emergency small { color: var(--muted); display: block; font-size: 13px; }
+    .emergency strong { font-family: 'Sora', sans-serif; font-size: 28px; }
+    .big-stat { font-family: 'Sora', sans-serif; font-size: clamp(64px, 9vw, 110px); font-weight: 800; letter-spacing: -0.04em; line-height: 1; color: var(--paper-text); }
+    .big-stat span { color: var(--signal); }
+
+    /* Industries */
+    .industries { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .ind { border: 1px solid var(--line); border-radius: 18px; padding: 26px 22px; background: linear-gradient(180deg, rgba(255,255,255,0.03), transparent); }
+    .ind .i-ico { width: 44px; height: 44px; border-radius: 12px; background: rgba(255,59,48,0.12); color: var(--signal); display: grid; place-items: center; margin-bottom: 18px; }
+    .ind h3 { font-size: 18px; margin-bottom: 6px; }
+    .ind p { font-size: 14.5px; color: var(--muted); }
+
+    /* Outcomes */
+    .outcomes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .out { background: #fff; border: 1px solid #e3e8f0; border-radius: var(--radius); padding: 30px 26px; }
+    .out h3 { font-size: 20px; margin-bottom: 8px; }
+    .out p { color: var(--paper-muted); font-size: 15px; }
+
+    /* Reach */
+    .reach { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+    .offices { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 28px; }
+    .office { border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; }
+    .office strong { display: block; }
+    .office span { font-size: 13.5px; color: var(--muted); }
+    .map { background: var(--ink-2); border: 1px solid var(--line); border-radius: 22px; padding: 24px; }
+    .map svg { width: 100%; height: auto; }
+    .pulse { animation: pulse 2.4s ease-out infinite; transform-origin: center; transform-box: fill-box; }
+    @keyframes pulse { 0% { transform: scale(.6); opacity: .9; } 100% { transform: scale(2.6); opacity: 0; } }
+
+    /* FAQ */
+    .faq { max-width: 820px; }
+    .faq details { border-bottom: 1px solid #dfe5ee; padding: 22px 0; }
+    .faq summary { cursor: pointer; font-family: 'Sora', sans-serif; font-weight: 600; font-size: 18px; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after { content: "+"; color: var(--signal); font-size: 24px; line-height: 1; transition: transform .2s ease; }
+    .faq details[open] summary::after { transform: rotate(45deg); }
+    .faq details p { margin-top: 12px; color: var(--paper-muted); }
+
+    /* Contact */
+    .contact { display: grid; grid-template-columns: 1fr 1.1fr; gap: 56px; }
+    .contact-list { list-style: none; display: grid; gap: 14px; margin-top: 30px; }
+    .contact-list li { display: flex; flex-direction: column; border-left: 2px solid var(--signal); padding-left: 16px; }
+    .contact-list small { color: var(--muted); font-size: 13px; }
+    .contact-list a { font-size: 18px; font-weight: 600; }
+    form.quote { background: var(--ink-2); border: 1px solid var(--line); border-radius: 22px; padding: 32px; display: grid; gap: 14px; }
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    label { font-size: 13px; color: var(--muted); display: grid; gap: 6px; }
+    input, select, textarea { font: inherit; font-size: 15px; color: var(--text); background: var(--ink); border: 1px solid rgba(255,255,255,0.14); border-radius: 12px; padding: 12px 14px; width: 100%; }
+    input:focus, select:focus, textarea:focus { outline: 2px solid rgba(255,59,48,0.6); outline-offset: 1px; }
+    .form-note { font-size: 12.5px; color: var(--muted); }
+
+    /* Footer */
+    footer { border-top: 1px solid var(--line); padding: 48px 0 32px; font-size: 14px; color: var(--muted); }
+    .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; }
+    .foot-credit { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 13px; }
+    .foot-credit a { color: #ff6fb5; font-weight: 600; }
+
+    /* Reveal */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* Responsive */
+    @media (max-width: 1020px) {
+      .hero-grid, .ai-grid, .bureau, .reach, .contact { grid-template-columns: 1fr; }
+      .problem-grid, .industries { grid-template-columns: repeat(2, 1fr); }
+      .outcomes { grid-template-columns: 1fr 1fr; }
+      .trust ul { grid-template-columns: 1fr 1fr; }
+      .trust li:nth-child(2) { border-right: 0; }
+      .trust li:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+      .nav ul, .nav-phone { display: none; }
+      .burger { display: block; }
+      .nav ul.open { display: flex; flex-direction: column; position: absolute; top: 72px; left: 0; right: 0; background: var(--ink); border-bottom: 1px solid var(--line); padding: 20px 24px; gap: 18px; font-size: 17px; }
+    }
+    @media (max-width: 640px) {
+      .wrap { padding: 0 16px; }
+      section { padding: 72px 0; }
+      .hero { padding: 56px 0 56px; }
+      .hero-stats { grid-template-columns: repeat(3, 1fr); gap: 16px; width: 100%; }
+      .hero-stats strong { font-size: 22px; }
+      .problem-grid, .industries, .outcomes, .solutions, .ai-list, .row2, .offices { grid-template-columns: 1fr; }
+      .trust ul { grid-template-columns: 1fr; }
+      .trust li { border-right: 0; border-bottom: 1px solid var(--line); }
+      .sol { padding: 28px 22px; }
+      .nav-right .btn { display: none; }
+      .cams { grid-template-columns: 1fr 1fr; }
+      .cams { grid-template-rows: auto; }
+      .cam.main { grid-column: span 2; grid-row: auto; aspect-ratio: 16/9; }
+      .alert .ack { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="concept">
+    Website redesign concept for FleetCam, created by <a href="https://catscreations.co.za" target="_blank" rel="noopener">Cat's Creations</a>. This is not the official FleetCam website.
+  </div>
+
+  <header>
+    <div class="wrap nav">
+      <a href="#top" class="logo" aria-label="FleetCam home"><span class="logo-mark" aria-hidden="true"></span><span>Fleet<b>Cam</b></span></a>
+      <ul id="menu">
+        <li><a href="#solutions">Solutions</a></li>
+        <li><a href="#ai">FleetCam AI</a></li>
+        <li><a href="#bureau">24/7 Bureau</a></li>
+        <li><a href="#industries">Industries</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <span class="nav-phone">24/7 Bureau <strong class="mono">0800 008 743</strong></span>
+        <a href="#contact" class="btn btn-primary btn-sm">Get a quote</a>
+        <button class="burger" id="burger" aria-label="Open menu" aria-controls="menu" aria-expanded="false" type="button">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="eyebrow"><span class="rec"></span> AI video telematics, built in South Africa since 2014</span>
+          <h1>See every kilometre.<br />Act on <em>every second.</em></h1>
+          <p class="lead">FleetCam puts AI cameras, live video and a 24/7/365 control room behind every vehicle in your fleet. Fewer incidents, faster claims and drivers who come home safe.</p>
+          <div class="hero-ctas">
+            <a href="#contact" class="btn btn-primary">Book a live demo</a>
+            <a href="#solutions" class="btn btn-ghost">Explore solutions</a>
+          </div>
+          <div class="hero-stats">
+            <div><strong>99%+</strong><span>stolen vehicle recovery</span></div>
+            <div><strong>24/7/365</strong><span>monitoring bureau</span></div>
+            <div><strong>11</strong><span>African countries + Middle East</span></div>
+          </div>
+        </div>
+
+        <div class="console reveal" aria-label="Illustration of the FleetCam live monitoring console">
+          <div class="console-bar">
+            <span class="dots"><i></i><i></i><i></i></span>
+            <span class="mono">TRK-2281 &middot; N1 Northbound</span>
+            <span class="live-pill mono">LIVE</span>
+          </div>
+          <div class="cams">
+            <div class="cam main">
+              <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <defs>
+                  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#27406b"/><stop offset="1" stop-color="#e89a6b"/></linearGradient>
+                  <linearGradient id="road" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b3445"/><stop offset="1" stop-color="#151b26"/></linearGradient>
+                </defs>
+                <rect width="400" height="150" fill="url(#sky)"/>
+                <path d="M0 150 L60 128 L120 140 L190 118 L260 136 L330 122 L400 140 L400 150 Z" fill="#1d2a40"/>
+                <polygon points="0,300 400,300 230,150 170,150" fill="url(#road)"/>
+                <polygon points="196,170 204,170 207,200 193,200" fill="#e9e3c9" opacity=".85"/>
+                <polygon points="191,220 209,220 214,262 186,262" fill="#e9e3c9" opacity=".85"/>
+                <rect x="176" y="150" width="48" height="34" rx="4" fill="#3a4659"/>
+                <rect x="181" y="156" width="38" height="14" rx="2" fill="#1a2231"/>
+                <rect x="180" y="176" width="8" height="4" fill="#ff3b30"/><rect x="212" y="176" width="8" height="4" fill="#ff3b30"/>
+                <rect x="168" y="142" width="64" height="48" rx="6" fill="none" stroke="#2ee6a6" stroke-width="2"/>
+                <text x="168" y="137" fill="#2ee6a6" font-size="11" font-family="JetBrains Mono, monospace">VEHICLE 38m</text>
+              </svg>
+              <div class="scan"></div>
+              <span class="cam-label mono">CH1 FRONT</span>
+              <span class="cam-time mono" data-clock>06:42:17</span>
+            </div>
+            <div class="cam">
+              <svg viewBox="0 0 200 125" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <rect width="200" height="125" fill="#1b2335"/>
+                <rect x="0" y="0" width="200" height="38" fill="#2a3550"/>
+                <circle cx="100" cy="62" r="22" fill="#c99a7b"/>
+                <path d="M62 125 C62 92 138 92 138 125 Z" fill="#2f4c7a"/>
+                <path d="M78 52 C80 30 120 30 122 52 C116 42 84 42 78 52 Z" fill="#3a2a22"/>
+                <rect x="70" y="34" width="60" height="58" fill="none" stroke="#ffb020" stroke-width="2" class="box"/>
+              </svg>
+              <span class="cam-label mono">CH2 CABIN</span>
+            </div>
+            <div class="cam">
+              <svg viewBox="0 0 200 125" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <rect width="200" height="125" fill="#111826"/>
+                <polygon points="0,125 200,125 140,40 60,40" fill="#232c3b"/>
+                <rect x="70" y="58" width="60" height="40" rx="4" fill="#3c4a63"/>
+                <circle cx="80" cy="64" r="4" fill="#fff6c2"/><circle cx="120" cy="64" r="4" fill="#fff6c2"/>
+                <path d="M0 0 L40 125 M200 0 L160 125" stroke="#2ee6a6" stroke-width="1.5" opacity=".6"/>
+              </svg>
+              <span class="cam-label mono">CH4 REAR</span>
+            </div>
+          </div>
+          <div class="alert" role="status">
+            <span class="ico" aria-hidden="true">!</span>
+            <div><strong>Fatigue detected</strong> &middot; Driver yawning, 3rd event in 10 min<small class="mono">AI DMS &middot; clip uploaded &middot; driver alerted in-cab</small></div>
+            <span class="ack mono">Bureau notified ✓</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRUST -->
+    <div class="trust">
+      <ul class="wrap">
+        <li><span class="t-ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg></span><div><strong>ICASA approved</strong>Every product, every install</div></li>
+        <li><span class="t-ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><strong>24/7/365 control room</strong>Real people, watching</div></li>
+        <li><span class="t-ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3"/></svg></span><div><strong>Up to 9 AI channels</strong>Front, rear, sides and cabin</div></li>
+        <li><span class="t-ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.5-7-12a7 7 0 0114 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></span><div><strong>4 SA offices</strong>Pretoria, Cape Town, Durban, George</div></li>
+      </ul>
+    </div>
+
+    <!-- PROBLEM -->
+    <section class="light">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="kicker">Why video telematics</p>
+          <h2>GPS tells you where. FleetCam shows you what happened.</h2>
+          <p>A dot on a map can't settle an insurance dispute, wake a tired driver or spot diesel walking out of a tank. Video, AI and a team on call can.</p>
+        </div>
+        <div class="problem-grid">
+          <article class="problem reveal"><span class="num">01</span><h3>Disputed accidents</h3><p>Multi-angle, timestamped footage settles fault in minutes, not months.</p></article>
+          <article class="problem reveal"><span class="num">02</span><h3>Driver fatigue</h3><p>AI spots drowsiness and distraction, and alerts the driver before it becomes a crash.</p></article>
+          <article class="problem reveal"><span class="num">03</span><h3>Fuel theft</h3><p>Detection and video evidence when petrol or diesel goes missing.</p></article>
+          <article class="problem reveal"><span class="num">04</span><h3>Hijacking</h3><p>Panic buttons, live video and a bureau that reacts the moment something's wrong.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOLUTIONS -->
+    <section id="solutions">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="kicker">Solutions</p>
+          <h2>One platform. Every angle of your fleet.</h2>
+          <p>Mix and match cameras, AI, tracking and monitoring to suit a single bakkie or a thousand trucks.</p>
+        </div>
+        <div class="solutions">
+          <article class="sol reveal">
+            <span class="sol-tag mono">VVT</span>
+            <h3>Vehicle Video Telematics</h3>
+            <p>Vehicle data and live video, sent over the cellular network as it happens.</p>
+            <ul>
+              <li>Live streaming from any connected device</li>
+              <li>Automatic cloud upload of critical events</li>
+              <li>Accident reconstruction with geolocation</li>
+            </ul>
+            <a href="#contact" class="more">See how it works →</a>
+          </article>
+          <article class="sol reveal">
+            <span class="sol-tag mono">AI</span>
+            <h3>FleetCam AI</h3>
+            <p>Driver monitoring (DMS) and driver assistance (ADAS) that watch the cab and the road at the same time.</p>
+            <ul>
+              <li>Fatigue, phone use and smoking detection</li>
+              <li>Real-time hazard and collision alerts</li>
+              <li>Advanced systems with up to 9 channels</li>
+            </ul>
+            <a href="#ai" class="more">Meet FleetCam AI →</a>
+          </article>
+          <article class="sol reveal">
+            <span class="sol-tag mono">BUREAU</span>
+            <h3>FleetCam Bureau</h3>
+            <p>A 24/7/365 control room of trained agents and automated systems watching data from thousands of vehicles.</p>
+            <ul>
+              <li>Events and threats flagged instantly</li>
+              <li>Emergency and ambulance dispatch</li>
+              <li>Stolen vehicle recovery rate above 99%</li>
+            </ul>
+            <a href="#bureau" class="more">Inside the Bureau →</a>
+          </article>
+          <article class="sol reveal">
+            <span class="sol-tag mono">TRACK</span>
+            <h3>FleetTrack</h3>
+            <p>Tracking with peripherals that add security and control to every vehicle.</p>
+            <ul>
+              <li>Panic buttons</li>
+              <li>Door and safe switches</li>
+              <li>Advanced Tiplock solution</li>
+            </ul>
+            <a href="#contact" class="more">Add FleetTrack →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI -->
+    <section id="ai" style="padding-top:0">
+      <div class="wrap ai-grid">
+        <div class="reveal">
+          <p class="kicker">FleetCam AI</p>
+          <h2 style="font-size:clamp(32px,4vw,46px);margin:14px 0 16px">It watches the road and the driver, so you don't have to.</h2>
+          <p style="color:var(--muted);font-size:17px;margin-bottom:28px">On-board AI flags risky moments in real time, warns the driver in the cab and sends the clip to your managers and the Bureau.</p>
+          <div class="ai-tabs" role="tablist" aria-label="FleetCam AI systems">
+            <button class="ai-tab" role="tab" aria-selected="true" aria-controls="p-dms" id="t-dms" type="button">Driver (DMS)</button>
+            <button class="ai-tab" role="tab" aria-selected="false" aria-controls="p-adas" id="t-adas" type="button">Road (ADAS)</button>
+          </div>
+          <div class="ai-panel" id="p-dms" role="tabpanel" aria-labelledby="t-dms">
+            <ul class="ai-list">
+              <li><strong>Fatigue</strong><span>Dozing, yawning, heavy eyelids</span></li>
+              <li><strong>Distraction</strong><span>Eyes off the road too long</span></li>
+              <li><strong>Phone use</strong><span>Calling or texting while driving</span></li>
+              <li><strong>Smoking</strong><span>In-cab policy breaches</span></li>
+            </ul>
+          </div>
+          <div class="ai-panel" id="p-adas" role="tabpanel" aria-labelledby="t-adas" hidden>
+            <ul class="ai-list">
+              <li><strong>Forward collision</strong><span>Closing too fast on traffic</span></li>
+              <li><strong>Following distance</strong><span>Tailgating warnings</span></li>
+              <li><strong>Lane departure</strong><span>Drifting out of lane</span></li>
+              <li><strong>Harsh driving</strong><span>Hard braking and cornering</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="detect reveal" aria-hidden="true">
+          <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+            <rect width="400" height="300" fill="#141c2c"/>
+            <rect width="400" height="90" fill="#1e2940"/>
+            <rect x="290" y="20" width="90" height="60" rx="6" fill="#2a3a5a"/>
+            <path d="M120 300 C120 215 280 215 280 300 Z" fill="#2f4c7a"/>
+            <rect x="185" y="190" width="30" height="30" fill="#b88a6c"/>
+            <ellipse cx="200" cy="140" rx="54" ry="64" fill="#c99a7b"/>
+            <path d="M146 128 C146 70 254 70 254 128 C240 98 160 98 146 128 Z" fill="#3a2a22"/>
+            <path d="M172 136 q10 6 20 0" stroke="#3a2a22" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <path d="M208 136 q10 6 20 0" stroke="#3a2a22" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <ellipse cx="200" cy="176" rx="12" ry="14" fill="#6b3b30"/>
+            <rect x="132" y="66" width="136" height="150" class="box"/>
+            <rect x="162" y="124" width="76" height="26" fill="none" stroke="#ff3b30" stroke-width="2"/>
+            <g font-family="JetBrains Mono, monospace" font-size="11">
+              <rect x="132" y="44" width="150" height="20" rx="4" fill="#ffb020"/>
+              <text x="140" y="58" fill="#0b1220">FATIGUE · 0.94</text>
+              <text x="278" y="141" fill="#ff3b30">EYES CLOSED 1.8s</text>
+              <text x="16" y="284" fill="#9aa7bd">CH2 CABIN · DMS ACTIVE</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- BUREAU -->
+    <section id="bureau" class="light">
+      <div class="wrap bureau">
+        <div class="reveal">
+          <p class="kicker">FleetCam Bureau</p>
+          <h2 style="font-size:clamp(32px,4vw,46px);margin:14px 0 18px">A control room that never clocks out.</h2>
+          <p class="muted" style="font-size:17px">Our agents and automated systems watch data from thousands of vehicles around the clock. When something happens, a person responds, not just a notification.</p>
+          <p class="big-stat" style="margin-top:40px">99<span>%+</span></p>
+          <p class="muted">stolen vehicle recovery rate through Bureau SVR</p>
+          <div class="emergency">
+            <div><small>Accident or emergency? Call the Bureau</small><strong class="mono">0800 008 743</strong></div>
+            <a href="tel:0800008743" class="btn btn-primary">Call now</a>
+          </div>
+        </div>
+        <ol class="steps reveal">
+          <li><div><h3>Detect</h3><p>AI and vehicle sensors flag an event: a panic button, harsh crash, fatigue or a door opening off-route.</p></div></li>
+          <li><div><h3>Verify</h3><p>An agent pulls live video within seconds to see exactly what's happening.</p></div></li>
+          <li><div><h3>Respond</h3><p>We contact the driver, dispatch the nearest ambulance or start recovery with the right partners.</p></div></li>
+          <li><div><h3>Report</h3><p>You get the clip, the location and a clear incident report for insurers and your records.</p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- INDUSTRIES -->
+    <section id="industries">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="kicker">Industries</p>
+          <h2>Built for fleets that can't afford surprises.</h2>
+        </div>
+        <div class="industries">
+          <article class="ind reveal"><div class="i-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="14" height="10" rx="1"/><path d="M15 9h4l3 3v4h-7z"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg></div><h3>Logistics &amp; freight</h3><p>Protect loads, cut claims and coach drivers on long-haul routes.</p></article>
+          <article class="ind reveal"><div class="i-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg></div><h3>Security &amp; cash-in-transit</h3><p>Safe switches, panic buttons and live eyes when every second counts.</p></article>
+          <article class="ind reveal"><div class="i-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20M5 20l4-9 4 5 3-4 3 8"/></svg></div><h3>Mining</h3><p>Rugged multi-channel systems for large vehicles and blind spots.</p></article>
+          <article class="ind reveal"><div class="i-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 4v16"/></svg></div><h3>Small to large fleets</h3><p>Start with one vehicle and scale to thousands on the same platform.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- OUTCOMES -->
+    <section class="light">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="kicker">The payoff</p>
+          <h2>Cameras that pay for themselves.</h2>
+        </div>
+        <div class="outcomes">
+          <article class="out reveal"><h3>Faster insurance claims</h3><p>Instant clips with location data mean less back-and-forth and quicker payouts.</p></article>
+          <article class="out reveal"><h3>Possible premium discounts</h3><p>Many insurers reward fleets that run video telematics. Ask yours.</p></article>
+          <article class="out reveal"><h3>Less liability</h3><p>Clear, timestamped records of every trip protect drivers from false claims.</p></article>
+          <article class="out reveal"><h3>Safer drivers</h3><p>Real footage makes coaching specific, fair and far more effective.</p></article>
+          <article class="out reveal"><h3>Lower losses</h3><p>Fuel theft detection and fast recovery keep assets where they belong.</p></article>
+          <article class="out reveal"><h3>Peace of mind</h3><p>Someone is watching your fleet at 3am on a Sunday, so you don't have to.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- REACH -->
+    <section>
+      <div class="wrap reach">
+        <div class="reveal">
+          <p class="kicker">Our reach</p>
+          <h2 style="font-size:clamp(32px,4vw,46px);margin:14px 0 16px">Proudly South African. Trusted across Africa.</h2>
+          <p style="color:var(--muted);font-size:17px">Since 2014, FleetCam has grown from GPS tracking into full video telematics, with authorised distributors in 11 African countries and the Middle East.</p>
+          <div class="offices">
+            <div class="office"><strong>Pretoria</strong><span>Head office</span></div>
+            <div class="office"><strong>Cape Town</strong><span>Western Cape</span></div>
+            <div class="office"><strong>Durban</strong><span>KwaZulu-Natal</span></div>
+            <div class="office"><strong>George</strong><span>Garden Route</span></div>
+          </div>
+        </div>
+        <div class="map reveal" aria-hidden="true">
+          <svg viewBox="0 0 400 300">
+            <g fill="none" stroke="rgba(255,255,255,0.10)">
+              <path d="M60 60 L340 60 M60 120 L340 120 M60 180 L340 180 M60 240 L340 240 M100 30 L100 280 M200 30 L200 280 M300 30 L300 280"/>
+            </g>
+            <!-- stylised South Africa outline -->
+            <path d="M70 92 L118 70 L170 74 L214 58 L262 66 L300 52 L338 82 L344 122 L322 168 L286 206 L238 238 L182 252 L130 246 L96 222 L84 186 L64 150 Z" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+            <g>
+              <circle cx="262" cy="96" r="7" fill="#ff3b30" class="pulse"/><circle cx="262" cy="96" r="5" fill="#ff3b30"/>
+              <circle cx="104" cy="226" r="7" fill="#ff3b30" class="pulse" style="animation-delay:.6s"/><circle cx="104" cy="226" r="5" fill="#ff3b30"/>
+              <circle cx="306" cy="176" r="7" fill="#ff3b30" class="pulse" style="animation-delay:1.2s"/><circle cx="306" cy="176" r="5" fill="#ff3b30"/>
+              <circle cx="168" cy="242" r="7" fill="#ff3b30" class="pulse" style="animation-delay:1.8s"/><circle cx="168" cy="242" r="5" fill="#ff3b30"/>
+            </g>
+            <g font-family="Inter, sans-serif" font-size="12" fill="#eef2f8">
+              <text x="272" y="92">Pretoria</text>
+              <text x="80" y="208">Cape Town</text>
+              <text x="316" y="180">Durban</text>
+              <text x="150" y="268">George</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="light">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="kicker">FAQ</p>
+          <h2>Questions fleet managers ask us</h2>
+        </div>
+        <div class="faq reveal">
+          <details><summary>What is vehicle video telematics?</summary><p>It combines GPS and vehicle data with live and recorded video, sent over the cellular network. You see where a vehicle is, how it's being driven and what's happening around it, all in one place.</p></details>
+          <details><summary>Can I watch my vehicles live?</summary><p>Yes. Live and recorded video is available from any connected device through the cloud-based portal, and critical events upload automatically.</p></details>
+          <details><summary>Are FleetCam products ICASA approved?</summary><p>Yes. Every FleetCam product carries ICASA approval.</p></details>
+          <details><summary>Will cameras lower my insurance?</summary><p>Many insurers offer discounts for fleets that use video telematics, depending on your current policy. We're happy to provide the information your broker needs.</p></details>
+          <details><summary>Do you work with small fleets?</summary><p>Absolutely. FleetCam scales from a single vehicle to thousands, on the same platform and with the same 24/7 Bureau behind it.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="wrap contact">
+        <div class="reveal">
+          <p class="kicker">Talk to us</p>
+          <h2 style="font-size:clamp(32px,4vw,46px);margin:14px 0 16px">See FleetCam on your own fleet.</h2>
+          <p style="color:var(--muted);font-size:17px">Tell us about your vehicles and we'll recommend the right setup, with a live demo of the platform.</p>
+          <ul class="contact-list">
+            <li><small>Sales</small><a href="tel:0123452917" class="mono">012 345 2917</a></li>
+            <li><small>24/7 Bureau (toll-free)</small><a href="tel:0800008743" class="mono">0800 008 743</a></li>
+            <li><small>Email</small><a href="mailto:info@fleetcamsa.com">info@fleetcamsa.com</a></li>
+          </ul>
+        </div>
+        <form class="quote reveal" id="quote" novalidate>
+          <div class="row2">
+            <label>Name<input type="text" name="name" autocomplete="name" required /></label>
+            <label>Company<input type="text" name="company" autocomplete="organization" /></label>
+          </div>
+          <div class="row2">
+            <label>Email<input type="email" name="email" autocomplete="email" required /></label>
+            <label>Phone<input type="tel" name="phone" autocomplete="tel" /></label>
+          </div>
+          <div class="row2">
+            <label>Fleet size
+              <select name="fleet">
+                <option>1 to 10 vehicles</option>
+                <option>11 to 50 vehicles</option>
+                <option>51 to 250 vehicles</option>
+                <option>250+ vehicles</option>
+              </select>
+            </label>
+            <label>Interested in
+              <select name="interest">
+                <option>Vehicle cameras</option>
+                <option>FleetCam AI</option>
+                <option>24/7 Bureau monitoring</option>
+                <option>FleetTrack</option>
+                <option>Not sure yet</option>
+              </select>
+            </label>
+          </div>
+          <label>Anything else?<textarea name="message" rows="3"></textarea></label>
+          <button type="submit" class="btn btn-primary">Request a demo</button>
+          <p class="form-note" id="form-note">Concept preview: this form doesn't send anything yet.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot">
+        <div>
+          <a href="#top" class="logo"><span class="logo-mark" aria-hidden="true"></span><span>Fleet<b>Cam</b></span></a>
+          <p style="margin-top:12px;max-width:340px">Real-time vehicle surveillance for South African fleets. ICASA approved. Monitored 24/7/365.</p>
+        </div>
+        <div>
+          <p><strong style="color:var(--text)">Offices</strong></p>
+          <p>Pretoria &middot; Cape Town &middot; Durban &middot; George</p>
+        </div>
+        <div>
+          <p><strong style="color:var(--text)">Contact</strong></p>
+          <p class="mono">012 345 2917</p>
+          <p class="mono">0800 008 743</p>
+        </div>
+      </div>
+      <div class="foot-credit">
+        <span>&copy; FleetCam (Pty) Ltd. Content sourced from FleetCam's public website.</span>
+        <span>Redesign concept by <a href="https://catscreations.co.za" target="_blank" rel="noopener">Cat's Creations</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu
+    var burger = document.getElementById('burger');
+    var menu = document.getElementById('menu');
+    burger.addEventListener('click', function () {
+      var open = menu.classList.toggle('open');
+      burger.setAttribute('aria-expanded', open);
+    });
+    menu.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') { menu.classList.remove('open'); burger.setAttribute('aria-expanded', 'false'); }
+    });
+
+    // AI tabs
+    document.querySelectorAll('.ai-tab').forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        document.querySelectorAll('.ai-tab').forEach(function (t) {
+          var on = t === tab;
+          t.setAttribute('aria-selected', on);
+          document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+        });
+      });
+    });
+
+    // Live clock on the console mock
+    var clock = document.querySelector('[data-clock]');
+    function tick() {
+      var d = new Date();
+      clock.textContent = [d.getHours(), d.getMinutes(), d.getSeconds()].map(function (n) { return String(n).padStart(2, '0'); }).join(':');
+    }
+    tick(); setInterval(tick, 1000);
+
+    // Scroll reveal
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+    } else {
+      document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+    }
+
+    // Demo form
+    document.getElementById('quote').addEventListener('submit', function (e) {
+      e.preventDefault();
+      document.getElementById('form-note').textContent = 'Thanks! In the live build this goes straight to the FleetCam sales team.';
+    });
+  </script>
+</body>
+</html>
