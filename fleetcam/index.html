@@ -261,7 +261,7 @@
 
     /* Scrollytelling: one device, three technologies */
     .story { display: grid; grid-template-columns: 1.05fr 1fr; gap: 64px; align-items: start; }
-    .story-visual { position: sticky; top: 110px; }
+    .story-visual { position: sticky; top: calc(50vh - 196px); }
     .device { background: linear-gradient(180deg, #0f2744, #0a1c33); border: 1px solid var(--line); border-radius: 24px; padding: 16px; box-shadow: 0 40px 80px -30px rgba(0,0,0,.7); }
     .device-bar { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--muted); padding: 2px 4px 12px; }
     .device-bar .step-dots { display: flex; gap: 6px; }
@@ -1245,6 +1245,17 @@
         el.addEventListener('pointerleave', function () { el.style.setProperty('--rx', '0deg'); el.style.setProperty('--ry', '0deg'); });
       });
     }
+
+    // Keep the sticky device panel centred in the viewport, level with the text
+    var sv = document.querySelector('.story-visual');
+    var wide = window.matchMedia('(min-width: 1021px)');
+    function centreStory() {
+      if (!wide.matches) { sv.style.top = ''; return; }
+      var headerH = document.querySelector('header').offsetHeight;
+      sv.style.top = Math.max(headerH + 16, innerHeight / 2 - sv.offsetHeight / 2) + 'px';
+    }
+    centreStory();
+    window.addEventListener('resize', centreStory);
 
     // MDVR grid: cycle a highlighted "event" tile so the wall feels live
     var tilesEl = document.querySelectorAll('#camGrid > div');
