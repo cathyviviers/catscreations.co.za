@@ -9,9 +9,13 @@ A homepage redesign concept for Kaizer Chiefs, built as a pitch. Live preview at
 - **Mobile first.** Every section collapses cleanly to a phone screen, with a full-screen menu.
 - **Content hubs:** News, Amakhosi TV, Squad (filter by position), Shop, Heritage, Khosi Nation membership, Partners.
 
-## Placeholders to swap before presenting
+## Club assets
 
-- The `KC` shield is a stand-in. Use the official crest supplied by the club.
-- All photography slots are labelled. Request match and squad photography from the club.
-- Fixtures, scores, log, player names and news headlines are sample content.
+`img/` holds the club's crest, partner logos and photography, resized for the web (about 1.5 MB in total). The hero uses the 2026 Toyota Cup champions team photo.
+
+## Still placeholder
+
+- Fixtures, scores, the log and form guide.
+- Player names, positions and numbers in the squad grid (photos are real, names are not).
+- News headlines and copy, video titles and durations.
 - The signup form does not send anything.

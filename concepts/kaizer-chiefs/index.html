@@ -114,7 +114,8 @@
     }
     .header-inner { display: flex; align-items: center; gap: 28px; height: 76px; }
     .crest { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
-    .crest svg { width: 44px; height: 52px; }
+    .crest img { width: 52px; height: 52px; }
+    .cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
     .crest-name { font-family: var(--display); font-size: 22px; line-height: 1; text-transform: uppercase; }
     .crest-name small { display: block; font-family: var(--cond); font-weight: 600; font-size: 11px; letter-spacing: .24em; color: var(--gold); margin-top: 3px; }
     .main-nav { display: flex; gap: 4px; margin-left: auto; }
@@ -142,34 +143,22 @@
       min-height: min(88vh, 820px);
       display: flex; align-items: flex-end;
       padding: 120px 0 56px;
+      background: var(--black);
+    }
+    .hero-photo { position: absolute; inset: 0; }
+    .hero-photo img { object-position: 50% 20%; }
+    .hero-photo::after {
+      content: ""; position: absolute; inset: 0;
       background:
-        radial-gradient(1200px 600px at 78% 20%, rgba(245,185,21,.22), transparent 60%),
-        radial-gradient(700px 500px at 10% 100%, rgba(245,185,21,.10), transparent 60%),
-        linear-gradient(180deg, #121212, var(--black));
+        linear-gradient(180deg, rgba(11,11,11,.35) 0%, rgba(11,11,11,0) 30%, rgba(11,11,11,.55) 58%, var(--black) 100%),
+        linear-gradient(90deg, rgba(11,11,11,.85) 0%, rgba(11,11,11,.4) 45%, rgba(11,11,11,0) 70%);
     }
-    .hero-stripes {
-      position: absolute; inset: 0; pointer-events: none; opacity: .5;
-      background: repeating-linear-gradient(115deg, transparent 0 46px, rgba(245,185,21,.06) 46px 48px);
-      mask-image: linear-gradient(90deg, transparent 20%, #000 70%);
-      -webkit-mask-image: linear-gradient(90deg, transparent 20%, #000 70%);
+    .hero-chief {
+      position: absolute; right: var(--gutter); bottom: 48px; width: clamp(120px, 16vw, 220px);
+      opacity: .9; z-index: 2; filter: drop-shadow(0 10px 30px rgba(0,0,0,.5));
     }
-    .hero-photo {
-      position: absolute; right: -4%; bottom: 0; width: min(56vw, 720px); aspect-ratio: 4 / 5;
-      border-radius: 28px 28px 0 0; overflow: hidden;
-      background:
-        linear-gradient(180deg, transparent 50%, rgba(11,11,11,.95)),
-        linear-gradient(135deg, #2a2a2a, #161616);
-      border: 1px solid var(--line); border-bottom: 0;
-    }
-    .photo-slot {
-      position: absolute; inset: 0; display: grid; place-items: center;
-      font-family: var(--cond); font-weight: 600; font-size: 13px; letter-spacing: .2em; text-transform: uppercase;
-      color: rgba(255,255,255,.32); text-align: center; padding: 20px;
-    }
-    .hero-photo .photo-slot { place-items: start end; padding: 24px 28px; }
-    .hero-photo svg.silhouette { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); width: 82%; opacity: .9; }
     .hero-content { position: relative; z-index: 2; max-width: 760px; }
-    .hero h1 { font-size: clamp(64px, 12vw, 168px); margin: 14px 0 10px; }
+    .hero h1 { font-size: clamp(56px, 9vw, 128px); margin: 14px 0 10px; }
     .hero h1 .gold { color: var(--gold); display: block; }
     .hero-lede { font-size: clamp(18px, 2vw, 21px); color: rgba(255,255,255,.78); max-width: 540px; margin: 0 0 30px; }
     .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
@@ -214,6 +203,8 @@
     }
     .card:hover { transform: translateY(-4px); border-color: rgba(245,185,21,.45); }
     .card-media { position: relative; aspect-ratio: 16 / 10; background: linear-gradient(135deg, #2c2c2c, #1a1a1a); overflow: hidden; }
+    .card-media img { transition: transform .5s ease; }
+    .card:hover .card-media img { transform: scale(1.04); }
     .card-media::before {
       content: ""; position: absolute; inset: 0;
       background: repeating-linear-gradient(115deg, transparent 0 22px, rgba(255,255,255,.025) 22px 24px);
@@ -232,10 +223,13 @@
     .tv-row { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(280px, 1fr); gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 12px; scrollbar-width: thin; scrollbar-color: var(--gold) transparent; }
     .tv-item { scroll-snap-align: start; }
     .tv-thumb { position: relative; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: linear-gradient(135deg, #2b2b2b, #151515); border: 1px solid var(--line); }
-    .tv-thumb .play { position: absolute; left: 16px; bottom: 16px; width: 48px; height: 48px; border-radius: 50%; background: var(--gold); display: grid; place-items: center; transition: transform .2s; }
+    .tv-thumb img { object-position: 50% 25%; transition: transform .5s ease; }
+    .tv-item:hover .tv-thumb img { transform: scale(1.05); }
+    .tv-thumb::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,.6)); }
+    .tv-thumb .play { z-index: 1; position: absolute; left: 16px; bottom: 16px; width: 48px; height: 48px; border-radius: 50%; background: var(--gold); display: grid; place-items: center; transition: transform .2s; }
     .tv-item:hover .play { transform: scale(1.1); }
     .tv-thumb .play::after { content: ""; border-left: 14px solid var(--black); border-top: 9px solid transparent; border-bottom: 9px solid transparent; margin-left: 4px; }
-    .tv-thumb .dur { position: absolute; right: 12px; top: 12px; background: rgba(0,0,0,.7); font-family: var(--cond); font-weight: 600; font-size: 13px; padding: 3px 8px; border-radius: 4px; }
+    .tv-thumb .dur { position: absolute; z-index: 1; right: 12px; top: 12px; background: rgba(0,0,0,.7); font-family: var(--cond); font-weight: 600; font-size: 13px; padding: 3px 8px; border-radius: 4px; }
     .tv-item h3 { font-family: var(--cond); font-weight: 700; font-size: 19px; text-transform: uppercase; margin: 14px 0 4px; line-height: 1.2; }
     .tv-item p { margin: 0; color: var(--mute); font-size: 14px; }
 
@@ -253,10 +247,11 @@
       transition: border-color .25s;
     }
     .player:hover { border-color: var(--gold); }
-    .player .num { position: absolute; top: 10px; left: 16px; font-family: var(--display); font-size: 96px; line-height: 1; color: rgba(245,185,21,.16); transition: color .25s; }
-    .player:hover .num { color: rgba(245,185,21,.4); }
-    .player svg.silhouette { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 86%; opacity: .55; }
-    .player .meta { position: absolute; left: 0; right: 0; bottom: 0; padding: 18px; background: linear-gradient(180deg, transparent, rgba(0,0,0,.92)); }
+    .player .num { position: absolute; z-index: 1; top: 10px; left: 16px; text-shadow: 0 2px 12px rgba(0,0,0,.4); font-family: var(--display); font-size: 96px; line-height: 1; color: rgba(245,185,21,.55); transition: color .25s; }
+    .player:hover .num { color: var(--gold); }
+    .player img { transition: transform .5s ease; }
+    .player:hover img { transform: scale(1.05); }
+    .player .meta { position: absolute; z-index: 1; left: 0; right: 0; bottom: 0; padding: 18px; background: linear-gradient(180deg, transparent, rgba(0,0,0,.92)); }
     .player .meta b { display: block; font-family: var(--cond); font-weight: 700; font-size: 21px; text-transform: uppercase; }
     .player .meta span { font-size: 13px; color: var(--gold); font-family: var(--cond); letter-spacing: .14em; text-transform: uppercase; font-weight: 600; }
     .player[hidden] { display: none; }
@@ -276,9 +271,9 @@
     .shop .btn-dark:hover { background: #222; }
     .shop .btn-line { border: 1.5px solid var(--black); }
     .kits { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .kit { background: rgba(255,255,255,.35); border-radius: var(--radius); padding: 18px 16px 16px; text-align: center; transition: transform .25s, background .25s; }
+    .kit { background: rgba(255,255,255,.35); border-radius: var(--radius); padding: 10px 10px 16px; text-align: center; transition: transform .25s, background .25s; }
     .kit:hover { transform: translateY(-6px) rotate(-1deg); background: rgba(255,255,255,.55); }
-    .kit svg { width: 100%; height: auto; margin-bottom: 10px; filter: drop-shadow(0 12px 18px rgba(0,0,0,.18)); }
+    .kit img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 10px; margin-bottom: 12px; background: #fff; }
     .kit b { display: block; font-family: var(--cond); font-weight: 700; font-size: 18px; text-transform: uppercase; }
     .kit span { font-size: 14px; opacity: .7; }
 
@@ -320,10 +315,11 @@
     .signup .ok { color: var(--gold); font-weight: 600; min-height: 1.4em; }
 
     /* Partners */
-    .partners { padding: 48px 0; border-top: 1px solid var(--line); }
-    .partner-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px 32px; }
-    .partner-row .eyebrow { color: var(--mute); }
-    .partner { flex: 1 1 140px; max-width: 180px; height: 56px; border-radius: 10px; border: 1px dashed rgba(255,255,255,.18); display: grid; place-items: center; font-family: var(--cond); font-weight: 600; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.35); }
+    .partners { padding: 44px 0 48px; background: var(--white); color: var(--paper-ink); }
+    .partners .eyebrow { display: block; text-align: center; color: #6f6758; margin-bottom: 24px; }
+    .partner-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 24px 44px; }
+    .partner img { height: 44px; width: auto; max-width: 150px; object-fit: contain; filter: grayscale(1); opacity: .75; transition: filter .25s, opacity .25s; }
+    .partner:hover img { filter: none; opacity: 1; }
 
     /* Footer */
     .site-footer { background: #070707; border-top: 1px solid var(--line); padding: 64px 0 32px; font-size: 15px; }
@@ -369,8 +365,9 @@
       .menu-open .main-nav { transform: none; opacity: 1; visibility: visible; }
       .main-nav a { font-size: 22px; padding: 14px 0; border-bottom: 1px solid var(--line); border-radius: 0; }
       .header-cta { display: none; }
-      .hero { min-height: auto; padding-top: 48px; flex-direction: column; align-items: stretch; }
-      .hero-photo { position: relative; right: auto; width: 100%; max-width: 420px; margin: 0 auto 32px; aspect-ratio: 1 / 1; border-radius: 24px; border-bottom: 1px solid var(--line); order: -1; }
+      .hero { min-height: 560px; padding-top: 220px; }
+      .hero-photo img { object-position: 50% 0%; }
+      .hero-chief { display: none; }
       .news-grid { grid-template-columns: 1fr 1fr; }
       .card.feature { grid-column: 1 / -1; grid-row: auto; }
       .card.feature .card-media { min-height: 0; aspect-ratio: 16 / 9; }
@@ -400,18 +397,13 @@
 <body>
 
   <div class="concept-bar" role="note">
-    Design concept by <a href="/">Cat's Creations</a>. Not the official Kaizer Chiefs website. All fixtures, scores and copy are placeholders.
+    Design concept by <a href="/">Cat's Creations</a>. Not the official Kaizer Chiefs website. Fixtures, scores, player names and copy are placeholders.
   </div>
 
   <header class="site-header" id="top">
     <div class="wrap header-inner">
       <a href="#top" class="crest" aria-label="Kaizer Chiefs home">
-        <!-- Placeholder shield. Swap for the official club crest supplied by the club. -->
-        <svg viewBox="0 0 44 52" aria-hidden="true">
-          <path d="M22 1 42 8v18c0 13-9 21-20 25C11 47 2 39 2 26V8z" fill="#f5b915"/>
-          <path d="M22 5 38 10.6V26c0 10.6-7.2 17.2-16 20.7C13.2 43.2 6 36.6 6 26V10.6z" fill="#0b0b0b"/>
-          <text x="22" y="32" text-anchor="middle" font-family="Anton, Impact, sans-serif" font-size="17" fill="#f5b915">KC</text>
-        </svg>
+        <img src="img/crest.svg" alt="" width="52" height="52" />
         <span class="crest-name">Kaizer Chiefs<small>Amakhosi</small></span>
       </a>
       <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav"><span></span></button>
@@ -434,24 +426,13 @@
 
     <!-- Hero: matchday first. The single most common reason fans visit. -->
     <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-stripes"></div>
-      <div class="hero-photo" aria-hidden="true">
-        <div class="photo-slot">Hero photography<br/>first team celebration</div>
-        <svg class="silhouette" viewBox="0 0 400 420" fill="none">
-          <defs>
-            <linearGradient id="sil" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#f5b915" stop-opacity=".55"/>
-              <stop offset="1" stop-color="#f5b915" stop-opacity="0"/>
-            </linearGradient>
-          </defs>
-          <circle cx="200" cy="92" r="52" fill="url(#sil)"/>
-          <path d="M60 420c6-120 50-210 140-210s134 90 140 210z" fill="url(#sil)"/>
-          <path d="M80 250 20 120M320 250l60-130" stroke="url(#sil)" stroke-width="38" stroke-linecap="round"/>
-        </svg>
+      <div class="hero-photo">
+        <img class="cover" src="img/hero.jpg" srcset="img/hero-sm.jpg 1200w, img/hero.jpg 2000w" sizes="100vw" alt="Kaizer Chiefs players and staff celebrating with the 2026 Toyota Cup trophy" fetchpriority="high" />
       </div>
+      <img class="hero-chief" src="img/chief-gold.svg" alt="" aria-hidden="true" />
       <div class="wrap">
         <div class="hero-content">
-          <span class="eyebrow">Matchday is coming</span>
+          <span class="eyebrow">2026 Toyota Cup champions</span>
           <h1 class="h-display" id="hero-title">Love and Peace<span class="gold">Amakhosi</span></h1>
           <p class="hero-lede">Fixtures, tickets, news and Amakhosi TV in one place, built for the phone in every Khosi's pocket.</p>
           <div class="hero-actions">
@@ -515,43 +496,43 @@
         </div>
         <div class="news-grid">
           <a href="#" class="card feature reveal">
-            <div class="card-media"><div class="photo-slot">Feature photography</div></div>
+            <div class="card-media"><img class="cover" src="img/news-kit.jpg" alt="The new Kaizer Chiefs home and away kits" loading="lazy" /></div>
             <div class="card-body">
-              <span class="tag">Match preview</span>
-              <h3>Everything you need to know before Saturday</h3>
-              <p>Team news, the coach's view and how to get to the stadium.</p>
+              <span class="tag">Store</span>
+              <h3>The Kingdom Rises: new season kits revealed</h3>
+              <p>The home and away shirts are here, with a nod to the club's roots in every stripe.</p>
               <time>2 hours ago</time>
             </div>
           </a>
           <a href="#" class="card reveal">
-            <div class="card-media"><div class="photo-slot">Photo</div></div>
+            <div class="card-media"><img class="cover" src="img/news-ladies.jpg" alt="Kaizer Chiefs Ladies campaign artwork" loading="lazy" /></div>
             <div class="card-body">
-              <span class="tag">Academy</span>
-              <h3>Youth graduate signs first professional deal</h3>
+              <span class="tag">Women</span>
+              <h3>Kaizer Chiefs Ladies kick off a new chapter</h3>
               <time>Yesterday</time>
             </div>
           </a>
           <a href="#" class="card reveal">
-            <div class="card-media"><div class="photo-slot">Photo</div></div>
+            <div class="card-media"><img class="cover" src="img/news-store.jpg" alt="The Kaizer Chiefs retail store" loading="lazy" /></div>
             <div class="card-body">
-              <span class="tag">Gallery</span>
-              <h3>Training at Naturena in pictures</h3>
+              <span class="tag">Store</span>
+              <h3>Visit the official retail store</h3>
               <time>Yesterday</time>
             </div>
           </a>
           <a href="#" class="card reveal">
-            <div class="card-media"><div class="photo-slot">Photo</div></div>
+            <div class="card-media"><img class="cover" src="img/news-heritage.jpg" alt="Heritage Day artwork" loading="lazy" /></div>
             <div class="card-body">
-              <span class="tag">Community</span>
-              <h3>Amakhosi4Amakhosi visits schools in Soweto</h3>
+              <span class="tag">Club</span>
+              <h3>Celebrating our heritage this September</h3>
               <time>3 days ago</time>
             </div>
           </a>
           <a href="#" class="card reveal">
-            <div class="card-media"><div class="photo-slot">Photo</div></div>
+            <div class="card-media"><img class="cover" src="img/news-training.jpg" alt="Players in a huddle at training" loading="lazy" /></div>
             <div class="card-body">
-              <span class="tag">Club</span>
-              <h3>Season ticket renewals now open</h3>
+              <span class="tag">Training</span>
+              <h3>Inside the week at Naturena</h3>
               <time>4 days ago</time>
             </div>
           </a>
@@ -571,20 +552,20 @@
         </div>
         <div class="tv-row" tabindex="0" aria-label="Videos, scroll sideways">
           <a href="#" class="tv-item">
-            <div class="tv-thumb"><span class="play" aria-hidden="true"></span><span class="dur">4:12</span></div>
+            <div class="tv-thumb"><img class="cover" src="img/tv-celebration.jpg" alt="Players celebrating a goal" loading="lazy" /><span class="play" aria-hidden="true"></span><span class="dur">4:12</span></div>
             <h3>Extended highlights</h3><p>Every goal and chance from the weekend</p>
           </a>
           <a href="#" class="tv-item">
-            <div class="tv-thumb"><span class="play" aria-hidden="true"></span><span class="dur">8:40</span></div>
+            <div class="tv-thumb"><img class="cover" src="img/tv-coach.jpg" alt="Portrait of the head coach" loading="lazy" /><span class="play" aria-hidden="true"></span><span class="dur">8:40</span></div>
             <h3>Coach press conference</h3><p>Pre-match media briefing</p>
           </a>
           <a href="#" class="tv-item">
-            <div class="tv-thumb"><span class="play" aria-hidden="true"></span><span class="dur">2:05</span></div>
+            <div class="tv-thumb"><img class="cover" src="img/tv-training.jpg" alt="A player striking the ball at training" loading="lazy" /><span class="play" aria-hidden="true"></span><span class="dur">2:05</span></div>
             <h3>Inside training</h3><p>Behind the scenes at Naturena</p>
           </a>
           <a href="#" class="tv-item">
-            <div class="tv-thumb"><span class="play" aria-hidden="true"></span><span class="dur">6:30</span></div>
-            <h3>Legends remember</h3><p>Stories from the club's history</p>
+            <div class="tv-thumb"><img class="cover" src="img/tv-campaign.jpg" alt="A model in the new collection" loading="lazy" /><span class="play" aria-hidden="true"></span><span class="dur">6:30</span></div>
+            <h3>The campaign shoot</h3><p>Behind the lens on the new collection</p>
           </a>
         </div>
       </div>
@@ -602,7 +583,6 @@
         </div>
         <div class="squad-tabs" role="tablist" aria-label="Filter by position">
           <button role="tab" aria-selected="true" data-pos="all">All</button>
-          <button role="tab" aria-selected="false" data-pos="gk">Goalkeepers</button>
           <button role="tab" aria-selected="false" data-pos="df">Defenders</button>
           <button role="tab" aria-selected="false" data-pos="mf">Midfielders</button>
           <button role="tab" aria-selected="false" data-pos="fw">Forwards</button>
@@ -617,7 +597,7 @@
         <div class="reveal">
           <span class="eyebrow">Official store</span>
           <h2 class="h-display" id="shop-title">Wear the gold</h2>
-          <p>The new season kits are here. Home, away and third, in adult and junior sizes, delivered across South Africa.</p>
+          <p>The new season collection is here. Kits, training wear and lifestyle pieces, delivered across South Africa.</p>
           <div class="hero-actions">
             <a href="#" class="btn btn-dark">Shop kits</a>
             <a href="#" class="btn btn-line">Find a store</a>
@@ -625,16 +605,16 @@
         </div>
         <div class="kits reveal">
           <a href="#" class="kit">
-            <svg viewBox="0 0 120 120" aria-hidden="true"><path d="M40 12 24 18 6 36l14 16 10-8v64h60V44l10 8 14-16-18-18-16-6c-2 8-10 13-20 13S42 20 40 12z" fill="#0b0b0b"/><path d="M40 12c2 8 10 13 20 13s18-5 20-13" stroke="#f5b915" stroke-width="4" fill="none"/><path d="M30 60h60" stroke="#f5b915" stroke-width="5"/></svg>
-            <b>Home</b><span>Black and gold</span>
+            <img src="img/shop-hoodie.jpg" alt="Black hoodie with gold sleeves" loading="lazy" />
+            <b>Gold sleeve hoodie</b><span>Lifestyle</span>
           </a>
           <a href="#" class="kit">
-            <svg viewBox="0 0 120 120" aria-hidden="true"><path d="M40 12 24 18 6 36l14 16 10-8v64h60V44l10 8 14-16-18-18-16-6c-2 8-10 13-20 13S42 20 40 12z" fill="#f5b915" stroke="#0b0b0b" stroke-width="2"/><path d="M40 12c2 8 10 13 20 13s18-5 20-13" stroke="#0b0b0b" stroke-width="4" fill="none"/><path d="M30 44 90 104M30 60 74 104" stroke="#0b0b0b" stroke-width="3" opacity=".35"/></svg>
-            <b>Away</b><span>All gold</span>
+            <img src="img/shop-jacket.jpg" alt="Black and ice blue track jacket" loading="lazy" />
+            <b>Track jacket</b><span>Training</span>
           </a>
           <a href="#" class="kit">
-            <svg viewBox="0 0 120 120" aria-hidden="true"><path d="M40 12 24 18 6 36l14 16 10-8v64h60V44l10 8 14-16-18-18-16-6c-2 8-10 13-20 13S42 20 40 12z" fill="#ffffff" stroke="#0b0b0b" stroke-width="2"/><path d="M40 12c2 8 10 13 20 13s18-5 20-13" stroke="#f5b915" stroke-width="4" fill="none"/><path d="M30 52h60M30 60h60" stroke="#0b0b0b" stroke-width="3"/></svg>
-            <b>Third</b><span>White edition</span>
+            <img src="img/shop-tee.jpg" alt="White heritage logo t-shirt" loading="lazy" />
+            <b>Heritage tee</b><span>Lifestyle</span>
           </a>
         </div>
       </div>
@@ -684,13 +664,18 @@
 
     <!-- Partners -->
     <section class="partners" aria-label="Club partners">
-      <div class="wrap partner-row">
-        <span class="eyebrow">Partners</span>
-        <div class="partner">Kit partner</div>
-        <div class="partner">Main sponsor</div>
-        <div class="partner">League partner</div>
-        <div class="partner">Official partner</div>
-        <div class="partner">Official partner</div>
+      <div class="wrap">
+        <span class="eyebrow">Our partners</span>
+        <div class="partner-row">
+        <a href="#" class="partner"><img src="img/partner-kappa.png" alt="Kappa" loading="lazy" /></a>
+        <a href="#" class="partner"><img src="img/partner-vodacom.png" alt="Vodacom" loading="lazy" /></a>
+        <a href="#" class="partner"><img src="img/partner-toyota.png" alt="Toyota" loading="lazy" /></a>
+        <a href="#" class="partner"><img src="img/partner-cblb.png" alt="Carling Black Label" loading="lazy" /></a>
+        <a href="#" class="partner"><img src="img/partner-supersport.png" alt="SuperSport" loading="lazy" /></a>
+        <a href="#" class="partner"><img src="img/partner-supersportbet.png" alt="SuperSportBet" loading="lazy" /></a>
+        <a href="#" class="partner"><img src="img/partner-kaelo.png" alt="Kaelo" loading="lazy" /></a>
+        <a href="#" class="partner"><img src="img/partner-brima.png" alt="Brima" loading="lazy" /></a>
+        </div>
       </div>
     </section>
 
@@ -701,7 +686,7 @@
       <div class="footer-grid">
         <div>
           <a href="#top" class="crest" aria-label="Back to top">
-            <svg viewBox="0 0 44 52" aria-hidden="true"><path d="M22 1 42 8v18c0 13-9 21-20 25C11 47 2 39 2 26V8z" fill="#f5b915"/><path d="M22 5 38 10.6V26c0 10.6-7.2 17.2-16 20.7C13.2 43.2 6 36.6 6 26V10.6z" fill="#0b0b0b"/><text x="22" y="32" text-anchor="middle" font-family="Anton, Impact, sans-serif" font-size="17" fill="#f5b915">KC</text></svg>
+            <img src="img/crest.svg" alt="" width="52" height="52" />
             <span class="crest-name">Kaizer Chiefs<small>Amakhosi</small></span>
           </a>
           <p class="footer-motto">Love <span>&amp;</span> Peace</p>
@@ -779,15 +764,14 @@
 
       // Squad (placeholder roster, real data would come from the club's CMS)
       var squad = [
-        [1, 'gk', 'Goalkeeper'], [2, 'df', 'Right back'], [4, 'df', 'Centre back'], [5, 'df', 'Centre back'],
-        [3, 'df', 'Left back'], [6, 'mf', 'Defensive mid'], [8, 'mf', 'Central mid'], [10, 'mf', 'Attacking mid'],
-        [7, 'fw', 'Winger'], [9, 'fw', 'Striker'], [11, 'fw', 'Winger'], [16, 'gk', 'Goalkeeper']
+        [1, 'mf', 'Midfielder'], [2, 'fw', 'Forward'], [3, 'mf', 'Midfielder'], [4, 'df', 'Defender'],
+        [5, 'mf', 'Midfielder'], [6, 'fw', 'Forward'], [7, 'df', 'Defender'], [8, 'mf', 'Midfielder']
       ];
-      var sil = '<svg class="silhouette" viewBox="0 0 200 220" aria-hidden="true"><circle cx="100" cy="58" r="34" fill="#f5b915" fill-opacity=".35"/><path d="M28 220c4-70 30-118 72-118s68 48 72 118z" fill="#f5b915" fill-opacity=".25"/></svg>';
       var grid = document.getElementById('squad-grid');
       grid.innerHTML = squad.map(function (p) {
         return '<a href="#" class="player" data-pos="' + p[1] + '">' +
-          '<span class="num">' + p[0] + '</span>' + sil +
+          '<img class="cover" src="img/player-' + p[0] + '.jpg" alt="" loading="lazy" />' +
+          '<span class="num">' + p[0] + '</span>' +
           '<div class="meta"><b>Player name</b><span>' + p[2] + '</span></div></a>';
       }).join('');
       document.querySelectorAll('.squad-tabs button').forEach(function (btn) {
