@@ -2,6 +2,7 @@
 <html lang="en-ZA">
 <head>
   <meta charset="UTF-8" />
+  <script>document.documentElement.classList.add("js");</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ouma se Nes | Home Industry Bakery, Waverley Plaza, Pretoria</title>
   <meta name="description" content="Ouma se Nes is a home industry bakery at Waverley Plaza, Pretoria. Custom themed cakes, platters, rusks, tarts and treats, plus gluten-free, sugar-free and vegan options on quote." />
@@ -213,9 +214,64 @@
       .hero .wrap, .special, .visit .wrap { grid-template-columns: 1fr; }
       .hero-art { max-width: 280px; margin-inline: auto; order: -1; }
       .special { padding: 32px 24px; }
-      .banner-badge { position: static; margin-top: 12px; max-width: none; justify-content: space-between; }
+      .banner-badge { position: relative; left: auto; bottom: auto; margin-top: 12px; max-width: none; justify-content: space-between; }
       .gallery { grid-template-columns: 1fr 1fr; grid-auto-rows: 150px; }
       .top .btn { padding: 10px 16px; font-size: .9rem; }
+    }
+
+    /* ---------- Motion ---------- */
+    @keyframes float { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-12px) rotate(-1.5deg); } }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes drift {
+      0% { transform: translate3d(0, 0, 0) scale(1); }
+      50% { transform: translate3d(3vw, -2vh, 0) scale(1.08); }
+      100% { transform: translate3d(-2vw, 2vh, 0) scale(1.02); }
+    }
+    @keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+    @keyframes sheen { 0%, 70% { transform: translateX(-120%) skewX(-20deg); } 100% { transform: translateX(260%) skewX(-20deg); } }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(46, 106, 114, .45); } 100% { box-shadow: 0 0 0 14px rgba(46, 106, 114, 0); } }
+
+    body::before { animation: drift 28s ease-in-out infinite alternate; }
+    .hero-art img { animation: float 7s ease-in-out infinite; }
+    .hero-art::before { animation: spin 60s linear infinite; }
+
+    /* Hero copy eases in on load */
+    .hero .eyebrow, .hero h1, .hero p, .hero .actions, .hero-art { animation: rise .9s cubic-bezier(.2, .7, .2, 1) both; }
+    .hero h1 { animation-delay: .1s; }
+    .hero p { animation-delay: .2s; }
+    .hero .actions { animation-delay: .3s; }
+    .hero-art { animation-delay: .15s; }
+
+    /* Main call button gives a soft pulse now and then */
+    .top .btn { animation: pulse 2.4s ease-out 1.5s 3; }
+
+    /* Glass sheen sweeping across the banner badge */
+    .banner-badge { overflow: hidden; }
+    .banner-badge::after {
+      content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 40%; pointer-events: none;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .55), transparent);
+      animation: sheen 6s ease-in-out 2s infinite;
+    }
+    .banner img { transition: transform 1.2s cubic-bezier(.2, .7, .2, 1); }
+    .banner .frame { overflow: hidden; border-radius: 24px; }
+    .banner .frame:hover img { transform: scale(1.04); }
+
+    /* Lift on hover */
+    .card, .gallery .photo { transition: transform .35s cubic-bezier(.2, .7, .2, 1), box-shadow .35s; }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 22px 44px rgba(31, 74, 80, .16), inset 0 1px 0 rgba(255, 255, 255, .9); }
+    .gallery .photo:hover { transform: translateY(-4px) scale(1.015); box-shadow: 0 18px 36px rgba(31, 74, 80, .15); }
+    .photo { transition: background-position 6s linear; }
+    .card:hover .photo, .gallery .photo:hover { background-position: 60px -40px; }
+    .tags span { transition: background .25s, transform .25s; }
+    .tags span:hover { background: rgba(255, 255, 255, .25); transform: translateY(-2px); }
+
+    /* Scroll reveal (only when JS is running, so nothing stays hidden without it) */
+    .js .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s cubic-bezier(.2, .7, .2, 1), transform .8s cubic-bezier(.2, .7, .2, 1); transition-delay: var(--d, 0s); }
+    .js .reveal.in { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .js .reveal { opacity: 1; transform: none; }
     }
   </style>
 </head>
@@ -389,6 +445,32 @@
     </div>
   </footer>
 
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Fade sections in as they scroll into view, with a small stagger inside each group.
+    (function () {
+      var groups = ['.banner .frame', '.banner-badge', '.section-head', '.grid', '.special', '.gallery', '.visit .wrap'];
+      var items = [];
+      groups.forEach(function (sel) {
+        document.querySelectorAll(sel).forEach(function (el) {
+          var kids = el.matches('.grid, .gallery, .visit .wrap') ? Array.prototype.slice.call(el.children) : [el];
+          kids.forEach(function (k, i) { k.classList.add('reveal'); k.style.setProperty('--d', (i * 0.08) + 's'); items.push(k); });
+        });
+      });
+      if (!('IntersectionObserver' in window)) { items.forEach(function (k) { k.classList.add('in'); }); return; }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          var el = e.target;
+          el.classList.add('in');
+          io.unobserve(el);
+          // Hand control back to the element's own hover transitions once it has settled.
+          setTimeout(function () { el.classList.remove('reveal', 'in'); el.style.removeProperty('--d'); }, 1000 + parseFloat(el.style.getPropertyValue('--d') || 0) * 1000);
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      items.forEach(function (k) { io.observe(k); });
+    })();
+  </script>
 </body>
 </html>
