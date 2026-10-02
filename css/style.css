@@ -693,6 +693,52 @@ nav ul a.nav-active { color: var(--pink); }
   50% { transform: translateY(-12px); }
 }
 
+/* ── Page entrance ───────────────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.page-hero-icon {
+  animation: fadeUp 0.6s ease both;
+}
+.page-hero h1 {
+  animation: fadeUp 0.65s ease both 0.1s;
+}
+.page-hero .page-hero-desc {
+  animation: fadeUp 0.65s ease both 0.22s;
+}
+.page-hero .btn, .page-hero a.btn {
+  animation: fadeUp 0.6s ease both 0.35s;
+}
+.page-hero .breadcrumb {
+  animation: fadeIn 0.5s ease both;
+}
+
+/* ── Scroll reveal ───────────────────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.reveal.revealed {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .page-hero-icon, .page-hero h1,
+  .page-hero .page-hero-desc, .page-hero .btn,
+  .page-hero a.btn, .page-hero .breadcrumb {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 .hero-badge {
   display: inline-flex;
   align-items: center;
