@@ -241,7 +241,6 @@
     header.scrolled .logo img { height: 42px; }
     .nav ul a { position: relative; transition: color .2s ease; }
     .nav ul a.active { color: var(--brand-dark); }
-    .nav ul a.active::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; border-radius: 2px; background: var(--green); }
     .hero-swoosh, .console { will-change: transform; }
     .reveal-left { opacity: 0; transform: translateX(-36px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
     .reveal-right { opacity: 0; transform: translateX(36px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
@@ -256,7 +255,7 @@
     .vvt-copy { position: absolute; inset: 0; z-index: 1; display: flex; flex-direction: column; justify-content: center; padding: 56px; max-width: 640px; }
     .vvt-copy .badge { align-self: flex-start; font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--green); border: 1px solid rgba(141,198,63,.45); border-radius: 999px; padding: 6px 14px; }
     .vvt-copy h2 { font-size: clamp(38px, 5.4vw, 68px); margin: 20px 0 16px; line-height: 1.02; }
-    .vvt-copy h2 .outline { color: transparent; -webkit-text-stroke: 1.5px #fff; }
+    .vvt-copy h2 .outline { background: linear-gradient(90deg, #fff 0%, rgba(255,255,255,.45) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .vvt-copy h2 .g { color: var(--green); }
     .vvt-copy p { font-size: 18px; color: #c9d5e6; max-width: 480px; }
 
@@ -298,7 +297,7 @@
     /* Marquee */
     .marquee { overflow: hidden; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 26px 0; background: var(--ink-2); }
     .marquee-track { display: flex; width: max-content; animation: marquee 38s linear infinite; }
-    .marquee-track span { font-family: 'Sora', sans-serif; font-weight: 800; font-size: clamp(32px, 5vw, 64px); letter-spacing: -.02em; white-space: nowrap; padding-right: 48px; color: transparent; -webkit-text-stroke: 1.5px rgba(255,255,255,.55); }
+    .marquee-track span { font-family: 'Sora', sans-serif; font-weight: 800; font-size: clamp(32px, 5vw, 64px); letter-spacing: -.02em; white-space: nowrap; padding-right: 48px; color: var(--ink-2); -webkit-text-stroke: 3px rgba(255,255,255,.5); paint-order: stroke fill; }
     .marquee-track span b { color: var(--green); -webkit-text-stroke: 0; }
     @keyframes marquee { to { transform: translateX(-50%); } }
 
@@ -319,6 +318,90 @@
     .ind { text-align: left; transition: transform .3s ease, border-color .3s ease; }
     .ind:hover { transform: translateY(-4px); border-color: rgba(141,198,63,.5); }
     .ind .i-ico { background: rgba(141,198,63,.12); color: var(--green); }
+
+
+    /* ===== Frosted glass ===== */
+    #solutions, #industries, #contact, .story-sec, .hero, .light { position: relative; }
+    #solutions > .wrap, #industries > .wrap, #contact > .wrap, .story-sec > .wrap, .light > .wrap { position: relative; z-index: 1; }
+    #solutions::before, #industries::before, #contact::before, .story-sec::before { content: ""; position: absolute; width: 620px; height: 620px; left: -160px; top: 18%; border-radius: 50%; background: radial-gradient(circle, rgba(33,141,206,.32), transparent 65%); pointer-events: none; }
+    #solutions::after, #industries::after, #contact::after { content: ""; position: absolute; width: 520px; height: 520px; right: -140px; bottom: 6%; border-radius: 50%; background: radial-gradient(circle, rgba(141,198,63,.22), transparent 65%); pointer-events: none; }
+    .light { overflow: hidden; }
+    .light::before { content: ""; position: absolute; width: 560px; height: 560px; right: -160px; top: -120px; border-radius: 50%; background: radial-gradient(circle, rgba(141,198,63,.28), transparent 65%); pointer-events: none; }
+    .light::after { content: ""; position: absolute; width: 640px; height: 640px; left: -200px; bottom: -220px; border-radius: 50%; background: radial-gradient(circle, rgba(33,141,206,.22), transparent 65%); pointer-events: none; }
+    .console, .device, .sol, .ind, form.quote, .map, .ai-list li, .office, .eyebrow, .ai-tab:not([aria-selected="true"]) {
+      background: linear-gradient(160deg, rgba(255,255,255,.085), rgba(255,255,255,.02));
+      border: 1px solid rgba(255,255,255,.13);
+      -webkit-backdrop-filter: blur(18px) saturate(150%); backdrop-filter: blur(18px) saturate(150%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 30px 60px -32px rgba(0,0,0,.6);
+    }
+    .problem, .spec, .steps li, .faq details {
+      background: rgba(255,255,255,.62);
+      border: 1px solid rgba(255,255,255,.9);
+      -webkit-backdrop-filter: blur(16px) saturate(140%); backdrop-filter: blur(16px) saturate(140%);
+      box-shadow: 0 14px 34px -22px rgba(11,32,56,.35), inset 0 1px 0 #fff;
+    }
+    .faq details { border-radius: 16px; padding: 20px 22px; margin-bottom: 10px; }
+    input, select, textarea { background: rgba(6,24,43,.55); }
+    /* glass caption card over the truck photo */
+    .vvt-banner::after { background: linear-gradient(90deg, rgba(6,24,43,.55) 0%, rgba(6,24,43,.15) 60%, rgba(6,24,43,0) 100%); }
+    .vvt-copy { inset: auto; left: 44px; top: 50%; transform: translateY(-50%); max-width: 580px; padding: 40px; border-radius: 24px;
+      background: linear-gradient(160deg, rgba(10,32,56,.55), rgba(10,32,56,.25)); border: 1px solid rgba(255,255,255,.18);
+      -webkit-backdrop-filter: blur(14px) saturate(140%); backdrop-filter: blur(14px) saturate(140%); box-shadow: inset 0 1px 0 rgba(255,255,255,.18), 0 30px 60px -30px rgba(0,0,0,.6); }
+    /* floating glass chips on the hero console */
+    .console { position: relative; }
+    .chip { position: absolute; z-index: 2; display: flex; align-items: center; gap: 8px; font-size: 12px; padding: 9px 13px; border-radius: 14px; color: var(--text); white-space: nowrap;
+      background: linear-gradient(160deg, rgba(255,255,255,.16), rgba(255,255,255,.05)); border: 1px solid rgba(255,255,255,.22);
+      -webkit-backdrop-filter: blur(16px) saturate(160%); backdrop-filter: blur(16px) saturate(160%); box-shadow: 0 18px 40px -18px rgba(0,0,0,.7); animation: bob 6s ease-in-out infinite; }
+    .chip i { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px rgba(141,198,63,.2); }
+    .chip small { color: var(--muted); }
+    .chip-a { top: -20px; right: -22px; }
+    .chip-b { top: 46%; left: -38px; animation-delay: -3s; }
+    .chip-b i { background: var(--brand); box-shadow: 0 0 0 4px rgba(33,141,206,.25); }
+    @keyframes bob { 50% { transform: translateY(-8px); } }
+
+
+    /* ===== Rollover (desktop) and touch equivalents (mobile) ===== */
+    .hov { position: relative; overflow: hidden; transition: opacity .7s ease, transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s ease, border-color .35s ease; }
+    .hov::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .35s ease;
+      background: radial-gradient(280px circle at var(--mx, 50%) var(--my, 50%), rgba(141,198,63,.18), transparent 60%); }
+    .hov.focus, .hov.focus.in { transform: translateY(-6px); border-color: rgba(141,198,63,.55); box-shadow: 0 26px 50px -26px rgba(33,141,206,.6), inset 0 1px 0 rgba(255,255,255,.15); }
+    .hov.focus::after { opacity: 1; }
+    .hov:active { transform: scale(.97) !important; transition-duration: .12s; }
+    .ind .i-ico { transition: transform .35s cubic-bezier(.2,.7,.2,1), background .35s ease, color .35s ease; }
+    .ind.focus .i-ico { transform: scale(1.12) rotate(-6deg); background: var(--green); color: var(--ink); }
+    .sol.focus .sol-tag { border-color: var(--green); color: var(--green); }
+    .sol .sol-tag { transition: border-color .3s ease, color .3s ease; }
+
+    /* Buttons: light sweep and glow */
+    .btn { position: relative; overflow: hidden; }
+    .btn::after { content: ""; position: absolute; top: 0; bottom: 0; left: -60%; width: 40%; background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent); transform: skewX(-20deg); pointer-events: none; }
+    .btn:active { transform: scale(.96); }
+    /* Nav underline grows from the left */
+    .nav ul a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; border-radius: 2px; background: var(--green); transform: scaleX(0); transform-origin: 0 50%; transition: transform .3s ease; }
+    .nav ul a.active::after { transform: scaleX(1); }
+    /* Camera wall tiles */
+    .cam-grid div { transition: transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s ease; }
+    .cam-grid div:active { transform: scale(1.08); z-index: 3; box-shadow: 0 0 0 2px var(--green), 0 16px 30px -10px rgba(0,0,0,.8); }
+    /* 3D tilt panels (driven by pointer on desktop) */
+    .console.in, .detect.in, .map.in, .device { transform: perspective(1100px) translateY(var(--pyc, 0px)) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform .25s ease-out, opacity .8s ease; }
+    .faq summary { transition: color .25s ease; }
+
+    @media (hover: hover) {
+      .hov:hover { transform: translateY(-6px); border-color: rgba(141,198,63,.55); box-shadow: 0 26px 50px -26px rgba(33,141,206,.6), inset 0 1px 0 rgba(255,255,255,.15); }
+      .hov:hover::after { opacity: 1; }
+      .ind:hover .i-ico { transform: scale(1.12) rotate(-6deg); background: var(--green); color: var(--ink); }
+      .sol:hover .sol-tag { border-color: var(--green); color: var(--green); }
+      .btn:hover::after { left: 130%; transition: left .7s ease; }
+      .btn-primary:hover { box-shadow: 0 12px 30px -10px rgba(33,141,206,.85); }
+      .btn-ghost:hover { background: rgba(255,255,255,.06); }
+      .nav ul a:hover::after { transform: scaleX(1); }
+      .cam-grid div:hover { transform: scale(1.08); z-index: 3; box-shadow: 0 0 0 2px var(--green), 0 16px 30px -10px rgba(0,0,0,.8); }
+      .faq summary:hover { color: var(--brand-dark); }
+      .chip:hover { animation-play-state: paused; border-color: rgba(141,198,63,.6); }
+      .trust li { transition: background .3s ease; }
+      .trust li:hover { background: rgba(255,255,255,.04); }
+      .trust li:hover .t-ico { color: var(--green); }
+    }
 
     /* Responsive */
     @media (max-width: 1020px) {
@@ -347,10 +430,11 @@
       .problem-grid, .outcomes, .solutions, .ai-list, .row2, .offices, .why { grid-template-columns: 1fr; }
       .industries { grid-template-columns: 1fr 1fr !important; }
       .specs { grid-template-columns: 1fr 1fr; }
-      .vvt-copy { padding: 28px; }
       .vvt-banner { min-height: 460px; }
       .vvt-banner::after { background: linear-gradient(0deg, rgba(6,24,43,.95) 10%, rgba(6,24,43,.35) 100%); }
-      .vvt-copy { justify-content: flex-end; }
+      .vvt-copy { justify-content: flex-end; left: 12px; right: 12px; top: auto; bottom: 12px; transform: none; padding: 22px; }
+      .chip-a { right: 6px; top: -16px; }
+      .chip-b { left: 6px; top: 44%; }
       .story-visual { top: 66px; }
       .trust ul { grid-template-columns: 1fr; }
       .trust li { border-right: 0; border-bottom: 1px solid var(--line); }
@@ -367,6 +451,8 @@
       .vvt-banner { clip-path: none; }
       .chapter { opacity: 1; }
       .marquee-track { animation: none; }
+      .hov:hover, .hov.focus { transform: none; }
+      .console.in, .detect.in, .map.in, .device { transform: none; }
       html { scroll-behavior: auto; }
     }
   </style>
@@ -421,6 +507,8 @@
         </div>
 
         <div class="console reveal-right" aria-label="Illustration of the FleetCam live monitoring console">
+          <div class="chip chip-a mono"><i></i>GPS lock <small>&middot; 14 sats</small></div>
+          <div class="chip chip-b mono"><i></i>Clip uploaded <small>&middot; 0.4s</small></div>
           <div class="console-bar">
             <span class="dots"><i></i><i></i><i></i></span>
             <span class="mono">TRK-2281 &middot; N1 Northbound</span>
@@ -723,10 +811,16 @@
             <circle cx="200" cy="3" r="3" fill="#ffd27a" opacity=".6"/>
             <rect x="140" y="58" width="120" height="170" rx="40" fill="#1a2436"/>
             <rect x="150" y="66" width="100" height="150" rx="34" fill="#202c42"/>
+            <rect x="158" y="74" width="84" height="134" rx="28" fill="none" stroke="#2c3a54" stroke-width="1.2" stroke-dasharray="3 3"/>
             <!-- shoulders, uniform and seatbelt -->
             <path d="M108 300 C108 238 150 222 200 222 C250 222 292 238 292 300 Z" fill="url(#shirt)"/>
             <path d="M176 222 L200 252 L224 222 L212 218 L200 236 L188 218 Z" fill="#2a5a92"/>
-            <rect x="228" y="250" width="22" height="9" rx="2" fill="#8dc63f"/>
+            <path d="M200 252 L200 300" stroke="#163459" stroke-width="2"/>
+            <circle cx="200" cy="262" r="2" fill="#dfe6f2"/><circle cx="200" cy="274" r="2" fill="#dfe6f2"/>
+            <path d="M136 252 q14 -14 40 -26 M264 252 q-14 -14 -40 -26" stroke="#163459" stroke-width="1.5" fill="none" opacity=".7"/>
+            <rect x="226" y="248" width="30" height="11" rx="2.5" fill="#fff" opacity=".92"/>
+            <path d="M229 256 q4 -7 11 -6 q-6 1 -8 6 Z" fill="#8dc63f"/>
+            <text x="241" y="256" font-size="5.5" font-weight="700" fill="#218dce" font-family="Inter, sans-serif">FC</text>
             <path d="M262 232 L284 238 L170 300 L140 300 Z" fill="#1c1f26"/>
             <path d="M268 234 L174 300" stroke="#3a3f4a" stroke-width="2"/>
             <rect x="214" y="268" width="16" height="12" rx="2" fill="#9aa3b2" transform="rotate(-28 222 274)"/>
@@ -767,6 +861,22 @@
             <ellipse cx="200" cy="181" rx="11" ry="13" fill="#2b1210"/>
             <path d="M191 172 q9 -3 18 0 l-1 3 q-8 -2 -16 0 Z" fill="#e8e2d8"/>
             <ellipse cx="200" cy="188" rx="6" ry="4" fill="#8a3b3b"/>
+            <ellipse cx="200" cy="181" rx="12.5" ry="14.5" fill="none" stroke="#4a231a" stroke-width="3"/>
+            <path d="M193 192 q7 2 14 0 l-1 -2.5 q-6 1.5 -12 0 Z" fill="#d9d3c8"/>
+            <!-- fatigue: eye bags, lashes, creases -->
+            <path d="M171 144 q10 5 21 0" stroke="#3f2518" stroke-width="1.6" fill="none" opacity=".7"/>
+            <path d="M208 144 q11 5 21 0" stroke="#3f2518" stroke-width="1.6" fill="none" opacity=".7"/>
+            <g stroke="#1a110d" stroke-width="1.2" stroke-linecap="round"><path d="M174 141 l-1 3 M179 143 l-.5 3 M184 143 l.5 3 M189 141 l1 3"/><path d="M211 141 l-1 3 M216 143 l-.5 3 M221 143 l.5 3 M226 141 l1 3"/></g>
+            <path d="M182 108 q18 -5 36 0" stroke="#4a2c1d" stroke-width="1.5" fill="none" opacity=".55"/>
+            <path d="M186 113 q14 -3 28 0" stroke="#4a2c1d" stroke-width="1.2" fill="none" opacity=".4"/>
+            <path d="M186 158 q-9 10 -8 22" stroke="#3f2518" stroke-width="2" fill="none" opacity=".55"/>
+            <path d="M214 158 q9 10 8 22" stroke="#3f2518" stroke-width="2" fill="none" opacity=".55"/>
+            <ellipse cx="217" cy="149" rx="8" ry="4.5" fill="#8a5a3c" opacity=".3"/>
+            <ellipse cx="203" cy="146" rx="2" ry="5" fill="#8a5a3c" opacity=".35"/>
+            <!-- beard texture -->
+            <g fill="#2e2420" opacity=".9"><circle cx="160" cy="168" r="1"/><circle cx="166" cy="178" r="1"/><circle cx="173" cy="186" r="1"/><circle cx="182" cy="193" r="1"/><circle cx="218" cy="193" r="1"/><circle cx="227" cy="186" r="1"/><circle cx="234" cy="178" r="1"/><circle cx="240" cy="168" r="1"/><circle cx="192" cy="198" r="1"/><circle cx="208" cy="198" r="1"/></g>
+            <!-- bluetooth earpiece -->
+            <rect x="252" y="140" width="9" height="15" rx="4" fill="#20242c"/><circle cx="256.5" cy="144" r="1.4" fill="#218dce"><animate attributeName="opacity" values="1;.2;1" dur="2.4s" repeatCount="indefinite"/></circle>
             <!-- AI face-mesh landmarks -->
             <g fill="#8dc63f">
               <circle cx="170" cy="137" r="2"/><circle cx="192" cy="137" r="2"/><circle cx="208" cy="137" r="2"/><circle cx="230" cy="137" r="2"/>
@@ -1061,6 +1171,7 @@
         entries.forEach(function (en) {
           if (!en.isIntersecting) return;
           en.target.classList.add('in');
+          (function (t) { setTimeout(function () { t.style.transitionDelay = ''; }, 1200); })(en.target);
           en.target.querySelectorAll('.count').forEach(countUp);
           io.unobserve(en.target);
         });
@@ -1100,6 +1211,41 @@
       document.querySelectorAll('.count').forEach(function (el) { el.textContent = el.dataset.to; });
     }
 
+    // Rollover cards: spotlight follows the pointer; on touch screens the card
+    // nearest the middle of the screen lights up instead
+    var hovSel = '.sol, .ind, .problem, .spec, .office, .ai-list li, .steps li, .why li';
+    var hovEls = document.querySelectorAll(hovSel);
+    hovEls.forEach(function (el) { el.classList.add('hov'); });
+    function spot(e) {
+      var el = e.target.closest && e.target.closest('.hov');
+      if (!el) return;
+      var r = el.getBoundingClientRect(), pt = e.touches ? e.touches[0] : e;
+      el.style.setProperty('--mx', (pt.clientX - r.left) + 'px');
+      el.style.setProperty('--my', (pt.clientY - r.top) + 'px');
+    }
+    document.addEventListener('pointermove', spot, { passive: true });
+    document.addEventListener('touchstart', spot, { passive: true });
+    var canHover = window.matchMedia('(hover: hover)').matches;
+    if (!canHover && 'IntersectionObserver' in window) {
+      var fio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { en.target.classList.toggle('focus', en.isIntersecting); });
+      }, { rootMargin: '-42% 0px -42% 0px' });
+      hovEls.forEach(function (el) { fio.observe(el); });
+    }
+
+    // 3D tilt on the big panels (desktop pointer only)
+    if (canHover && !reduce) {
+      document.querySelectorAll('.console, .detect, .map, .device').forEach(function (el) {
+        el.addEventListener('pointermove', function (e) {
+          var r = el.getBoundingClientRect();
+          var x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+          el.style.setProperty('--ry', (x * 7).toFixed(2) + 'deg');
+          el.style.setProperty('--rx', (y * -7).toFixed(2) + 'deg');
+        });
+        el.addEventListener('pointerleave', function () { el.style.setProperty('--rx', '0deg'); el.style.setProperty('--ry', '0deg'); });
+      });
+    }
+
     // MDVR grid: cycle a highlighted "event" tile so the wall feels live
     var tilesEl = document.querySelectorAll('#camGrid > div');
     if (!reduce && tilesEl.length) {
@@ -1127,7 +1273,7 @@
       if (!reduce) {
         if (y < innerHeight * 1.2) {
           swoosh.style.transform = 'translateY(' + y * 0.25 + 'px) rotate(' + y * 0.01 + 'deg)';
-          consoleEl.style.transform = 'translateY(' + y * -0.06 + 'px)';
+          consoleEl.style.setProperty('--pyc', (y * -0.06).toFixed(1) + 'px');
         }
         var r = banner.getBoundingClientRect();
         if (r.top < innerHeight && r.bottom > 0) {
