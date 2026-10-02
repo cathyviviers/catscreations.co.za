@@ -194,3 +194,27 @@
 
   elements.forEach(function (el) { observer.observe(el); });
 })();
+
+
+// ── BLOG CARD MOUSE TILT ─────────────────────────────────────────────────────
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (window.matchMedia('(hover: none)').matches) return; // skip touch devices
+
+  var cards = document.querySelectorAll('.blog-card');
+  cards.forEach(function (card) {
+    card.addEventListener('mousemove', function (e) {
+      var rect = card.getBoundingClientRect();
+      var cx = rect.left + rect.width / 2;
+      var cy = rect.top + rect.height / 2;
+      var dx = (e.clientX - cx) / (rect.width / 2);
+      var dy = (e.clientY - cy) / (rect.height / 2);
+      card.style.transform = 'perspective(800px) rotateY(' + (dx * 8) + 'deg) rotateX(' + (-dy * 6) + 'deg) translateY(-4px)';
+      card.style.transition = 'transform 0.08s linear, box-shadow 0.2s';
+    });
+    card.addEventListener('mouseleave', function () {
+      card.style.transform = '';
+      card.style.transition = 'transform 0.4s ease, box-shadow 0.2s';
+    });
+  });
+})();
