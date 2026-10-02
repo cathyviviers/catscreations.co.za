@@ -223,8 +223,105 @@
     .pillar:nth-child(2), .pillar:nth-child(4) { transform: none; }
     .foot-grid { grid-template-columns: 1fr; }
   }
+
+  /* ===== Motion & interaction layer ===== */
+  .nav .wrap { transition: height .3s; }
+  .logo img { transition: height .3s; }
+  .nav.scrolled .wrap { height: 60px; }
+  .nav.scrolled .logo img { height: 42px; }
+  .progress { position: absolute; left: 0; right: 0; bottom: -1px; height: 3px; transform-origin: 0 50%; transform: scaleX(0); background: var(--brand-grad); background: linear-gradient(90deg, #fbb417, #f47a20, #e01b22); }
+  .cart { position: relative; width: 46px; height: 46px; border-radius: 50%; border: 2px solid var(--char); background: transparent; cursor: pointer; display: grid; place-items: center; color: var(--char); }
+  .cart svg { width: 22px; }
+  .cart-count { position: absolute; top: -6px; right: -6px; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 999px; background: var(--flame); color: #fff; font-size: 0.75rem; font-weight: 700; display: grid; place-items: center; transform: scale(0); transition: transform .3s cubic-bezier(.3,1.6,.5,1); }
+  .cart.has .cart-count { transform: scale(1); }
+  .cart.bump { animation: bump .45s cubic-bezier(.3,1.6,.5,1); }
+  @keyframes bump { 40% { transform: scale(1.22) rotate(-8deg); } }
+
+  .hero .wrap { z-index: 2; }
+  .flames { z-index: 2; }
+  .hero::before { z-index: 0; }
+  .hero::after { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(420px circle at var(--mx, 75%) var(--my, 70%), rgba(251,180,23,0.18), transparent 70%); transition: background .1s; }
+  .embers { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+  .hero-art { transition: transform .4s cubic-bezier(.2,.8,.2,1); will-change: transform; }
+  .hero-intro > * { animation: rise .9s cubic-bezier(.2,.8,.2,1) backwards; }
+  .hero-intro > :nth-child(2) { animation-delay: .1s; }
+  .hero-intro > :nth-child(3) { animation-delay: .22s; }
+  .hero-intro > :nth-child(4) { animation-delay: .34s; }
+  .hero-intro > :nth-child(5) { animation-delay: .46s; }
+  .hero-art-in { animation: plateIn 1.1s .2s cubic-bezier(.2,.9,.3,1.2) both; }
+  @keyframes rise { from { opacity: 0; transform: translateY(30px); } }
+  @keyframes plateIn { from { opacity: 0; transform: scale(.6) rotate(-40deg); } }
+
+  .reveal { opacity: 0; translate: 0 34px; transition: opacity .8s cubic-bezier(.2,.8,.2,1), translate .8s cubic-bezier(.2,.8,.2,1); transition-delay: var(--d, 0s); }
+  .reveal.in { opacity: 1; translate: 0 0; }
+
+  .menu-grid.armed:not(.seen) .dish { opacity: 0; }
+  .dish.pop { animation: popIn .55s cubic-bezier(.2,.9,.3,1.25) backwards; animation-delay: var(--d, 0s); }
+  @keyframes popIn { from { opacity: 0; transform: translateY(24px) scale(.94); } }
+  .dish, .deal { position: relative; transform-style: preserve-3d; }
+  .dish::after, .deal::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .3s; background: radial-gradient(500px circle at var(--gx, 50%) var(--gy, 50%), rgba(255,255,255,0.35), transparent 45%); }
+  .tilting::after { opacity: 1; }
+  .tilting { transition: transform .08s linear, box-shadow .2s !important; }
+  .dish-art svg { transition: transform .5s cubic-bezier(.2,.9,.3,1.3); }
+  .dish:hover .dish-art svg { transform: scale(1.1) rotate(-4deg); }
+  .add { transition: transform .2s, background .2s; }
+  .add:hover { transform: rotate(90deg) scale(1.08); background: var(--flame-dark); }
+
+  .btn, .tab, .add, .heat-levels button { position: relative; overflow: hidden; }
+  .ripple { position: absolute; border-radius: 50%; pointer-events: none; background: rgba(255,255,255,0.45); transform: scale(0); animation: ripple .6s ease-out forwards; }
+  @keyframes ripple { to { transform: scale(1); opacity: 0; } }
+  .magnetic { transition: transform .25s cubic-bezier(.2,.8,.2,1); }
+
+  .meter { cursor: grab; touch-action: none; position: relative; }
+  .meter:active { cursor: grabbing; }
+  .meter i { position: relative; }
+  .meter i::after { content: ""; position: absolute; right: -2px; top: 50%; width: 22px; height: 22px; margin-top: -11px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 4px var(--lvl, var(--sun)); }
+  .meter { overflow: visible; }
+  .meter i { border-radius: 999px; }
+  .heat-name.flash { animation: flash .5s; }
+  @keyframes flash { 30% { transform: scale(1.15); } }
+  .heat-card.shake { animation: shake .5s; }
+  @keyframes shake { 15%,45%,75% { transform: translate(-6px, 2px) rotate(-.6deg); } 30%,60%,90% { transform: translate(6px, -2px) rotate(.6deg); } }
+  .spark { position: fixed; z-index: 90; width: 12px; height: 12px; border-radius: 50%; pointer-events: none; background: radial-gradient(circle, #fff7d1, #fbb417 40%, #e01b22 75%, transparent); }
+  .flyer { position: fixed; z-index: 95; width: 22px; height: 22px; border-radius: 50%; background: var(--flame); box-shadow: 0 0 0 4px rgba(251,180,23,0.6); pointer-events: none; }
+
+  .pin { animation: drop .6s cubic-bezier(.3,1.5,.5,1) both; animation-delay: var(--d, 0s); transform-box: fill-box; transform-origin: 50% 100%; }
+  @keyframes drop { from { transform: translateY(-60px) scale(.6); opacity: 0; } }
+  .store { transition: transform .2s, border-color .2s; }
+  .store:hover { transform: translateX(6px); border-color: rgba(251,180,23,0.5); }
+  .phone { animation: phoneFloat 5s ease-in-out infinite; }
+  @keyframes phoneFloat { 50% { transform: rotate(3deg) translateY(-14px); } }
+
+  .toast { position: fixed; left: 50%; bottom: 28px; z-index: 100; background: var(--char); color: var(--cream); padding: 13px 22px; border-radius: 999px; font-weight: 500; box-shadow: 0 12px 30px rgba(0,0,0,0.3); transform: translate(-50%, 140%); opacity: 0; transition: transform .45s cubic-bezier(.2,.9,.3,1.3), opacity .3s; pointer-events: none; white-space: nowrap; max-width: calc(100% - 32px); overflow: hidden; text-overflow: ellipsis; }
+  .toast.show { transform: translate(-50%, 0); opacity: 1; }
+  .toast b { color: var(--sun); }
+
+  .menu-grid { position: relative; }
+  .dots { display: none; }
+  .swipe-hint { display: none; }
+
+  @media (max-width: 960px) {
+    .menu-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px; margin-inline: -16px; padding: 6px 16px 18px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+    .menu-grid::-webkit-scrollbar { display: none; }
+    .dish { flex: 0 0 min(80%, 340px); scroll-snap-align: center; transition: transform .35s, opacity .35s; }
+    .dish:not(.active) { transform: scale(.93); opacity: .65; }
+    .dots { display: flex; justify-content: center; gap: 8px; margin-top: 6px; }
+    .dots i { width: 8px; height: 8px; border-radius: 999px; background: rgba(27,15,10,0.2); transition: width .3s, background .3s; }
+    .dots i.on { width: 26px; background: var(--flame); }
+    .swipe-hint { display: block; text-align: center; font-size: .82rem; color: var(--muted); margin-top: 10px; }
+    .swipe-hint span { display: inline-block; animation: nudge 1.6s ease-in-out infinite; }
+    @keyframes nudge { 50% { transform: translateX(8px); } }
+    .meter { height: 22px; }
+    .order-bar { transition: transform .4s cubic-bezier(.2,.8,.2,1); }
+    .order-bar.hide { transform: translateY(160%); }
+    .order-bar.bump { animation: obBump .5s cubic-bezier(.3,1.6,.5,1); }
+    @keyframes obBump { 40% { transform: scale(1.05); } }
+    .toast { bottom: 88px; }
+  }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1; translate: none; }
+    .embers { display: none; }
     html { scroll-behavior: auto; }
   }
 </style>
@@ -247,30 +344,33 @@
     </ul>
     <div class="nav-cta">
       <a href="#stores" class="btn btn-ghost">Near me</a>
-      <a href="#menu" class="btn btn-flame">Order now</a>
+      <a href="#menu" class="btn btn-flame magnetic">Order now</a>
+      <button class="cart" id="cart" aria-label="Your order, 0 items"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l-1 13H7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg><span class="cart-count" id="cartCount">0</span></button>
       <button class="menu-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </div>
+  <div class="progress" id="progress" aria-hidden="true"></div>
 </header>
 
 <main id="top">
-  <section class="hero" style="padding:0">
+  <section class="hero" id="hero" style="padding:0">
+    <canvas class="embers" id="embers" aria-hidden="true"></canvas>
     <div class="wrap">
-      <div>
+      <div class="hero-intro">
         <span class="eyebrow">Mexican Chicken Fiesta &middot; Proudly South African</span>
         <h1>Flame-grilled.<br>Mexican-spirited.<br><em>Seriously lekker.</em></h1>
         <p class="lead">Butterfly-cut chicken grilled over open flame, Portuguese soul, Mexican attitude and a South African heart. Pick your heat and let's go.</p>
         <div class="hero-actions">
-          <a href="#menu" class="btn btn-flame">Order online <span aria-hidden="true">→</span></a>
+          <a href="#menu" class="btn btn-flame magnetic">Order online <span aria-hidden="true">→</span></a>
           <a href="#heat" class="btn btn-ghost">Find your heat</a>
         </div>
         <div class="hero-stats">
-          <div><strong>130+</strong><span>restaurants countrywide</span></div>
-          <div><strong>5</strong><span>levels of heat</span></div>
-          <div><strong>100%</strong><span>open-flame grilled</span></div>
+          <div><strong data-count="130" data-suffix="+">130+</strong><span>restaurants countrywide</span></div>
+          <div><strong data-count="5">5</strong><span>levels of heat</span></div>
+          <div><strong data-count="100" data-suffix="%">100%</strong><span>open-flame grilled</span></div>
         </div>
       </div>
-      <div class="hero-art" aria-hidden="true">
+      <div class="hero-art" id="heroArt" aria-hidden="true"><div class="hero-art-in">
         <svg viewBox="0 0 400 400" class="plate">
           <circle cx="200" cy="210" r="170" fill="#2a1810"/>
           <circle cx="200" cy="200" r="160" fill="#fff6e8"/>
@@ -290,7 +390,7 @@
           <!-- herbs -->
           <g fill="#7cb342"><ellipse cx="250" cy="120" rx="10" ry="5" transform="rotate(-30 250 120)"/><ellipse cx="265" cy="128" rx="10" ry="5" transform="rotate(20 265 128)"/><ellipse cx="160" cy="130" rx="9" ry="4" transform="rotate(40 160 130)"/></g>
         </svg>
-      </div>
+      </div></div>
     </div>
     <svg class="flames" viewBox="0 0 1200 70" preserveAspectRatio="none" aria-hidden="true">
       <path d="M0 70V40c40 0 50-35 80-35s30 30 60 30 40-28 70-28 35 33 70 33 40-30 75-30 35 30 70 30 45-33 75-33 30 28 65 28 45-35 80-35 30 32 70 32 40-30 75-30 35 33 70 33 40-28 75-28 35 28 70 28 40-35 80-35 30 30 65 30 40-30 75-30 25 35 50 35V70z" fill="#fbb417"/>
@@ -340,6 +440,8 @@
       </div>
       <div class="tabs" role="tablist" id="tabs"></div>
       <div class="menu-grid" id="menuGrid"></div>
+      <div class="dots" id="menuDots" aria-hidden="true"></div>
+      <p class="swipe-hint" aria-hidden="true">Swipe to see more <span>→</span></p>
     </div>
   </section>
 
@@ -460,7 +562,7 @@
       <span class="eyebrow">Own a Mochachos</span>
       <h2>Bring the fiesta to your town</h2>
       <p>Join one of South Africa's fastest-growing flame-grilled brands. Proven systems, full training and marketing support from day one.</p>
-      <a href="#" class="btn btn-flame">Franchise enquiries <span aria-hidden="true">→</span></a>
+      <a href="#" class="btn btn-flame magnetic">Franchise enquiries <span aria-hidden="true">→</span></a>
     </div>
   </section>
 </main>
@@ -484,7 +586,7 @@
   </div>
 </footer>
 
-<a href="#menu" class="order-bar"><span>Order now</span><span aria-hidden="true">→</span></a>
+<a href="#menu" class="order-bar" id="orderBar"><span id="orderBarText">Order now</span><span aria-hidden="true">→</span></a>
 
 <script>
 (function () {
@@ -525,6 +627,7 @@
     document.querySelectorAll('.heat-levels button').forEach(function (b, j) {
       b.setAttribute('aria-pressed', j === i);
     });
+    document.dispatchEvent(new CustomEvent('heatchange', { detail: i }));
   }
   document.querySelectorAll('.heat-levels button').forEach(function (b) {
     b.addEventListener('click', function () { setHeat(+b.dataset.lvl); });
@@ -596,6 +699,7 @@
         '<div class="dish-foot"><span class="price">From R&nbsp;00.00</span><button class="add" aria-label="Add ' + item.n + ' to order">+</button></div></div></article>';
     }).join('');
     tabs.querySelectorAll('.tab').forEach(function (t) { t.setAttribute('aria-selected', t.textContent === cat); });
+    document.dispatchEvent(new CustomEvent('menurender', { detail: cat }));
   }
   Object.keys(menu).forEach(function (cat) {
     var b = document.createElement('button');
@@ -623,8 +727,8 @@
     list.innerHTML = hits.length ? hits.map(function (s) {
       return '<li class="store"><div><b>' + s.n + '</b><small>' + s.c + ' &middot; ' + s.h + '</small></div><span class="open">Open now</span></li>';
     }).join('') : '<li class="store"><div><b>No stores found</b><small>Try a nearby city or suburb.</small></div></li>';
-    pins.innerHTML = hits.map(function (s) {
-      return '<g transform="translate(' + s.x + ' ' + s.y + ')"><path d="M0 0c-10-14-14-20-14-26a14 14 0 0 1 28 0c0 6-4 12-14 26z" fill="#e01b22"/><circle cy="-26" r="5" fill="#fbb417"/></g>';
+    pins.innerHTML = hits.map(function (s, i) {
+      return '<g transform="translate(' + s.x + ' ' + s.y + ')"><g class="pin" style="--d:' + (i * 0.08) + 's"><path d="M0 0c-10-14-14-20-14-26a14 14 0 0 1 28 0c0 6-4 12-14 26z" fill="#e01b22"/><circle cy="-26" r="5" fill="#fbb417"/></g></g>';
     }).join('');
   }
   document.getElementById('storeSearch').addEventListener('input', function (e) { showStores(e.target.value); });
@@ -633,6 +737,284 @@
     showStores('Pretoria');
   });
   showStores('');
+})();
+</script>
+<script>
+// Motion and interaction layer. Desktop (fine pointer) gets hover, tilt and
+// cursor-driven effects; touch devices get swipe, haptics and scroll-driven
+// effects. Everything heavy is skipped when the visitor prefers reduced motion.
+(function () {
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  var touch = !fine;
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  function buzz(p) { if (touch && navigator.vibrate) { try { navigator.vibrate(p); } catch (e) {} } }
+
+  /* ---------- Scroll: nav shrink, progress bar, order bar, parallax ---------- */
+  var nav = $('#nav'), progress = $('#progress'), orderBar = $('#orderBar');
+  var heroArt = $('#heroArt'), hero = $('#hero');
+  var lastY = scrollY, ticking = false, velocity = 0;
+  function onScroll() {
+    var y = scrollY, max = document.documentElement.scrollHeight - innerHeight;
+    nav.classList.toggle('scrolled', y > 40);
+    progress.style.transform = 'scaleX(' + (max > 0 ? y / max : 0) + ')';
+    velocity = Math.min(Math.abs(y - lastY), 80);
+    if (touch && orderBar) orderBar.classList.toggle('hide', y > lastY && y > 300);
+    if (touch && !reduce && y < hero.offsetHeight) {
+      heroArt.style.transform = 'translateY(' + (y * 0.08) + 'px) rotate(' + (y * 0.04) + 'deg) scale(' + (1 - y * 0.0002) + ')';
+    }
+    lastY = y; ticking = false;
+  }
+  addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  if (touch) heroArt.style.transition = 'none';
+  onScroll();
+
+  /* ---------- Marquee reacts to scroll speed (and slows on hover) ---------- */
+  var track = $('.marquee-track'), hovering = false;
+  if (track && track.getAnimations && !reduce) {
+    (function loop() {
+      var a = track.getAnimations()[0];
+      if (a) {
+        var target = hovering ? 0.25 : 1 + velocity / 8;
+        a.playbackRate += (target - a.playbackRate) * 0.08;
+      }
+      velocity *= 0.9;
+      requestAnimationFrame(loop);
+    })();
+    if (fine) {
+      track.parentNode.addEventListener('mouseenter', function () { hovering = true; });
+      track.parentNode.addEventListener('mouseleave', function () { hovering = false; });
+    }
+  }
+
+  /* ---------- Scroll reveal ---------- */
+  var revealSel = '.section-head, .heat-card, .deal, .pillar, .story .wrap > div:first-child, .finder-box > *, .app-band, .franchise .wrap > *, .foot-grid > div';
+  if (!reduce && 'IntersectionObserver' in window) {
+    var groups = new Map();
+    $$(revealSel).forEach(function (el) {
+      var n = groups.get(el.parentNode) || 0;
+      groups.set(el.parentNode, n + 1);
+      el.style.setProperty('--d', Math.min(n * 0.09, 0.45) + 's');
+      el.classList.add('reveal');
+    });
+    var ro = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); } });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    $$('.reveal').forEach(function (el) { ro.observe(el); });
+  }
+
+  /* ---------- Count-up stats ---------- */
+  $$('[data-count]').forEach(function (el) {
+    if (reduce) return;
+    var end = +el.dataset.count, suf = el.dataset.suffix || '', t0 = null;
+    el.textContent = '0' + suf;
+    setTimeout(function () {
+      requestAnimationFrame(function step(t) {
+        t0 = t0 || t;
+        var k = Math.min((t - t0) / 1400, 1), e = 1 - Math.pow(1 - k, 3);
+        el.textContent = Math.round(end * e) + suf;
+        if (k < 1) requestAnimationFrame(step);
+      });
+    }, 600);
+  });
+
+  /* ---------- Hero embers (canvas) + desktop cursor spotlight/parallax ---------- */
+  var cv = $('#embers');
+  if (cv && !reduce) {
+    var ctx = cv.getContext('2d'), parts = [], W, H, dpr = Math.min(devicePixelRatio || 1, 2);
+    var running = true, mouse = null;
+    function size() { W = hero.offsetWidth; H = hero.offsetHeight; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); }
+    size(); addEventListener('resize', size);
+    function spawn(x, y, burst) {
+      parts.push({ x: x, y: y, vx: (Math.random() - 0.5) * (burst ? 2.4 : 0.6), vy: -(Math.random() * 1.4 + 0.5) * (burst ? 1.6 : 1), r: Math.random() * 2.4 + 0.8, life: 1, decay: Math.random() * 0.008 + 0.005 });
+    }
+    var base = fine ? 70 : 28;
+    (function frame() {
+      if (running) {
+        ctx.clearRect(0, 0, W, H);
+        if (parts.length < base && Math.random() < 0.6) spawn(W * (0.45 + Math.random() * 0.55), H + 5);
+        if (mouse && Math.random() < 0.7) spawn(mouse.x, mouse.y, true);
+        ctx.globalCompositeOperation = 'lighter';
+        for (var i = parts.length - 1; i >= 0; i--) {
+          var p = parts[i];
+          p.x += p.vx + Math.sin(p.y / 30) * 0.3; p.y += p.vy; p.life -= p.decay;
+          if (p.life <= 0 || p.y < -10) { parts.splice(i, 1); continue; }
+          var g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 4);
+          g.addColorStop(0, 'rgba(255,220,120,' + p.life + ')');
+          g.addColorStop(0.4, 'rgba(244,122,32,' + p.life * 0.6 + ')');
+          g.addColorStop(1, 'rgba(224,27,34,0)');
+          ctx.fillStyle = g; ctx.beginPath(); ctx.arc(p.x, p.y, p.r * 4, 0, 6.283); ctx.fill();
+        }
+        ctx.globalCompositeOperation = 'source-over';
+      }
+      requestAnimationFrame(frame);
+    })();
+    new IntersectionObserver(function (es) { running = es[0].isIntersecting && !document.hidden; }).observe(hero);
+    document.addEventListener('visibilitychange', function () { running = !document.hidden; });
+
+    if (fine) {
+      hero.addEventListener('mousemove', function (e) {
+        var r = hero.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+        mouse = { x: x, y: y };
+        hero.style.setProperty('--mx', x + 'px'); hero.style.setProperty('--my', y + 'px');
+        var dx = (x / r.width - 0.5), dy = (y / r.height - 0.5);
+        heroArt.style.transform = 'translate(' + dx * -30 + 'px,' + dy * -24 + 'px) rotateX(' + dy * -10 + 'deg) rotateY(' + dx * 14 + 'deg)';
+      });
+      hero.addEventListener('mouseleave', function () { mouse = null; heroArt.style.transform = ''; });
+    }
+  }
+
+  /* ---------- Desktop: 3D tilt + glare on cards, magnetic buttons ---------- */
+  if (fine && !reduce) {
+    document.addEventListener('mousemove', function (e) {
+      var card = e.target.closest && e.target.closest('.dish, .deal');
+      $$('.tilting').forEach(function (c) { if (c !== card) { c.classList.remove('tilting'); c.style.transform = ''; } });
+      if (!card) return;
+      var r = card.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      card.classList.add('tilting');
+      card.style.setProperty('--gx', x * 100 + '%'); card.style.setProperty('--gy', y * 100 + '%');
+      card.style.transform = 'perspective(900px) rotateX(' + (0.5 - y) * 10 + 'deg) rotateY(' + (x - 0.5) * 12 + 'deg) translateY(-6px)';
+    });
+    $$('.magnetic').forEach(function (b) {
+      b.addEventListener('mousemove', function (e) {
+        var r = b.getBoundingClientRect();
+        b.style.transform = 'translate(' + (e.clientX - r.left - r.width / 2) * 0.25 + 'px,' + (e.clientY - r.top - r.height / 2) * 0.35 + 'px)';
+      });
+      b.addEventListener('mouseleave', function () { b.style.transform = ''; });
+    });
+  }
+
+  /* ---------- Touch: ripple on tap ---------- */
+  document.addEventListener('pointerdown', function (e) {
+    if (e.pointerType === 'mouse' || reduce) return;
+    var el = e.target.closest && e.target.closest('.btn, .tab, .add, .heat-levels button');
+    if (!el) return;
+    var r = el.getBoundingClientRect(), d = Math.max(r.width, r.height) * 2.2, s = document.createElement('span');
+    s.className = 'ripple';
+    s.style.cssText = 'width:' + d + 'px;height:' + d + 'px;left:' + (e.clientX - r.left - d / 2) + 'px;top:' + (e.clientY - r.top - d / 2) + 'px';
+    el.appendChild(s);
+    setTimeout(function () { s.remove(); }, 650);
+  });
+
+  /* ---------- Heat scale: drag the meter, flash, Dynamite shake + burst ---------- */
+  var meter = $('.meter'), heatCard = $('.heat-card'), heatName = $('#heatName'), lastHeat = 0;
+  function burst(x, y, n) {
+    if (reduce) return;
+    for (var i = 0; i < n; i++) {
+      var sp = document.createElement('div'), a = Math.random() * 6.283, dist = 60 + Math.random() * 120;
+      sp.className = 'spark'; sp.style.left = x + 'px'; sp.style.top = y + 'px';
+      document.body.appendChild(sp);
+      sp.animate([{ transform: 'translate(-50%,-50%) scale(1)', opacity: 1 },
+                  { transform: 'translate(calc(-50% + ' + Math.cos(a) * dist + 'px), calc(-50% + ' + (Math.sin(a) * dist - 40) + 'px)) scale(0.2)', opacity: 0 }],
+                 { duration: 700 + Math.random() * 400, easing: 'cubic-bezier(.2,.8,.3,1)' }).onfinish = (function (el) { return function () { el.remove(); }; })(sp);
+    }
+  }
+  document.addEventListener('heatchange', function (e) {
+    var i = e.detail;
+    if (i === lastHeat) return;
+    lastHeat = i;
+    heatName.classList.remove('flash'); void heatName.offsetWidth; heatName.classList.add('flash');
+    buzz(10 + i * 8);
+    if (i === 4) {
+      heatCard.classList.remove('shake'); void heatCard.offsetWidth; heatCard.classList.add('shake');
+      var r = heatName.getBoundingClientRect();
+      burst(r.left + r.width / 2, r.top + r.height / 2, fine ? 36 : 22);
+      buzz([40, 30, 60, 30, 90]);
+    }
+  });
+  if (meter) {
+    var btns = $$('.heat-levels button'), dragging = false;
+    function fromPointer(e) {
+      var r = meter.getBoundingClientRect(), k = Math.max(0, Math.min(0.999, (e.clientX - r.left) / r.width));
+      var lvl = Math.floor(k * 5);
+      if (btns[lvl].getAttribute('aria-pressed') !== 'true') btns[lvl].click();
+    }
+    meter.addEventListener('pointerdown', function (e) { dragging = true; meter.setPointerCapture(e.pointerId); fromPointer(e); });
+    meter.addEventListener('pointermove', function (e) { if (dragging) fromPointer(e); });
+    meter.addEventListener('pointerup', function () { dragging = false; });
+    meter.addEventListener('pointercancel', function () { dragging = false; });
+  }
+
+  /* ---------- Menu: pop-in, mobile carousel + dots, swipe-friendly tabs ---------- */
+  var grid = $('#menuGrid'), dots = $('#menuDots'), tabs = $('#tabs'), seen = false;
+  function animateDishes() {
+    if (reduce) return;
+    $$('.dish', grid).forEach(function (d, i) { d.classList.remove('pop'); void d.offsetWidth; d.style.setProperty('--d', i * 0.07 + 's'); d.classList.add('pop'); });
+  }
+  function buildDots() {
+    var n = $$('.dish', grid).length;
+    dots.innerHTML = new Array(n + 1).join('<i></i>');
+    updateActive();
+  }
+  function updateActive() {
+    var cards = $$('.dish', grid);
+    if (!cards.length) return;
+    var mid = grid.scrollLeft + grid.clientWidth / 2, best = 0, bestD = Infinity;
+    cards.forEach(function (c, i) { var d = Math.abs(c.offsetLeft + c.offsetWidth / 2 - mid); if (d < bestD) { bestD = d; best = i; } });
+    cards.forEach(function (c, i) { c.classList.toggle('active', i === best); });
+    $$('i', dots).forEach(function (d, i) { d.classList.toggle('on', i === best); });
+  }
+  var lastActive = -1;
+  grid.addEventListener('scroll', function () {
+    requestAnimationFrame(function () {
+      updateActive();
+      var idx = $$('.dish', grid).findIndex(function (c) { return c.classList.contains('active'); });
+      if (idx !== lastActive) { if (lastActive !== -1) buzz(6); lastActive = idx; }
+    });
+  }, { passive: true });
+  document.addEventListener('menurender', function () {
+    grid.scrollLeft = 0; lastActive = -1;
+    buildDots();
+    if (seen) animateDishes();
+    var on = $('.tab[aria-selected="true"]', tabs);
+    if (on) tabs.scrollTo({ left: on.offsetLeft - tabs.clientWidth / 2 + on.offsetWidth / 2, behavior: reduce ? 'auto' : 'smooth' });
+    buzz(8);
+  });
+  buildDots();
+  if (!reduce && 'IntersectionObserver' in window) {
+    grid.classList.add('armed');
+    var mo = new IntersectionObserver(function (es) {
+      if (es[0].isIntersecting) { seen = true; grid.classList.add('seen'); animateDishes(); mo.disconnect(); }
+    }, { threshold: 0.2 });
+    mo.observe(grid);
+  } else { seen = true; }
+  addEventListener('resize', updateActive);
+
+  /* ---------- Add to order: fly-to-cart, badge, toast, haptics ---------- */
+  var cart = $('#cart'), cartCount = $('#cartCount'), obText = $('#orderBarText'), toast = document.createElement('div'), count = 0, tt;
+  toast.className = 'toast'; toast.setAttribute('role', 'status'); document.body.appendChild(toast);
+  function showToast(html) { toast.innerHTML = html; toast.classList.add('show'); clearTimeout(tt); tt = setTimeout(function () { toast.classList.remove('show'); }, 2200); }
+  grid.addEventListener('click', function (e) {
+    var btn = e.target.closest('.add');
+    if (!btn) return;
+    var name = btn.closest('.dish').querySelector('h3').textContent;
+    count++;
+    var done = function () {
+      cartCount.textContent = count;
+      cart.classList.add('has');
+      cart.setAttribute('aria-label', 'Your order, ' + count + ' item' + (count > 1 ? 's' : ''));
+      cart.classList.remove('bump'); void cart.offsetWidth; cart.classList.add('bump');
+      if (obText) obText.textContent = 'View order (' + count + ')';
+      if (orderBar) { orderBar.classList.remove('hide', 'bump'); void orderBar.offsetWidth; orderBar.classList.add('bump'); }
+    };
+    showToast('<b>' + name + '</b> added to your order');
+    buzz([15, 40, 25]);
+    if (reduce) return done();
+    var a = btn.getBoundingClientRect(), b = cart.getBoundingClientRect(), f = document.createElement('div');
+    f.className = 'flyer'; f.style.left = a.left + a.width / 2 - 11 + 'px'; f.style.top = a.top + a.height / 2 - 11 + 'px';
+    document.body.appendChild(f);
+    var dx = b.left + b.width / 2 - (a.left + a.width / 2), dy = b.top + b.height / 2 - (a.top + a.height / 2);
+    f.animate([
+      { transform: 'translate(0,0) scale(1)' },
+      { transform: 'translate(' + dx * 0.5 + 'px,' + (dy * 0.5 - 120) + 'px) scale(1.3)', offset: 0.45 },
+      { transform: 'translate(' + dx + 'px,' + dy + 'px) scale(0.3)', opacity: 0.6 }
+    ], { duration: 750, easing: 'cubic-bezier(.5,0,.3,1)' }).onfinish = function () { f.remove(); done(); };
+  });
+  cart.addEventListener('click', function () {
+    showToast(count ? '<b>' + count + ' item' + (count > 1 ? 's' : '') + '</b> ready for checkout' : 'Your order is empty. <b>Pick something hot!</b>');
+    buzz(10);
+  });
 })();
 </script>
 </body>
