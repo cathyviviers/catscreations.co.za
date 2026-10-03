@@ -58,6 +58,8 @@ To add a client:
 1. Copy an existing client folder to `clients/<name>/` (lowercase letters, numbers and hyphens only) and replace the content, canonical URL, `robots.txt` and `sitemap.xml`.
 2. In Vercel, add `<name>.catscreations.co.za` to this project under Settings, Domains. If the domain's DNS is on Vercel, a single `*.catscreations.co.za` wildcard covers every client; otherwise add a CNAME for `<name>` pointing at `cname.vercel-dns.com`.
 
+`clients/nikonschool/` is a clickable pitch rather than a live client site: a redesign concept for Nikon School South Africa with a demo booking flow and admin dashboard (no real payments). Its workshop and creator pages are generated from `js/data.js` with `node clients/nikonschool/build.js`, and it is set to `noindex`.
+
 The site-wide Content Security Policy applies to client pages too, so embeds like Google Maps iframes or booking widgets need adding to `vercel.json` first.
 
 ## Notes
