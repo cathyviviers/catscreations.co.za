@@ -39,6 +39,13 @@
   "headers": [
     {
       "source": "/(.*)",
+      "has": [{ "type": "host", "value": "mochachos.catscreations.co.za" }],
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+      ]
+    },
+    {
+      "source": "/(.*)",
       "headers": [
         {
           "key": "Content-Security-Policy",
@@ -192,6 +199,12 @@
     {
       "source": "/(.*)",
       "has": [{ "type": "host", "value": "fleetcam.catscreations.co.za" }],
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+      ]
+    },
+    {
+      "source": "/concepts/(.*)",
       "headers": [
         { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
       ]
