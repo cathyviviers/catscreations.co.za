@@ -1,8 +1,32 @@
 {
   "outputDirectory": ".",
-  "rewrites": [
+  "redirects": [
     {
       "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "kaizerchiefs.catscreations.co.za"
+        }
+      ],
+      "destination": "/amakhosi",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "catscreationscom-git-claude-clever-gooda-7b0df8-cat-s-creations.vercel.app"
+        }
+      ],
+      "destination": "/amakhosi",
+      "permanent": false
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/amakhosi",
       "has": [
         {
           "type": "host",
@@ -22,7 +46,7 @@
       "destination": "/concepts/kaizer-chiefs/img/:path*"
     },
     {
-      "source": "/",
+      "source": "/amakhosi",
       "has": [
         {
           "type": "host",
