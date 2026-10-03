@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en-ZA" data-root="../">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Workshops | Nikon School South Africa</title>
+  <meta name="description" content="Free and paid photography and video workshops from Nikon School South Africa." />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0b0b0c" />
+  <link rel="icon" type="image/png" href="../images/favicon.png" />
+  <link rel="apple-touch-icon" href="../images/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..900&family=Inter:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="../css/site.css" />
+</head>
+<body data-page="workshops">
+  <div id="site-header"></div>
+  <main id="main">
+    <section class="page-hero cream">
+      <div class="wrap">
+        <div class="crumbs"><a href="../">Home</a> / Workshops</div>
+        <h1>Workshops</h1>
+        <p class="lede">Start free with the fundamentals, then specialise with Nikon's ambassadors and creators. Small groups, real feedback, your own camera.</p>
+      </div>
+    </section>
+    <section style="padding-top:40px">
+      <div class="wrap">
+        <div class="filters">
+          <div class="chips" id="f-type" role="group" aria-label="Price">
+            <button class="chip" data-f="all" aria-pressed="true">All workshops</button>
+            <button class="chip" data-f="free" aria-pressed="false">Free</button>
+            <button class="chip" data-f="paid" aria-pressed="false">Paid</button>
+          </div>
+          <div class="group">
+            <label class="sr-only" for="f-city">City</label><select class="select" id="f-city"></select>
+            <label class="sr-only" for="f-level">Level</label><select class="select" id="f-level"></select>
+            <label class="sr-only" for="f-sort">Sort</label>
+            <select class="select" id="f-sort"><option value="date">Soonest first</option><option value="price">Price, low to high</option></select>
+          </div>
+        </div>
+        <p id="count" style="color:var(--muted);font-weight:600;margin-bottom:18px"></p>
+        <div class="grid" id="ws-grid"></div>
+      </div>
+    </section></main>
+  <div id="site-footer"></div>
+  <script src="../js/data.js"></script>
+  <script src="../js/art.js"></script>
+  <script src="../js/app.js"></script>
+</body>
+</html>
