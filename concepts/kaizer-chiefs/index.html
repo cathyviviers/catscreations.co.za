@@ -118,6 +118,7 @@
     }
     .concept-bar a { text-decoration: underline; text-underline-offset: 2px; }
     .present .concept-bar { display: none; }
+    .cb-short { display: none; }
 
     /* Scroll progress */
     .progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 120; pointer-events: none; }
@@ -536,6 +537,12 @@
     .footer-big:hover { background-size: 100% 100%; }
     .footer-base { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; color: var(--mute); font-size: 13px; }
 
+    /* Touch extras */
+    .tap { position: fixed; z-index: 280; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%; border: 2px solid var(--gold); pointer-events: none; animation: tap .6s var(--ease) forwards; }
+    @keyframes tap { from { transform: scale(1); opacity: .9; } to { transform: scale(5); opacity: 0; } }
+    .squad-hint { display: none; font-size: 13px; color: var(--mute); margin: -14px 0 18px; }
+    @media (hover: none) { .footer-big.in { background-size: 100% 100%; } }
+
     /* Reveal on scroll */
     .reveal { opacity: 0; transform: translateY(36px); transition: opacity .9s var(--ease), transform .9s var(--ease); transition-delay: var(--d, 0s); }
     .reveal.in { opacity: 1; transform: none; }
@@ -573,7 +580,13 @@
         transform: translateY(-8px); opacity: 0; visibility: hidden; transition: .25s;
       }
       .menu-open .main-nav { transform: none; opacity: 1; visibility: visible; }
-      .main-nav a { font-size: 22px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+      .main-nav { height: calc(100svh - 76px); justify-content: flex-start; padding-top: 16px; }
+      .main-nav a { font-family: var(--display); font-weight: 400; font-size: 34px; letter-spacing: .02em; padding: 14px 0; border-bottom: 1px solid var(--line); opacity: 0; transform: translateX(-16px); transition: opacity .35s, transform .45s var(--ease), color .2s; }
+      .menu-open .main-nav a { opacity: 1; transform: none; }
+      .menu-open .main-nav a:nth-child(2) { transition-delay: .04s; } .menu-open .main-nav a:nth-child(3) { transition-delay: .08s; }
+      .menu-open .main-nav a:nth-child(4) { transition-delay: .12s; } .menu-open .main-nav a:nth-child(5) { transition-delay: .16s; }
+      .menu-open .main-nav a:nth-child(6) { transition-delay: .2s; } .menu-open .main-nav a:nth-child(7) { transition-delay: .24s; }
+      .menu-open { overflow: hidden; }
       .main-nav a::after { display: none; }
       .header-cta { display: none; }
       .hero { min-height: 600px; padding-top: 220px; }
@@ -587,6 +600,25 @@
     }
     @media (max-width: 600px) {
       body { font-size: 16px; }
+      .cb-long { display: none; }
+      .cb-short { display: inline; }
+      .concept-bar { font-size: 13px; padding: 6px 12px; }
+      .hero { min-height: calc(100svh - 106px); padding: 0 0 40px; flex-direction: column; justify-content: flex-end; }
+      .hero-photo { inset: 0 0 auto 0; height: 62%; }
+      .hero-photo img { object-position: 38% 18%; animation-duration: 12s; }
+      .hero-shade { background: linear-gradient(180deg, rgba(11,11,11,.2) 0%, rgba(11,11,11,0) 18%, rgba(11,11,11,.35) 40%, var(--black) 62%); }
+      .hero h1 { font-size: clamp(54px, 17vw, 76px); margin: 12px 0 10px; }
+      .hero-lede { font-size: 17px; margin-bottom: 22px; }
+      .hero-actions .btn { flex: 1 1 auto; }
+      .tile-num { font-size: 52px; }
+      .rings { gap: 4px; }
+      .ring p { font-size: 12px; }
+      .player.open img { transform: scale(1.08); filter: brightness(.5); }
+      .player.open .num { color: var(--gold); }
+      .player.open .pstats { display: grid; max-height: 120px; opacity: 1; margin-top: 10px; }
+      .player.open .pstat .t i { transform: scaleX(var(--w)); }
+      .pstat { grid-template-columns: 48px 1fr 20px; font-size: 10px; gap: 6px; }
+      .pstat b { font-size: 12px; }
       .match-grid { grid-template-columns: 1fr; }
       .match-cell { border-right: 0; border-bottom: 1px solid var(--line); }
       .match-cell:last-child { border-bottom: 0; }
@@ -609,6 +641,7 @@
       .player .meta { padding: 12px; }
       .player .meta b { font-size: 17px; }
       .pstats { display: none; }
+      .squad-hint { display: block; }
       .kits { grid-template-columns: 1fr 1fr; }
       .kits .kit:last-child { display: none; }
       .facts { grid-template-columns: 1fr 1fr; }
@@ -628,7 +661,7 @@
   <canvas id="burst" aria-hidden="true"></canvas>
 
   <div class="concept-bar" role="note">
-    Design concept by <a href="/">Cat's Creations</a>. Not the official Kaizer Chiefs website. Fixtures, stats, player names and copy are placeholders.
+    <span class="cb-long">Design concept by <a href="/">Cat's Creations</a>. Not the official Kaizer Chiefs website. Fixtures, stats, player names and copy are placeholders.</span><span class="cb-short">Concept by <a href="/">Cat's Creations</a> &middot; not the official club site</span>
   </div>
 
   <header class="site-header" id="top">
@@ -771,7 +804,7 @@
           </div>
           <div class="panel reveal" style="--d:.1s" id="goals-panel">
             <h3>Goals per match</h3>
-            <p class="sub">Last 10 matches. Hover a column for the result.</p>
+            <p class="sub">Last 10 matches. <span class="hover-word">Hover</span> a column for the result.</p>
             <div class="cols" id="cols"></div>
             <div class="cols-foot"></div>
             <details class="tablev"><summary>View as table</summary><table id="cols-table"></table></details>
@@ -897,6 +930,7 @@
           <button aria-pressed="false" data-pos="mf">Midfielders</button>
           <button aria-pressed="false" data-pos="fw">Forwards</button>
         </div>
+        <p class="squad-hint">Tap a player for their season stats.</p>
         <div class="squad-grid" id="squad-grid"></div>
       </div>
     </section>
@@ -1004,7 +1038,7 @@
         <div><h4>Club</h4><ul><li><a href="#">History</a></li><li><a href="#">Amakhosi4Amakhosi</a></li><li><a href="#">Careers</a></li><li><a href="#">Contact</a></li></ul></div>
         <div><h4>Store</h4><ul><li><a href="#">Kits</a></li><li><a href="#">Training wear</a></li><li><a href="#">Gifts</a></li><li><a href="#">Store locator</a></li></ul></div>
       </div>
-      <p class="footer-big" aria-hidden="true">Amakhosi</p>
+      <p class="footer-big" id="footer-big" aria-hidden="true">Amakhosi</p>
       <div class="footer-base">
         <span>Homepage concept designed by <a href="/" style="color:var(--gold)">Cat's Creations</a>, Pretoria.</span>
         <span>Kaizer Chiefs name, marks and photography belong to Kaizer Chiefs Football Club.</span>
@@ -1186,17 +1220,42 @@
 
     /* ---------- Tooltip ---------- */
     var tip = $('#tip');
-    function showTip(html, x, y) { tip.innerHTML = html; tip.style.left = x + 'px'; tip.style.top = y + 'px'; tip.classList.add('show'); }
+    function showTip(html, x, y) {
+      tip.innerHTML = html; var hw = tip.offsetWidth / 2 + 8;
+      tip.style.left = clamp(x, hw, innerWidth - hw) + 'px'; tip.style.top = y + 'px'; tip.classList.add('show');
+    }
     function hideTip() { tip.classList.remove('show'); }
     function bindTip(el) {
-      el.addEventListener('pointerenter', function (e) { showTip(el.dataset.tip, e.clientX, e.clientY); });
-      el.addEventListener('pointermove', function (e) { tip.style.left = e.clientX + 'px'; tip.style.top = e.clientY + 'px'; });
-      el.addEventListener('pointerleave', hideTip);
+      el.addEventListener('pointerenter', function (e) { if (e.pointerType !== 'touch') showTip(el.dataset.tip, e.clientX, e.clientY); });
+      el.addEventListener('pointermove', function (e) { if (e.pointerType !== 'touch') { tip.style.left = e.clientX + 'px'; tip.style.top = e.clientY + 'px'; } });
+      el.addEventListener('pointerleave', function (e) { if (e.pointerType !== 'touch') hideTip(); });
       el.addEventListener('focus', function () { var r = el.getBoundingClientRect(); showTip(el.dataset.tip, r.left + r.width / 2, r.top); });
       el.addEventListener('blur', hideTip);
     }
     $$('[data-tip]').forEach(bindTip);
     addEventListener('scroll', hideTip, { passive: true });
+    // Touch: tap anything with a tooltip to show it for a moment
+    var touchy = !fine, tipTimer;
+    addEventListener('pointerdown', function (e) { touchy = e.pointerType === 'touch'; }, { passive: true });
+    document.addEventListener('click', function (e) {
+      if (!touchy) return;
+      var el = e.target.closest('[data-tip]'); if (!el) return;
+      var r = el.getBoundingClientRect();
+      showTip(el.dataset.tip, r.left + r.width / 2, r.top);
+      clearTimeout(tipTimer); tipTimer = setTimeout(hideTip, 2200);
+    });
+    if (!fine) $$('.hover-word').forEach(function (w) { w.textContent = 'Tap'; });
+
+    // Touch: gold ripple where you tap
+    if (!reduce) addEventListener('pointerdown', function (e) {
+      if (e.pointerType !== 'touch') return;
+      var d = document.createElement('span'); d.className = 'tap';
+      d.style.left = e.clientX + 'px'; d.style.top = e.clientY + 'px';
+      body.appendChild(d); setTimeout(function () { d.remove(); }, 650);
+    }, { passive: true });
+
+    // Touch: footer word fills with gold when it scrolls into view
+    if (io) io.observe($('#footer-big'));
 
     /* ---------- Countdown with flipping digits ---------- */
     var kickoff = (function () { var d = new Date(), n = (6 - d.getDay() + 7) % 7 || 7; d.setDate(d.getDate() + n); d.setHours(15, 30, 0, 0); return d; })();
@@ -1308,9 +1367,9 @@
       $$('#shots circle').forEach(function (c, i) { c.style.opacity = '0'; setTimeout(function () { c.style.opacity = ''; }, 200 + i * 40); });
     }
     $$('.ring, .crow').forEach(function (el) {
-      el.addEventListener('pointerenter', function (e) { showTip(el.dataset.tip, e.clientX, e.clientY); });
-      el.addEventListener('pointermove', function (e) { tip.style.left = e.clientX + 'px'; tip.style.top = e.clientY + 'px'; });
-      el.addEventListener('pointerleave', hideTip);
+      el.addEventListener('pointerenter', function (e) { if (e.pointerType !== 'touch') showTip(el.dataset.tip, e.clientX, e.clientY); });
+      el.addEventListener('pointermove', function (e) { if (e.pointerType !== 'touch') { tip.style.left = e.clientX + 'px'; tip.style.top = e.clientY + 'px'; } });
+      el.addEventListener('pointerleave', function (e) { if (e.pointerType !== 'touch') hideTip(); });
     });
 
     function segmented(group, onPick) {
@@ -1352,7 +1411,16 @@
         '<div class="meta"><b>Player name</b><span>' + p[2] + '</span>' +
         '<div class="pstats">' + bar('Apps', p[3], 26) + bar('Goals', p[4], 12) + bar('Assists', p[5], 8) + '</div></div></a>';
     }).join('');
-    $$('.player', grid).forEach(function (el) { io ? io.observe(el) : el.classList.add('in'); });
+    $$('.player', grid).forEach(function (el) {
+      io ? io.observe(el) : el.classList.add('in');
+      el.addEventListener('click', function (e) {
+        if (fine) return;
+        e.preventDefault();
+        var was = el.classList.contains('open');
+        $$('.player.open', grid).forEach(function (o) { o.classList.remove('open'); });
+        if (!was) el.classList.add('open');
+      });
+    });
     segmented($('#squad-filter'), function (b) {
       var pos = b.dataset.pos;
       $$('.player', grid).forEach(function (el) {
