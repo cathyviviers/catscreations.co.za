@@ -49,12 +49,12 @@
       }
       return svg(
         '<rect width="400" height="300" fill="url(#' + id + 'b)"/>' +
-        px(-6, beams + '<circle class="glow" cx="200" cy="150" r="120" fill="url(#' + id + 'g)" opacity=".35"/>') +
+        px(-6, '<g class="aim-beams">' + beams + '</g><circle class="glow" cx="200" cy="150" r="120" fill="url(#' + id + 'g)" opacity=".35"/>') +
         px(6,
           '<circle cx="200" cy="150" r="92" fill="#0d0d0f" stroke="#2c2d33" stroke-width="10"/>' +
           '<g clip-path="url(#' + id + 'c)"><circle cx="200" cy="150" r="82" fill="#FFE100"/><circle cx="200" cy="150" r="40" fill="url(#' + id + 'y)"/>' +
           '<g class="lc-iris"><g class="lc-breathe">' + aperture(200, 150, 104, 7, 0.33, "#24252a", "#3a3b42") + "</g></g></g>" +
-          '<circle class="glint" cx="191" cy="141" r="5" fill="#fff"/>' +
+          '<circle class="glint lc-glint" cx="191" cy="141" r="5" fill="#fff"/>' +
           '<circle class="spin" cx="200" cy="150" r="110" fill="none" stroke="#FFE100" stroke-width="1.2" opacity=".55" stroke-dasharray="2 6"/>' +
           '<circle class="spin rev" cx="200" cy="150" r="124" fill="none" stroke="#FFE100" stroke-width="1" opacity=".25" stroke-dasharray="18 10"/>'
         ),
@@ -77,7 +77,7 @@
       }
       return svg(
         '<rect width="400" height="300" fill="url(#' + id + 'b)"/>' +
-        px(5, '<g class="zv-holes">' + holes + '</g><g class="zv-film">' + frames + "</g>") +
+        px(5, '<g class="aim-film"><g class="zv-holes">' + holes + '</g><g class="zv-film">' + frames + "</g></g>") +
         px(-3, '<g opacity=".85">' + bars + "</g>") +
         '<circle class="blink" cx="356" cy="36" r="9" fill="#ff3b30"/><text x="300" y="41" fill="#f2f2f2" font-family="Archivo, sans-serif" font-size="14" font-weight="700" letter-spacing="2">REC</text>' +
         '<text class="zv-tc" x="22" y="41" fill="#a3a5ad" font-family="ui-monospace, monospace" font-size="12">00:00:12:08</text>',
@@ -89,7 +89,7 @@
       return svg(
         '<rect width="400" height="300" fill="url(#' + id + 'b)"/>' +
         px(-5, '<circle class="glow" cx="230" cy="170" r="140" fill="url(#' + id + 'g)" opacity=".18"/>') +
-        px(5,
+        px(5, '<g class="aim-cam">' +
           '<g fill="none" stroke="#FFE100" stroke-width="3" stroke-linejoin="round">' +
           '<path class="draw" pathLength="1" d="M80 110 h60 l18 -28 h70 l18 28 h80 a14 14 0 0 1 14 14 v110 a14 14 0 0 1 -14 14 h-246 a14 14 0 0 1 -14 -14 v-110 a14 14 0 0 1 14 -14z"/>' +
           '<rect class="draw" pathLength="1" x="96" y="124" width="34" height="18" rx="4" opacity=".7"/>' +
@@ -100,7 +100,7 @@
           '<g class="zs-af"><path d="M196 172v-6h6M218 166h6v6M224 188v6h-6M202 194h-6v-6" stroke-width="2.4"/></g></g>' +
           "</g>" +
           '<text x="168" y="104" fill="#FFE100" font-family="Archivo, sans-serif" font-size="13" font-weight="800" letter-spacing="3">Z</text>' +
-          '<circle class="blink slow" cx="318" cy="134" r="4" fill="#3ddc84"/>'
+          '<circle class="blink slow" cx="318" cy="134" r="4" fill="#3ddc84"/></g>'
         ),
         d
       );
@@ -144,7 +144,7 @@
         '<rect width="400" height="300" fill="url(#' + id + 's)"/>' +
         px(-4, '<g class="cs-sun-h"><g class="cs-sun"><circle class="glow" cx="250" cy="196" r="110" fill="url(#' + id + 'g)" opacity=".7"/><circle cx="250" cy="196" r="38" fill="#fff1c4"/></g></g>' +
           '<g style="color:#3a1a3e" opacity=".7">' + birds(70) + "</g>") +
-        px(6, '<g fill="#1a0f26">' + city + '</g><g fill="#FFE100" opacity=".9">' + lights + "</g>") +
+        px(6, '<g class="aim-lean"><g fill="#1a0f26">' + city + '</g><g fill="#FFE100" opacity=".9">' + lights + "</g></g>") +
         '<path class="flow" d="M0 293 Q200 273 400 293" stroke="#ffd36b" stroke-width="2" fill="none" opacity=".7" stroke-dasharray="10 8"/>',
         d
       );
@@ -163,7 +163,7 @@
         '<rect width="400" height="300" fill="url(#' + id + 'b)"/>' +
         px(-8, streaks) +
         px(6, '<g class="mc-rings">' + rings + "</g>" + ripples + '<circle cx="150" cy="150" r="20" fill="#0b0b0c"/><circle class="glint" cx="143" cy="143" r="5" fill="#fff" opacity=".6"/>') +
-        px(10, '<g class="mc-play"><path class="pulse" d="M260 210 l40 -20 v40z" fill="#FFE100"/></g>'),
+        px(10, '<g class="mc-play"><g class="aim-point"><path class="pulse" d="M262 190 l40 20 l-40 20z" fill="#FFE100"/></g></g>'),
         d
       );
     },
@@ -189,7 +189,7 @@
       var d = lin(id + "s", ["#3b1d0e", "#c4541c", "#f5a54a", "#fde3a0"]);
       return svg(
         '<rect width="400" height="300" fill="url(#' + id + 's)"/>' +
-        px(-4, '<circle class="glow" cx="120" cy="190" r="80" fill="#ffe6a8" opacity=".35"/><circle cx="120" cy="190" r="56" fill="#ffe6a8" opacity=".9"/>' +
+        px(-4, '<g class="aim-sun"><circle class="glow" cx="120" cy="190" r="80" fill="#ffe6a8" opacity=".35"/><circle cx="120" cy="190" r="56" fill="#ffe6a8" opacity=".9"/></g>' +
           '<g style="color:#2a1408">' + birds(90) + "</g>") +
         px(4, '<path d="M-10 230 Q100 215 200 228 T410 222 V310 H-10Z" fill="#2a1408"/>' +
           '<g fill="#1a0c05"><g class="sway"><rect x="268" y="150" width="7" height="82"/>' +
@@ -216,7 +216,8 @@
           '<g class="shoot late"><line x1="200" y1="50" x2="236" y2="31" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></g>'
         ) +
         px(5, '<path d="M-10 250 L60 230 L110 244 L170 214 L230 240 L300 222 L410 246 V310 H-10Z" fill="#06060a"/>' +
-          '<path d="M300 222 v-18 h4 v18" fill="#06060a"/><circle class="blink slow" cx="302" cy="200" r="3" fill="#FFE100"/>'),
+          '<g class="aim-scope"><rect x="300" y="207" width="34" height="9" rx="3" fill="#1b1d2a" stroke="#FFE100" stroke-width="1"/><rect x="330" y="205" width="6" height="13" rx="2" fill="#2a2d40"/><circle class="blink slow" cx="336" cy="211.5" r="2.2" fill="#FFE100"/></g>' +
+          '<path d="M304 212 L292 238 M304 212 L316 238 M304 212 L304 238" stroke="#06060a" stroke-width="3"/>'),
         d
       );
     },
@@ -229,9 +230,9 @@
       return svg(
         '<rect width="400" height="300" fill="url(#' + id + 'b)"/>' +
         px(-6, '<g class="pt-glow-h"><circle class="glow" cx="290" cy="90" r="150" fill="url(#' + id + 'g)" opacity=".45"/></g>' + bokeh) +
-        px(5, '<path d="M150 310 Q150 210 200 196 Q186 180 184 150 Q182 96 226 92 Q272 92 270 148 Q268 182 250 196 Q306 212 306 310Z" fill="#1a0f0b"/>' +
+        px(5, '<g class="aim-head"><path d="M150 310 Q150 210 200 196 Q186 180 184 150 Q182 96 226 92 Q272 92 270 148 Q268 182 250 196 Q306 212 306 310Z" fill="#1a0f0b"/>' +
           '<path class="rim" d="M262 120 Q272 150 258 186" stroke="#ffd9a8" stroke-width="4" fill="none" stroke-linecap="round"/>' +
-          '<path class="rim late" d="M300 236 Q306 270 304 300" stroke="#ffd9a8" stroke-width="3" fill="none"/>'),
+          '<path class="rim late" d="M300 236 Q306 270 304 300" stroke="#ffd9a8" stroke-width="3" fill="none"/></g>'),
         d
       );
     },
@@ -246,7 +247,7 @@
         px(-3, '<rect width="400" height="96" fill="url(#' + id + 'b)"/>') +
         px(3, lanes) +
         px(9, '<g class="sp-run"><g class="bob">' + blur +
-          '<g fill="#111"><circle cx="248" cy="110" r="13"/><path d="M236 124 l-22 40 l-30 16 l6 8 l34 -14 l14 -22 l10 30 l-14 34 l10 4 l18 -38 l-8 -40 l20 10 l22 -8 l-4 -9 l-18 6z"/></g></g></g>'),
+          '<g class="aim-runner" fill="#111"><circle cx="248" cy="110" r="13"/><path d="M236 124 l-22 40 l-30 16 l6 8 l34 -14 l14 -22 l10 30 l-14 34 l10 4 l18 -38 l-8 -40 l20 10 l22 -8 l-4 -9 l-18 6z"/></g></g></g>'),
         d
       );
     }

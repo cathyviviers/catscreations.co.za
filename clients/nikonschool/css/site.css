@@ -525,7 +525,7 @@ section { padding: 88px 0; }
 .admin { display: grid; grid-template-columns: 250px 1fr; min-height: 100vh; background: #f4f4f2; }
 .admin-side { background: var(--ink); color: #c9cad0; padding: 22px 16px; position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; gap: 4px; }
 .admin-side .brand { margin: 0 8px 26px; }
-.admin-side .brand img { background: #fff; border-radius: 10px; padding: 2px; width: 44px; height: 44px; }
+.admin-side .brand img { width: 48px; height: 48px; }
 .admin-side .brand span { color: #fff; border-color: var(--line-dark); }
 .admin-side button {
   display: flex; align-items: center; gap: 12px; width: 100%; text-align: left; background: none; border: 0; color: inherit;
@@ -770,3 +770,37 @@ tr:last-child td { border-bottom: 0; }
 .art-hot .art .sp-run { transform: translateX(26px); }
 @keyframes bob { from { transform: translateY(0); } to { transform: translateY(-5px); } }
 @keyframes speed { from { transform: scaleX(.6); } to { transform: scaleX(1.15); } }
+
+/* ---------- Cards tilt toward the pointer, artwork aims at it ---------- */
+.card, .person, .next-card { position: relative; transform-style: preserve-3d; }
+.card, .person { transition: transform .25s ease-out, box-shadow .25s ease; }
+.next-card { transition: transform .3s ease-out; }
+.card.art-hot, .person.art-hot { transform: perspective(900px) translateY(-6px) rotateX(calc(var(--my, 0) * -7deg)) rotateY(calc(var(--mx, 0) * 7deg)); }
+.next-card.art-hot { transform: perspective(1000px) rotateX(calc(var(--my, 0) * -6deg)) rotateY(calc(var(--mx, 0) * 6deg)); }
+.card::after, .person::after, .next-card::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 4; border-radius: inherit; opacity: 0; transition: opacity .3s ease;
+  background: radial-gradient(circle at calc(50% + var(--mx, 0) * 50%) calc(50% + var(--my, 0) * 50%), rgba(255,255,255,.22), rgba(255,255,255,0) 55%);
+}
+.card.art-hot::after, .person.art-hot::after, .next-card.art-hot::after { opacity: 1; }
+
+.art .aim-beams, .art .aim-cam, .art .aim-film, .art .aim-lean, .art .aim-sun, .art .aim-head, .art .aim-runner, .art .lc-glint { transition: transform .5s cubic-bezier(.2,.8,.2,1); }
+.art .aim-beams { transform-box: view-box; transform-origin: 200px 150px; transform: rotate(calc(var(--mx, 0) * 14deg)); }
+.art .lc-glint { transform: translate(calc(var(--mx, 0) * -14px), calc(var(--my, 0) * -12px)); }
+.art .lc-iris { transform: rotate(calc(var(--mx, 0) * 25deg)); }
+.art-hot .art .lc-iris { transform: rotate(calc(40deg + var(--mx, 0) * 40deg)) scale(1.5); }
+.art-hot .art .lc-iris.se { transform: rotate(calc(-30deg + var(--mx, 0) * 30deg)) scale(1.35); }
+.art .aim-film { transform-box: view-box; transform-origin: 200px 150px; transform: skewX(calc(var(--mx, 0) * -10deg)) skewY(calc(var(--my, 0) * 3deg)); }
+.art .aim-cam { transform-box: view-box; transform-origin: 205px 165px; transform: rotate(calc(var(--mx, 0) * 6deg)) skewY(calc(var(--mx, 0) * -5deg)) skewX(calc(var(--my, 0) * 4deg)); }
+.art .zs-lens { transform: translate(calc(var(--mx, 0) * 8px), calc(var(--my, 0) * 7px)); }
+.art-hot .art .zs-lens { transform: translate(calc(var(--mx, 0) * 8px), calc(var(--my, 0) * 7px)) scale(1.12); }
+.art-hot .art .cp-zoom-h { transform: translate(calc(var(--mx, 0) * 70px), calc(var(--my, 0) * 45px)) scale(.7); }
+.art .aim-lean { transform-box: view-box; transform-origin: 200px 300px; transform: skewX(calc(var(--mx, 0) * -6deg)); }
+.art-hot .art .cs-sun-h { transform: translate(calc(var(--mx, 0) * 40px), 40px); }
+.art .aim-point { transform-box: fill-box; transform-origin: 35% 50%; transform: rotate(0deg); transition: transform .35s cubic-bezier(.2,.8,.2,1.2); }
+.art-hot .art .aim-point { transform: rotate(atan2(var(--my, 0), var(--mx, 0))); }
+.art-hot .art .mc-rings { transform: translate(calc(var(--mx, 0) * 10px), calc(var(--my, 0) * 10px)) rotate(90deg) scale(1.08); }
+.art .aim-sun { transform: translate(calc(var(--mx, 0) * 30px), calc(var(--my, 0) * 18px)); }
+.art .aim-scope { transform-box: view-box; transform-origin: 304px 211.5px; transform: rotate(-35deg); transition: transform .6s cubic-bezier(.2,.8,.2,1.1); }
+.art-hot .art .aim-scope { transform: rotate(atan2(var(--my, 0), var(--mx, 0))); }
+.art .aim-head { transform-box: view-box; transform-origin: 228px 300px; transform: translateX(calc(var(--mx, 0) * 8px)) skewX(calc(var(--mx, 0) * -5deg)); }
+.art .aim-runner { transform-box: view-box; transform-origin: 240px 230px; transform: rotate(calc(var(--mx, 0) * 12deg)); }
