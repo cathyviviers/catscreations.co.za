@@ -60,6 +60,8 @@ To add a client:
 
 `clients/nikonschool/` is a clickable pitch rather than a live client site: a redesign concept for Nikon School South Africa with a demo booking flow and admin dashboard (no real payments). Its workshop and creator pages are generated from `js/data.js` with `node clients/nikonschool/build.js`, and it is set to `noindex`.
 
+`clients/fleetcam/` is another pitch: a website redesign concept for FleetCam, also `noindex`.
+
 The site-wide Content Security Policy applies to client pages too, so embeds like Google Maps iframes or booking widgets need adding to `vercel.json` first.
 
 ## Notes
