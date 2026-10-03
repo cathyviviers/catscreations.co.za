@@ -236,6 +236,99 @@
         d
       );
     },
+    flash: function (id) {
+      var d = lin(id + "b", ["#120e19", "#2a1a2e"]) + rad(id + "f", "#ffffff", "#fff6d8");
+      var bulbs = "", r = rng(21);
+      for (var i = 0; i < 16; i++) {
+        var x = 10 + i * 26, y = 34 + Math.sin((i / 15) * Math.PI) * 26;
+        bulbs += '<circle class="tw" style="animation-duration:' + (1.8 + r() * 2.5).toFixed(1) + "s;animation-delay:-" + (r() * 3).toFixed(1) + 's" cx="' + x + '" cy="' + f(y + 4) + '" r="3.2" fill="#FFE100"/>';
+      }
+      return svg(
+        '<rect width="400" height="300" fill="url(#' + id + 'b)"/>' +
+        px(-5, '<path d="M0 30 Q200 92 410 30" stroke="#4a3d54" stroke-width="1.5" fill="none"/>' + bulbs) +
+        px(6,
+          '<ellipse cx="244" cy="282" rx="80" ry="8" fill="#000" opacity=".45"/>' +
+          '<g fill="#0b0910"><circle cx="222" cy="126" r="13"/><path d="M200 290 L204 176 Q206 146 222 144 Q240 146 242 176 L246 290Z"/>' +
+          '<circle cx="262" cy="122" r="12"/><path d="M262 136 Q276 140 276 168 L304 292 L222 292 L250 168 Q250 140 262 136Z"/></g>' +
+          '<path class="rim-pop" d="M210 122 Q209 132 214 138 M204 178 Q202 230 202 288 M252 168 L226 288" stroke="#fff6d8" stroke-width="2.4" fill="none" stroke-linecap="round"/>'
+        ) +
+        px(3,
+          '<g stroke="#3a3342" stroke-width="3" fill="none"><path d="M84 150 V276"/><path d="M84 276 L66 296 M84 276 L102 296 M84 276 V296"/></g>' +
+          '<g class="aim-flash"><circle class="flash-pop" cx="150" cy="146" r="90" fill="url(#' + id + 'f)"/>' +
+          '<rect x="72" y="140" width="14" height="12" rx="2" fill="#1d1a22" stroke="#555"/>' +
+          '<path d="M90 138 L122 116 V176 L90 154Z" fill="#26222c" stroke="#4d4656"/><path class="softbox" d="M122 116 V176" stroke="#fff6d8" stroke-width="3"/></g>'
+        ),
+        d
+      );
+    },
+    surf: function (id) {
+      var d = lin(id + "s", ["#1d6fa3", "#59b3d9", "#cdeef7"]) + lin(id + "w", ["#2b8fbf", "#0f5a80", "#073a55"]);
+      var r = rng(31), spray = "";
+      for (var i = 0; i < 14; i++) spray += '<circle class="spray" style="animation-duration:' + (1.6 + r() * 1.6).toFixed(1) + "s;animation-delay:-" + (r() * 3).toFixed(1) + 's" cx="' + f(262 + r() * 60) + '" cy="' + f(88 + r() * 30) + '" r="' + f(1.5 + r() * 3) + '" fill="#fff"/>';
+      return svg(
+        '<rect width="400" height="300" fill="url(#' + id + 's)"/>' +
+        px(-4, '<circle class="glow" cx="80" cy="70" r="46" fill="#fff8d6" opacity=".5"/><circle cx="80" cy="70" r="26" fill="#fff8d6"/>' +
+          '<g style="color:#0f5a80">' + birds(60) + "</g>") +
+        px(5,
+          '<path d="M-10 300 L-10 210 Q70 160 150 170 Q236 178 262 118 Q282 74 334 84 Q304 98 304 134 Q304 192 410 214 L410 300Z" fill="url(#' + id + 'w)"/>' +
+          '<path class="flow" d="M150 170 Q236 178 262 118 Q282 74 334 84" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" stroke-dasharray="14 10" opacity=".9"/>' +
+          spray +
+          '<g class="ride"><g class="aim-surfer">' +
+          '<ellipse cx="206" cy="182" rx="34" ry="5" fill="#FFE100" transform="rotate(-14 206 182)"/>' +
+          '<g fill="#0b1b26"><circle cx="208" cy="134" r="7"/><path d="M204 142 L196 160 L184 166 L188 170 L200 164 L204 156 L208 170 L198 180 L204 182 L216 170 L212 152 L224 146 L222 141 L210 145Z"/></g>' +
+          "</g></g>"
+        ) +
+        px(8, '<path class="flow fast" d="M-10 262 Q100 250 200 262 T410 258" stroke="#bfe6f2" stroke-width="2" fill="none" opacity=".5" stroke-dasharray="30 20"/>'),
+        d
+      );
+    },
+    auto: function (id) {
+      var d = lin(id + "b", ["#07080b", "#151a24"]) + lin(id + "fl", ["#1b2130", "#07080b"]) + rad(id + "h", "#fff6d8", "#fff6d8");
+      var car = "M56 222 Q64 198 106 190 L158 168 Q200 156 252 160 L302 176 Q332 182 346 196 L354 214 Q355 224 344 226 L68 226 Q56 226 56 222Z";
+      var trails = "";
+      for (var i = 0; i < 5; i++) trails += '<path class="flow" style="animation-duration:' + (1.4 + i * 0.5) + 's" d="M-20 ' + (90 + i * 16) + " Q200 " + (40 + i * 22) + " 420 " + (110 + i * 12) + '" stroke="' + (i % 2 ? "#ff3b30" : "#FFE100") + '" stroke-width="' + (1 + (i % 3)) + '" fill="none" opacity="' + (0.25 + i * 0.1) + '" stroke-dasharray="60 30"/>';
+      function wheel(cx) {
+        return '<circle cx="' + cx + '" cy="226" r="22" fill="#0a0b0f" stroke="#2a2f3c" stroke-width="3"/><g class="wheel" style="transform-origin:' + cx + 'px 226px"><circle cx="' + cx + '" cy="226" r="13" fill="none" stroke="#8a92a6" stroke-width="2" stroke-dasharray="6 4"/></g><circle cx="' + cx + '" cy="226" r="4" fill="#FFE100"/>';
+      }
+      return svg(
+        '<rect width="400" height="300" fill="url(#' + id + 'b)"/><rect y="226" width="400" height="74" fill="url(#' + id + 'fl)"/>' +
+        px(-6, trails) +
+        px(5,
+          '<path d="' + car + '" fill="#0d0f14" transform="translate(0 452) scale(1 -1)" opacity=".25"/>' +
+          '<g class="aim-beam"><path d="M350 204 L420 170 L420 250Z" fill="url(#' + id + 'h)" opacity=".55"/></g>' +
+          '<path d="' + car + '" fill="#0d0f14" stroke="#2a2f3c" stroke-width="1.5"/>' +
+          '<path class="sweep" pathLength="1" d="M70 214 Q80 198 108 192 L160 170 Q200 160 250 163 L300 178 Q328 184 342 198" stroke="#fff6d8" stroke-width="2.5" fill="none" stroke-linecap="round"/>' +
+          '<path d="M168 172 L196 166 L236 166 L272 178 L170 182Z" fill="#1c2230" stroke="#3a4152"/>' +
+          wheel(116) + wheel(300) +
+          '<rect x="340" y="200" width="12" height="6" rx="2" fill="#fff6d8"/><rect class="glow" x="56" y="204" width="10" height="6" rx="2" fill="#ff3b30"/>'
+        ),
+        d
+      );
+    },
+    ocean: function (id) {
+      var d = lin(id + "w", ["#2fb3c9", "#0b6f8f", "#06304a", "#031a2b"]);
+      var r = rng(77), rays = "", bubbles = "", fish = "";
+      for (var i = 0; i < 6; i++) rays += '<path class="ray" style="animation-delay:-' + (i * 0.9).toFixed(1) + 's" d="M' + (60 + i * 60) + " -10 L" + (30 + i * 60) + " 300 L" + (70 + i * 60) + ' 300Z" fill="#cff6ff" opacity=".08"/>';
+      for (var j = 0; j < 14; j++) bubbles += '<circle class="bubble" style="animation-duration:' + (3 + r() * 4).toFixed(1) + "s;animation-delay:-" + (r() * 6).toFixed(1) + 's" cx="' + f(150 + r() * 120) + '" cy="' + f(200 + r() * 60) + '" r="' + f(1.5 + r() * 4) + '" fill="none" stroke="#dff8ff" stroke-width="1.2"/>';
+      for (var k = 0; k < 18; k++) fish += '<path d="M' + f(r() * 120) + " " + f(r() * 50) + ' l10 -4 l0 8z" fill="#9fe3f2"/>';
+      return svg(
+        '<rect width="400" height="300" fill="url(#' + id + 'w)"/>' +
+        px(-5, '<g class="rays">' + rays + '</g><path d="M0 14 Q50 6 100 14 T200 14 T300 14 T400 14" stroke="#dff8ff" stroke-width="2" fill="none" opacity=".5" class="flow"/>') +
+        px(-2, '<g class="school"><g opacity=".7" transform="translate(40 70)">' + fish + "</g></g>") +
+        px(6,
+          bubbles +
+          '<g class="swim"><g class="aim-diver">' +
+          '<g fill="#04121c"><circle cx="204" cy="150" r="11"/>' +
+          '<path d="M214 156 Q240 166 268 170 L300 176 L302 182 L268 182 Q238 180 210 170 Q196 166 196 158Z"/>' +
+          '<path d="M300 172 L344 156 L350 164 L346 180 L350 196 L344 204 L300 186Z" fill="#FFE100"/>' +
+          '<path d="M196 152 L160 140 L158 146 L194 160Z"/></g>' +
+          '<path d="M204 138 Q220 132 236 160" stroke="#6fd3e8" stroke-width="2" fill="none" opacity=".7"/>' +
+          "</g></g>"
+        ) +
+        px(9, '<path d="M-10 300 L-10 268 Q40 250 80 264 Q120 240 160 262 L200 300Z M260 300 Q300 250 340 262 Q380 244 410 258 L410 300Z" fill="#021019"/>'),
+        d
+      );
+    },
     sport: function (id) {
       var d = lin(id + "b", ["#0b2a1e", "#145a3c"]);
       var lanes = "";

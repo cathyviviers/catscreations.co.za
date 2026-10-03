@@ -827,3 +827,41 @@ a.fcard:hover .ico { transform: rotate(-8deg) scale(1.1); }
 .mockup-pop h2 { font-size: 1.6rem; }
 .mockup-pop p { color: var(--muted); max-width: 400px; margin: 0 auto 22px; }
 .mockup-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+
+/* Off-camera flash (Brett Florens): the flash fires, rims the couple, aims at the pointer */
+.art .flash-pop { opacity: 0; animation: flashPop 3.2s ease-out infinite; }
+.art .rim-pop { opacity: .25; animation: rimPop 3.2s ease-out infinite; }
+.art-hot .art .flash-pop, .art-hot .art .rim-pop { animation-duration: 1.1s; }
+.art .softbox { animation: glint 3.2s ease-in-out infinite; }
+.art .aim-flash { transform-box: view-box; transform-origin: 84px 146px; transform: rotate(0deg); transition: transform .6s cubic-bezier(.2,.8,.2,1.1); }
+.ptr-on .art .aim-flash { transform: rotate(atan2(var(--my, 0), var(--mx, 0))); }
+@keyframes flashPop { 0%, 86% { opacity: 0; } 88% { opacity: .95; } 100% { opacity: 0; } }
+@keyframes rimPop { 0%, 86% { opacity: .25; } 88% { opacity: 1; } 100% { opacity: .25; } }
+
+/* Surf (Craig Kolesky): rider carves along the wave and leans toward the pointer */
+.art .ride { animation: ride 5s ease-in-out infinite alternate; }
+.art .aim-surfer { transform-box: view-box; transform-origin: 206px 182px; transform: rotate(calc(var(--mx, 0) * 12deg)); transition: transform .5s cubic-bezier(.2,.8,.2,1); }
+.art .spray { animation: spray 2s ease-out infinite; opacity: 0; }
+.art-hot .art .ride { animation-duration: 2s; }
+@keyframes ride { from { transform: translate(-24px, 10px); } to { transform: translate(18px, -8px); } }
+@keyframes spray { 0% { transform: translate(0, 0); opacity: 0; } 20% { opacity: .9; } 100% { transform: translate(30px, -30px); opacity: 0; } }
+
+/* Automotive (Seagram Pearce): a studio light sweeps the body, headlights track the pointer */
+.art .sweep { stroke-dasharray: .18 .82; animation: sweep 3.5s ease-in-out infinite; }
+.art-hot .art .sweep { animation-duration: 1.4s; }
+.art .wheel { transform-box: view-box; animation: spin 1.2s linear infinite; animation-play-state: paused; }
+.art-hot .art .wheel { animation-play-state: running; }
+.art .aim-beam { transform-box: view-box; transform-origin: 350px 204px; transform: rotate(calc(var(--my, 0) * 20deg)); opacity: calc(.55 + var(--mx, 0) * .45); transition: transform .5s cubic-bezier(.2,.8,.2,1), opacity .5s; }
+@keyframes sweep { from { stroke-dashoffset: 1.1; } to { stroke-dashoffset: -.2; } }
+
+/* Ocean (Zandile Ndhlovu): light rays shimmer, bubbles rise, the diver glides and turns toward the pointer */
+.art .ray { animation: ray 6s ease-in-out infinite; }
+.art .bubble { animation: bubble 5s linear infinite; }
+.art .school { animation: school 22s ease-in-out infinite alternate; }
+.art .swim { animation: swim 7s ease-in-out infinite alternate; }
+.art .aim-diver { transform-box: view-box; transform-origin: 250px 170px; transform: rotate(calc(atan2(var(--my, 0), var(--mx, 0)) * 0.25)); transition: transform .7s cubic-bezier(.2,.8,.2,1); }
+.art-hot .art .swim { animation-duration: 2.5s; }
+@keyframes ray { 0%, 100% { opacity: .04; } 50% { opacity: .16; } }
+@keyframes bubble { 0% { transform: translateY(0); opacity: 0; } 15% { opacity: .9; } 100% { transform: translateY(-220px) translateX(10px); opacity: 0; } }
+@keyframes school { from { transform: translateX(-30px); } to { transform: translateX(220px); } }
+@keyframes swim { from { transform: translate(-14px, 6px); } to { transform: translate(14px, -8px); } }

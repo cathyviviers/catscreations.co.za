@@ -17,6 +17,62 @@
       socials: { instagram: "#", youtube: "#" }
     },
     {
+      slug: "brett-florens",
+      name: "Brett Florens",
+      role: "ambassador",
+      specialty: "Weddings, portraits and off-camera flash",
+      city: "South Africa and international",
+      art: "flash",
+      gear: "Nikon Z9",
+      bio: "Brett Florens has been a professional wedding photographer for more than 25 years and a Nikon ambassador since 2008. He has written six photography books published by Amherst Media, was chosen as Nikon's representative wedding photographer worldwide at Photokina, and teaches photographers around the world.",
+      highlights: ["Wedding storytelling", "Off-camera flash", "Posing and directing couples", "Building a photography business"],
+      socials: { website: "https://brettflorens.com/" }
+    },
+    {
+      slug: "craig-kolesky",
+      name: "Craig Kolesky",
+      role: "ambassador",
+      specialty: "Adventure, action and lifestyle",
+      city: "Cape Town",
+      art: "surf",
+      bio: "Craig Kolesky is a Cape Town adventure sports photographer and one of the original Nikon South Africa Premium Ambassadors. With no formal training, he built a career shooting sport and lifestyle for international brands like Red Bull and Oakley, chasing surf, trail running and mountain biking from Madagascar and Morocco to Hawaii and the Maldives.",
+      highlights: ["Surf and water photography", "Freezing fast action", "Shooting for brands"],
+      socials: { website: "https://craigkolesky.com/" }
+    },
+    {
+      slug: "seagram-pearce",
+      name: "Seagram Pearce",
+      role: "ambassador",
+      specialty: "Commercial and automotive",
+      city: "Cape Town",
+      art: "auto",
+      bio: "Seagram Pearce is a Cape Town commercial photographer and automotive director, and a Nikon South Africa ambassador. His cinematic, precisely lit work has carried international campaigns for brands including BMW, Volkswagen, Toyota, Lexus, Porsche and Ferrari.",
+      highlights: ["Automotive lighting", "Cinematic storytelling", "Running a commercial production"],
+      socials: { website: "https://www.seagrampearce.com/" }
+    },
+    {
+      slug: "wim-van-den-heever",
+      name: "Wim van den Heever",
+      role: "ambassador",
+      specialty: "Wildlife and fine art nature",
+      city: "South Africa and worldwide",
+      art: "wildlife",
+      bio: "Wim van den Heever is a South African wildlife photographer and Nikon ambassador, crowned Wildlife Photographer of the Year 2025 for Ghost Town Visitor: a brown hyena in the abandoned diamond town of Kolmanskop, Namibia, captured with a camera trap after a decade of trying. He runs Tusk Photo, leading photographic trips from the Arctic and Antarctic to the Masai Mara, Brazil's jaguars and Japan's snow monkeys.",
+      highlights: ["Wildlife Photographer of the Year 2025", "Camera trap photography", "Leading photo safaris worldwide"],
+      socials: { website: "https://www.wimvandenheever.com/" }
+    },
+    {
+      slug: "zandile-ndhlovu",
+      name: "Zandile Ndhlovu",
+      role: "ambassador",
+      specialty: "Ocean, freediving and underwater storytelling",
+      city: "Cape Town",
+      art: "ocean",
+      bio: "Zandile Ndhlovu, known as the Black Mermaid, is South Africa's first Black female freediving instructor and the founder of the Black Mermaid Foundation, which opens up the ocean to people who have been kept out of it. She was named on the BBC's 100 Women list in 2023 and shares the underwater world through her own eyes.",
+      highlights: ["Freediving and ocean access", "Underwater storytelling", "BBC 100 Women 2023"],
+      socials: {}
+    },
+    {
       slug: "saudiq-davids",
       name: "Saudiq Davids",
       role: "host",
@@ -50,42 +106,16 @@
       socials: { instagram: "#" }
     },
     {
-      slug: "lerato-mokoena",
-      sample: true,
-      name: "Lerato Mokoena",
-      role: "ambassador",
-      specialty: "Wildlife and safari",
-      city: "Limpopo",
-      art: "wildlife",
-      gear: "Nikon Z8, NIKKOR Z 180-600mm",
-      bio: "Sample ambassador profile. Shows how a full ambassador page reads: a short bio, the gear they trust, their portfolio and the workshops they lead, all on one link Nikon can put behind an ad.",
-      highlights: ["Big five behaviour", "Long lens technique", "Early-morning game drives"],
-      socials: { instagram: "#", youtube: "#", tiktok: "#" }
-    },
-    {
-      slug: "jaco-van-wyk",
-      sample: true,
-      name: "Jaco van Wyk",
-      role: "ambassador",
-      specialty: "Astro and Karoo landscapes",
-      city: "Karoo",
-      art: "astro",
-      gear: "Nikon Z6III, NIKKOR Z 14-24mm f/2.8 S",
-      bio: "Sample ambassador profile. Night skies over the Karoo, star trails and the Milky Way core. Ambassadors get a profile, a portfolio and a trackable link for every campaign.",
-      highlights: ["Milky Way planning", "Star trails", "Night focusing"],
-      socials: { instagram: "#", youtube: "#" }
-    },
-    {
       slug: "ayesha-patel",
       sample: true,
       name: "Ayesha Patel",
       role: "creator",
-      specialty: "Portraits and weddings",
+      specialty: "Fashion and editorial portraits",
       city: "Durban",
       art: "portrait",
       gear: "Nikon Zf, NIKKOR Z 85mm f/1.2 S",
       bio: "Sample creator profile. Creators are the people Nikon partners with for content and campaigns. Each one gets a page to point their audience to.",
-      highlights: ["Natural light portraits", "Wedding storytelling", "Skin tones in camera"],
+      highlights: ["Natural light portraits", "Styling a shoot", "Skin tones in camera"],
       socials: { instagram: "#", tiktok: "#" }
     },
     {
@@ -259,43 +289,103 @@
       ]
     },
     {
-      slug: "big-five-safari-lerato-mokoena",
+      slug: "off-camera-flash-brett-florens",
       sample: true,
-      title: "Big Five Safari Weekend with Lerato Mokoena",
-      short: "Safari Weekend",
+      title: "Off-Camera Flash with Brett Florens",
+      short: "Off-Camera Flash",
+      price: 1500,
+      level: "Intermediate",
+      format: "In person",
+      duration: "Full day",
+      groupSize: 12,
+      host: "brett-florens",
+      art: "flash",
+      summary: "Sample listing. A full day with Nikon ambassador Brett Florens on taking flash off the camera: shaping light, mixing it with daylight and lighting couples on location.",
+      learn: ["Why off-camera flash beats on-camera flash", "One-light and two-light setups", "Balancing flash with ambient light", "Lighting and posing couples on location", "Workflow for weddings and events"],
+      bring: ["Your Nikon camera and a standard zoom", "A Nikon Speedlight if you have one (we have loan units)", "Fresh batteries"],
+      schedule: [["09:00", "Light theory, fast"], ["10:30", "One-light setups"], ["12:30", "Lunch (included)"], ["13:30", "On-location couple shoot"], ["16:00", "Review and Q&A"]],
+      sessions: [
+        { id: "of-1", date: "2026-11-15", time: "09:00", city: "Johannesburg", venue: "Nikon School studio, Johannesburg", seats: 12, taken: 9 },
+        { id: "of-2", date: "2027-01-24", time: "09:00", city: "Cape Town", venue: "Venue shared on booking, Cape Town", seats: 12, taken: 2 }
+      ]
+    },
+    {
+      slug: "action-adventure-craig-kolesky",
+      sample: true,
+      title: "Action & Adventure with Craig Kolesky",
+      short: "Action & Adventure",
+      price: 950,
+      level: "Intermediate",
+      format: "In person",
+      duration: "4 hours",
+      groupSize: 10,
+      host: "craig-kolesky",
+      art: "surf",
+      summary: "Sample listing. A morning on the Cape Town coast with Nikon ambassador Craig Kolesky, learning to freeze surfers, riders and runners mid-moment.",
+      learn: ["Autofocus settings for fast, unpredictable subjects", "Shutter speeds to freeze or show motion", "Shooting from the water's edge safely", "Telling a lifestyle story around the action"],
+      bring: ["Your Nikon camera and a telephoto zoom", "Spare batteries and cards", "Sun protection"],
+      schedule: [["06:30", "Sunrise briefing"], ["07:00", "Surf session"], ["09:00", "Coffee and quick edits"], ["09:45", "Trail and bike action"]],
+      sessions: [
+        { id: "ak-1", date: "2026-11-29", time: "06:30", city: "Cape Town", venue: "Meeting point shared on booking, Muizenberg", seats: 10, taken: 7 }
+      ]
+    },
+    {
+      slug: "automotive-lighting-seagram-pearce",
+      sample: true,
+      title: "Automotive Lighting with Seagram Pearce",
+      short: "Automotive Lighting",
+      price: 1200,
+      level: "Advanced",
+      format: "In person",
+      duration: "5 hours",
+      groupSize: 10,
+      host: "seagram-pearce",
+      art: "auto",
+      summary: "Sample listing. Light a car like a campaign. Nikon ambassador Seagram Pearce shows how commercial automotive images are planned, lit and finished.",
+      learn: ["Reading a car's lines and reflections", "Light painting and long exposures", "Composite lighting for campaign work", "Planning a commercial shoot"],
+      bring: ["Your Nikon camera and a tripod", "A remote release or the SnapBridge app", "Dark clothing"],
+      schedule: [["16:00", "Planning the shot"], ["17:00", "Golden hour exteriors"], ["19:00", "Light painting after dark"], ["20:30", "Compositing demo"]],
+      sessions: [
+        { id: "al-1", date: "2026-12-05", time: "16:00", city: "Cape Town", venue: "Studio shared on booking, Cape Town", seats: 10, taken: 4 }
+      ]
+    },    {
+      slug: "ocean-storytelling-zandile-ndhlovu",
+      sample: true,
+      title: "Ocean Storytelling with Zandile Ndhlovu",
+      short: "Ocean Storytelling",
+      price: 850,
+      level: "All levels",
+      format: "In person",
+      duration: "4 hours",
+      groupSize: 10,
+      host: "zandile-ndhlovu",
+      art: "ocean",
+      summary: "Sample listing. A morning by the sea with Nikon ambassador Zandile Ndhlovu: how to tell the story of the ocean and the people who love it, from the shore and in the shallows.",
+      learn: ["Photographing water, light and texture", "Telling people's stories around the ocean", "Keeping your gear safe near salt water", "An introduction to underwater housings"],
+      bring: ["Your Nikon camera", "A towel and sun protection", "A swimsuit if you'd like to try the shallows"],
+      schedule: [["08:00", "Welcome and ocean safety"], ["08:30", "Shoreline session"], ["10:00", "In the shallows"], ["11:30", "Story review"]],
+      sessions: [
+        { id: "oz-1", date: "2026-12-12", time: "08:00", city: "Cape Town", venue: "Meeting point shared on booking, False Bay", seats: 10, taken: 6 }
+      ]
+    },
+    {
+      slug: "wildlife-safari-wim-van-den-heever",
+      sample: true,
+      title: "Wildlife Photo Safari with Wim van den Heever",
+      short: "Wildlife Safari",
       price: 4500,
       level: "Intermediate",
       format: "Trip",
       duration: "2 days",
       groupSize: 8,
-      host: "lerato-mokoena",
+      host: "wim-van-den-heever",
       art: "wildlife",
-      summary: "Sample premium trip. Two days of game drives with a Nikon ambassador, loan lenses included, to show how bigger-ticket experiences sit next to the classes.",
-      learn: ["Long lens technique from a vehicle", "Reading animal behaviour", "Low light at dawn and dusk", "Building a wildlife story"],
+      summary: "Sample premium trip. Two days of game drives with Nikon ambassador and Wildlife Photographer of the Year Wim van den Heever, loan lenses included.",
+      learn: ["Long lens technique from a vehicle", "Reading animal behaviour", "Low light at dawn and dusk", "How camera traps work"],
       bring: ["Your Nikon camera", "Neutral clothing", "Bean bag or monopod (we have spares)"],
       schedule: [["Day 1", "Arrival, afternoon drive"], ["Day 2", "Dawn drive, edit session, sundowner drive"]],
       sessions: [
-        { id: "sf-1", date: "2027-02-13", time: "14:00", city: "Limpopo", venue: "Private reserve, details on booking", seats: 8, taken: 5 }
-      ]
-    },
-    {
-      slug: "karoo-night-skies-jaco-van-wyk",
-      sample: true,
-      title: "Karoo Night Skies with Jaco van Wyk",
-      short: "Karoo Night Skies",
-      price: 1800,
-      level: "Advanced",
-      format: "Trip",
-      duration: "Overnight",
-      groupSize: 10,
-      host: "jaco-van-wyk",
-      art: "astro",
-      summary: "Sample premium trip. An overnight astro session under some of the darkest skies in the country.",
-      learn: ["Planning around the moon and Milky Way", "Focusing at night", "Star trails and stacking", "Foreground light painting"],
-      bring: ["Your Nikon camera and widest lens", "Sturdy tripod", "Red head torch", "Warm clothes"],
-      schedule: [["17:00", "Arrive and plan"], ["19:30", "Night shoot"], ["02:00", "Core rises, final session"]],
-      sessions: [
-        { id: "kn-1", date: "2027-03-06", time: "17:00", city: "Karoo", venue: "Sutherland area, details on booking", seats: 10, taken: 3 }
+        { id: "wv-1", date: "2027-02-13", time: "14:00", city: "Limpopo", venue: "Private reserve, details on booking", seats: 8, taken: 5 }
       ]
     }
   ];

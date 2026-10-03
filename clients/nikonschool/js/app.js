@@ -543,9 +543,11 @@
     var others = theirs.length ? [] : D.workshops.filter(function (w) { return !w.sample; }).slice(0, 3);
     var liveLink = LIVE_DOMAIN + "/creators/" + p.slug;
     var socials = Object.keys(p.socials || {}).map(function (k) {
-      return '<a href="#" data-demo aria-label="' + k + '">' + ({ instagram: I.ig, youtube: I.yt, tiktok: I.tt }[k] || I.link) + "</a>";
+      var url = p.socials[k], icon = { instagram: I.ig, youtube: I.yt, tiktok: I.tt }[k] || I.link;
+      if (/^https?:/.test(url)) return '<a href="' + esc(url) + '" target="_blank" rel="noopener" aria-label="' + esc(p.name) + "'s " + k + '">' + icon + "</a>";
+      return '<a href="#" data-demo aria-label="' + k + '">' + icon + "</a>";
     }).join("");
-    var gallery = [p.art, p.art, p.art, p.art].map(function (a, i) { return art(i === 0 ? a : ["lightcraft", "cityscape", "seeing", "masterclass", "wildlife", "astro", "portrait", "sport"][(p.slug.length + i * 3) % 8]); }).join("");
+    var gallery = [p.art, p.art, p.art, p.art].map(function (a, i) { return art(i === 0 ? a : ["lightcraft", "cityscape", "seeing", "masterclass", "wildlife", "astro", "portrait", "sport", "flash", "surf", "auto", "ocean"][(p.slug.length + i * 3) % 12]); }).join("");
 
     $("#main").innerHTML =
       '<section class="profile-hero dark">' + art(p.art) + '<div class="wrap">' +
@@ -566,6 +568,7 @@
       "<div><dt>Role</dt><dd>" + roleLabel(p.role) + "</dd></div>" +
       "<div><dt>Based in</dt><dd>" + esc(p.city) + "</dd></div>" +
       (p.gear ? "<div><dt>Shoots with</dt><dd>" + esc(p.gear) + "</dd></div>" : "") +
+      (p.socials && /^https?:/.test(p.socials.website || "") ? '<div><dt>Website</dt><dd><a href="' + esc(p.socials.website) + '" target="_blank" rel="noopener">' + esc(p.socials.website.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "")) + "</a></dd></div>" : "") +
       "<div><dt>Workshops</dt><dd>" + (theirs.length ? theirs.length + " upcoming" : "None scheduled yet") + "</dd></div>" +
       "<div><dt>Follow</dt><dd><div class=\"socials\" style=\"margin-top:6px\">" + socials + "</div></dd></div>" +
       "</dl>" +
