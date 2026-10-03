@@ -1,5 +1,47 @@
 {
   "outputDirectory": ".",
+  "rewrites": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "kaizerchiefs.catscreations.co.za"
+        }
+      ],
+      "destination": "/concepts/kaizer-chiefs/index.html"
+    },
+    {
+      "source": "/img/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "kaizerchiefs.catscreations.co.za"
+        }
+      ],
+      "destination": "/concepts/kaizer-chiefs/img/:path*"
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "catscreationscom-git-claude-clever-gooda-7b0df8-cat-s-creations.vercel.app"
+        }
+      ],
+      "destination": "/concepts/kaizer-chiefs/index.html"
+    },
+    {
+      "source": "/img/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "catscreationscom-git-claude-clever-gooda-7b0df8-cat-s-creations.vercel.app"
+        }
+      ],
+      "destination": "/concepts/kaizer-chiefs/img/:path*"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
@@ -122,17 +164,35 @@
     {
       "source": "/admin/(.*)",
       "headers": [
-        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
-        { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
-        { "key": "Cache-Control", "value": "no-store" }
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        }
       ]
     },
     {
       "source": "/admin-index/(.*)",
       "headers": [
-        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
-        { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
-        { "key": "Cache-Control", "value": "no-store" }
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        }
       ]
     }
   ]
