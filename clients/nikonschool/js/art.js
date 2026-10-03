@@ -262,7 +262,8 @@
   /* ---------- interaction ---------- */
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var HOSTS = ".card, .person, .next-card, .feature, .profile-hero, .detail-hero, .upsell, .summary, .host-card, .cell-title";
-  var cur = null, raf = 0, last = null;
+  var cur = null, raf = 0, ptr = null;
+  var visible = [];
 
   function hostOf(t) {
     if (!t || !t.closest) return null;
@@ -270,32 +271,58 @@
     if (h && h.querySelector(".art")) return h;
     return t.closest(".art-box");
   }
-  function leave(h) {
-    if (!h) return;
-    h.classList.remove("art-hot");
-    h.style.setProperty("--mx", 0);
-    h.style.setProperty("--my", 0);
-  }
-  function move() {
-    raf = 0;
-    if (!last) return;
-    var h = hostOf(last.target);
-    if (h !== cur) { leave(cur); cur = h; if (h) h.classList.add("art-hot"); }
-    if (!h) return;
-    var b = h.getBoundingClientRect();
-    var mx = Math.max(-1, Math.min(1, ((last.clientX - b.left) / b.width) * 2 - 1));
-    var my = Math.max(-1, Math.min(1, ((last.clientY - b.top) / b.height) * 2 - 1));
+  function setVars(h, mx, my) {
     h.style.setProperty("--mx", mx.toFixed(3));
     h.style.setProperty("--my", my.toFixed(3));
+  }
+  function clamp(v) { return Math.max(-1, Math.min(1, v)); }
+
+  // Every visible artwork looks toward the pointer, wherever it is on the page.
+  // The card under the pointer reacts fully, using the pointer's position inside it.
+  function update() {
+    raf = 0;
+    if (!ptr) return;
+    var under = document.elementFromPoint(ptr.x, ptr.y);
+    var hot = hostOf(under);
+    if (hot !== cur) {
+      if (cur) cur.classList.remove("art-hot");
+      cur = hot;
+      if (hot) hot.classList.add("art-hot");
+    }
+    var done = [];
+    var vw = window.innerWidth / 2, vh = window.innerHeight / 2;
+    visible.forEach(function (box) {
+      var h = box._nsHost || (box._nsHost = hostOf(box) || box);
+      if (done.indexOf(h) >= 0) return;
+      done.push(h);
+      var b = h.getBoundingClientRect();
+      if (h === hot) {
+        setVars(h, clamp(((ptr.x - b.left) / b.width) * 2 - 1), clamp(((ptr.y - b.top) / b.height) * 2 - 1));
+      } else {
+        var cx = b.left + b.width / 2, cy = b.top + b.height / 2;
+        setVars(h, clamp((ptr.x - cx) / vw) * 0.7, clamp((ptr.y - cy) / vh) * 0.7);
+      }
+    });
+  }
+  function queue() { if (!raf) raf = requestAnimationFrame(update); }
+  function reset() {
+    ptr = null;
+    document.documentElement.classList.remove("ptr-on");
+    if (cur) cur.classList.remove("art-hot");
+    cur = null;
+    visible.forEach(function (box) { var h = box._nsHost || box; setVars(h, 0, 0); });
   }
 
   if (!reduce) {
     document.addEventListener("pointermove", function (e) {
-      last = e;
-      if (!raf) raf = requestAnimationFrame(move);
+      if (e.pointerType === "touch") return;
+      ptr = { x: e.clientX, y: e.clientY };
+      document.documentElement.classList.add("ptr-on");
+      queue();
     }, { passive: true });
-    document.addEventListener("pointerleave", function () { leave(cur); cur = null; });
-    document.documentElement.addEventListener("mouseleave", function () { leave(cur); cur = null; });
+    window.addEventListener("scroll", queue, { passive: true });
+    document.documentElement.addEventListener("mouseleave", reset);
+    window.addEventListener("blur", reset);
 
     // Shutter flash on press
     document.addEventListener("pointerdown", function (e) {
@@ -315,7 +342,13 @@
   var io = "IntersectionObserver" in window ? new IntersectionObserver(function (entries) {
     entries.forEach(function (en) {
       en.target.classList.toggle("in-view", en.isIntersecting);
-      if (en.isIntersecting) en.target.classList.add("drawn");
+      var i = visible.indexOf(en.target);
+      if (en.isIntersecting) {
+        en.target.classList.add("drawn");
+        if (i < 0) visible.push(en.target);
+      } else if (i >= 0) {
+        visible.splice(i, 1);
+      }
     });
   }, { rootMargin: "60px" }) : null;
 

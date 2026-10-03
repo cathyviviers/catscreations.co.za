@@ -773,8 +773,10 @@ tr:last-child td { border-bottom: 0; }
 
 /* ---------- Cards tilt toward the pointer, artwork aims at it ---------- */
 .card, .person, .next-card { position: relative; transform-style: preserve-3d; }
-.card, .person { transition: transform .25s ease-out, box-shadow .25s ease; }
+.card, .person { transition: transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .25s ease; }
 .next-card { transition: transform .3s ease-out; }
+.card, .person { transform: perspective(900px) rotateX(calc(var(--my, 0) * -4deg)) rotateY(calc(var(--mx, 0) * 4deg)); }
+@media (min-width: 1021px) { .next-card { transform: perspective(1000px) rotate(1.2deg) rotateX(calc(var(--my, 0) * -4deg)) rotateY(calc(var(--mx, 0) * 4deg)); } }
 .card.art-hot, .person.art-hot { transform: perspective(900px) translateY(-6px) rotateX(calc(var(--my, 0) * -7deg)) rotateY(calc(var(--mx, 0) * 7deg)); }
 .next-card.art-hot { transform: perspective(1000px) rotateX(calc(var(--my, 0) * -6deg)) rotateY(calc(var(--mx, 0) * 6deg)); }
 .card::after, .person::after, .next-card::after {
@@ -797,10 +799,10 @@ tr:last-child td { border-bottom: 0; }
 .art .aim-lean { transform-box: view-box; transform-origin: 200px 300px; transform: skewX(calc(var(--mx, 0) * -6deg)); }
 .art-hot .art .cs-sun-h { transform: translate(calc(var(--mx, 0) * 40px), 40px); }
 .art .aim-point { transform-box: fill-box; transform-origin: 35% 50%; transform: rotate(0deg); transition: transform .35s cubic-bezier(.2,.8,.2,1.2); }
-.art-hot .art .aim-point { transform: rotate(atan2(var(--my, 0), var(--mx, 0))); }
+.ptr-on .art .aim-point { transform: rotate(atan2(var(--my, 0), var(--mx, 0))); }
 .art-hot .art .mc-rings { transform: translate(calc(var(--mx, 0) * 10px), calc(var(--my, 0) * 10px)) rotate(90deg) scale(1.08); }
 .art .aim-sun { transform: translate(calc(var(--mx, 0) * 30px), calc(var(--my, 0) * 18px)); }
 .art .aim-scope { transform-box: view-box; transform-origin: 304px 211.5px; transform: rotate(-35deg); transition: transform .6s cubic-bezier(.2,.8,.2,1.1); }
-.art-hot .art .aim-scope { transform: rotate(atan2(var(--my, 0), var(--mx, 0))); }
+.ptr-on .art .aim-scope { transform: rotate(atan2(var(--my, 0), var(--mx, 0))); }
 .art .aim-head { transform-box: view-box; transform-origin: 228px 300px; transform: translateX(calc(var(--mx, 0) * 8px)) skewX(calc(var(--mx, 0) * -5deg)); }
 .art .aim-runner { transform-box: view-box; transform-origin: 240px 230px; transform: rotate(calc(var(--mx, 0) * 12deg)); }
