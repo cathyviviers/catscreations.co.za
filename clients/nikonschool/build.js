@@ -101,7 +101,7 @@ write("creators/index.html", page({
     <section class="page-hero dark">
       <div class="wrap">
         <div class="crumbs"><a href="../">Home</a> / Ambassadors &amp; Creators</div>
-        <h1 style="color:#fff">Ambassadors, hosts<br>&amp; creators</h1>
+        <h1 style="color:#fff">Ambassadors, collaborators<br>&amp; creators</h1>
         <p class="lede">The photographers and filmmakers who teach at Nikon School and shoot for Nikon South Africa. Each one has a page of their own, with a link that tracks the bookings it brings in.</p>
       </div>
     </section>
@@ -110,8 +110,9 @@ write("creators/index.html", page({
         <div class="chips role-tabs" id="role-tabs" role="group" aria-label="Filter by role">
           <button class="chip" data-r="all" aria-pressed="true">Everyone</button>
           <button class="chip" data-r="ambassador" aria-pressed="false">Ambassadors</button>
-          <button class="chip" data-r="host" aria-pressed="false">Workshop hosts</button>
+          <button class="chip" data-r="collaborator" aria-pressed="false">Collaborators</button>
           <button class="chip" data-r="creator" aria-pressed="false">Creators</button>
+          <button class="chip" data-r="host" aria-pressed="false">Workshop hosts</button>
           <button class="chip" data-r="team" aria-pressed="false">Nikon School team</button>
         </div>
         <div class="people" id="people-grid"></div>

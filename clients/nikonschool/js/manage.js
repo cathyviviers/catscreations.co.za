@@ -241,7 +241,7 @@
     N.openModal('<div class="sheet-head"><h2 id="modal-title">Add a person</h2><button class="close" data-close aria-label="Close">&times;</button></div><div class="sheet-body">' +
       '<form id="p-form" class="form-grid">' +
       '<div class="full"><label class="lbl" for="pn">Full name</label><input class="inp" id="pn" required placeholder="e.g. Naledi Dube"></div>' +
-      '<div><label class="lbl" for="pr2">Role</label><select class="inp" id="pr2"><option value="ambassador">Ambassador</option><option value="host">Workshop host</option><option value="creator">Creator</option></select></div>' +
+      '<div><label class="lbl" for="pr2">Role</label><select class="inp" id="pr2"><option value="ambassador">Ambassador</option><option value="collaborator">Collaborator</option><option value="host">Workshop host</option><option value="creator">Creator</option></select></div>' +
       '<div><label class="lbl" for="pc">Based in</label><input class="inp" id="pc" placeholder="City"></div>' +
       '<div class="full"><label class="lbl" for="ps">What they shoot</label><input class="inp" id="ps" placeholder="e.g. Street and documentary"></div>' +
       '<div class="full"><label class="lbl" for="pb">Short bio</label><textarea class="inp" id="pb" rows="3"></textarea></div>' +

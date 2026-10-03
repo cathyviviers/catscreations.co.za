@@ -42,7 +42,7 @@
   function money(n) { return n === 0 ? "Free" : "R " + n.toLocaleString("en-ZA").replace(/,/g, " "); }
   function seatsLeft(s) { return Math.max(0, s.seats - s.taken); }
   function initials(name) { return name.split(/\s+/).filter(function (w) { return /^[A-Z]/.test(w); }).slice(0, 2).map(function (w) { return w[0]; }).join(""); }
-  function roleLabel(r) { return { ambassador: "Ambassador", host: "Host", creator: "Creator", team: "Nikon School" }[r] || r; }
+  function roleLabel(r) { return { ambassador: "Ambassador", collaborator: "Collaborator", host: "Host", creator: "Creator", team: "Nikon School" }[r] || r; }
   function store(key, val) {
     try {
       if (val === undefined) return JSON.parse(sessionStorage.getItem(key) || "null");
@@ -119,7 +119,7 @@
         '<a href="https://za.pinterest.com/nikonsouthafrica/" aria-label="Pinterest">' + I.pt + "</a>" +
         "</div></div>" +
         '<div><h4>Learn</h4><ul><li><a href="' + ROOT + 'workshops/lightcraft-fundamentals/">Free intro class</a></li><li><a href="' + ROOT + 'workshops/?type=free">Free workshops</a></li><li><a href="' + ROOT + 'workshops/?type=paid">Paid workshops</a></li><li><a href="' + ROOT + 'workshops/?format=Online">Online classes</a></li></ul></div>' +
-        '<div><h4>People</h4><ul><li><a href="' + ROOT + 'creators/?role=ambassador">Ambassadors</a></li><li><a href="' + ROOT + 'creators/?role=host">Workshop hosts</a></li><li><a href="' + ROOT + 'creators/?role=creator">Creators</a></li></ul></div>' +
+        '<div><h4>People</h4><ul><li><a href="' + ROOT + 'creators/?role=ambassador">Ambassadors</a></li><li><a href="' + ROOT + 'creators/?role=collaborator">Collaborators</a></li><li><a href="' + ROOT + 'creators/?role=host">Workshop hosts</a></li><li><a href="' + ROOT + 'creators/?role=creator">Creators</a></li></ul></div>' +
         '<div><h4>Help</h4><ul><li><a href="' + ROOT + '#faq">FAQ</a></li><li><a href="#" data-demo>Contact us</a></li><li><a href="#" data-demo>Gift vouchers</a></li><li><a href="#" data-demo>Terms and refunds</a></li></ul></div>' +
         "</div>" +
         '<div class="foot-base"><span>&copy; 2026 Nikon South Africa. Concept design by <a href="https://catscreations.co.za" style="color:#fff">Cat\'s Creations</a>.</span>' +
@@ -250,7 +250,7 @@
     }
 
     var ppl = $("#home-people");
-    if (ppl) ppl.innerHTML = D.people.filter(function (p) { return p.role !== "team"; }).slice(0, 4).map(personCard).join("");
+    if (ppl) ppl.innerHTML = D.people.filter(function (p) { return p.featured; }).concat(D.people.filter(function (p) { return !p.featured && p.role === "ambassador"; })).slice(0, 4).map(personCard).join("");
 
     renderFaq();
     var nl = $("#newsletter");
@@ -522,7 +522,11 @@
   function pageCreators() {
     var role = new URLSearchParams(location.search).get("role") || "all";
     function draw() {
-      var list = D.people.filter(function (p) { return role === "all" || p.role === role; });
+      var list = D.people.filter(function (p) {
+        if (role === "all") return true;
+        if (role === "host") return D.workshops.some(function (w) { return w.host === p.slug && p.role !== "team"; });
+        return p.role === role;
+      });
       $("#people-grid").innerHTML = list.map(personCard).join("");
       $$("#role-tabs .chip").forEach(function (c) { c.setAttribute("aria-pressed", c.getAttribute("data-r") === role); });
     }
@@ -560,6 +564,7 @@
       "</div></div></section>" +
       '<section><div class="wrap profile-grid"><div>' +
       '<div class="eyebrow">About</div><h2>Meet ' + esc(p.name.split(" ")[0]) + "</h2><p class=\"lede\">" + esc(p.bio) + "</p>" +
+      (p.bioPending ? '<p class="placeholder-note">Short profile from the Nikon South Africa roster. A full bio, portfolio and gear list come from ' + esc(p.name.split(" ")[0]) + " and Nikon before launch.</p>" : "") +
       '<div class="block"><h2>Known for</h2><ul class="ticks">' + p.highlights.map(function (h) { return "<li>" + I.check + "<span>" + esc(h) + "</span></li>"; }).join("") + "</ul></div>" +
       '<div class="block"><h2>Portfolio</h2><div class="gallery">' + gallery + "</div>" +
       '<p class="placeholder-note">Illustrations stand in for portfolio images. Nikon uploads the real photos through the dashboard.</p></div>' +
