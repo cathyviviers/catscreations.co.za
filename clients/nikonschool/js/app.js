@@ -131,8 +131,18 @@
 
     document.addEventListener("click", function (e) {
       var demo = e.target.closest("[data-demo]");
-      if (demo) { e.preventDefault(); toast("In the live site this opens " + (demo.getAttribute("aria-label") || demo.textContent.trim()) + "."); }
+      if (demo) { e.preventDefault(); mockupNotice(demo.getAttribute("aria-label") || demo.textContent.trim()); }
     });
+  }
+
+  function mockupNotice(label) {
+    openModal('<div class="sheet-body mockup-pop">' +
+      '<button class="close" data-close aria-label="Close">&times;</button>' +
+      '<div class="mockup-ico">' + I.camera + "</div>" +
+      '<h2 id="modal-title">This is a mockup</h2>' +
+      "<p>In the live site, <b>" + esc(label) + "</b> opens its own page. This preview focuses on the workshops, the booking flow, the creator pages and the dashboard.</p>" +
+      '<div class="mockup-actions"><button class="btn btn-dark" data-close>Got it</button><a class="btn btn-ghost" href="' + ROOT + 'proposal/">Read the proposal</a></div>' +
+      "</div>");
   }
 
   var toastTimer;
