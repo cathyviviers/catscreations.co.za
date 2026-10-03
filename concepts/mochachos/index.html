@@ -131,9 +131,10 @@
   .tag { display: inline-block; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; background: var(--sun); padding: 3px 9px; border-radius: 999px; margin-bottom: 10px; align-self: flex-start; }
 
   /* Deals */
-  .deals { background: var(--flame); color: #fff; position: relative; overflow: hidden; }
-  .deals .eyebrow { color: var(--sun); }
-  .deals .section-head p { color: #ffd9c9; }
+  .deals { background: linear-gradient(180deg, #fbb417 0%, #f8981d 14%, #f47a20 34%, #e8401f 58%, #e01b22 80%, #c4161c 100%); color: #fff; position: relative; overflow: hidden; }
+  .deals .section-head .eyebrow { color: #7a1410; }
+  .deals .section-head h2 { color: #fff; text-shadow: 0 3px 0 #a31218, 0 6px 18px rgba(122,20,16,0.35); -webkit-text-stroke: 1.5px #b3141a; paint-order: stroke fill; }
+  .deals .section-head p { color: #4a1508; font-weight: 500; }
   .deal-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 22px; }
   .deal { border-radius: var(--radius); padding: 32px; display: flex; flex-direction: column; justify-content: space-between; min-height: 300px; position: relative; overflow: hidden; }
   .deal h3 { font-size: clamp(1.6rem, 3vw, 2.4rem); margin: 10px 0; }
@@ -165,7 +166,7 @@
   .collage img:first-child { grid-row: span 2; }
   .collage .amigo { position: absolute; width: 34%; height: auto; left: -9%; bottom: -10%; border-radius: 0; object-fit: contain; filter: drop-shadow(0 12px 20px rgba(0,0,0,0.25)); }
   .pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; grid-column: 1 / -1; margin-top: 20px; }
-  .promo { padding: 0 0 100px; background: var(--flame); color: #fff; }
+  .promo { padding: 0 0 100px; background: linear-gradient(180deg, #c4161c 0%, #a31218 100%); color: #fff; }
   .promo-card { background: var(--char); border-radius: 32px; display: grid; grid-template-columns: 0.8fr 1.2fr; overflow: hidden; align-items: center; }
   .promo-card img { width: 100%; height: 100%; max-height: 520px; object-fit: cover; object-position: top; }
   .promo-body { padding: clamp(28px, 5vw, 60px); }
@@ -445,6 +446,42 @@
   .promo-card.tilting > img { translate: calc(var(--dx, 0) * -20px) calc(var(--dy, 0) * -20px); scale: 1.07; }
   .app-band.tilting .phone { translate: calc(var(--dx, 0) * 36px) calc(var(--dy, 0) * 24px); }
   .pillar.tilting .ico { translate: calc(var(--dx, 0) * 10px) calc(var(--dy, 0) * 10px); scale: 1.12; }
+
+  /* ===== Heat scale with a purpose ===== */
+  .heat-picks { margin-top: 26px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.08); }
+  .picks-label { display: block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #b99c86; margin-bottom: 12px; }
+  .picks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .pick { position: relative; background: var(--char-2); border: 1px solid rgba(255,255,255,0.07); border-radius: 14px; overflow: hidden; text-align: left; animation: popIn .45s cubic-bezier(.2,.9,.3,1.25) backwards; animation-delay: var(--d, 0s); }
+  .pick img { width: 100%; height: auto; aspect-ratio: 3/2; object-fit: cover; display: block; }
+  .pick b { display: block; font-size: 0.78rem; line-height: 1.2; padding: 8px 40px 10px 10px; color: var(--cream); }
+  .pick .add { position: absolute; right: 6px; bottom: 6px; width: 30px; height: 30px; font-size: 1.1rem; }
+  .heat-cta { margin-top: 16px; width: 100%; justify-content: center; }
+  .heat-cta b { color: var(--sun); font-weight: 700; }
+  .heat-pill { position: absolute; left: 12px; top: 12px; display: inline-flex; align-items: center; gap: 7px; padding: 6px 12px 6px 9px; border-radius: 999px; background: rgba(27,15,10,0.82); backdrop-filter: blur(6px); color: #fff; font-size: 0.74rem; font-weight: 700; text-decoration: none; letter-spacing: 0.02em; transition: background .2s; }
+  .heat-pill:hover { background: var(--char); }
+  .heat-pill i, .basting i { width: 9px; height: 9px; border-radius: 50%; background: var(--lvl-c, #7cb342); box-shadow: 0 0 10px var(--lvl-c, #7cb342); }
+  .heat-pill.flash { animation: flash .5s; }
+  .basting { display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap; background: #fff; border: 1px solid rgba(27,15,10,0.1); border-radius: 999px; padding: 8px 8px 8px 16px; margin-bottom: 18px; font-size: 0.92rem; color: var(--muted); }
+  .basting b { color: var(--ink); }
+  .basting a { background: var(--char); color: var(--sun); text-decoration: none; font-weight: 700; font-size: 0.8rem; padding: 6px 12px; border-radius: 999px; }
+  @media (max-width: 520px) { .pick b { font-size: 0.7rem; padding-right: 8px; padding-bottom: 40px; } .basting { border-radius: 18px; } }
+
+  /* ===== Dancing amigo ===== */
+  .collage .amigo, .deal-mascot { transform-origin: 50% 95%; animation: dance 2.4s ease-in-out infinite; cursor: pointer; pointer-events: auto; }
+  .deal-mascot { animation-duration: 2.8s; animation-delay: -.6s; }
+  .collage .amigo:hover, .deal-mascot:hover { animation-duration: .9s; }
+  .amigo.spin, .deal-mascot.spin { animation: spinDance .9s cubic-bezier(.3,1.4,.5,1); }
+  @keyframes dance {
+    0%, 100% { transform: rotate(-7deg) translateY(0) scale(1, 1); }
+    12% { transform: rotate(-7deg) translateY(0) scale(1.06, .94); }
+    25% { transform: rotate(5deg) translateY(-18px) scale(.97, 1.04); }
+    38% { transform: rotate(8deg) translateY(0) scale(1.05, .95); }
+    50% { transform: rotate(8deg) translateY(0) scale(1, 1); }
+    62% { transform: rotate(8deg) translateY(0) scale(1.06, .94); }
+    75% { transform: rotate(-5deg) translateY(-18px) scale(.97, 1.04); }
+    88% { transform: rotate(-8deg) translateY(0) scale(1.05, .95); }
+  }
+  @keyframes spinDance { 0% { transform: rotate(0) scale(1); } 40% { transform: rotate(200deg) translateY(-40px) scale(1.15); } 100% { transform: rotate(360deg) scale(1); } }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
     .reveal { opacity: 1; translate: none; }
@@ -525,7 +562,7 @@
         <div>
           <span class="eyebrow">The Mochachos Heat Scale</span>
           <h2>How brave are you feeling?</h2>
-          <p>Every order, your way. From fresh and zesty to "call the fire brigade". Tap a level to see what you're in for.</p>
+          <p>Pick your heat once and every flame-grilled dish you add gets basted to match. We'll remember it for next time, and show you what tastes best at that level.</p>
           <div class="heat-levels" role="group" aria-label="Choose a heat level">
             <button data-lvl="0" aria-pressed="true">Lemon &amp; Herb</button>
             <button data-lvl="1" aria-pressed="false">Mild</button>
@@ -539,6 +576,11 @@
           <div class="heat-name" id="heatName">Lemon &amp; Herb</div>
           <p class="heat-desc" id="heatDesc">Zesty, fresh and zero burn. The one for the kids, the cautious and the purists.</p>
           <div class="meter"><i id="meter"></i></div>
+          <div class="heat-picks">
+            <span class="picks-label">Best at this heat</span>
+            <div class="picks" id="heatPicks"></div>
+            <a href="#menu" class="btn btn-flame heat-cta" id="heatCta">Order at <b id="heatCtaName">Lemon &amp; Herb</b> <span aria-hidden="true">&rarr;</span></a>
+          </div>
         </div>
       </div>
     </div>
@@ -553,6 +595,7 @@
         </div>
         <p>Browse by category, add to your order and collect in store or get it delivered. Prices shown are placeholders for the concept.</p>
       </div>
+      <div class="basting" id="basting"><i></i> Basting your order in <b id="bastingName">Lemon &amp; Herb</b> <a href="#heat">Change heat</a></div>
       <div class="tabs" role="tablist" id="tabs"></div>
       <div class="menu-grid" id="menuGrid"></div>
       <div class="dots" id="menuDots" aria-hidden="true"></div>
@@ -781,8 +824,8 @@
       { n: 'Chicken Burrito', d: 'Grilled chicken, rice, cheese and salsa wrapped tight, with chips.', img: 'chicken-burrito', t: 'Bestseller' },
       { n: 'Chicken Fajita', d: 'Sizzling chicken strips with tortillas, rice, guac and all the fixings.', img: 'chicken-fajita' },
       { n: 'Chicken Enchilada', d: 'Rolled tortilla, chicken and a blanket of melted cheese.', img: 'chicken-enchilada' },
-      { n: 'Rump Quesadilla', d: 'Toasted tortilla stuffed with rump strips, peppers and cheese.', img: 'rump-quesadilla' },
-      { n: 'Classic Nachos', d: 'Corn chips loaded with cheese, jalapeños, salsa, guac and sour cream.', img: 'classic-nachos', t: 'Share it' }
+      { n: 'Rump Quesadilla', d: 'Toasted tortilla stuffed with rump strips, peppers and cheese.', img: 'rump-quesadilla', b: 0 },
+      { n: 'Classic Nachos', d: 'Corn chips loaded with cheese, jalapeños, salsa, guac and sour cream.', img: 'classic-nachos', t: 'Share it', b: 0 }
     ],
     'Schwarmas': [
       { n: 'Chicken Schwarma Combo', d: 'Flame-grilled chicken, salad and sauce in a soft wrap, with chips.', img: 'schwarma-combo', t: 'Lunch hero' },
@@ -804,17 +847,19 @@
       { n: 'Mini Chicken Burger Combo', d: 'Kid-sized burger, chips and a juice in a fun Mochachos box.', img: 'mini-burger-combo' }
     ],
     'Sides': [
-      { n: 'Chips', d: 'Golden and crispy, dusted with Mochachos spice.', img: 'chips' }
+      { n: 'Chips', d: 'Golden and crispy, dusted with Mochachos spice.', img: 'chips', b: 0 }
     ]
   };
+  window.mochaMenu = menu;
   var tabs = document.getElementById('tabs');
   var grid = document.getElementById('menuGrid');
   function render(cat) {
     grid.innerHTML = menu[cat].map(function (item) {
-      return '<article class="dish"><div class="dish-art"><img src="img/' + item.img + '.webp" alt="' + item.n + '" width="800" height="533" loading="lazy"></div>' +
+      return '<article class="dish"><div class="dish-art"><img src="img/' + item.img + '.webp" alt="' + item.n + '" width="800" height="533" loading="lazy">' +
+        (item.b === 0 ? '' : '<a href="#heat" class="heat-pill"><i></i><span></span></a>') + '</div>' +
         '<div class="dish-body">' + (item.t ? '<span class="tag">' + item.t + '</span>' : '') +
         '<h3>' + item.n + '</h3><p>' + item.d + '</p>' +
-        '<div class="dish-foot"><span class="price">From R&nbsp;00.00</span><button class="add" aria-label="Add ' + item.n + ' to order">+</button></div></div></article>';
+        '<div class="dish-foot"><span class="price">From R&nbsp;00.00</span><button class="add" data-name="' + item.n + '" data-basted="' + (item.b === 0 ? 0 : 1) + '" aria-label="Add ' + item.n + ' to order">+</button></div></div></article>';
     }).join('');
     tabs.querySelectorAll('.tab').forEach(function (t) { t.setAttribute('aria-selected', t.textContent === cat); });
     document.dispatchEvent(new CustomEvent('menurender', { detail: cat }));
@@ -1134,10 +1179,11 @@
   var cart = $('#cart'), cartCount = $('#cartCount'), obText = $('#orderBarText'), toast = document.createElement('div'), count = 0, tt;
   toast.className = 'toast'; toast.setAttribute('role', 'status'); document.body.appendChild(toast);
   function showToast(html) { toast.innerHTML = html; toast.classList.add('show'); clearTimeout(tt); tt = setTimeout(function () { toast.classList.remove('show'); }, 2200); }
-  grid.addEventListener('click', function (e) {
-    var btn = e.target.closest('.add');
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest && e.target.closest('.add');
     if (!btn) return;
-    var name = btn.closest('.dish').querySelector('h3').textContent;
+    var name = btn.dataset.name;
+    var basted = btn.dataset.basted !== '0';
     count++;
     var done = function () {
       cartCount.textContent = count;
@@ -1147,7 +1193,7 @@
       if (obText) obText.textContent = 'View order (' + count + ')';
       if (orderBar) { orderBar.classList.remove('hide', 'bump'); void orderBar.offsetWidth; orderBar.classList.add('bump'); }
     };
-    showToast('<b>' + name + '</b> added to your order');
+    showToast('<b>' + name + '</b>' + (basted ? ' (' + HEAT[heatNow].n + ')' : '') + ' added to your order');
     buzz([15, 40, 25]);
     if (reduce) return done();
     var a = btn.getBoundingClientRect(), b = cart.getBoundingClientRect(), f = document.createElement('div');
@@ -1160,6 +1206,50 @@
       { transform: 'translate(' + dx + 'px,' + dy + 'px) scale(0.3)', opacity: 0.6 }
     ], { duration: 750, easing: 'cubic-bezier(.5,0,.3,1)' }).onfinish = function () { f.remove(); done(); };
   });
+  /* ---------- Heat preference drives the order ---------- */
+  var HEAT = [
+    { n: 'Lemon & Herb', c: '#7cb342', picks: ['Flame-grilled Chicken Salad', 'Quarter Chicken', 'Chicken Schwarma Combo'] },
+    { n: 'Mild', c: '#fbb417', picks: ['Quarter Chicken', 'Chicken Burger Combo', 'Mini Chicken Burger Combo'] },
+    { n: 'Hot', c: '#f47a20', picks: ['8 Wings & Chips', 'Chicken Burrito', 'Chicken, Cheese & Pine'] },
+    { n: 'Extra Hot', c: '#e2471f', picks: ['Chicken Burrito', 'Jalape\u00f1o Cheese Burger', 'Chicken Fajita'] },
+    { n: 'Dynamite', c: '#e01b22', picks: ['8 Wings & Chips', 'Whole Chicken & Chips', 'Jalape\u00f1o Cheese Burger'] }
+  ];
+  var dishes = {};
+  Object.keys(window.mochaMenu || {}).forEach(function (cat) { window.mochaMenu[cat].forEach(function (d) { dishes[d.n] = d; }); });
+  var heatNow = 0, picksEl = $('#heatPicks');
+  function applyHeat(i, animate) {
+    heatNow = i;
+    var h = HEAT[i];
+    document.documentElement.style.setProperty('--lvl-c', h.c);
+    $('#heatCtaName').textContent = h.n;
+    $('#bastingName').textContent = h.n;
+    $$('.heat-pill span').forEach(function (s) { s.textContent = h.n; });
+    if (animate && !reduce) $$('.heat-pill').forEach(function (p) { p.classList.remove('flash'); void p.offsetWidth; p.classList.add('flash'); });
+    picksEl.innerHTML = h.picks.map(function (n, k) {
+      var d = dishes[n]; if (!d) return '';
+      return '<div class="pick" style="--d:' + (k * 0.07) + 's"><img src="img/' + d.img + '.webp" alt="" width="800" height="533" loading="lazy"><b>' + d.n + '</b>' +
+        '<button class="add" data-name="' + d.n + '" data-basted="' + (d.b === 0 ? 0 : 1) + '" aria-label="Add ' + d.n + ' to order">+</button></div>';
+    }).join('');
+    try { localStorage.setItem('mochaHeat', String(i)); } catch (err) {}
+  }
+  document.addEventListener('heatchange', function (e) { applyHeat(e.detail, true); });
+  document.addEventListener('menurender', function () { applyHeat(heatNow, false); });
+  var saved = null;
+  try { saved = localStorage.getItem('mochaHeat'); } catch (err) {}
+  if (saved !== null && +saved > 0 && +saved < HEAT.length) { lastHeat = +saved; $$('.heat-levels button')[+saved].click(); }
+  else applyHeat(0, false);
+
+  /* ---------- Dancing amigo: click for a spin and sparks ---------- */
+  $$('.collage .amigo, .deal-mascot').forEach(function (a) {
+    a.addEventListener('click', function () {
+      if (reduce) return;
+      a.classList.remove('spin'); void a.offsetWidth; a.classList.add('spin');
+      var r = a.getBoundingClientRect(); burst(r.left + r.width / 2, r.top + r.height / 3, 18);
+      buzz([20, 30, 20]);
+    });
+    a.addEventListener('animationend', function (e) { if (e.animationName === 'spinDance') a.classList.remove('spin'); });
+  });
+
   cart.addEventListener('click', function () {
     showToast(count ? '<b>' + count + ' item' + (count > 1 ? 's' : '') + '</b> ready for checkout' : 'Your order is empty. <b>Pick something hot!</b>');
     buzz(10);
