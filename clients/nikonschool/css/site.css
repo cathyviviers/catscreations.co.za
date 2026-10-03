@@ -646,3 +646,127 @@ tr:last-child td { border-bottom: 0; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
+
+/* ---------- Artwork motion ---------- */
+.art .px { transform: translate(calc(var(--mx, 0) * var(--d, 0) * 1px), calc(var(--my, 0) * var(--d, 0) * 1px)); transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+.art-box:not(.in-view) .art * { animation-play-state: paused !important; }
+.avatar .art * { animation: none !important; }
+.art-box::before { content: ""; position: absolute; inset: 0; background: #fff; opacity: 0; pointer-events: none; z-index: 3; }
+.art-box.snap::before { animation: snap .45s ease-out; }
+.art-box.snap .art { animation: snapZoom .45s ease-out; }
+@keyframes snap { 0% { opacity: .85; } 100% { opacity: 0; } }
+@keyframes snapZoom { 0% { transform: scale(1.04); } 100% { transform: scale(1); } }
+.card .art, .person .art, .next-card .art, .feature .art, .detail-hero .art { transition: transform .8s cubic-bezier(.2,.8,.2,1); }
+.card.art-hot .art, .person.art-hot .art, .detail-hero.art-hot .art { transform: scale(1.04); }
+
+/* shared loops */
+.art .spin { transform-box: fill-box; transform-origin: center; animation: spin 40s linear infinite; }
+.art .spin.rev { animation-duration: 60s; animation-direction: reverse; }
+.art .glow { transform-box: fill-box; transform-origin: center; animation: glow 5s ease-in-out infinite; }
+.art .blink { animation: blink 1.2s steps(1) infinite; }
+.art .blink.slow { animation-duration: 2.6s; }
+.art .pulse { transform-box: fill-box; transform-origin: center; animation: pulseS 1.8s ease-in-out infinite; }
+.art .glint { animation: glint 3.5s ease-in-out infinite; }
+.art .flow { animation: flow 2.4s linear infinite; }
+.art .flow.fast { animation-duration: .7s; }
+.art .tw { animation: twinkle 3s ease-in-out infinite; }
+.art .fly { animation: fly 16s linear infinite; }
+.art .drift { animation: drift 30s linear infinite; }
+.art .drift.slow { animation-duration: 48s; animation-delay: -20s; }
+.art .breathe { animation: breathe 7s ease-in-out infinite; }
+.art .draw { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.8s cubic-bezier(.6,0,.2,1); }
+.art-box.drawn .art .draw { stroke-dashoffset: 0; }
+@keyframes glow { 0%, 100% { opacity: .25; transform: scale(.94); } 50% { opacity: .55; transform: scale(1.06); } }
+@keyframes blink { 0%, 55% { opacity: 1; } 56%, 100% { opacity: .15; } }
+@keyframes pulseS { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
+@keyframes glint { 0%, 100% { opacity: .3; } 50% { opacity: 1; } }
+@keyframes flow { to { stroke-dashoffset: -36; } }
+@keyframes twinkle { 0%, 100% { opacity: .95; } 50% { opacity: .1; } }
+@keyframes fly { 0% { transform: translate(-60px, 20px); } 50% { transform: translate(200px, -6px); } 100% { transform: translate(460px, 14px); } }
+@keyframes drift { from { transform: translateX(-140px); } to { transform: translateX(440px); } }
+@keyframes breathe { 0%, 100% { opacity: .7; } 50% { opacity: 1.4; } }
+
+/* LightCraft: breathing aperture, opens wide on hover */
+.art .lc-iris, .art .lc-breathe { transform-box: view-box; transform-origin: 200px 150px; }
+.art .lc-iris { transition: transform .7s cubic-bezier(.2,.9,.2,1.1); }
+.art .lc-breathe { animation: lcBreathe 6s ease-in-out infinite; }
+.art-hot .art .lc-iris { transform: rotate(40deg) scale(1.5); }
+.art-hot .art .lc-iris.se { transform: rotate(-30deg) scale(1.35); }
+.art .beam { animation: beam 4s ease-in-out infinite; }
+@keyframes lcBreathe { 0%, 100% { transform: rotate(0deg) scale(1); } 50% { transform: rotate(-16deg) scale(1.14); } }
+@keyframes beam { 0%, 100% { opacity: .04; } 50% { opacity: .2; } }
+
+/* Z-Video: rolling film, live audio meter */
+.art .zv-film { animation: film 4s linear infinite; }
+.art .zv-holes { animation: holes 0.9s linear infinite; }
+.art .eq { transform-box: fill-box; transform-origin: bottom; animation: eq .8s ease-in-out infinite alternate; }
+.art .zv-shape { transition: opacity .4s ease; }
+.art-hot .art .zv-shape { opacity: 1 !important; }
+@keyframes film { to { transform: translateX(-90px); } }
+@keyframes holes { to { transform: translateX(-20px); } }
+@keyframes eq { from { transform: scaleY(.15); } to { transform: scaleY(1); } }
+
+/* Z-series: lens zooms and focus locks on hover */
+.art .zs-lens { transform-box: view-box; transform-origin: 210px 180px; transition: transform .6s cubic-bezier(.2,.9,.2,1.2); }
+.art .zs-af { transform-box: view-box; transform-origin: 210px 180px; animation: af 1.6s ease-in-out infinite; transition: stroke .2s; }
+.art-hot .art .zs-lens { transform: scale(1.12); }
+.art-hot .art .zs-af { animation: afLock .35s ease-out forwards; stroke: #3ddc84; }
+@keyframes af { 0%, 100% { transform: scale(1.25); opacity: .4; } 50% { transform: scale(1); opacity: 1; } }
+@keyframes afLock { from { transform: scale(1.6); } to { transform: scale(.85); } }
+
+/* Coolpix: zoom brackets breathe, punch in on hover */
+.art .cp-zoom, .art .cp-zoom-h { transform-box: view-box; transform-origin: 200px 150px; }
+.art .cp-zoom { animation: cpZoom 5s ease-in-out infinite; }
+.art .cp-zoom-h { transition: transform .6s cubic-bezier(.2,.9,.2,1.1); }
+.art-hot .art .cp-zoom-h { transform: scale(.7); }
+@keyframes cpZoom { 0%, 100% { transform: scale(1); } 50% { transform: scale(.92); } }
+
+/* Cityscape: windows flicker, sun sinks on hover */
+.art .cs-sun { animation: sunBob 9s ease-in-out infinite alternate; }
+.art .cs-sun-h { transition: transform 1.2s cubic-bezier(.2,.8,.2,1); }
+.art-hot .art .cs-sun-h { transform: translateY(40px); }
+@keyframes sunBob { from { transform: translateY(-6px); } to { transform: translateY(8px); } }
+
+/* Masterclass: motion streaks, ripples, play nudges on hover */
+.art .streak { animation: streak 3s linear infinite; }
+.art .ripple { transform-box: fill-box; transform-origin: center; animation: ripple 3.3s ease-out infinite; opacity: 0; }
+.art .mc-rings { transform-box: fill-box; transform-origin: center; transition: transform .8s cubic-bezier(.2,.9,.2,1.1); }
+.art .mc-play { transition: transform .5s cubic-bezier(.2,.9,.2,1.3); }
+.art-hot .art .mc-rings { transform: rotate(90deg) scale(1.08); }
+.art-hot .art .mc-play { transform: translateX(14px); }
+@keyframes streak { from { transform: translateX(-300px); } to { transform: translateX(420px); } }
+@keyframes ripple { 0% { transform: scale(.4); opacity: 0; } 25% { opacity: .8; } 100% { transform: scale(1.9); opacity: 0; } }
+
+/* Art of Seeing: the eye blinks and follows you */
+.art .se-blink { transform-box: view-box; transform-origin: 200px 150px; animation: eyeBlink 5s ease-in-out infinite; }
+@keyframes eyeBlink { 0%, 88%, 100% { transform: scaleY(1); } 92% { transform: scaleY(.06); } 95% { transform: scaleY(1); } }
+
+/* Wildlife: tree sways, animal grazes along, heat haze */
+.art .sway { transform-box: view-box; transform-origin: 271px 232px; animation: sway 6s ease-in-out infinite; }
+.art .graze { animation: graze 14s ease-in-out infinite alternate; }
+.art .haze { animation: breathe 4s ease-in-out infinite; }
+@keyframes sway { 0%, 100% { transform: rotate(-1.4deg); } 50% { transform: rotate(1.4deg); } }
+@keyframes graze { from { transform: translateX(-10px); } to { transform: translateX(40px); } }
+
+/* Astro: shooting stars, Milky Way brightens on hover */
+.art .shoot { opacity: 0; animation: shoot 7s ease-in infinite; }
+.art .shoot.late { animation-delay: 3.6s; animation-duration: 9s; }
+.art .milky-h { transition: opacity .8s; opacity: .8; }
+.art-hot .art .milky-h { opacity: 1.6; filter: brightness(1.6); }
+@keyframes shoot { 0%, 82% { transform: translate(0, 0); opacity: 0; } 84% { opacity: 1; } 94%, 100% { transform: translate(-180px, 96px); opacity: 0; } }
+
+/* Portrait: floating bokeh, rim light shimmer, light swells on hover */
+.art .bokeh { animation: bokeh 8s linear infinite; opacity: 0; }
+.art .rim { animation: glint 2.8s ease-in-out infinite; }
+.art .rim.late { animation-delay: -1.4s; }
+.art .pt-glow-h { transform-box: view-box; transform-origin: 290px 90px; transition: transform 1s cubic-bezier(.2,.8,.2,1); }
+.art-hot .art .pt-glow-h { transform: scale(1.35); }
+@keyframes bokeh { 0% { transform: translateY(30px); opacity: 0; } 20% { opacity: .35; } 80% { opacity: .2; } 100% { transform: translateY(-140px); opacity: 0; } }
+
+/* Sport: the track rushes past, runner surges on hover */
+.art .bob { animation: bob .42s ease-in-out infinite alternate; }
+.art .speed { transform-box: fill-box; transform-origin: right; animation: speed .5s ease-in-out infinite alternate; }
+.art .sp-run { transition: transform .6s cubic-bezier(.2,.9,.2,1.2); }
+.art-hot .art .sp-run { transform: translateX(26px); }
+@keyframes bob { from { transform: translateY(0); } to { transform: translateY(-5px); } }
+@keyframes speed { from { transform: scaleX(.6); } to { transform: scaleX(1.15); } }
