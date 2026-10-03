@@ -353,6 +353,53 @@
     @keyframes obBump { 40% { transform: scale(1.05); } }
     .toast { bottom: 88px; }
   }
+
+  /* ===== Header: transparent over the hero, solid charcoal on scroll ===== */
+  .nav { --nav-h: 92px; margin-bottom: calc(var(--nav-h) * -1); background: transparent; border-bottom: 1px solid transparent; backdrop-filter: none; color: var(--cream); transition: background .35s, border-color .35s, box-shadow .35s; }
+  .nav::before { content: ""; position: absolute; inset: 0 0 -40px; z-index: -1; pointer-events: none; background: linear-gradient(180deg, rgba(27,15,10,0.75), transparent); transition: opacity .35s; }
+  .nav .wrap { height: var(--nav-h); }
+  .logo img { height: 64px; filter: drop-shadow(0 6px 14px rgba(0,0,0,0.45)); }
+  .nav-links { gap: 6px; }
+  .nav-links a { position: relative; display: block; padding: 10px 14px; border-radius: 999px; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.02em; color: var(--cream); transition: color .2s, background .2s; }
+  .nav-links a::after { content: ""; position: absolute; left: 14px; right: 14px; bottom: 4px; height: 3px; border-radius: 3px; background: linear-gradient(90deg, #fbb417, #f47a20, #e01b22); transform: scaleX(0); transform-origin: 0 50%; transition: transform .35s cubic-bezier(.2,.8,.2,1); }
+  .nav-links a:hover { color: var(--sun); }
+  .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+  .nav-links a.active { color: var(--sun); }
+  .nav-cta { gap: 12px; }
+  .nav-cta .btn-flame { padding: 13px 24px; box-shadow: 0 8px 24px rgba(224,27,34,0.45); }
+  .cart { border-color: rgba(255,246,232,0.35); color: var(--cream); transition: border-color .2s, background .2s; }
+  .cart:hover { border-color: var(--sun); background: rgba(251,180,23,0.1); }
+  .menu-toggle span { background: var(--cream); transition: transform .3s, opacity .3s; }
+  .nav.open .menu-toggle span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+  .nav.open .menu-toggle span:nth-child(2) { opacity: 0; }
+  .nav.open .menu-toggle span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+  .nav.scrolled { --nav-h: 66px; background: rgba(27,15,10,0.94); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 10px 30px rgba(0,0,0,0.35); }
+  .nav.scrolled::before { opacity: 0; }
+  .nav.scrolled .wrap { height: var(--nav-h); }
+  .nav.scrolled .logo img { height: 46px; }
+  .nav.scrolled .progress { height: 3px; }
+  .progress { height: 2px; background: linear-gradient(90deg, #fbb417, #f47a20, #e01b22); }
+
+  .hero .wrap { padding-top: calc(90px + 92px); }
+
+  @media (max-width: 960px) {
+    .nav { --nav-h: 76px; }
+    .nav.scrolled { --nav-h: 62px; }
+    .logo img { height: 50px; }
+    .nav.scrolled .logo img { height: 40px; }
+    .nav.open { background: rgba(27,15,10,0.98); }
+    .nav.open::before { opacity: 0; }
+    .nav.open .nav-links { top: 100%; background: rgba(27,15,10,0.98); border-bottom: 3px solid var(--flame); padding: 8px 16px 28px; gap: 4px; font-size: 1.3rem; box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+    .nav.open .nav-links a { font-family: var(--display); font-weight: 400; text-transform: uppercase; padding: 14px 4px; font-size: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.08); border-radius: 0; animation: rise .45s cubic-bezier(.2,.8,.2,1) backwards; }
+    .nav.open .nav-links li:nth-child(2) a { animation-delay: .05s; }
+    .nav.open .nav-links li:nth-child(3) a { animation-delay: .1s; }
+    .nav.open .nav-links li:nth-child(4) a { animation-delay: .15s; }
+    .nav.open .nav-links li:nth-child(5) a { animation-delay: .2s; }
+    .nav.open .nav-links a::after { left: 4px; right: auto; width: 60px; bottom: 8px; }
+    .hero .wrap { padding-top: calc(36px + 76px); }
+    body:has(.nav.open) .order-bar { transform: translateY(160%); }
+  }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
     .reveal { opacity: 1; translate: none; }
@@ -378,7 +425,6 @@
       <li><a href="#franchise">Franchise</a></li>
     </ul>
     <div class="nav-cta">
-      <a href="#stores" class="btn btn-ghost">Near me</a>
       <a href="#menu" class="btn btn-flame magnetic">Order now</a>
       <button class="cart" id="cart" aria-label="Your order, 0 items"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l-1 13H7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg><span class="cart-count" id="cartCount">0</span></button>
       <button class="menu-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -791,6 +837,19 @@
   addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
   if (touch) heroArt.style.transition = 'none';
   onScroll();
+
+  /* ---------- Header: highlight the section in view ---------- */
+  if ('IntersectionObserver' in window) {
+    var navLinks = $$('.nav-links a');
+    var spy = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        navLinks.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id); });
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    navLinks.forEach(function (a) { var t = document.querySelector(a.getAttribute('href')); if (t) spy.observe(t); });
+    spy.observe(hero);
+  }
 
   /* ---------- Marquee reacts to scroll speed (and slows on hover) ---------- */
   var track = $('.marquee-track'), hovering = false;
