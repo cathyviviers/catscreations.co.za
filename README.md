@@ -21,6 +21,7 @@ No framework. Hand-written HTML, CSS and vanilla JavaScript, deployed on Vercel.
 | `generate-feed.js` | Builds `feed.xml` |
 | `generate-rss.js` | Builds `blog/rss.xml` |
 | `llms.txt`, `robots.txt`, `manifest.json` | Crawler, AI-crawler and PWA metadata |
+| `clients/` | Client landing pages, one folder per client, each served on its own subdomain |
 | `vercel.json` | Routing, redirects and security headers |
 
 ## Running it locally
@@ -47,6 +48,17 @@ Go to [catscreations.co.za/admin](https://catscreations.co.za/admin) and sign in
 ## Deploying
 
 Vercel builds and deploys every push to `main` automatically. Pull requests get their own preview URL.
+
+## Client landing pages
+
+Each folder in `clients/` is a landing page served on a subdomain: `clients/oumasenes/` shows up at `oumasenes.catscreations.co.za`. One rewrite rule in `vercel.json` maps any subdomain to the folder with the same name, so there is no config to touch per client. Visiting `catscreations.co.za/clients/<name>/` redirects to the subdomain, and `clients/` is left out of the main sitemap.
+
+To add a client:
+
+1. Copy an existing client folder to `clients/<name>/` (lowercase letters, numbers and hyphens only) and replace the content, canonical URL, `robots.txt` and `sitemap.xml`.
+2. In Vercel, add `<name>.catscreations.co.za` to this project under Settings, Domains. If the domain's DNS is on Vercel, a single `*.catscreations.co.za` wildcard covers every client; otherwise add a CNAME for `<name>` pointing at `cname.vercel-dns.com`.
+
+The site-wide Content Security Policy applies to client pages too, so embeds like Google Maps iframes or booking widgets need adding to `vercel.json` first.
 
 ## Notes
 

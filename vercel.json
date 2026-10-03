@@ -1,5 +1,30 @@
 {
   "outputDirectory": ".",
+  "redirects": [
+    {
+      "source": "/clients/:client/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "^(www\\.)?catscreations\\.co\\.za$"
+        }
+      ],
+      "destination": "https://:client.catscreations.co.za/:path*",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "^(?<client>(?!www\\.)[a-z0-9-]+)\\.catscreations\\.co\\.za$"
+        }
+      ],
+      "destination": "/clients/:client/:path*"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
@@ -122,17 +147,35 @@
     {
       "source": "/admin/(.*)",
       "headers": [
-        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
-        { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
-        { "key": "Cache-Control", "value": "no-store" }
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        }
       ]
     },
     {
       "source": "/admin-index/(.*)",
       "headers": [
-        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
-        { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
-        { "key": "Cache-Control", "value": "no-store" }
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        }
       ]
     }
   ]
