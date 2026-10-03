@@ -120,7 +120,7 @@
       '<div class="panel"><div class="panel-head"><h2>Upcoming sessions</h2><button class="btn btn-ghost btn-sm" data-v="workshops">Manage workshops</button></div><div class="table-wrap"><table><thead><tr><th>Workshop</th><th>Date</th><th>City</th><th>Seats</th><th>Price</th></tr></thead><tbody>' +
       upcoming.slice(0, 7).map(function (u) {
         var pct = Math.round(u.s.taken / u.s.seats * 100);
-        return '<tr><td><div class="cell-title">' + N.art(u.w.art) + esc(u.w.short) + "</div></td><td>" + esc(N.dt(u.s.date).long) + " " + u.s.time + "</td><td>" + esc(u.s.city) + '</td><td><span class="mini-bar"><i style="width:' + pct + '%"></i></span>' + u.s.taken + "/" + u.s.seats + "</td><td>" + money(u.w.price) + "</td></tr>";
+        return '<tr><td><div class="cell-title">' + N.art(u.w) + esc(u.w.short) + "</div></td><td>" + esc(N.dt(u.s.date).long) + " " + u.s.time + "</td><td>" + esc(u.s.city) + '</td><td><span class="mini-bar"><i style="width:' + pct + '%"></i></span>' + u.s.taken + "/" + u.s.seats + "</td><td>" + money(u.w.price) + "</td></tr>";
       }).join("") + "</tbody></table></div></div>";
   }
 
@@ -132,7 +132,7 @@
       '<div class="panel"><div class="table-wrap"><table><thead><tr><th>Workshop</th><th>Host</th><th>Next date</th><th>Seats</th><th>Price</th><th>On website</th><th></th></tr></thead><tbody id="ws-rows">' +
       D.workshops.map(function (w) {
         var s = N.nextSession(w), pct = Math.round(s.taken / s.seats * 100), live = !drafts[w.slug];
-        return '<tr><td><div class="cell-title">' + N.art(w.art) + "<div>" + esc(w.short) + '<br><span style="font-weight:400;color:var(--muted);font-size:.82rem">' + w.sessions.length + (w.sessions.length > 1 ? " dates" : " date") + "</span></div></div></td>" +
+        return '<tr><td><div class="cell-title">' + N.art(w) + "<div>" + esc(w.short) + '<br><span style="font-weight:400;color:var(--muted);font-size:.82rem">' + w.sessions.length + (w.sessions.length > 1 ? " dates" : " date") + "</span></div></div></td>" +
           "<td>" + esc(N.person(w.host).name) + "</td><td>" + esc(N.dt(s.date).long) + "</td>" +
           '<td><span class="mini-bar"><i style="width:' + pct + '%"></i></span>' + s.taken + "/" + s.seats + "</td>" +
           "<td>" + (w.price ? N.money(w.price) : '<span class="status free">Free</span>') + "</td>" +

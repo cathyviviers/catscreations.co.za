@@ -865,3 +865,17 @@ a.fcard:hover .ico { transform: rotate(-8deg) scale(1.1); }
 @keyframes bubble { 0% { transform: translateY(0); opacity: 0; } 15% { opacity: .9; } 100% { transform: translateY(-220px) translateX(10px); opacity: 0; } }
 @keyframes school { from { transform: translateX(-30px); } to { transform: translateX(220px); } }
 @keyframes swim { from { transform: translate(-14px, 6px); } to { transform: translate(14px, -8px); } }
+
+/* ---------- Photos: same life as the illustrations ---------- */
+.art-box .photo {
+  position: absolute; inset: -5%; width: 110%; height: 110%; max-width: none; object-fit: cover;
+  translate: calc(var(--mx, 0) * -14px) calc(var(--my, 0) * -10px);
+  transition: translate .6s cubic-bezier(.2,.8,.2,1), filter .4s ease;
+  animation: kenburns 22s ease-in-out infinite alternate;
+}
+.art-box:not(.in-view) .photo { animation-play-state: paused; }
+.art-hot .art-box .photo, .art-box.art-hot .photo { filter: saturate(1.15) contrast(1.05); }
+.art-box.snap .photo { animation: kenburns 22s ease-in-out infinite alternate, snapZoom .45s ease-out; }
+.avatar .photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.avatar:has(.photo) b { display: none; }
+@keyframes kenburns { from { scale: 1.02; } to { scale: 1.1; } }

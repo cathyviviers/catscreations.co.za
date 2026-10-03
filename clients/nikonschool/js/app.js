@@ -62,9 +62,17 @@
     return (open.length ? open : w.sessions).slice().sort(function (a, b) { return a.date < b.date ? -1 : 1; })[0];
   }
 
-  function art(kind, cls) { return '<div class="art-box ' + (cls || "") + '">' + window.nsArt(kind) + "</div>"; }
+  // A workshop or person shows its photo when it has one, otherwise its illustration
+  function visual(x) {
+    if (x && typeof x === "object") {
+      if (x.photo) return '<img class="photo" src="' + ROOT + esc(x.photo) + '" alt="" loading="lazy" decoding="async">';
+      return window.nsArt(x.art);
+    }
+    return window.nsArt(x);
+  }
+  function art(x, cls) { return '<div class="art-box' + (x && x.photo ? " has-photo" : "") + " " + (cls || "") + '">' + visual(x) + "</div>"; }
   function avatar(p, size) {
-    return '<span class="avatar' + (p.role === "ambassador" ? " ring" : "") + '"' + (size ? ' style="--size:' + size + 'px"' : "") + ">" + window.nsArt(p.art) + "<b>" + esc(initials(p.name)) + "</b></span>";
+    return '<span class="avatar' + (p.role === "ambassador" ? " ring" : "") + '"' + (size ? ' style="--size:' + size + 'px"' : "") + ">" + visual(p) + "<b>" + esc(initials(p.name)) + "</b></span>";
   }
 
   /* ---------- layout ---------- */
@@ -177,7 +185,7 @@
     var h = person(w.host);
     var low = left > 0 && left <= 4;
     return '<a class="card" href="' + wsUrl(w, ref) + '">' +
-      '<div class="art-box">' + window.nsArt(w.art) +
+      '<div class="art-box' + (w.photo ? " has-photo" : "") + '">' + visual(w) +
       '<div class="tags">' + (w.price === 0 ? '<span class="badge badge-free">Free</span>' : '<span class="badge badge-dark">' + esc(w.format === "Trip" ? "Experience" : "Workshop") + "</span>") +
       '<span class="badge">' + esc(w.level) + "</span>" + (w.sample ? '<span class="badge badge-sample">Sample</span>' : "") + "</div>" +
       '<span class="price-tag' + (w.price === 0 ? " free" : "") + '">' + money(w.price) + "</span></div>" +
@@ -190,7 +198,7 @@
   }
 
   function personCard(p) {
-    return '<a class="person" href="' + pUrl(p) + '">' + art(p.art) +
+    return '<a class="person" href="' + pUrl(p) + '">' + art(p) +
       (p.sample ? '<span class="badge badge-sample sample">Sample</span>' : "") +
       '<div class="body"><span class="badge ' + (p.role === "ambassador" ? "badge-free" : "badge-dark") + '">' + roleLabel(p.role) + "</span>" +
       "<h3>" + esc(p.name) + "</h3><p>" + esc(p.specialty) + "</p></div></a>";
@@ -202,7 +210,7 @@
     var s = nextSession(lc);
     var nc = $("#next-card");
     if (nc) {
-      nc.innerHTML = art("lightcraft") +
+      nc.innerHTML = art(lc) +
         '<div class="body"><div class="row"><span class="badge badge-free">Free class</span><span class="meta">' + seatsLeft(s) + " seats left</span></div>" +
         "<h3>" + esc(lc.title) + '</h3><div class="meta">' + esc(dt(s.date).long) + " at " + s.time + " &middot; " + esc(s.city) + "</div>" +
         '<div class="countdown" id="countdown" aria-label="Time until class"></div>' +
@@ -212,7 +220,8 @@
 
     var feat = $("#feature-sessions");
     if (feat) {
-      $("#feature-art").innerHTML = window.nsArt("lightcraft");
+      $("#feature-art").innerHTML = visual(lc);
+      if (lc.photo) $("#feature-art").classList.add("has-photo");
       var picked = s.id;
       feat.innerHTML = lc.sessions.map(function (x) {
         return '<button class="session-pill" aria-pressed="' + (x.id === picked) + '" data-id="' + x.id + '">' + esc(dt(x.date).long) + "<small>" + esc(x.city) + " &middot; " + seatsLeft(x) + " left</small></button>";
@@ -336,7 +345,7 @@
     var related = D.workshops.filter(function (x) { return x.slug !== w.slug && !x.sample && (w.price === 0 ? x.price > 0 : true); }).slice(0, 3);
 
     $("#main").innerHTML =
-      '<div class="wrap detail-hero"><div class="crumbs"><a href="' + ROOT + '">Home</a> / <a href="' + ROOT + 'workshops/">Workshops</a> / ' + esc(w.short) + "</div>" + art(w.art) + "</div>" +
+      '<div class="wrap detail-hero"><div class="crumbs"><a href="' + ROOT + '">Home</a> / <a href="' + ROOT + 'workshops/">Workshops</a> / ' + esc(w.short) + "</div>" + art(w) + "</div>" +
       '<div class="wrap detail-grid"><div>' +
       '<div class="chips">' + (w.price === 0 ? '<span class="badge badge-free">Free workshop</span>' : '<span class="badge badge-dark">Paid workshop</span>') + (w.sample ? '<span class="badge badge-sample">Sample listing</span>' : "") + "</div>" +
       '<h1 style="margin-top:16px">' + esc(w.title) + "</h1>" +
@@ -417,7 +426,7 @@
     var paid = w.price > 0;
     var steps = paid ? 3 : 2;
     var d = dt(s.date);
-    var summary = '<div class="summary">' + art(w.art) + "<div><b>" + esc(w.short) + "</b><span>" + esc(d.long) + " at " + s.time + " &middot; " + esc(s.city) + " &middot; " + qty + (qty > 1 ? " seats" : " seat") + "</span></div></div>";
+    var summary = '<div class="summary">' + art(w) + "<div><b>" + esc(w.short) + "</b><span>" + esc(d.long) + " at " + s.time + " &middot; " + esc(s.city) + " &middot; " + qty + (qty > 1 ? " seats" : " seat") + "</span></div></div>";
     var models = ["Nikon Z8", "Nikon Z6III", "Nikon Z5II", "Nikon Zf", "Nikon Z50II", "Nikon Z fc", "Nikon Z30", "Nikon D-series DSLR", "Nikon Coolpix", "I don't own a Nikon yet"];
 
     openModal(sheetHead(paid ? "Book your seat" : "Reserve your free seat", 1, steps) + summary +
@@ -499,7 +508,7 @@
       '<div class="ticket"><span class="ref">' + refCode + "</span><b>" + esc(w.title) + "</b><span>" + esc(d.long) + " at " + s.time + "</span><span>" + esc(s.venue) + "</span>" +
       "<span>" + qty + (qty > 1 ? " seats" : " seat") + " &middot; " + (w.price ? "Paid " + money(w.price * qty) + " by " + { card: "card", eft: "instant EFT", qr: "QR" }[method] : "Free") + "</span>" +
       (refP ? '<span style="color:var(--muted)">Credited to ' + esc(refP.name) + "'s link</span>" : "") + "</div>" +
-      (next ? '<a class="upsell" href="' + wsUrl(next) + '">' + art(next.art) + "<div><small>" + (w.price === 0 ? "Your next step" : "Keep going") + "</small><b>" + esc(next.title) + "</b><span>" + money(next.price) + " &middot; " + esc(dt(nextSession(next).date).long) + "</span></div></a>" : "") +
+      (next ? '<a class="upsell" href="' + wsUrl(next) + '">' + art(next) + "<div><small>" + (w.price === 0 ? "Your next step" : "Keep going") + "</small><b>" + esc(next.title) + "</b><span>" + money(next.price) + " &middot; " + esc(dt(nextSession(next).date).long) + "</span></div></a>" : "") +
       '<div style="display:flex;gap:10px;margin-top:16px"><button class="btn btn-ghost btn-sm" style="flex:1" id="add-cal">' + I.cal + ' Add to calendar</button><button class="btn btn-dark btn-sm" style="flex:1" data-close>Done</button></div>' +
       "</div></div>";
     $("#add-cal").addEventListener("click", function () { toast("Calendar invite downloaded (demo)"); });
@@ -512,7 +521,7 @@
         var w = workshop(b.slug);
         var s = w && w.sessions.filter(function (x) { return x.id === b.session; })[0];
         if (!w || !s) return "";
-        return '<div class="summary">' + art(w.art) + "<div><b>" + esc(w.short) + "</b><span>" + esc(dt(s.date).long) + " &middot; " + esc(s.city) + " &middot; " + b.ref + "</span></div></div>";
+        return '<div class="summary">' + art(w) + "<div><b>" + esc(w.short) + "</b><span>" + esc(dt(s.date).long) + " &middot; " + esc(s.city) + " &middot; " + b.ref + "</span></div></div>";
       }).join("")
       : '<p style="color:var(--muted)">No bookings yet. Start with the free LightCraft class.</p><a class="btn btn-yellow" href="' + ROOT + 'workshops/lightcraft-fundamentals/">Book free class</a>';
     openModal(sheetHead("My bookings") + body + "</div>");
@@ -551,10 +560,13 @@
       if (/^https?:/.test(url)) return '<a href="' + esc(url) + '" target="_blank" rel="noopener" aria-label="' + esc(p.name) + "'s " + k + '">' + icon + "</a>";
       return '<a href="#" data-demo aria-label="' + k + '">' + icon + "</a>";
     }).join("");
-    var gallery = [p.art, p.art, p.art, p.art].map(function (a, i) { return art(i === 0 ? a : ["lightcraft", "cityscape", "seeing", "masterclass", "wildlife", "astro", "portrait", "sport", "flash", "surf", "auto", "ocean"][(p.slug.length + i * 3) % 12]); }).join("");
+    var gallery = (p.gallery && p.gallery.length
+      ? p.gallery.slice(0, 4).map(function (g) { return art({ photo: g }); })
+      : [p.art, p.art, p.art, p.art].map(function (a, i) { return art(i === 0 ? a : ["lightcraft", "cityscape", "seeing", "masterclass", "wildlife", "astro", "portrait", "sport", "flash", "surf", "auto", "ocean"][(p.slug.length + i * 3) % 12]); })
+    ).join("");
 
     $("#main").innerHTML =
-      '<section class="profile-hero dark">' + art(p.art) + '<div class="wrap">' +
+      '<section class="profile-hero dark">' + art(p) + '<div class="wrap">' +
       '<div class="crumbs"><a href="' + ROOT + '">Home</a> / <a href="' + ROOT + 'creators/">Ambassadors & Creators</a> / ' + esc(p.name) + "</div>" +
       '<div class="profile-id">' + avatar(p) + '<div><span class="badge ' + (p.role === "ambassador" ? "badge-free" : "") + '">' + roleLabel(p.role) + "</span>" + (p.sample ? ' <span class="badge badge-sample">Sample profile</span>' : "") + "</div></div>" +
       "<h1>" + esc(p.name) + '</h1><p class="lede">' + esc(p.specialty) + " &middot; " + esc(p.city) + "</p>" +
@@ -567,7 +579,7 @@
       (p.bioPending ? '<p class="placeholder-note">Short profile from the Nikon South Africa roster. A full bio, portfolio and gear list come from ' + esc(p.name.split(" ")[0]) + " and Nikon before launch.</p>" : "") +
       '<div class="block"><h2>Known for</h2><ul class="ticks">' + p.highlights.map(function (h) { return "<li>" + I.check + "<span>" + esc(h) + "</span></li>"; }).join("") + "</ul></div>" +
       '<div class="block"><h2>Portfolio</h2><div class="gallery">' + gallery + "</div>" +
-      '<p class="placeholder-note">Illustrations stand in for portfolio images. Nikon uploads the real photos through the dashboard.</p></div>' +
+      (p.gallery && p.gallery.length ? "" : '<p class="placeholder-note">Illustrations stand in for portfolio images. Nikon uploads the real photos through the dashboard.</p>') + "</div>" +
       "</div>" +
       '<aside class="side-card"><dl>' +
       "<div><dt>Role</dt><dd>" + roleLabel(p.role) + "</dd></div>" +
