@@ -580,10 +580,39 @@
   .to-top:hover svg { animation: flicker .5s ease-in-out infinite alternate; }
   @keyframes flicker { to { transform: scale(1.15) rotate(-6deg); } }
   @media (max-width: 960px) { .to-top { display: none; } }
+
+  /* Wood-panelled dark sections */
+  :root { --wood: linear-gradient(rgba(27,15,10,0.28), rgba(27,15,10,0.28)), url(img/wood.webp) 0 0 / 900px auto; }
+  .finder, footer, .heat-card, .promo-card, .drawer-head { background: var(--wood), var(--char); }
+  .store, .map, .pick, .search input { background-color: rgba(42,24,16,0.72); backdrop-filter: blur(2px); }
+
+  /* Flames licking up from the bottom of the dark sections */
+  .fire { position: absolute; left: 0; right: 0; bottom: 0; height: var(--fire-h, 110px); pointer-events: none; z-index: 0; overflow: hidden; }
+  .fire::before { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(244,122,32,0.55), rgba(227,38,47,0.18) 55%, transparent); }
+  .fire i { position: absolute; inset: 0; transform-origin: 50% 100%; background-repeat: repeat-x; background-position: 0 100%; }
+  .fire .f1 { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='100' viewBox='0 0 120 100' preserveAspectRatio='none'%3E%3Cpath d='M0 100 C 8 78 4 60 16 42 C 18 60 26 66 32 52 C 38 34 46 20 52 0 C 58 26 72 42 68 64 C 78 56 84 44 88 30 C 98 52 116 72 120 100 Z' fill='%23e3262f' fill-opacity='0.9'/%3E%3C/svg%3E"); background-size: 150px 100%; animation: flameDrift 6s linear infinite, flicker 1.3s ease-in-out infinite alternate; }
+  .fire .f2 { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='110' height='100' viewBox='0 0 120 100' preserveAspectRatio='none'%3E%3Cpath d='M0 100 C 8 78 4 60 16 42 C 18 60 26 66 32 52 C 38 34 46 20 52 0 C 58 26 72 42 68 64 C 78 56 84 44 88 30 C 98 52 116 72 120 100 Z' fill='%23f47a20' fill-opacity='0.95'/%3E%3C/svg%3E"); background-size: 110px 78%; animation: flameDrift 4s linear infinite reverse, flicker 0.9s ease-in-out infinite alternate-reverse; }
+  .fire .f3 { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='100' viewBox='0 0 120 100' preserveAspectRatio='none'%3E%3Cpath d='M0 100 C 8 78 4 60 16 42 C 18 60 26 66 32 52 C 38 34 46 20 52 0 C 58 26 72 42 68 64 C 78 56 84 44 88 30 C 98 52 116 72 120 100 Z' fill='%23fbb417' fill-opacity='1'/%3E%3C/svg%3E"); background-size: 80px 50%; animation: flameDrift 3s linear infinite, flicker 0.7s ease-in-out infinite alternate; }
+  .fire .f4 { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='100' viewBox='0 0 120 100' preserveAspectRatio='none'%3E%3Cpath d='M0 100 C 8 78 4 60 16 42 C 18 60 26 66 32 52 C 38 34 46 20 52 0 C 58 26 72 42 68 64 C 78 56 84 44 88 30 C 98 52 116 72 120 100 Z' fill='%23fff1b8' fill-opacity='0.9'/%3E%3C/svg%3E"); background-size: 60px 26%; animation: flameDrift 2.4s linear infinite reverse, flicker 0.5s ease-in-out infinite alternate; }
+  @keyframes flameDrift { to { background-position: 600px 100%; } }
+  @keyframes flicker { 0% { transform: scaleY(0.86) skewX(-2deg); } 50% { transform: scaleY(1.04) skewX(1.5deg); } 100% { transform: scaleY(0.94) skewX(-1deg); } }
+  .fire b { position: absolute; bottom: 0; left: var(--x); width: var(--s, 4px); height: var(--s, 4px); border-radius: 50%; background: #ffd36b; box-shadow: 0 0 8px 2px rgba(251,180,23,0.8); opacity: 0; animation: ember var(--t, 3s) ease-out var(--d, 0s) infinite; }
+  @keyframes ember { 0% { opacity: 0; transform: translate(0, 0); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(var(--dx, 10px), calc(var(--fire-h, 110px) * -1)); } }
+  .finder, footer { position: relative; overflow: hidden; }
+  .finder { padding-bottom: 170px; }
+  footer { padding-bottom: 130px; }
+  .finder > .wrap, footer > .wrap { position: relative; z-index: 1; }
+  .finder .fire { --fire-h: 130px; }
+  footer .fire { --fire-h: 110px; }
+  /* Heat card: the flames grow with the heat you pick */
+  .heat-card { padding-bottom: calc(clamp(28px, 5vw, 56px) + 110px); }
+  .heat-card > :not(.fire) { position: relative; z-index: 1; }
+  .heat-card .fire { --fire-h: calc(50px + var(--flame, 0.2) * 120px); border-radius: 0 0 32px 32px; transition: height .6s cubic-bezier(.2,.8,.2,1); }
+  .heat-card .fire::before { opacity: calc(0.4 + var(--flame, 0.2) * 0.6); }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
     .reveal { opacity: 1; translate: none; }
-    .embers { display: none; }
+    .embers, .fire b { display: none; }
     html { scroll-behavior: auto; }
   }
 </style>
@@ -920,6 +949,7 @@
   function setHeat(i) {
     var l = levels[i];
     heatCard.style.setProperty('--lvl', l.color);
+    heatCard.style.setProperty('--flame', (i + 1) / 5);
     document.getElementById('heatName').textContent = l.name;
     document.getElementById('heatDesc').textContent = l.desc;
     document.getElementById('meter').style.width = ((i + 1) * 20) + '%';
@@ -1472,6 +1502,21 @@
   var toTop = $('#toTop');
   addEventListener('scroll', function () { toTop.classList.toggle('show', scrollY > 900); }, { passive: true });
   toTop.addEventListener('click', function () { scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); $('#top').focus({ preventScroll: true }); });
+
+  /* ---------- Flames + embers along the dark sections ---------- */
+  ['.heat-card', '.finder', 'body > footer'].forEach(function (sel) {
+    var host = document.querySelector(sel);
+    if (!host) return;
+    var fire = document.createElement('div');
+    fire.className = 'fire';
+    fire.setAttribute('aria-hidden', 'true');
+    var html = '<i class="f1"></i><i class="f2"></i><i class="f3"></i><i class="f4"></i>';
+    for (var k = 0; k < 18; k++) {
+      html += '<b style="--x:' + (Math.random() * 100).toFixed(1) + '%;--d:' + (Math.random() * 4).toFixed(2) + 's;--t:' + (2 + Math.random() * 2.5).toFixed(2) + 's;--s:' + (2 + Math.random() * 4).toFixed(1) + 'px;--dx:' + (Math.random() * 40 - 20).toFixed(0) + 'px"></b>';
+    }
+    fire.innerHTML = html;
+    host.appendChild(fire);
+  });
 })();
 </script>
 </body>
