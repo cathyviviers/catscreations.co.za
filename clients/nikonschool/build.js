@@ -18,6 +18,14 @@ function page({ root, title, description, pageKey, slug, main }) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>${title}</title>
   <meta name="description" content="${description}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Nikon School South Africa (design concept)" />
+  <meta property="og:title" content="${title}" />
+  <meta property="og:description" content="${description}" />
+  <meta property="og:image" content="https://nikonschool.catscreations.co.za/clients/nikonschool/images/og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="robots" content="noindex, nofollow" />
   <meta name="theme-color" content="#0b0b0c" />
   <link rel="icon" type="image/png" href="${root}images/favicon.png" />
@@ -34,6 +42,7 @@ function page({ root, title, description, pageKey, slug, main }) {
   <script src="${root}js/data.js"></script>
   <script src="${root}js/art.js"></script>
   <script src="${root}js/app.js"></script>
+  <script src="${root}js/extras.js"></script>
 </body>
 </html>
 `;

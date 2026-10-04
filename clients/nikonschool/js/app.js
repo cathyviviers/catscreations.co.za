@@ -178,7 +178,9 @@
     var r = btn.getBoundingClientRect();
     var x = r.left + r.width / 2, y = r.top + r.height / 2;
     var radius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+    document.documentElement.classList.add("theme-vt");
     var t = document.startViewTransition(function () { setTheme(next); });
+    t.finished.then(function () { document.documentElement.classList.remove("theme-vt"); }, function () { document.documentElement.classList.remove("theme-vt"); });
     t.ready.then(function () {
       document.documentElement.animate(
         { clipPath: ["circle(0px at " + x + "px " + y + "px)", "circle(" + radius + "px at " + x + "px " + y + "px)"] },
