@@ -6,6 +6,20 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Mochachos Revamp Concept | Cat's Creations</title>
 <meta name="description" content="Website revamp concept for Mochachos, prepared by Cat's Creations. Not the official Mochachos website.">
+<meta name="theme-color" content="#1b0f0a">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mochachos | Website revamp concept">
+<meta property="og:description" content="Flame-grilled. Mexican-spirited. A website revamp concept by Cat's Creations.">
+<meta property="og:url" content="https://mochachos.catscreations.co.za/">
+<meta property="og:image" content="https://mochachos.catscreations.co.za/share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Mochachos logo beside floating flame-grilled chicken, burger, burrito and nachos">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mochachos.catscreations.co.za/share.jpg">
+<link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
@@ -500,6 +514,67 @@
   @media (max-width: 960px) { .menu-sticky { top: 60px; } }
   @media (max-width: 960px) { .collage .amigo { right: 2%; } .deal-mascot { right: 4px; bottom: 0; } }
   @keyframes spinDance { 0% { transform: rotate(0) scale(1); } 40% { transform: rotate(200deg) translateY(-40px) scale(1.15); } 100% { transform: rotate(360deg) scale(1); } }
+
+  /* ===== Final touches ===== */
+  .skip { position: fixed; left: 16px; top: -60px; z-index: 200; background: var(--sun); color: var(--char); font-weight: 700; padding: 10px 18px; border-radius: 999px; text-decoration: none; transition: top .2s; }
+  .skip:focus { top: 12px; }
+  :focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; border-radius: 6px; }
+  main:focus { outline: none; }
+
+  .drawer-scrim { position: fixed; inset: 0; z-index: 140; background: rgba(27,15,10,0.55); backdrop-filter: blur(3px); opacity: 0; transition: opacity .3s; }
+  .drawer-scrim.on { opacity: 1; }
+  .drawer { position: fixed; top: 0; right: 0; bottom: 0; z-index: 150; width: min(420px, 100%); background: var(--cream); display: flex; flex-direction: column; box-shadow: -20px 0 60px rgba(0,0,0,0.3); transform: translateX(105%); transition: transform .45s cubic-bezier(.2,.9,.3,1); }
+  .drawer.is-open { transform: none; }
+  .drawer-head { position: relative; display: flex; justify-content: space-between; align-items: center; padding: 22px 22px 14px; background: var(--char); color: var(--cream); }
+  .drawer-head .eyebrow { color: var(--sun); }
+  .drawer-head h3 { font-size: 1.6rem; margin-top: 4px; }
+  .drawer-close { width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.25); background: transparent; color: #fff; font-size: 1.4rem; cursor: pointer; }
+  .drawer-heat { display: flex; align-items: center; gap: 8px; padding: 12px 22px; background: var(--char-2); color: #d8bfa8; font-size: 0.88rem; }
+  .drawer-heat i { width: 9px; height: 9px; border-radius: 50%; background: var(--lvl-c, #7cb342); box-shadow: 0 0 10px var(--lvl-c, #7cb342); }
+  .drawer-heat b { color: #fff; }
+  .drawer-heat a { margin-left: auto; color: var(--sun); font-weight: 700; text-decoration: none; }
+  .drawer-items { list-style: none; flex: 1; overflow-y: auto; padding: 10px 18px; }
+  .drawer-items li { display: grid; grid-template-columns: 64px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 12px 4px; border-bottom: 1px solid rgba(27,15,10,0.08); animation: popIn .35s cubic-bezier(.2,.9,.3,1.2) backwards; }
+  .drawer-items img { width: 64px; height: 48px; object-fit: cover; border-radius: 10px; }
+  .drawer-items b { display: block; font-size: 0.95rem; line-height: 1.2; }
+  .drawer-items small { color: var(--muted); font-size: 0.78rem; }
+  .drawer-items small i { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 5px; vertical-align: 1px; }
+  .qty { display: flex; align-items: center; gap: 6px; background: #fff; border: 1px solid rgba(27,15,10,0.1); border-radius: 999px; padding: 3px; }
+  .qty button { width: 28px; height: 28px; border-radius: 50%; border: 0; background: var(--cream-2); font-weight: 700; font-size: 1rem; cursor: pointer; }
+  .qty span { min-width: 18px; text-align: center; font-weight: 700; font-size: 0.9rem; }
+  .drawer-empty { flex: 1; display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 8px; padding: 30px; color: var(--muted); }
+  .drawer-empty img { width: 130px; height: auto; animation: dance 2.4s ease-in-out infinite; transform-origin: 50% 95%; margin-bottom: 6px; }
+  .drawer-empty b { color: var(--ink); font-family: var(--display); font-weight: 400; font-size: 1.3rem; text-transform: uppercase; }
+  .drawer-empty .btn { margin-top: 10px; }
+  .drawer.empty .drawer-empty { display: flex; }
+  .drawer.empty .drawer-items, .drawer.empty .drawer-foot { display: none; }
+  .drawer-foot { padding: 16px 22px 22px; border-top: 1px solid rgba(27,15,10,0.1); background: #fff; color: var(--ink); }
+  .drawer-total { display: flex; justify-content: space-between; align-items: baseline; }
+  .drawer-total span { font-weight: 700; }
+  .drawer-total b { font-family: var(--display); font-weight: 400; font-size: 1.5rem; }
+  .drawer-foot small { color: var(--muted); }
+  .drawer-mode { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 14px 0; background: var(--cream-2); padding: 4px; border-radius: 999px; }
+  .drawer-mode button { border: 0; background: transparent; padding: 10px; border-radius: 999px; font-family: inherit; font-weight: 700; cursor: pointer; }
+  .drawer-mode button[aria-pressed="true"] { background: var(--char); color: var(--sun); }
+  .drawer-checkout { width: 100%; justify-content: center; }
+  @media (max-width: 960px) {
+    .drawer { top: auto; left: 0; width: 100%; max-height: 88vh; border-radius: 24px 24px 0 0; transform: translateY(105%); overflow: hidden; }
+    .drawer-head { border-radius: 24px 24px 0 0; }
+    .drawer-head::before { content: ""; position: absolute; left: 50%; top: 8px; width: 44px; height: 5px; margin-left: -22px; border-radius: 3px; background: rgba(255,255,255,0.3); }
+  }
+  @media (max-width: 520px) { .drawer-items li { grid-template-columns: 52px minmax(0, 1fr) auto; gap: 10px; } .drawer-items img { width: 52px; height: 40px; } .qty button { width: 26px; height: 26px; } }
+  body.drawer-on { overflow: hidden; }
+  body.drawer-on .order-bar, body.drawer-on .concept-pill { opacity: 0; pointer-events: none; }
+
+  .open.soon { color: var(--sun); }
+  .open.shut { color: #b99c86; }
+
+  .to-top { position: fixed; right: 20px; bottom: 20px; z-index: 110; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; width: 56px; height: 56px; border-radius: 50%; border: 0; cursor: pointer; color: #fff; background: linear-gradient(180deg, #fbb417, #f47a20 45%, #e01b22); box-shadow: 0 10px 26px rgba(224,27,34,0.45); font-family: inherit; font-weight: 700; font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0; transform: translateY(20px) scale(.8); pointer-events: none; transition: opacity .3s, transform .35s cubic-bezier(.3,1.5,.5,1); }
+  .to-top svg { width: 20px; }
+  .to-top.show { opacity: 1; transform: none; pointer-events: auto; }
+  .to-top:hover svg { animation: flicker .5s ease-in-out infinite alternate; }
+  @keyframes flicker { to { transform: scale(1.15) rotate(-6deg); } }
+  @media (max-width: 960px) { .to-top { display: none; } }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
     .reveal { opacity: 1; translate: none; }
@@ -509,6 +584,7 @@
 </style>
 </head>
 <body>
+<a class="skip" href="#menu">Skip to the menu</a>
 
 <div class="concept-pill" id="conceptPill" role="note"><span><b>Design concept</b> by <a href="https://catscreations.co.za" target="_blank" rel="noopener">Cat's Creations</a> &middot; not the official Mochachos website</span><button type="button" aria-label="Dismiss">&times;</button></div>
 
@@ -533,7 +609,7 @@
   <div class="progress" id="progress" aria-hidden="true"></div>
 </header>
 
-<main id="top">
+<main id="top" tabindex="-1">
   <section class="hero" id="hero" style="padding:0">
     <canvas class="embers" id="embers" aria-hidden="true"></canvas>
     <div class="wrap">
@@ -555,7 +631,7 @@
       <div class="hero-art" id="heroArt"><div class="stage">
         <a href="#menu" class="float-item" data-cat="Mexican Meals" data-depth="0.5" style="--x:2%;--y:4%;--w:40%;--z:1;--d:0.35s;--t:7s;--r:-8deg"><img src="img/float-quesadilla.webp" width="560" height="373" alt="Rump quesadilla"><span class="float-label">Rump Quesadilla</span></a>
         <a href="#menu" class="float-item" data-cat="Burgers" data-depth="1.3" style="--x:58%;--y:0%;--w:40%;--z:4;--d:0.5s;--t:6s;--r:6deg"><img src="img/float-burger.webp" width="560" height="417" alt="Chicken, cheese and pineapple burger"><span class="float-label">Chicken, Cheese &amp; Pine</span></a>
-        <a href="#menu" class="float-item" data-cat="Pollo Pueblo" data-depth="0.9" style="--x:12%;--y:24%;--w:74%;--z:3;--d:0.15s;--t:8s;--r:-2deg"><img src="img/float-pollo.webp" width="900" height="606" alt="Flame-grilled Pollo Pueblo chicken" fetchpriority="high"><span class="float-label">Pollo Pueblo</span></a>
+        <a href="#menu" class="float-item" data-cat="Mexican Meals" data-depth="0.9" style="--x:13%;--y:26%;--w:72%;--z:3;--d:0.15s;--t:8s;--r:-3deg"><img src="img/float-fajita.webp" width="900" height="617" alt="Chicken fajita spread with tortillas, rice, salsa and dips" fetchpriority="high"><span class="float-label">Chicken Fajita</span></a>
         <a href="#menu" class="float-item" data-cat="Sides" data-depth="1.6" style="--x:76%;--y:46%;--w:26%;--z:5;--d:0.8s;--t:5.5s;--r:10deg"><img src="img/float-chips.webp" width="420" height="413" alt="Basket of chips"><span class="float-label">Chips</span></a>
         <a href="#menu" class="float-item" data-cat="Mexican Meals" data-depth="1.4" style="--x:-4%;--y:64%;--w:50%;--z:4;--d:0.65s;--t:6.5s;--r:-6deg"><img src="img/float-burrito.webp" width="640" height="351" alt="Chicken burrito with chips"><span class="float-label">Chicken Burrito</span></a>
         <a href="#menu" class="float-item" data-cat="Mexican Meals" data-depth="0.7" style="--x:50%;--y:66%;--w:46%;--z:2;--d:0.95s;--t:7.5s;--r:4deg"><img src="img/float-nachos.webp" width="600" height="410" alt="Classic nachos"><span class="float-label">Classic Nachos</span></a>
@@ -785,6 +861,32 @@
   </div>
 </footer>
 
+<div class="drawer-scrim" id="drawerScrim" hidden></div>
+<aside class="drawer" id="drawer" aria-label="Your order" aria-hidden="true">
+  <header class="drawer-head">
+    <div><span class="eyebrow">Your order</span><h3 id="drawerTitle">0 items</h3></div>
+    <button class="drawer-close" type="button" aria-label="Close order">&times;</button>
+  </header>
+  <div class="drawer-heat"><i></i> Basting in <b id="drawerHeat">Lemon &amp; Herb</b> <a href="#heat" data-close>Change</a></div>
+  <ul class="drawer-items" id="drawerItems"></ul>
+  <div class="drawer-empty" id="drawerEmpty">
+    <img src="img/amigo.webp" alt="" width="600" height="693" loading="lazy">
+    <b>Nothing on the grill yet</b>
+    <span>Add something from the menu and it lands here.</span>
+    <a href="#menu" class="btn btn-flame" data-close>Browse the menu</a>
+  </div>
+  <footer class="drawer-foot">
+    <div class="drawer-total"><span>Total</span><b id="drawerTotal">R 00.00</b></div>
+    <small>Prices are placeholders for the concept.</small>
+    <div class="drawer-mode" role="group" aria-label="How do you want it">
+      <button type="button" aria-pressed="true">Collect</button><button type="button" aria-pressed="false">Delivery</button>
+    </div>
+    <button class="btn btn-flame drawer-checkout" type="button">Checkout <span aria-hidden="true">&rarr;</span></button>
+  </footer>
+</aside>
+
+<button class="to-top" id="toTop" type="button" aria-label="Back to top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c2 3 6 5.5 6 10.5a6 6 0 0 1-12 0c0-2.8 1.6-4.5 2.8-6 .5 2 1.7 2.8 2.8 2.8-1-2.6-.4-5 .4-7.3z" fill="currentColor"/></svg><span>Top</span></button>
+
 <a href="#menu" class="order-bar" id="orderBar"><span id="orderBarText">Order now</span><span aria-hidden="true">→</span></a>
 
 <script>
@@ -904,11 +1006,22 @@
   ];
   var list = document.getElementById('storeList');
   var pins = document.getElementById('pins');
+  // Open / closing soon / closed, worked out from South African time.
+  function storeStatus(hours) {
+    var m = hours.match(/(\d+):(\d+) to (\d+):(\d+)/);
+    if (!m) return { text: '', cls: '' };
+    var now = new Date(new Date().toLocaleString('en-US', { timeZone: 'Africa/Johannesburg' }));
+    var mins = now.getHours() * 60 + now.getMinutes(), open = +m[1] * 60 + +m[2], close = +m[3] * 60 + +m[4];
+    var closeTxt = m[3] + ':' + m[4], openTxt = m[1] + ':' + m[2];
+    if (mins >= open && mins < close) return close - mins <= 60 ? { text: 'Closes soon &middot; ' + closeTxt, cls: 'soon' } : { text: 'Open &middot; till ' + closeTxt, cls: '' };
+    return { text: 'Closed &middot; opens ' + openTxt, cls: 'shut' };
+  }
   function showStores(q) {
     q = (q || '').toLowerCase().trim();
     var hits = stores.filter(function (s) { return !q || (s.n + ' ' + s.c).toLowerCase().indexOf(q) > -1; });
     list.innerHTML = hits.length ? hits.map(function (s) {
-      return '<li class="store"><div><b>' + s.n + '</b><small>' + s.c + ' &middot; ' + s.h + '</small></div><span class="open">Open now</span></li>';
+      var st = storeStatus(s.h);
+      return '<li class="store"><div><b>' + s.n + '</b><small>' + s.c + ' &middot; ' + s.h + '</small></div><span class="open ' + st.cls + '">' + st.text + '</span></li>';
     }).join('') : '<li class="store"><div><b>No stores found</b><small>Try a nearby city or suburb.</small></div></li>';
     pins.innerHTML = hits.map(function (s, i) {
       return '<g transform="translate(' + s.x + ' ' + s.y + ')"><g class="pin" style="--d:' + (i * 0.08) + 's"><path d="M0 0c-10-14-14-20-14-26a14 14 0 0 1 28 0c0 6-4 12-14 26z" fill="#e01b22"/><circle cy="-26" r="5" fill="#fbb417"/></g></g>';
@@ -1216,13 +1329,10 @@
     if (!btn) return;
     var name = btn.dataset.name;
     var basted = btn.dataset.basted !== '0';
-    count++;
+    addItem(name, basted);
     var done = function () {
-      cartCount.textContent = count;
-      cart.classList.add('has');
-      cart.setAttribute('aria-label', 'Your order, ' + count + ' item' + (count > 1 ? 's' : ''));
+      syncCart();
       cart.classList.remove('bump'); void cart.offsetWidth; cart.classList.add('bump');
-      if (obText) obText.textContent = 'View order (' + count + ')';
       if (orderBar) { orderBar.classList.remove('hide', 'bump'); void orderBar.offsetWidth; orderBar.classList.add('bump'); }
     };
     showToast('<b>' + name + '</b>' + (basted ? ' (' + HEAT[heatNow].n + ')' : '') + ' added to your order');
@@ -1291,10 +1401,74 @@
     a.addEventListener('animationend', function (e) { if (e.animationName === 'spinDance') a.classList.remove('spin'); });
   });
 
-  cart.addEventListener('click', function () {
-    showToast(count ? '<b>' + count + ' item' + (count > 1 ? 's' : '') + '</b> ready for checkout' : 'Your order is empty. <b>Pick something hot!</b>');
+  /* ---------- Order drawer ---------- */
+  var items = [], drawer = $('#drawer'), scrim = $('#drawerScrim'), lastFocus = null;
+  function addItem(name, basted) {
+    var heat = basted ? HEAT[heatNow].n : null;
+    var hit = items.filter(function (it) { return it.n === name && it.heat === heat; })[0];
+    if (hit) hit.q++; else items.push({ n: name, heat: heat, c: basted ? HEAT[heatNow].c : null, img: (dishes[name] || {}).img, q: 1 });
+    count = items.reduce(function (t, it) { return t + it.q; }, 0);
+  }
+  function syncCart() {
+    count = items.reduce(function (t, it) { return t + it.q; }, 0);
+    cartCount.textContent = count;
+    cart.classList.toggle('has', count > 0);
+    cart.setAttribute('aria-label', 'Your order, ' + count + ' item' + (count === 1 ? '' : 's'));
+    if (obText) obText.textContent = count ? 'View order (' + count + ')' : 'Order now';
+    $('#drawerTitle').textContent = count + ' item' + (count === 1 ? '' : 's');
+    $('#drawerHeat').textContent = HEAT[heatNow].n;
+    drawer.classList.toggle('empty', count === 0);
+    $('#drawerItems').innerHTML = items.map(function (it, i) {
+      return '<li><img src="img/' + (it.img || 'chips') + '.webp" alt="" width="800" height="533">' +
+        '<div><b>' + it.n + '</b><small>' + (it.heat ? '<i style="background:' + it.c + '"></i>' + it.heat : 'Not basted') + ' &middot; R 00.00</small></div>' +
+        '<div class="qty"><button type="button" data-i="' + i + '" data-d="-1" aria-label="One less ' + it.n + '">&minus;</button><span>' + it.q + '</span><button type="button" data-i="' + i + '" data-d="1" aria-label="One more ' + it.n + '">+</button></div></li>';
+    }).join('');
+  }
+  function openDrawer() {
+    syncCart();
+    lastFocus = document.activeElement;
+    scrim.hidden = false; requestAnimationFrame(function () { scrim.classList.add('on'); });
+    drawer.classList.add('is-open'); drawer.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('drawer-on');
+    setTimeout(function () { $('.drawer-close').focus(); }, 50);
     buzz(10);
+  }
+  function closeDrawer() {
+    scrim.classList.remove('on'); setTimeout(function () { scrim.hidden = true; }, 300);
+    drawer.classList.remove('is-open'); drawer.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('drawer-on');
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  cart.addEventListener('click', openDrawer);
+  if (orderBar) orderBar.addEventListener('click', function (e) { if (count) { e.preventDefault(); openDrawer(); } });
+  scrim.addEventListener('click', closeDrawer);
+  $('.drawer-close').addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && drawer.classList.contains('is-open')) closeDrawer(); });
+  $$('[data-close]', drawer).forEach(function (a) { a.addEventListener('click', closeDrawer); });
+  $('#drawerItems').addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-i]'); if (!b) return;
+    var it = items[+b.dataset.i]; it.q += +b.dataset.d;
+    if (it.q <= 0) items.splice(+b.dataset.i, 1);
+    syncCart(); buzz(6);
   });
+  $$('.drawer-mode button').forEach(function (b, i, all) {
+    b.addEventListener('click', function () { all.forEach(function (x) { x.setAttribute('aria-pressed', x === b); }); });
+  });
+  $('.drawer-checkout').addEventListener('click', function () {
+    var mode = $('.drawer-mode button[aria-pressed="true"]').textContent.toLowerCase();
+    showToast('In the live build, checkout continues to <b>' + mode + '</b> and payment.');
+  });
+  document.addEventListener('heatchange', function () { if (drawer.classList.contains('is-open')) syncCart(); });
+  // Swipe the sheet down to close on touch
+  var sy = null;
+  $('.drawer-head').addEventListener('touchstart', function (e) { sy = e.touches[0].clientY; }, { passive: true });
+  $('.drawer-head').addEventListener('touchend', function (e) { if (sy !== null && e.changedTouches[0].clientY - sy > 60) closeDrawer(); sy = null; });
+  syncCart();
+
+  /* ---------- Back to top ---------- */
+  var toTop = $('#toTop');
+  addEventListener('scroll', function () { toTop.classList.toggle('show', scrollY > 900); }, { passive: true });
+  toTop.addEventListener('click', function () { scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); $('#top').focus({ preventScroll: true }); });
 })();
 </script>
 </body>
