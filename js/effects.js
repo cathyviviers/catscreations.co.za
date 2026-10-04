@@ -4,12 +4,8 @@
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var touch = window.matchMedia('(hover: none)').matches;
 
-  // ── CUSTOM CURSOR ──────────────────────────────────────────────────────────
+  // ── CURSOR TRAIL RING ─────────────────────────────────────────────────────
   if (!touch) {
-    var cursor = document.createElement('div');
-    cursor.className = 'cc-cursor';
-    document.body.appendChild(cursor);
-
     var trail = document.createElement('div');
     trail.className = 'cc-cursor-trail';
     document.body.appendChild(trail);
@@ -18,7 +14,6 @@
 
     document.addEventListener('mousemove', function (e) {
       mx = e.clientX; my = e.clientY;
-      cursor.style.transform = 'translate(' + (mx - 8) + 'px,' + (my - 8) + 'px)';
     });
 
     // Lazy trail follows cursor
@@ -29,16 +24,14 @@
       requestAnimationFrame(animateTrail);
     })();
 
-    // Grow cursor on interactive elements
+    // Grow ring on interactive elements
     document.addEventListener('mouseover', function (e) {
       if (e.target.closest('a, button, .btn, .service-card, .blog-card, .team-card, .testimonial-card, .whatsapp-float')) {
-        cursor.classList.add('cc-cursor--hover');
         trail.classList.add('cc-cursor-trail--hover');
       }
     });
     document.addEventListener('mouseout', function (e) {
       if (e.target.closest('a, button, .btn, .service-card, .blog-card, .team-card, .testimonial-card, .whatsapp-float')) {
-        cursor.classList.remove('cc-cursor--hover');
         trail.classList.remove('cc-cursor-trail--hover');
       }
     });

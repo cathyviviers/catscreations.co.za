@@ -1872,31 +1872,6 @@ footer a { color: var(--pink); text-decoration: none; }
 
 /* ── BELLS & WHISTLES ────────────────────────────────────────────────────── */
 
-/* Hide default cursor when custom cursor is active */
-@media (hover: hover) {
-  body, a, button, .btn, [role="button"] {
-    cursor: none !important;
-  }
-}
-
-/* Custom cursor dot */
-.cc-cursor {
-  position: fixed;
-  top: 0; left: 0;
-  width: 16px; height: 16px;
-  background: var(--pink);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 99999;
-  mix-blend-mode: difference;
-  transition: width 0.2s, height 0.2s, opacity 0.2s;
-}
-.cc-cursor--hover {
-  width: 32px; height: 32px;
-  margin-left: -8px; margin-top: -8px;
-  opacity: 0.6;
-}
-
 /* Cursor trail ring */
 .cc-cursor-trail {
   position: fixed;
@@ -2039,7 +2014,7 @@ nav ul a.nav-active::after {
   transform: rotate(20deg) scale(1.15);
 }
 @media (prefers-reduced-motion: reduce) {
-  .cc-cursor, .cc-cursor-trail, .cc-sparkle,
+  .cc-cursor-trail, .cc-sparkle,
   .hero-text h1 em, .hero-badge, .hero-badge-dot,
   a.btn-outline[href="#contact"], #cc-scroll-top,
   nav ul a::after { animation: none !important; }
