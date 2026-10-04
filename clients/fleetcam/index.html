@@ -469,6 +469,40 @@
     .detect.awake #dOpen, .detect.awake #dRest { opacity: 1; }
     .detect.awake #dBrows { transform: translateY(-2.5px); }
 
+
+    /* ===== Client login ===== */
+    .btn-login { background: transparent; color: var(--paper-text); border: 1px solid #cfd8e4; }
+    .btn-login svg { color: var(--brand-dark); }
+    .menu-login { display: none; }
+    @media (hover: hover) { .btn-login:hover { border-color: var(--brand); background: rgba(33,141,206,.06); } }
+    .nav ul a, .nav-right .btn, .nav-phone { white-space: nowrap; }
+    .nav ul { gap: 22px; }
+    @media (max-width: 1480px) { .nav-phone { display: none; } }
+    @media (max-width: 1180px) { .nav ul { gap: 16px; font-size: 14px; } }
+    .login-overlay { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 16px; background: rgba(4,14,28,.55);
+      -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); opacity: 0; pointer-events: none; transition: opacity .25s ease; }
+    .login-overlay.open { opacity: 1; pointer-events: auto; }
+    .login-card { position: relative; width: min(420px, 100%); padding: 32px 30px 26px; border-radius: 24px; color: var(--text);
+      background: linear-gradient(160deg, rgba(16,41,74,.92), rgba(8,26,46,.88)); border: 1px solid rgba(255,255,255,.16);
+      -webkit-backdrop-filter: blur(18px) saturate(150%); backdrop-filter: blur(18px) saturate(150%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.14), 0 40px 90px -30px rgba(0,0,0,.8); transform: translateY(14px) scale(.98); transition: transform .3s cubic-bezier(.2,.7,.2,1); }
+    .login-overlay.open .login-card { transform: none; }
+    .login-card .logo-white { height: 46px; width: auto; margin-bottom: 18px; }
+    .login-card h2 { font-size: 24px; margin-bottom: 6px; }
+    .login-card > p { color: var(--muted); font-size: 14.5px; margin-bottom: 22px; }
+    .login-card form { display: grid; gap: 14px; }
+    .login-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: 13px; color: var(--muted); }
+    .login-row label { display: flex; align-items: center; gap: 8px; }
+    .login-row input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--green); }
+    .login-row a { color: var(--green); }
+    .login-card .btn-primary { width: 100%; margin-top: 4px; }
+    .login-close { position: absolute; top: 14px; right: 14px; width: 34px; height: 34px; border-radius: 50%; border: 0; background: rgba(255,255,255,.08); color: var(--text); font-size: 18px; cursor: pointer; }
+    .login-close:hover { background: rgba(255,255,255,.16); }
+    .login-note { margin-top: 14px; font-size: 12.5px; color: var(--muted); text-align: center; }
+    .login-note.ok { color: var(--green); }
+    .login-alt { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); display: flex; justify-content: center; gap: 18px; font-size: 13px; color: var(--muted); }
+    .login-alt a { color: #c9d5e6; }
+
     /* Responsive */
     @media (max-width: 1020px) {
       .hero-grid, .ai-grid, .bureau, .reach, .contact { grid-template-columns: 1fr; }
@@ -506,6 +540,9 @@
       .trust li { border-right: 0; border-bottom: 1px solid var(--line); }
       .sol { padding: 28px 22px; }
       .nav-right .btn { display: none; }
+      .nav-right .btn-login { display: inline-flex; padding: 10px 12px; }
+      .btn-login span { display: none; }
+      .menu-login { display: list-item; }
       .cams { grid-template-columns: 1fr 1fr; }
       .cams { grid-template-rows: auto; }
       .cam.main { grid-column: span 2; grid-row: auto; aspect-ratio: 16/9; }
@@ -528,6 +565,26 @@
 </head>
 <body>
 
+  <div class="login-overlay" id="login" role="dialog" aria-modal="true" aria-labelledby="loginTitle" hidden>
+    <div class="login-card">
+      <button type="button" class="login-close" data-login-close aria-label="Close">&times;</button>
+      <img class="logo-white" src="fleetcam-logo-white.png" alt="FleetCam" width="600" height="221" />
+      <h2 id="loginTitle">Client login</h2>
+      <p>Live video, trips, alerts and reports for your fleet.</p>
+      <form id="loginForm" autocomplete="off" novalidate>
+        <label>Username or email<input type="text" name="fc-demo-user" autocomplete="off" spellcheck="false" /></label>
+        <label>Password<input type="password" name="fc-demo-pass" autocomplete="new-password" /></label>
+        <div class="login-row">
+          <label><input type="checkbox" /> Remember me</label>
+          <a href="#login">Forgot password?</a>
+        </div>
+        <button type="submit" class="btn btn-primary">Sign in</button>
+      </form>
+      <p class="login-note" id="loginNote">Concept preview: this form doesn't sign in or send anything.</p>
+      <div class="login-alt"><a href="tel:0800008743">24/7 Bureau</a><a href="#contact" data-login-close>Need an account?</a></div>
+    </div>
+  </div>
+
   <div class="concept" id="concept" role="note">
     <span class="concept-dot" aria-hidden="true"></span>
     <span><b>Design concept</b> by <a href="https://catscreations.co.za" target="_blank" rel="noopener">Cat's Creations</a><span class="concept-long"> &middot; not the official FleetCam website</span></span>
@@ -544,9 +601,11 @@
         <li><a href="#industries">Industries</a></li>
         <li><a href="#why">Why FleetCam</a></li>
         <li><a href="#contact">Contact</a></li>
+        <li class="menu-login"><a href="#login" data-login>Client login</a></li>
       </ul>
       <div class="nav-right">
         <span class="nav-phone">24/7 Bureau <strong class="mono">0800 008 743</strong></span>
+        <button type="button" class="btn btn-login btn-sm" data-login aria-haspopup="dialog"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span>Client login</span></button>
         <a href="#contact" class="btn btn-primary btn-sm">Get a quote</a>
         <button class="burger" id="burger" aria-label="Open menu" aria-controls="menu" aria-expanded="false" type="button">☰</button>
       </div>
@@ -1415,6 +1474,35 @@
     }
     document.addEventListener('pointermove', look, { passive: true });
     document.addEventListener('pointerdown', look, { passive: true });
+
+    // Client login (concept): opens a sign-in panel; nothing is sent or stored
+    var loginEl = document.getElementById('login');
+    var loginForm = document.getElementById('loginForm');
+    var lastFocus = null;
+    function openLogin(e) {
+      if (e) e.preventDefault();
+      lastFocus = document.activeElement;
+      loginEl.hidden = false;
+      requestAnimationFrame(function () { loginEl.classList.add('open'); });
+      menu.classList.remove('open'); burger.setAttribute('aria-expanded', 'false');
+      setTimeout(function () { loginForm.querySelector('input').focus(); }, 60);
+    }
+    function closeLogin() {
+      loginEl.classList.remove('open');
+      setTimeout(function () { loginEl.hidden = true; loginForm.reset(); }, 260);
+      if (lastFocus) lastFocus.focus();
+    }
+    document.querySelectorAll('[data-login]').forEach(function (b) { b.addEventListener('click', openLogin); });
+    document.querySelectorAll('[data-login-close]').forEach(function (b) { b.addEventListener('click', closeLogin); });
+    loginEl.addEventListener('click', function (e) { if (e.target === loginEl) closeLogin(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !loginEl.hidden) closeLogin(); });
+    loginForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      loginForm.reset();
+      var note = document.getElementById('loginNote');
+      note.textContent = 'In the live build this opens the FleetCam fleet portal.';
+      note.classList.add('ok');
+    });
 
     // Concept note can be hidden for the rest of the visit
     var note = document.getElementById('concept');
