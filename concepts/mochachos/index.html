@@ -130,7 +130,7 @@
   .chillies { display: flex; justify-content: center; gap: 6px; height: 70px; margin-bottom: 18px; }
   .chillies svg { width: 40px; transition: opacity .25s, transform .25s; }
   .chillies svg.off { opacity: 0.15; transform: scale(0.85); }
-  .heat-name { font-family: var(--display); font-size: clamp(2.4rem, 6vw, 4.2rem); text-transform: uppercase; color: var(--lvl, var(--sun)); transition: color .25s; }
+  .heat-name { font-family: var(--display); font-size: min(3.2rem, 7.2vw); white-space: nowrap; line-height: 1.1; text-transform: uppercase; color: var(--lvl, var(--sun)); transition: color .25s; }
   .heat-desc { margin-top: 10px; min-height: 3em; }
   .meter { height: 14px; border-radius: 999px; background: rgba(255,255,255,0.1); margin-top: 22px; overflow: hidden; }
   .meter i { display: block; height: 100%; width: 20%; background: linear-gradient(90deg, var(--lime), var(--sun), var(--chilli), var(--flame)); background-size: 500% 100%; border-radius: inherit; transition: width .35s; }
