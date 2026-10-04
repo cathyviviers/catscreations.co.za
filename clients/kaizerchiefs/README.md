@@ -21,6 +21,12 @@ Add `?present` to the URL to hide the floating concept notice (visitors can also
 - Drag-to-scroll Amakhosi TV row, partner logo marquee, gold burst on newsletter signup.
 - Everything respects reduced-motion settings; cursor and tilt effects only run on mouse/trackpad devices.
 
+## Extras
+
+- Share card (`img/og.jpg`) for WhatsApp, Facebook and X link previews; home screen icon and `manifest.webmanifest` so it saves to a phone like an app.
+- Crest intro that plays once per visit (skipped for reduced motion), back-to-top button with a scroll-progress ring, and "Add to calendar" for the next fixture (.ics download).
+- Easter egg: type KHOSI on a keyboard, or tap the header crest five times on a phone.
+
 ## Club assets
 
 `img/` holds the club's crest, partner logos and photography, resized for the web (about 1.5 MB in total). The hero uses the 2026 Toyota Cup champions team photo.
