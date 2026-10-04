@@ -1,8 +1,8 @@
 # Kaizer Chiefs homepage concept
 
-A homepage redesign concept for Kaizer Chiefs, built as a pitch. Served at `/concepts/kaizer-chiefs/` and at **kaizerchiefs.catscreations.co.za** (marked `noindex`, so it stays out of search and the sitemap).
+A homepage redesign concept for Kaizer Chiefs, built as a pitch. Live at **kaizerchiefs.catscreations.co.za**, served from this `clients/kaizerchiefs/` folder by the shared client-subdomain rules in `vercel.json`. Marked `noindex` with a disallow-all `robots.txt`, and skipped by `generate-sitemap.js`.
 
-The subdomain works through host-scoped rules in `vercel.json`: `/` redirects to `/amakhosi`, which is rewritten to this page, and `/img/*` is rewritten to this folder's images. A redirect is used for `/` because Vercel serves the site's own root `index.html` before applying rewrites. Add `?present` to any URL to hide the floating concept notice (visitors can also dismiss it with its close button).
+Add `?present` to the URL to hide the floating concept notice (visitors can also dismiss it with its close button).
 
 ## Direction
 

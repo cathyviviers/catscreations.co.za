@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60">
+  <!-- Outer cat head silhouette: two pointed ears, angular face, pointed chin -->
+  <path d="M 15,4 L 22,20 L 30,13 L 38,20 L 45,4 L 56,17 L 57,38 L 46,52 L 30,58 L 14,52 L 3,38 L 4,17 Z"
+        fill="none" stroke="#d0177a" stroke-width="1.8" stroke-linejoin="round"/>
+  <!-- Inner ear details (small triangles inside each ear) -->
+  <path d="M 16,8 L 21,19 L 25,17 Z M 44,8 L 39,19 L 35,17 Z"
+        fill="none" stroke="#d0177a" stroke-width="1" stroke-linejoin="round"/>
+</svg>

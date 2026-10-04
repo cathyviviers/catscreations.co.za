@@ -141,22 +141,6 @@
 
 })();
 
-// ── PARALLAX PATTERN ─────────────────────────────────────────────────────────
-(function () {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var ticking = false;
-  window.addEventListener('scroll', function () {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(function () {
-      var y = window.scrollY;
-      var y1 = (y * 0.8).toFixed(1), y2 = (y * 0.4).toFixed(1), y3 = (y * 0.15).toFixed(1);
-      document.body.style.backgroundPosition =
-        '0 ' + y1 + 'px, 10px ' + (10 + parseFloat(y2)).toFixed(1) + 'px, 5px ' + (5 + parseFloat(y3)).toFixed(1) + 'px';
-      ticking = false;
-    });
-  }, { passive: true });
-})();
 
 // ── SCROLL REVEAL ────────────────────────────────────────────────────────────
 (function () {
@@ -209,4 +193,47 @@
   }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
 
   elements.forEach(function (el) { observer.observe(el); });
+})();
+
+
+// ── NAV LOGO MOUSE FOLLOW ────────────────────────────────────────────────────
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (window.matchMedia('(hover: none)').matches) return;
+
+  var logo = document.querySelector('.nav-logo');
+  if (!logo) return;
+
+  document.addEventListener('mousemove', function (e) {
+    var rect = logo.getBoundingClientRect();
+    var cx = rect.left + rect.width / 2;
+    var cy = rect.top + rect.height / 2;
+    var dx = (e.clientX - cx) / window.innerWidth;
+    var dy = (e.clientY - cy) / window.innerHeight;
+    logo.style.transform = 'translate(' + (dx * 10) + 'px, ' + (dy * 6) + 'px)';
+  });
+})();
+
+
+// ── BLOG CARD MOUSE TILT ─────────────────────────────────────────────────────
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (window.matchMedia('(hover: none)').matches) return; // skip touch devices
+
+  var cards = document.querySelectorAll('.blog-card');
+  cards.forEach(function (card) {
+    card.addEventListener('mousemove', function (e) {
+      var rect = card.getBoundingClientRect();
+      var cx = rect.left + rect.width / 2;
+      var cy = rect.top + rect.height / 2;
+      var dx = (e.clientX - cx) / (rect.width / 2);
+      var dy = (e.clientY - cy) / (rect.height / 2);
+      card.style.transform = 'perspective(800px) rotateY(' + (dx * 8) + 'deg) rotateX(' + (-dy * 6) + 'deg) translateY(-4px)';
+      card.style.transition = 'transform 0.08s linear, box-shadow 0.2s';
+    });
+    card.addEventListener('mouseleave', function () {
+      card.style.transform = '';
+      card.style.transition = 'transform 0.4s ease, box-shadow 0.2s';
+    });
+  });
 })();

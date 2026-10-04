@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+  <meta charset="UTF-8" />
+  <script>document.documentElement.classList.add("js");</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ouma se Nes | Home Industry Bakery, Waverley Plaza, Pretoria</title>
+  <meta name="description" content="Ouma se Nes is a home industry bakery at Waverley Plaza, Pretoria. Custom themed cakes, platters, rusks, tarts and treats, plus gluten-free, sugar-free and vegan options on quote." />
+  <link rel="canonical" href="https://oumasenes.catscreations.co.za/" />
+  <meta name="theme-color" content="#71a6ae" />
+  <link rel="icon" type="image/png" href="images/favicon.png" />
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Ouma se Nes | Home Industry Bakery in Waverley, Pretoria" />
+  <meta property="og:description" content="Custom themed cakes, platters, rusks and treats, baked the way Ouma would. Shop 78, Waverley Plaza." />
+  <meta property="og:url" content="https://oumasenes.catscreations.co.za/" />
+  <meta property="og:locale" content="en_ZA" />
+  <meta property="og:image" content="https://oumasenes.catscreations.co.za/images/banner.jpg" />
+  <meta property="og:image:width" content="851" />
+  <meta property="og:image:height" content="315" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Bakery",
+    "name": "Ouma se Nes",
+    "url": "https://oumasenes.catscreations.co.za/",
+    "logo": "https://oumasenes.catscreations.co.za/images/logo.webp",
+    "image": "https://oumasenes.catscreations.co.za/images/banner.jpg",
+    "telephone": "+27123324569",
+    "servesCuisine": "Home industry baking",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Shop 78, Waverley Plaza, Hertzog Street",
+      "addressLocality": "Waverley, Pretoria",
+      "postalCode": "0186",
+      "addressRegion": "Gauteng",
+      "addressCountry": "ZA"
+    },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "17:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "14:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "09:00", "closes": "13:00" }
+    ],
+    "sameAs": [
+      "https://www.instagram.com/oumasenes/",
+      "https://www.facebook.com/OumaSeNes/"
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --cream: #f8f6f1;
+      --paper: #fffefb;
+      --teal: #71a6ae;      /* logo teal, decorative only */
+      --teal-deep: #2e6a72; /* buttons and links, passes contrast on white */
+      --teal-dark: #1f4a50;
+      --teal-soft: #e1eeef;
+      --ink: #22302f;
+      --muted: #566664;
+      --line: #d9e6e5;
+      --radius: 18px;
+      --glass: rgba(255, 255, 255, .55);
+      --glass-strong: rgba(255, 255, 255, .72);
+      --glass-edge: rgba(255, 255, 255, .8);
+      --glass-blur: blur(16px) saturate(150%);
+      --glass-shadow: 0 10px 30px rgba(31, 74, 80, .10), inset 0 1px 0 rgba(255, 255, 255, .9);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, sans-serif;
+      color: var(--ink);
+      background: var(--cream) url("images/pattern.svg") 0 0 / 260px auto repeat;
+      line-height: 1.6;
+    }
+    /* Soft colour washes behind everything, so the frosted panels have something to blur */
+    body::before {
+      content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+      background:
+        radial-gradient(38vmax 38vmax at 8% 12%, rgba(113, 166, 174, .30), transparent 70%),
+        radial-gradient(34vmax 34vmax at 92% 30%, rgba(233, 201, 154, .28), transparent 70%),
+        radial-gradient(40vmax 40vmax at 70% 95%, rgba(113, 166, 174, .24), transparent 70%),
+        radial-gradient(28vmax 28vmax at 15% 80%, rgba(240, 190, 180, .20), transparent 70%);
+    }
+    h1, h2, h3 { font-family: "Fraunces", Georgia, serif; line-height: 1.15; color: var(--teal-dark); margin: 0 0 .5em; }
+    a { color: var(--teal-deep); }
+    img { max-width: 100%; display: block; }
+    .wrap { width: min(1100px, 100% - 32px); margin-inline: auto; }
+
+    /* Header */
+    .top {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(248, 246, 241, .6);
+      -webkit-backdrop-filter: var(--glass-blur);
+      backdrop-filter: var(--glass-blur);
+      border-bottom: 1px solid var(--glass-edge);
+      box-shadow: 0 4px 20px rgba(31, 74, 80, .06);
+    }
+    .top .wrap { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; gap: 16px; }
+    .brand { display: flex; align-items: center; gap: 12px; font-family: "Fraunces", serif; font-weight: 700; font-size: 1.35rem; color: var(--teal-dark); text-decoration: none; }
+    .brand img { width: 46px; height: 46px; border-radius: 50%; }
+    .brand small { display: block; font-family: "Inter", sans-serif; font-weight: 500; font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 22px; border-radius: 999px;
+      background: var(--teal-deep); color: #fff; text-decoration: none; font-weight: 600;
+      white-space: nowrap;
+      transition: background .2s, transform .2s;
+    }
+    .btn:hover { background: var(--teal-dark); transform: translateY(-1px); }
+    .btn.ghost { background: var(--glass); -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur); color: var(--teal-deep); border: 2px solid var(--teal-deep); }
+    .btn.ghost:hover { background: var(--teal-deep); color: #fff; }
+
+    /* Hero */
+    .hero { padding: 72px 0 56px; }
+    .hero .wrap { display: grid; gap: 40px; align-items: center; grid-template-columns: 1.1fr .9fr; }
+    .eyebrow { display: inline-block; background: var(--glass-strong); border: 1px solid var(--glass-edge); -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur); color: var(--teal-deep); font-weight: 600; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; padding: 6px 14px; border-radius: 999px; margin-bottom: 18px; }
+    .hero h1 { font-size: clamp(2.3rem, 5vw, 3.6rem); }
+    .hero p { font-size: 1.15rem; color: var(--muted); max-width: 34em; }
+    .hero .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .hero-art { position: relative; max-width: 440px; justify-self: center; width: 100%; }
+    .hero-art::before { content: ""; position: absolute; inset: -14px; border-radius: 50%; border: 2px dashed var(--teal); opacity: .6; }
+    .hero-art img { width: 100%; height: auto; aspect-ratio: 1; border-radius: 50%; box-shadow: 0 24px 60px rgba(31, 74, 80, .22); }
+
+    /* Banner strip */
+    .banner { padding: 0 0 8px; }
+    .banner .frame { position: relative; }
+    .banner-badge {
+      position: absolute; left: 24px; bottom: 24px; max-width: calc(100% - 48px);
+      display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+      padding: 14px 18px 14px 22px; border-radius: 20px;
+      background: rgba(255, 255, 255, .5); border: 1px solid var(--glass-edge);
+      -webkit-backdrop-filter: blur(18px) saturate(160%); backdrop-filter: blur(18px) saturate(160%);
+      box-shadow: var(--glass-shadow);
+    }
+    .banner-badge strong { font-family: "Fraunces", Georgia, serif; font-size: 1.15rem; color: var(--teal-dark); }
+    .banner-badge span { display: block; font-size: .85rem; color: var(--ink); }
+    .banner-badge .btn { padding: 10px 18px; font-size: .9rem; }
+    .banner img { width: 100%; height: auto; aspect-ratio: 851 / 315; object-fit: cover; border-radius: 24px; box-shadow: 0 16px 40px rgba(31, 74, 80, .15); }
+
+    /* Sections */
+    section { padding: 64px 0; }
+    .section-head { text-align: center; max-width: 640px; margin: 0 auto 40px; }
+    .section-head h2 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); }
+    .section-head p { color: var(--muted); margin: 0; }
+
+    .grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    .card {
+      background: var(--glass); border: 1px solid var(--glass-edge); border-radius: var(--radius);
+      -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
+      box-shadow: var(--glass-shadow);
+      padding: 28px;
+    }
+    .card h3 { font-size: 1.25rem; }
+    .card p { color: var(--muted); margin: 0; }
+
+    .special { background: linear-gradient(135deg, rgba(46, 106, 114, .92), rgba(31, 74, 80, .9)); -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur); border: 1px solid rgba(255, 255, 255, .25); box-shadow: 0 20px 50px rgba(31, 74, 80, .25), inset 0 1px 0 rgba(255, 255, 255, .25); color: #eaf4f5; border-radius: 28px; padding: 48px; display: grid; gap: 24px; grid-template-columns: 1.2fr 1fr; align-items: center; }
+    .special h2 { color: #fff; font-size: clamp(1.7rem, 3vw, 2.3rem); }
+    .special p { margin: 0; color: #dcecee; }
+    .tags { display: flex; flex-wrap: wrap; gap: 10px; }
+    .tags span { -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.25); padding: 8px 16px; border-radius: 999px; font-weight: 500; }
+
+
+    /* Photo slots. To use a real photo, put <img src="images/..." alt="..."> inside the .photo element and remove data-label. */
+    .photo {
+      position: relative; overflow: hidden; margin: 0;
+      aspect-ratio: 4 / 3; border-radius: 14px;
+      background: var(--teal-soft) url("images/pattern.svg") 0 0 / 180px auto repeat;
+      display: grid; place-items: center;
+    }
+    .photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .photo[data-label]::after {
+      content: attr(data-label);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      padding: 10px 16px; border-radius: 999px;
+      background: rgba(255, 255, 255, .55); color: var(--teal-deep);
+      border: 1px solid var(--glass-edge);
+      -webkit-backdrop-filter: blur(10px) saturate(150%); backdrop-filter: blur(10px) saturate(150%);
+      box-shadow: 0 6px 18px rgba(31, 74, 80, .10);
+      font-size: .85rem; font-weight: 600; text-align: center;
+    }
+    .photo[data-label]::before {
+      content: ""; position: absolute; top: 14px; right: 14px; width: 26px; height: 26px; opacity: .55;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232e6a72' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 8h3l2-3h6l2 3h3v11H4z'/%3E%3Ccircle cx='12' cy='13' r='3.5'/%3E%3C/svg%3E") center / contain no-repeat;
+    }
+    .card .photo { margin: -12px -12px 20px; }
+
+    .gallery { display: grid; gap: 16px; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 200px; grid-auto-flow: dense; }
+    .gallery .photo { aspect-ratio: auto; border-radius: var(--radius); }
+    .gallery .tall { grid-row: span 2; }
+    .gallery .wide { grid-column: span 2; }
+
+    .visit .wrap { display: grid; gap: 24px; grid-template-columns: 1fr 1fr; }
+    .hours { list-style: none; padding: 0; margin: 0; }
+    .hours li { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed var(--line); }
+    .hours li:last-child { border-bottom: 0; }
+    .visit address { font-style: normal; font-size: 1.1rem; margin-bottom: 20px; }
+    .visit .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    footer { padding: 36px 0 48px; text-align: center; color: var(--muted); font-size: .9rem; }
+    footer .social { display: flex; justify-content: center; gap: 18px; margin-bottom: 14px; }
+    footer .credit { margin-top: 10px; font-size: .8rem; }
+
+    @media (max-width: 820px) {
+      .hero { padding-top: 40px; }
+      .hero .wrap, .special, .visit .wrap { grid-template-columns: 1fr; }
+      .hero-art { max-width: 280px; margin-inline: auto; order: -1; }
+      .special { padding: 32px 24px; }
+      .banner-badge { position: relative; left: auto; bottom: auto; margin-top: 12px; max-width: none; justify-content: space-between; }
+      .gallery { grid-template-columns: 1fr 1fr; grid-auto-rows: 150px; }
+      .top .btn { padding: 10px 16px; font-size: .9rem; }
+    }
+
+    /* ---------- Motion ---------- */
+    @keyframes float { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-12px) rotate(-1.5deg); } }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes drift {
+      0% { transform: translate3d(0, 0, 0) scale(1); }
+      50% { transform: translate3d(3vw, -2vh, 0) scale(1.08); }
+      100% { transform: translate3d(-2vw, 2vh, 0) scale(1.02); }
+    }
+    @keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+    @keyframes sheen { 0%, 70% { transform: translateX(-120%) skewX(-20deg); } 100% { transform: translateX(260%) skewX(-20deg); } }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(46, 106, 114, .45); } 100% { box-shadow: 0 0 0 14px rgba(46, 106, 114, 0); } }
+
+    body::before { animation: drift 28s ease-in-out infinite alternate; }
+    .hero-art img { animation: float 7s ease-in-out infinite; }
+    .hero-art::before { animation: spin 60s linear infinite; }
+
+    /* Hero copy eases in on load */
+    .hero .eyebrow, .hero h1, .hero p, .hero .actions, .hero-art { animation: rise .9s cubic-bezier(.2, .7, .2, 1) both; }
+    .hero h1 { animation-delay: .1s; }
+    .hero p { animation-delay: .2s; }
+    .hero .actions { animation-delay: .3s; }
+    .hero-art { animation-delay: .15s; }
+
+    /* Main call button gives a soft pulse now and then */
+    .top .btn { animation: pulse 2.4s ease-out 1.5s 3; }
+
+    /* Glass sheen sweeping across the banner badge */
+    .banner-badge { overflow: hidden; }
+    .banner-badge::after {
+      content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 40%; pointer-events: none;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .55), transparent);
+      animation: sheen 6s ease-in-out 2s infinite;
+    }
+    .banner img { transition: transform 1.2s cubic-bezier(.2, .7, .2, 1); }
+    .banner .frame { overflow: hidden; border-radius: 24px; }
+    .banner .frame:hover img { transform: scale(1.04); }
+
+    /* Lift on hover */
+    .card, .gallery .photo { transition: transform .35s cubic-bezier(.2, .7, .2, 1), box-shadow .35s; }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 22px 44px rgba(31, 74, 80, .16), inset 0 1px 0 rgba(255, 255, 255, .9); }
+
+    /* Tilt toward the pointer (set by script on devices with a mouse) */
+    .card { position: relative; }
+    .card.tilt {
+      transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--lift, 0px));
+      transition: transform .25s ease-out, box-shadow .35s;
+      box-shadow: calc(var(--sx, 0) * -1px) calc(14px + var(--sy, 0) * -1px) 36px rgba(31, 74, 80, .14), inset 0 1px 0 rgba(255, 255, 255, .9);
+    }
+    .card.tilt:hover { --lift: -6px; }
+    .card::after {
+      content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+      background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, .55), transparent 60%);
+      opacity: 0; transition: opacity .3s;
+    }
+    .card.tilt::after { opacity: .45; }
+    .card.tilt:hover::after { opacity: 1; }
+    .gallery .photo:hover { transform: translateY(-4px) scale(1.015); box-shadow: 0 18px 36px rgba(31, 74, 80, .15); }
+    .photo { transition: background-position 6s linear; }
+    .card:hover .photo, .gallery .photo:hover { background-position: 60px -40px; }
+    .tags span { transition: background .25s, transform .25s; }
+    .tags span:hover { background: rgba(255, 255, 255, .25); transform: translateY(-2px); }
+
+    /* Scroll reveal (only when JS is running, so nothing stays hidden without it) */
+    .js .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s cubic-bezier(.2, .7, .2, 1), transform .8s cubic-bezier(.2, .7, .2, 1); transition-delay: var(--d, 0s); }
+    .js .reveal.in { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .js .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="top">
+    <div class="wrap">
+      <a class="brand" href="#"><img src="images/logo.webp" alt="" width="46" height="46" /><span>Ouma se Nes<small>Tuisnywerheid · Home Industry</small></span></a>
+      <a class="btn" href="tel:+27123324569">Call to order</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div>
+          <span class="eyebrow">Waverley Plaza, Pretoria</span>
+          <h1>Baked the way Ouma would make it.</h1>
+          <p>Custom themed cakes, generous platters, rusks, tarts and everyday treats, all made by hand. Tell us what you are celebrating and we will bake something special for it.</p>
+          <div class="actions">
+            <a class="btn" href="tel:+27123324569">Call 012 332 4569</a>
+            <a class="btn ghost" href="#visit">Visit the shop</a>
+          </div>
+        </div>
+        <div class="hero-art">
+          <img src="images/logo.webp" alt="Ouma se Nes Tuisnywerheid logo" width="640" height="640" />
+        </div>
+      </div>
+    </section>
+
+    <div class="banner">
+      <div class="wrap">
+        <div class="frame">
+          <picture>
+            <source srcset="images/banner.webp" type="image/webp" />
+            <img src="images/banner.jpg" alt="Savoury platters, milk tarts, coconut squares, pancakes and two ladies enjoying tea" width="851" height="315" loading="lazy" />
+          </picture>
+          <div class="banner-badge">
+            <div><strong>Ordering for a party?</strong><span>Cakes and platters made to order. Call a few days ahead.</span></div>
+            <a class="btn" href="tel:+27123324569">Call to order</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section id="menu">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>What comes out of Ouma's oven</h2>
+          <p>Order ahead for cakes and platters. Pop in for the rest.</p>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <figure class="photo" data-label="Celebration cake photo"></figure>
+            <h3>Custom themed cakes</h3>
+            <p>Birthdays, weddings, kids' parties and the wonderfully geeky. Bring an idea and we will make it a cake, beautiful and never too sweet.</p>
+          </article>
+          <article class="card">
+            <figure class="photo" data-label="Platter photo"></figure>
+            <h3>Platters &amp; catering</h3>
+            <p>Savoury and sweet platters for office functions, family gatherings and parties. Well priced and beautifully put together.</p>
+          </article>
+          <article class="card">
+            <figure class="photo" data-label="Rusks &amp; tarts photo"></figure>
+            <h3>Rusks, biscuits &amp; tarts</h3>
+            <p>The tuisnywerheid classics: rusks for your coffee, biscuits, cookies, tarts and pancakes, baked fresh.</p>
+          </article>
+          <article class="card">
+            <figure class="photo" data-label="Gift box photo"></figure>
+            <h3>Gifts &amp; kids' sweets</h3>
+            <p>Party sweets, candy floss and ready-made gifts for when you need something lovely in a hurry.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="special">
+          <div>
+            <h2>Special diets? Ouma has you covered.</h2>
+            <p>Gluten-free, sugar-free and vegan cakes are available on quote, along with a range of diabetic-friendly products. Call us with what you need.</p>
+          </div>
+          <div class="tags">
+            <span>Gluten-free</span>
+            <span>Sugar-free</span>
+            <span>Vegan</span>
+            <span>Diabetic-friendly</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Fresh from Ouma's kitchen</h2>
+          <p>A peek at recent cakes, platters and treats.</p>
+        </div>
+        <div class="gallery">
+          <figure class="photo tall" data-label="Wedding or tiered cake"></figure>
+          <figure class="photo wide" data-label="Party platter spread"></figure>
+          <figure class="photo" data-label="Cupcakes"></figure>
+          <figure class="photo tall" data-label="Kids' themed cake"></figure>
+          <figure class="photo" data-label="Milk tart"></figure>
+          <figure class="photo wide" data-label="Shop counter or display"></figure>
+          <figure class="photo" data-label="Rusks &amp; biscuits"></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Themes summarised from public reviews. Swap in real quotes (with the reviewer's name) from the Google listing once Ouma se Nes picks favourites. -->
+    <section class="reviews">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>What customers love</h2>
+          <p>The things people mention again and again in their reviews.</p>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <h3>Cakes that taste as good as they look</h3>
+            <p>Themed cakes, geeky ones included, made just right and never buried in icing.</p>
+          </div>
+          <div class="card">
+            <h3>Platters worth the price</h3>
+            <p>A favourite for parties and events in Waverley: generous, tasty and beautifully presented.</p>
+          </div>
+          <div class="card">
+            <h3>Friendly, accommodating people</h3>
+            <p>Bring an unusual request and the team will find a way to make it happen.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="visit" id="visit">
+      <div class="wrap">
+        <div class="card">
+          <h2>Come say hello</h2>
+          <address>
+            Shop 78, Waverley Plaza<br />
+            Hertzog Street, Waverley<br />
+            Pretoria, 0186
+          </address>
+          <div class="actions">
+            <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Ouma+se+Nes+Waverley+Plaza+Pretoria" target="_blank" rel="noopener">Get directions</a>
+            <a class="btn ghost" href="tel:+27123324569">012 332 4569</a>
+          </div>
+        </div>
+        <div class="card">
+          <h2>Opening hours</h2>
+          <ul class="hours">
+            <li><span>Monday to Friday</span><span>09:00 to 17:00</span></li>
+            <li><span>Saturday</span><span>09:00 to 14:00</span></li>
+            <li><span>Sunday</span><span>09:00 to 13:00</span></li>
+          </ul>
+          <p style="color:var(--muted);margin:16px 0 0">Ordering a cake or platter? Please call ahead so it is ready when you collect.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="social">
+        <a href="https://www.instagram.com/oumasenes/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.facebook.com/OumaSeNes/" target="_blank" rel="noopener">Facebook</a>
+      </div>
+      <div>&copy; <span id="year">2026</span> Ouma se Nes. All rights reserved.</div>
+      <div class="credit">Website by <a href="https://catscreations.co.za/" target="_blank" rel="noopener">Cat's Creations</a></div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Every card on screen turns to face the mouse pointer, wherever it is on the page,
+    // with a soft light on the side nearest the pointer.
+    (function () {
+      if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var MAX = 10; // degrees
+      var cards = Array.prototype.slice.call(document.querySelectorAll('.card'));
+      var px = null, py = null, frame = 0;
+
+      function clamp(v, lo, hi) { return Math.min(hi, Math.max(lo, v)); }
+
+      function update() {
+        frame = 0;
+        if (px === null) return;
+        var vh = window.innerHeight;
+        cards.forEach(function (card) {
+          var r = card.getBoundingClientRect();
+          if (r.bottom < -100 || r.top > vh + 100) return; // off screen
+          // How far the pointer is from the card's centre, eased so far-away cards don't snap to full tilt.
+          var dx = Math.tanh((px - (r.left + r.width / 2)) / (r.width * 0.75));
+          var dy = Math.tanh((py - (r.top + r.height / 2)) / (r.height * 0.75));
+          card.classList.add('tilt');
+          card.style.setProperty('--ry', (dx * MAX).toFixed(2) + 'deg');
+          card.style.setProperty('--rx', (-dy * MAX).toFixed(2) + 'deg');
+          card.style.setProperty('--sx', (dx * 12).toFixed(1));
+          card.style.setProperty('--sy', (dy * 12).toFixed(1));
+          card.style.setProperty('--mx', clamp((px - r.left) / r.width * 100, 0, 100).toFixed(1) + '%');
+          card.style.setProperty('--my', clamp((py - r.top) / r.height * 100, 0, 100).toFixed(1) + '%');
+        });
+      }
+      function schedule() { if (!frame) frame = requestAnimationFrame(update); }
+
+      document.addEventListener('pointermove', function (e) { px = e.clientX; py = e.clientY; schedule(); }, { passive: true });
+      window.addEventListener('scroll', schedule, { passive: true });
+      document.documentElement.addEventListener('pointerleave', function () {
+        px = py = null;
+        cards.forEach(function (card) { card.classList.remove('tilt'); });
+      });
+    })();
+
+    // Fade sections in as they scroll into view, with a small stagger inside each group.
+    (function () {
+      var groups = ['.banner .frame', '.banner-badge', '.section-head', '.grid', '.special', '.gallery', '.visit .wrap'];
+      var items = [];
+      groups.forEach(function (sel) {
+        document.querySelectorAll(sel).forEach(function (el) {
+          var kids = el.matches('.grid, .gallery, .visit .wrap') ? Array.prototype.slice.call(el.children) : [el];
+          kids.forEach(function (k, i) { k.classList.add('reveal'); k.style.setProperty('--d', (i * 0.08) + 's'); items.push(k); });
+        });
+      });
+      if (!('IntersectionObserver' in window)) { items.forEach(function (k) { k.classList.add('in'); }); return; }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          var el = e.target;
+          el.classList.add('in');
+          io.unobserve(el);
+          // Hand control back to the element's own hover transitions once it has settled.
+          setTimeout(function () { el.classList.remove('reveal', 'in'); el.style.removeProperty('--d'); }, 1000 + parseFloat(el.style.getPropertyValue('--d') || 0) * 1000);
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      items.forEach(function (k) { io.observe(k); });
+    })();
+  </script>
+</body>
+</html>

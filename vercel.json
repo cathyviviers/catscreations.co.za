@@ -2,68 +2,38 @@
   "outputDirectory": ".",
   "redirects": [
     {
-      "source": "/",
+      "source": "/clients/:client/:path*",
       "has": [
         {
           "type": "host",
-          "value": "kaizerchiefs.catscreations.co.za"
+          "value": "^(www\\.)?catscreations\\.co\\.za$"
         }
       ],
-      "destination": "/amakhosi",
-      "permanent": false
+      "destination": "https://:client.catscreations.co.za/:path*",
+      "permanent": true
     },
     {
       "source": "/",
       "has": [
         {
           "type": "host",
-          "value": "catscreationscom-git-claude-clever-gooda-7b0df8-cat-s-creations.vercel.app"
+          "value": "^(?<client>(?!www\\.)[a-z0-9-]+)\\.catscreations\\.co\\.za$"
         }
       ],
-      "destination": "/amakhosi",
+      "destination": "/clients/:client/",
       "permanent": false
     }
   ],
   "rewrites": [
     {
-      "source": "/amakhosi",
+      "source": "/:path*",
       "has": [
         {
           "type": "host",
-          "value": "kaizerchiefs.catscreations.co.za"
+          "value": "^(?<client>(?!www\\.)[a-z0-9-]+)\\.catscreations\\.co\\.za$"
         }
       ],
-      "destination": "/concepts/kaizer-chiefs/index.html"
-    },
-    {
-      "source": "/img/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "kaizerchiefs.catscreations.co.za"
-        }
-      ],
-      "destination": "/concepts/kaizer-chiefs/img/:path*"
-    },
-    {
-      "source": "/amakhosi",
-      "has": [
-        {
-          "type": "host",
-          "value": "catscreationscom-git-claude-clever-gooda-7b0df8-cat-s-creations.vercel.app"
-        }
-      ],
-      "destination": "/concepts/kaizer-chiefs/index.html"
-    },
-    {
-      "source": "/img/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "catscreationscom-git-claude-clever-gooda-7b0df8-cat-s-creations.vercel.app"
-        }
-      ],
-      "destination": "/concepts/kaizer-chiefs/img/:path*"
+      "destination": "/clients/:client/:path*"
     }
   ],
   "headers": [
@@ -217,6 +187,13 @@
           "key": "Cache-Control",
           "value": "no-store"
         }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "fleetcam.catscreations.co.za" }],
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
       ]
     }
   ]
