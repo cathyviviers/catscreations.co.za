@@ -34,7 +34,9 @@
       --brand: #218dce;        /* FleetCam blue */
       --brand-dark: #1a72a8;   /* blue for text on light backgrounds */
       --green: #8dc63f;        /* swoosh green */
-      --green-deep: #2e9e45;   /* swoosh shadow green */
+      --green-deep: #15903c;   /* swoosh shadow green, sampled from the logo */
+      --brand-button: #1a7ab6; /* FleetCam blue, one shade deeper so white button text passes WCAG AA (4.6:1) */
+      --cat-pink: #e8197a;     /* Cat's Creations brand pink, for the concept credit */
       --rec: #ff3b30;          /* recording / alert red, used sparingly */
       --accent: var(--green);
       --amber: #ffb020;        /* AI warning */
@@ -61,8 +63,8 @@
       box-shadow: 0 16px 40px -16px rgba(0,0,0,.7); transition: opacity .3s ease, transform .3s ease; }
     .concept.tuck { opacity: 0; transform: translateY(16px); pointer-events: none; }
     .concept.hide { opacity: 0; transform: translateY(12px); pointer-events: none; }
-    .concept-dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: #e0479a; box-shadow: 0 0 0 4px rgba(224,71,154,.18); }
-    .concept a { color: #ff8cc6; font-weight: 600; }
+    .concept-dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--cat-pink); box-shadow: 0 0 0 4px rgba(232,25,122,.22); }
+    .concept a { color: #fff; font-weight: 600; text-decoration: underline; text-decoration-color: var(--cat-pink); text-decoration-thickness: 2px; text-underline-offset: 3px; }
     .concept button { flex: none; width: 26px; height: 26px; border-radius: 50%; border: 0; background: rgba(255,255,255,.08); color: #c9d5e6; font-size: 15px; line-height: 1; cursor: pointer; }
     .concept button:hover { background: rgba(255,255,255,.16); }
 
@@ -82,8 +84,8 @@
 
     .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 13px 22px; border-radius: 999px; font-weight: 600; font-size: 15px; border: 1px solid transparent; transition: transform .15s ease, background .2s ease, border-color .2s ease; cursor: pointer; font-family: inherit; }
     .btn:hover { transform: translateY(-1px); }
-    .btn-primary { background: var(--brand); color: #fff; }
-    .btn-primary:hover { background: #1b7dba; }
+    .btn-primary { background: var(--brand-button); color: #fff; }
+    .btn-primary:hover { background: var(--brand-dark); }
     .btn-ghost { border-color: rgba(255,255,255,0.22); color: var(--text); background: transparent; }
     .btn-ghost:hover { border-color: rgba(255,255,255,0.5); }
     .btn-sm { padding: 10px 18px; font-size: 14px; }
@@ -98,12 +100,12 @@
     .rec { width: 8px; height: 8px; border-radius: 50%; background: var(--rec); animation: blink 1.4s infinite; }
     @keyframes blink { 50% { opacity: .25; } }
     .hero h1 { font-size: clamp(40px, 5.6vw, 66px); margin: 22px 0 20px; }
-    .hero h1 em { font-style: normal; background: linear-gradient(90deg, var(--green), #4fb848); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero h1 em { font-style: normal; color: var(--green); }
     .hero p.lead { font-size: 18px; color: var(--muted); max-width: 540px; }
     .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
     .hero-stats { display: grid; grid-template-columns: repeat(3, auto); gap: 32px; margin-top: 44px; padding-top: 28px; border-top: 1px solid var(--line); width: fit-content; }
     .hero-stats strong { display: block; font-family: 'Sora', sans-serif; font-size: 28px; }
-    .hero-stats span { font-size: 13px; color: var(--muted); }
+    .hero-stats div > span { font-size: 13px; color: var(--muted); }
 
     /* Live console mock */
     .console { background: linear-gradient(180deg, #121c31, #0e1628); border: 1px solid var(--line); border-radius: 22px; padding: 14px; box-shadow: 0 40px 80px -30px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.02) inset; }
@@ -119,7 +121,7 @@
     .cam-label { position: absolute; top: 8px; left: 8px; font-size: 10px; background: rgba(0,0,0,0.55); padding: 3px 7px; border-radius: 6px; color: #dfe6f2; display: flex; align-items: center; gap: 5px; }
     .cam-label::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--rec); animation: blink 1.4s infinite; }
     .cam-time { position: absolute; bottom: 8px; right: 8px; font-size: 10px; color: #cfd8e6; background: rgba(0,0,0,0.5); padding: 2px 6px; border-radius: 5px; }
-    .scan { position: absolute; left: 0; right: 0; height: 40%; background: linear-gradient(180deg, transparent, rgba(46,230,166,0.10), transparent); animation: scan 4s linear infinite; }
+    .scan { position: absolute; left: 0; right: 0; height: 40%; background: linear-gradient(180deg, transparent, rgba(141,198,63,0.10), transparent); animation: scan 4s linear infinite; }
     @keyframes scan { from { top: -40%; } to { top: 100%; } }
     .alert { display: flex; align-items: center; gap: 12px; margin-top: 10px; background: rgba(255,176,32,0.08); border: 1px solid rgba(255,176,32,0.35); border-radius: 12px; padding: 10px 12px; font-size: 13px; }
     .alert .ico { flex: none; width: 30px; height: 30px; border-radius: 8px; background: rgba(255,176,32,0.18); color: var(--amber); display: grid; place-items: center; font-weight: 700; }
@@ -244,7 +246,7 @@
     footer { border-top: 1px solid var(--line); padding: 48px 0 32px; font-size: 14px; color: var(--muted); }
     .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; }
     .foot-credit { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 13px; }
-    .foot-credit a { color: #ff6fb5; font-weight: 600; }
+    .foot-credit a { color: #fff; font-weight: 600; text-decoration: underline; text-decoration-color: var(--cat-pink); text-decoration-thickness: 2px; text-underline-offset: 3px; }
 
     /* Reveal */
     .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
@@ -695,7 +697,7 @@
     <!-- HERO -->
     <section class="hero">
       <svg class="hero-swoosh" viewBox="0 0 1100 600" aria-hidden="true">
-        <defs><linearGradient id="sw" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#8dc63f"/><stop offset=".6" stop-color="#4fb848"/><stop offset="1" stop-color="#2e9e45"/></linearGradient></defs>
+        <defs><linearGradient id="sw" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#8dc63f"/><stop offset="1" stop-color="#15903c"/></linearGradient></defs>
         <path d="M720 20 C380 30 90 170 60 360 C40 480 160 560 420 580 C200 540 120 470 140 380 C170 220 420 70 720 20 Z" fill="url(#sw)"/>
       </svg>
       <div class="wrap hero-grid">
