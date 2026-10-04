@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FleetCam | AI Vehicle Cameras &amp; 24/7 Fleet Surveillance (Design Concept)</title>
   <meta name="description" content="A website redesign concept for FleetCam by Cat's Creations. FleetCam VVT AI: telemetry, MDVR and AI safety in one device, backed by a 24/7/365 bureau." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://fleetcam.catscreations.co.za/" />
+  <meta property="og:title" content="FleetCam | See every kilometre. Act on every second." />
+  <meta property="og:description" content="AI cameras, live video and a 24/7/365 control room behind every vehicle. A website redesign concept by Cat's Creations." />
+  <meta property="og:image" content="https://fleetcam.catscreations.co.za/clients/fleetcam/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://fleetcam.catscreations.co.za/clients/fleetcam/og-image.jpg" />
   <!-- Pitch concept: keep out of search engines and the sitemap -->
   <meta name="robots" content="noindex, nofollow" />
   <meta name="theme-color" content="#06182b" />
@@ -503,6 +512,56 @@
     .login-alt { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); display: flex; justify-content: center; gap: 18px; font-size: 13px; color: var(--muted); }
     .login-alt a { color: #c9d5e6; }
 
+
+    /* ===== Final touches ===== */
+    /* boot intro */
+    .boot { display: none; position: fixed; inset: 0; z-index: 200; place-items: center; background: radial-gradient(circle at 50% 40%, #0d2a4b, #040f1d 70%); transition: opacity .45s ease, visibility .45s; }
+    .boot.on { display: grid; }
+    .boot.done { opacity: 0; visibility: hidden; }
+    .boot-card { width: min(360px, 86vw); }
+    .boot-card img { height: 64px; width: auto; margin-bottom: 26px; }
+    .boot-lines { list-style: none; display: grid; gap: 9px; font-size: 13px; color: #8fa3bf; min-height: 116px; }
+    .boot-lines li { opacity: 0; transform: translateY(6px); animation: bootIn .3s ease forwards; display: flex; justify-content: space-between; }
+    .boot-lines li::after { content: "OK"; color: var(--green); }
+    .boot-lines li:nth-child(1) { animation-delay: .15s; } .boot-lines li:nth-child(2) { animation-delay: .45s; }
+    .boot-lines li:nth-child(3) { animation-delay: .75s; } .boot-lines li:nth-child(4) { animation-delay: 1.05s; }
+    @keyframes bootIn { to { opacity: 1; transform: none; } }
+    .boot-bar { margin-top: 18px; height: 3px; border-radius: 3px; background: rgba(255,255,255,.1); overflow: hidden; }
+    .boot-bar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--green), var(--brand)); animation: bootBar 1.45s ease forwards; }
+    @keyframes bootBar { to { width: 100%; } }
+
+    /* live feed */
+    .feed { display: flex; align-items: center; gap: 0; background: #040f1d; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden; }
+    .feed-tag { flex: none; display: flex; align-items: center; gap: 8px; padding: 14px 18px; font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: #fff; background: rgba(255,59,48,.14); border-right: 1px solid var(--line); z-index: 1; }
+    .feed-tag i { width: 8px; height: 8px; border-radius: 50%; background: var(--rec); animation: blink 1.2s infinite; }
+    .feed-win { overflow: hidden; flex: 1; -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); }
+    .feed-track { display: flex; width: max-content; animation: marquee 60s linear infinite; }
+    .feed:hover .feed-track { animation-play-state: paused; }
+    .ev { display: inline-flex; align-items: center; gap: 8px; padding: 0 26px; font-size: 12.5px; color: #9fb2cc; white-space: nowrap; border-right: 1px solid rgba(255,255,255,.06); }
+    .ev b { color: #fff; font-weight: 600; }
+    .ev i { width: 7px; height: 7px; border-radius: 50%; }
+    .ev-g i { background: var(--green); } .ev-a i { background: var(--amber); } .ev-b i { background: var(--brand); }
+
+    /* map pins */
+    .pin { cursor: pointer; outline: none; }
+    .pin .tip { opacity: 0; transition: opacity .2s ease; pointer-events: none; }
+    .pin .tip rect { fill: rgba(6,24,43,.94); stroke: rgba(141,198,63,.5); }
+    .pin .tip .t1 { font-size: 11.5px; font-weight: 700; fill: #fff; }
+    .pin .tip .t2 { font-size: 10.5px; fill: #9fb2cc; }
+    .pin:hover .tip, .pin:focus .tip { opacity: 1; }
+
+    /* back to top */
+    .totop { position: fixed; right: 18px; bottom: 18px; z-index: 60; width: 52px; height: 52px; padding: 0; border: 0; border-radius: 50%; cursor: pointer;
+      background: rgba(8,24,44,.72); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); box-shadow: 0 14px 30px -12px rgba(0,0,0,.7);
+      opacity: 0; transform: translateY(14px); pointer-events: none; transition: opacity .3s ease, transform .3s ease; }
+    .totop.show { opacity: 1; transform: none; pointer-events: auto; }
+    .totop svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+    .totop .ring-bg { fill: none; stroke: rgba(255,255,255,.12); stroke-width: 3; }
+    .totop .ring { fill: none; stroke: var(--green); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 132; stroke-dashoffset: 132; }
+    .totop .arrow { fill: none; stroke: #fff; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; transform: rotate(90deg); transform-origin: 24px 24px; }
+    @media (hover: hover) { .totop:hover { background: rgba(33,141,206,.85); } }
+    @media (max-width: 640px) { .totop { width: 46px; height: 46px; right: 12px; bottom: 12px; } }
+
     /* Responsive */
     @media (max-width: 1020px) {
       .hero-grid, .ai-grid, .bureau, .reach, .contact { grid-template-columns: 1fr; }
@@ -555,7 +614,7 @@
       .reveal, .reveal-left, .reveal-right, .reveal-scale { opacity: 1; transform: none; }
       .vvt-banner { clip-path: none; }
       .chapter { opacity: 1; }
-      .marquee-track { animation: none; }
+      .marquee-track, .feed-track { animation: none; }
       .hov:hover, .hov.focus { transform: none; }
       .console.in, .detect.in, .map.in, .device { transform: none; }
       main .hov.in, main .hov.focus.in { transform: none; }
@@ -564,6 +623,21 @@
   </style>
 </head>
 <body>
+  <div class="boot" id="boot" aria-hidden="true">
+    <div class="boot-card">
+      <img src="fleetcam-logo-white.png" alt="" width="600" height="221" />
+      <ul class="boot-lines mono">
+        <li>Connecting to FleetCam Bureau</li>
+        <li>GPS lock acquired</li>
+        <li>12 cameras online</li>
+        <li>AI driver monitoring active</li>
+      </ul>
+      <div class="boot-bar"><i></i></div>
+    </div>
+  </div>
+  <script>
+    try { if (!sessionStorage.getItem('fc-boot') && !matchMedia('(prefers-reduced-motion: reduce)').matches) document.getElementById('boot').classList.add('on'); } catch (e) {}
+  </script>
 
   <div class="login-overlay" id="login" role="dialog" aria-modal="true" aria-labelledby="loginTitle" hidden>
     <div class="login-card">
@@ -584,6 +658,10 @@
       <div class="login-alt"><a href="tel:0800008743">24/7 Bureau</a><a href="#contact" data-login-close>Need an account?</a></div>
     </div>
   </div>
+
+  <button type="button" class="totop" id="totop" aria-label="Back to top">
+    <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21" class="ring-bg"/><circle cx="24" cy="24" r="21" class="ring" id="totopRing"/><path d="M24 31V17M17 23l7-7 7 7" class="arrow"/></svg>
+  </button>
 
   <div class="concept" id="concept" role="note">
     <span class="concept-dot" aria-hidden="true"></span>
@@ -630,9 +708,9 @@
             <a href="#vvt" class="btn btn-ghost">How VVT AI works</a>
           </div>
           <div class="hero-stats">
-            <div><strong>99%+</strong><span>stolen vehicle recovery</span></div>
+            <div><strong><span class="hcount" data-to="99">99</span>%+</strong><span>stolen vehicle recovery</span></div>
             <div><strong>24/7/365</strong><span>monitoring bureau</span></div>
-            <div><strong>12</strong><span>HD cameras per vehicle</span></div>
+            <div><strong><span class="hcount" data-to="12">12</span></strong><span>HD cameras per vehicle</span></div>
           <p class="geo mono" aria-hidden="true"><i></i><span>-25.88&deg; S, 28.22&deg; E</span><span>IRENE HQ</span><span>UPLINK LTE &middot; 23 MS</span></p>
           </div>
         </div>
@@ -1062,6 +1140,12 @@
       </div>
     </section>
 
+    <!-- LIVE FEED -->
+    <div class="feed" aria-hidden="true">
+      <span class="feed-tag mono"><i></i>Bureau live feed</span>
+      <div class="feed-win"><div class="feed-track mono"><span class="ev ev-g"><i></i><b>TRK-2281</b>N1 Northbound &middot; 82 km/h &middot; driver attentive</span><span class="ev ev-a"><i></i><b>TRK-1907</b>N3 Harrismith &middot; fatigue alert &middot; driver resting at stop</span><span class="ev ev-g"><i></i><b>VAN-0412</b>Durban CBD &middot; door opened at scheduled delivery</span><span class="ev ev-g"><i></i><b>CIT-0088</b>Sandton &middot; safe switch secured</span><span class="ev ev-a"><i></i><b>BUS-3120</b>Cape Town &middot; harsh brake &middot; clip uploaded</span><span class="ev ev-g"><i></i><b>TRK-7751</b>Polokwane &middot; fuel level normal &middot; tank seal intact</span><span class="ev ev-b"><i></i><b>TRK-0560</b>Health check &middot; 12/12 cameras online &middot; storage OK</span><span class="ev ev-g"><i></i><b>TRK-3318</b>N4 Nelspruit &middot; geofence entered &middot; on schedule</span><span class="ev ev-g"><i></i><b>TRK-2281</b>N1 Northbound &middot; 82 km/h &middot; driver attentive</span><span class="ev ev-a"><i></i><b>TRK-1907</b>N3 Harrismith &middot; fatigue alert &middot; driver resting at stop</span><span class="ev ev-g"><i></i><b>VAN-0412</b>Durban CBD &middot; door opened at scheduled delivery</span><span class="ev ev-g"><i></i><b>CIT-0088</b>Sandton &middot; safe switch secured</span><span class="ev ev-a"><i></i><b>BUS-3120</b>Cape Town &middot; harsh brake &middot; clip uploaded</span><span class="ev ev-g"><i></i><b>TRK-7751</b>Polokwane &middot; fuel level normal &middot; tank seal intact</span><span class="ev ev-b"><i></i><b>TRK-0560</b>Health check &middot; 12/12 cameras online &middot; storage OK</span><span class="ev ev-g"><i></i><b>TRK-3318</b>N4 Nelspruit &middot; geofence entered &middot; on schedule</span></div></div>
+    </div>
+
     <!-- BUREAU -->
     <section id="bureau" class="light">
       <div class="wrap bureau">
@@ -1160,13 +1244,24 @@
             <div class="office"><strong>Mauritius</strong><span>Trianon</span></div>
           </div>
         </div>
-        <div class="map reveal-right" aria-hidden="true">
+        <div class="map reveal-right">
           <svg viewBox="0 0 400 300">
             <g fill="none" stroke="rgba(255,255,255,0.10)">
               <path d="M60 60 L340 60 M60 120 L340 120 M60 180 L340 180 M60 240 L340 240 M100 30 L100 280 M200 30 L200 280 M300 30 L300 280"/>
             </g>
             <!-- stylised South Africa outline -->
             <path d="M70 92 L118 70 L170 74 L214 58 L262 66 L300 52 L338 82 L344 122 L322 168 L286 206 L238 238 L182 252 L130 246 L96 222 L84 186 L64 150 Z" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+            <g fill="none" stroke="rgba(141,198,63,.35)" stroke-width="1.5" stroke-dasharray="3 6">
+              <path id="rPD" d="M262 96 C290 120 300 150 306 176"/>
+              <path id="rPC" d="M262 96 C220 140 150 170 104 226"/>
+              <path id="rDC" d="M306 176 C260 230 170 250 104 226"/>
+            </g>
+            <g class="trucks">
+              <circle r="3.5" fill="#8dc63f"><animateMotion dur="6s" repeatCount="indefinite"><mpath href="#rPD"/></animateMotion></circle>
+              <circle r="3.5" fill="#8dc63f"><animateMotion dur="9s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#rPC"/></animateMotion></circle>
+              <circle r="3.5" fill="#ffb020"><animateMotion dur="11s" repeatCount="indefinite"><mpath href="#rDC"/></animateMotion></circle>
+              <circle r="3.5" fill="#8dc63f"><animateMotion dur="9s" begin="-4s" repeatCount="indefinite"><mpath href="#rPC"/></animateMotion></circle>
+            </g>
             <g>
               <circle cx="262" cy="96" r="7" fill="#218dce" class="pulse"/><circle cx="262" cy="96" r="5" fill="#218dce"/>
               <circle cx="104" cy="226" r="7" fill="#218dce" class="pulse" style="animation-delay:.6s"/><circle cx="104" cy="226" r="5" fill="#218dce"/>
@@ -1179,6 +1274,12 @@
               <text x="80" y="208">Cape Town</text>
               <text x="316" y="180">Durban</text>
               <text x="388" y="80" text-anchor="end">Mauritius</text>
+            </g>
+            <g class="pins" font-family="Inter, sans-serif">
+              <g class="pin" tabindex="0"><circle cx="262" cy="96" r="14" fill="transparent"/><g class="tip" transform="translate(150 22)"><rect width="168" height="46" rx="8"/><text x="10" y="18" class="t1">Pretoria head office</text><text x="10" y="35" class="t2">Irene &middot; 012 345 2917</text></g></g>
+              <g class="pin" tabindex="0"><circle cx="306" cy="176" r="14" fill="transparent"/><g class="tip" transform="translate(200 196)"><rect width="168" height="46" rx="8"/><text x="10" y="18" class="t1">Durban (KZN)</text><text x="10" y="35" class="t2">Westville &middot; 031 464 8102</text></g></g>
+              <g class="pin" tabindex="0"><circle cx="104" cy="226" r="14" fill="transparent"/><g class="tip" transform="translate(40 150)"><rect width="176" height="46" rx="8"/><text x="10" y="18" class="t1">Cape Town (W. Cape)</text><text x="10" y="35" class="t2">Plattekloof &middot; 021 551 3520</text></g></g>
+              <g class="pin" tabindex="0"><circle cx="384" cy="92" r="14" fill="transparent"/><g class="tip" transform="translate(222 110)"><rect width="168" height="46" rx="8"/><text x="10" y="18" class="t1">Mauritius</text><text x="10" y="35" class="t2">Trianon &middot; +230 5937 5444</text></g></g>
             </g>
           </svg>
         </div>
@@ -1502,6 +1603,33 @@
       var note = document.getElementById('loginNote');
       note.textContent = 'In the live build this opens the FleetCam fleet portal.';
       note.classList.add('ok');
+    });
+
+    // Final touches
+    // boot intro: plays once per visit, click to skip
+    var boot = document.getElementById('boot');
+    var bootOn = boot.classList.contains('on');
+    function endBoot() { boot.classList.add('done'); try { sessionStorage.setItem('fc-boot', '1'); } catch (e) {} setTimeout(function () { boot.classList.remove('on'); }, 500); }
+    if (bootOn) { boot.addEventListener('click', endBoot); setTimeout(endBoot, 1700); }
+
+    // hero numbers count up once the intro is out of the way
+    setTimeout(function () { document.querySelectorAll('.hcount').forEach(countUp); }, bootOn ? 1800 : 200);
+
+    // back to top with a scroll-progress ring
+    var totop = document.getElementById('totop'), ring = document.getElementById('totopRing');
+    function topRing() {
+      var h = document.documentElement.scrollHeight - innerHeight, k = h > 0 ? scrollY / h : 0;
+      ring.style.strokeDashoffset = (132 * (1 - k)).toFixed(1);
+      totop.classList.toggle('show', scrollY > 700);
+    }
+    window.addEventListener('scroll', topRing, { passive: true });
+    topRing();
+    totop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); });
+
+    // a little nudge in the browser tab when the visitor switches away
+    var baseTitle = document.title;
+    document.addEventListener('visibilitychange', function () {
+      document.title = document.hidden ? '\u25CF Your fleet is still moving...' : baseTitle;
     });
 
     // Concept note can be hidden for the rest of the visit
