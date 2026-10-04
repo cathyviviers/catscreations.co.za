@@ -612,6 +612,17 @@
     body.shake { animation: shake .5s; }
     @keyframes shake { 20% { transform: translate(-6px, 3px); } 40% { transform: translate(5px, -4px); } 60% { transform: translate(-4px, 2px); } 80% { transform: translate(3px, -2px); } }
 
+    /* Seamless soccer illustration pattern behind sections */
+    .pattern { position: relative; isolation: isolate; overflow: clip; }
+    .pattern::after {
+      content: ""; position: absolute; inset: -40%; z-index: -2; pointer-events: none;
+      background: url(img/pattern-gold.svg) 0 0 / 300px; opacity: .08;
+      transform: rotate(-12deg) translate3d(var(--px, 0px), var(--py, 0px), 0); will-change: transform;
+    }
+    .pattern-dark::after { background-image: url(img/pattern-dark.svg); opacity: .12; }
+    .heritage.pattern-dark::after { opacity: .06; }
+    .site-footer.pattern::after { opacity: .05; }
+
     /* Touch extras */
     .tap { position: fixed; z-index: 280; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%; border: 2px solid var(--gold); pointer-events: none; animation: tap .6s var(--ease) forwards; }
     @keyframes tap { from { transform: scale(1); opacity: .9; } to { transform: scale(5); opacity: 0; } }
@@ -863,7 +874,7 @@
     </section>
 
     <!-- Stats -->
-    <section class="section stats spot" id="stats" aria-labelledby="stats-title">
+    <section class="section stats spot pattern" id="stats" aria-labelledby="stats-title">
       <div class="stats-bg" id="stats-bg" aria-hidden="true">Amakhosi Amakhosi</div>
       <div class="wrap">
         <div class="section-head reveal">
@@ -924,7 +935,7 @@
     </section>
 
     <!-- News -->
-    <section class="section" id="news" aria-labelledby="news-title">
+    <section class="section pattern" id="news" aria-labelledby="news-title">
       <div class="wrap">
         <div class="section-head reveal">
           <div>
@@ -969,7 +980,7 @@
     </section>
 
     <!-- Amakhosi TV -->
-    <section class="section tv spot" id="tv" aria-labelledby="tv-title">
+    <section class="section tv spot pattern" id="tv" aria-labelledby="tv-title">
       <div class="wrap">
         <div class="section-head reveal">
           <div>
@@ -1007,7 +1018,7 @@
     </section>
 
     <!-- Squad -->
-    <section class="section" id="squad" aria-labelledby="squad-title">
+    <section class="section pattern" id="squad" aria-labelledby="squad-title">
       <div class="wrap">
         <div class="section-head reveal">
           <div>
@@ -1029,7 +1040,7 @@
     </section>
 
     <!-- Shop -->
-    <section class="section shop" id="shop" aria-labelledby="shop-title">
+    <section class="section shop pattern pattern-dark" id="shop" aria-labelledby="shop-title">
       <div class="shop-bg" id="shop-bg" aria-hidden="true">Wear the gold Wear the gold</div>
       <div class="wrap shop-grid">
         <div class="reveal">
@@ -1050,7 +1061,7 @@
     </section>
 
     <!-- Heritage -->
-    <section class="section heritage" id="heritage" aria-labelledby="heritage-title">
+    <section class="section heritage pattern pattern-dark" id="heritage" aria-labelledby="heritage-title">
       <img class="heritage-chief" id="heritage-chief" src="img/chief-gold.svg" alt="" aria-hidden="true" />
       <div class="wrap heritage-grid">
         <div class="reveal">
@@ -1069,7 +1080,7 @@
     </section>
 
     <!-- Khosi Nation -->
-    <section class="section nation" id="nation" aria-labelledby="nation-title">
+    <section class="section nation pattern" id="nation" aria-labelledby="nation-title">
       <div class="wrap">
         <div class="nation-card reveal" id="nation-card">
           <div>
@@ -1109,7 +1120,7 @@
 
   </main>
 
-  <footer class="site-footer">
+  <footer class="site-footer pattern">
     <div class="wrap">
       <div class="footer-grid">
         <div>
@@ -1229,10 +1240,15 @@
     }
     addEventListener('scroll', onScroll, { passive: true }); onScroll();
 
-    var tick = $('#ticker'), tickX = 0;
+    var tick = $('#ticker'), tickX = 0, rootStyle = document.documentElement.style, patX = 0, patMX = 0, lastPat = '';
+    addEventListener('pointermove', function (e) { if (e.pointerType === 'mouse') patMX = (e.clientX / innerWidth - .5) * -24; }, { passive: true });
     function frame() {
       vel *= 0.9;
       if (!reduce) {
+        // Soccer pattern drifts with scroll (wraps every tile) and leans away from the mouse
+        patX += (patMX - patX) * .06;
+        var pat = patX.toFixed(1) + '|' + (-(scrollY * .08) % 300).toFixed(1);
+        if (pat !== lastPat) { lastPat = pat; var pp = pat.split('|'); rootStyle.setProperty('--px', pp[0] + 'px'); rootStyle.setProperty('--py', pp[1] + 'px'); }
         var speed = 0.6 + Math.abs(vel) * 0.08, dir = vel < -1 ? -1 : 1;
         tickX -= speed * dir;
         var half = tick.scrollWidth / 2;
