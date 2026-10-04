@@ -26,6 +26,7 @@ Add `?present` to the URL to hide the floating concept notice (visitors can also
 - Share card (`img/og.jpg`) for WhatsApp, Facebook and X link previews; home screen icon and `manifest.webmanifest` so it saves to a phone like an app.
 - Crest intro that plays once per visit (skipped for reduced motion), back-to-top button with a scroll-progress ring, and "Add to calendar" for the next fixture (.ics download).
 - Seamless soccer line-art pattern (`img/pattern-gold.svg`, `img/pattern-dark.svg`: balls, boots, shirts, whistles, trophies, goals, cones, tactics) behind the dark, gold and cream sections. It is tilted, drifts with scroll and leans away from the mouse.
+- Playable football: click or tap to kick (where you hit it sets the direction), drag to throw, keepy-uppy counter with a best score saved in the browser, confetti at 5 and the KHOSI celebration at 10. Time-based physics, so it plays the same on 60 Hz and 120 Hz screens. A hard scroll bumps it.
 - Easter egg: type KHOSI on a keyboard, or tap the header crest five times on a phone.
 
 ## Club assets

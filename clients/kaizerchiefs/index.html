@@ -623,6 +623,27 @@
     .heritage.pattern-dark::after { opacity: .06; }
     .site-footer.pattern::after { opacity: .05; }
 
+    /* Playable football */
+    .kickball { position: fixed; left: 0; top: 0; z-index: 135; width: var(--bs, 64px); height: var(--bs, 64px); margin: 0; padding: 0; border-radius: 50%; cursor: grab; touch-action: none; will-change: transform; filter: drop-shadow(0 10px 14px rgba(0,0,0,.5)); -webkit-tap-highlight-color: transparent; }
+    .kickball:active { cursor: grabbing; }
+    .kickball::before { content: ""; position: absolute; inset: -16px; border-radius: 50%; }
+    .kickball .skin { position: absolute; inset: 0; border-radius: 50%; overflow: hidden; }
+    .kickball .skin svg { width: 100%; height: 100%; display: block; }
+    .kickball .shade { position: absolute; inset: 0; border-radius: 50%; pointer-events: none; background: radial-gradient(circle at 34% 28%, rgba(255,255,255,.55), rgba(255,255,255,0) 38%), radial-gradient(circle at 60% 70%, rgba(0,0,0,0) 45%, rgba(0,0,0,.45) 100%); }
+    .kickball:focus-visible { outline: 3px solid var(--white); outline-offset: 4px; }
+    .ball-hint { position: fixed; left: 0; top: 0; z-index: 136; pointer-events: none; font-family: var(--cond); font-weight: 700; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--black); background: var(--gold); padding: 6px 12px; border-radius: 999px; white-space: nowrap; box-shadow: 0 6px 18px rgba(0,0,0,.35); opacity: 0; transition: opacity .4s; }
+    .ball-hint::after { content: ""; position: absolute; left: 50%; bottom: -5px; margin-left: -5px; border: 5px solid transparent; border-bottom: 0; border-top-color: var(--gold); }
+    .ball-hint.show { opacity: 1; animation: hintBob 1.4s ease-in-out infinite; }
+    @keyframes hintBob { 50% { translate: 0 -5px; } }
+    .juggle { position: fixed; left: 50%; top: 92px; z-index: 136; pointer-events: none; transform: translate(-50%, -12px); opacity: 0; transition: opacity .3s, transform .3s var(--ease); display: flex; align-items: baseline; gap: 12px; padding: 8px 18px; border-radius: 999px; background: rgba(20,20,20,.85); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(245,185,21,.35); font-family: var(--cond); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; color: var(--mute); }
+    .juggle.show { opacity: 1; transform: translate(-50%, 0); }
+    .juggle span { white-space: nowrap; }
+    .juggle b { font-family: var(--display); font-weight: 400; font-size: 30px; color: var(--gold); letter-spacing: 0; line-height: 1; display: inline-block; }
+    .juggle b.pop { animation: pop .35s var(--ease); }
+    @keyframes pop { 40% { transform: scale(1.5); } }
+    .kick-num { position: fixed; z-index: 137; pointer-events: none; font-family: var(--display); font-size: 34px; color: var(--gold); text-shadow: 0 2px 10px rgba(0,0,0,.6); animation: kickNum .8s var(--ease) forwards; }
+    @keyframes kickNum { from { opacity: 1; transform: translate(-50%, 0) scale(.6); } 30% { transform: translate(-50%, -20px) scale(1.2); } to { opacity: 0; transform: translate(-50%, -60px) scale(1); } }
+
     /* Touch extras */
     .tap { position: fixed; z-index: 280; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%; border: 2px solid var(--gold); pointer-events: none; animation: tap .6s var(--ease) forwards; }
     @keyframes tap { from { transform: scale(1); opacity: .9; } to { transform: scale(5); opacity: 0; } }
@@ -760,6 +781,11 @@
     <span><b>Design concept</b> by <a href="https://catscreations.co.za/" target="_blank" rel="noopener">Cat's Creations</a><span class="full"> &middot; not the official Kaizer Chiefs website</span><span class="short"> &middot; unofficial</span></span>
     <button type="button" aria-label="Dismiss concept notice">&times;</button>
   </div>
+  <button type="button" class="kickball" id="kickball" aria-label="Football. Press to kick it, or drag and throw it.">
+    <span class="skin"><svg viewBox="0 0 100 100" aria-hidden="true"><defs><clipPath id="ballClip"><circle cx="50" cy="50" r="48"/></clipPath></defs><g clip-path="url(#ballClip)"><circle cx="50" cy="50" r="48" fill="#f5b915"/><g fill="#0b0b0b"><polygon points="50.0,35.0 64.3,45.4 58.8,62.1 41.2,62.1 35.7,45.4"/><polygon points="80.6,22.9 66.3,12.6 71.7,-4.2 89.4,-4.2 94.8,12.6"/><polygon points="85.2,70.7 90.6,53.9 108.3,53.9 113.7,70.7 99.5,81.1"/><polygon points="41.2,89.9 58.8,89.9 64.3,106.6 50.0,117.0 35.7,106.6"/><polygon points="9.4,53.9 14.8,70.7 0.5,81.1 -13.7,70.7 -8.3,53.9"/><polygon points="33.7,12.6 19.4,22.9 5.2,12.6 10.6,-4.2 28.3,-4.2"/></g><path d="M50.0 35.0 L50.0 17.0 M64.3 45.4 L81.4 39.8 M58.8 62.1 L69.4 76.7 M41.2 62.1 L30.6 76.7 M35.7 45.4 L18.6 39.8 M50.0 17.0 L73.5 17.6 M81.4 39.8 L88.0 62.4 M69.4 76.7 L50.0 90.0 M30.6 76.7 L12.0 62.4 M18.6 39.8 L26.5 17.6" stroke="#0b0b0b" stroke-width="2.2" stroke-linecap="round" fill="none"/></g></svg></span><span class="shade"></span>
+  </button>
+  <div class="ball-hint" id="ball-hint" aria-hidden="true">Kick me</div>
+  <div class="juggle" id="juggle" aria-live="polite"><span>Keepy-uppies</span><b id="juggle-n">0</b><span>Best <span id="juggle-best">0</span></span></div>
   <a href="#top" class="to-top" id="to-top" aria-label="Back to top">
     <svg viewBox="0 0 54 54" aria-hidden="true"><circle class="tt-ring" cx="27" cy="27" r="25"/></svg>
     <svg class="arrow-wrap" viewBox="0 0 18 18" aria-hidden="true" style="position:static;transform:none;width:18px;height:18px"><path class="arrow" d="M9 15V3M3.5 8.5 9 3l5.5 5.5"/></svg>
@@ -1628,6 +1654,101 @@
       var now = Date.now(); taps = taps.filter(function (t) { return now - t < 2000; }); taps.push(now);
       if (taps.length >= 5) { taps = []; celebrate(); }
     });
+
+    /* ---------- Playable football: kick, fling, keepy-uppy ---------- */
+    (function () {
+      var el = $('#kickball'), skin = $('.skin', el), hint = $('#ball-hint'), hud = $('#juggle'), nEl = $('#juggle-n'), bestEl = $('#juggle-best');
+      var R, x, y, vx = 0, vy = 0, ang = 0, running = false, dragging = false, airborne = false;
+      var streak = 0, best = 0, hudTimer, hinted = false, last = [], downAt = 0, downX = 0, downY = 0, offX = 0, offY = 0;
+      var G = .55, BOUNCE = .62, FRICTION = .985;
+      try { best = +localStorage.getItem('kc-juggle-best') || 0; } catch (e) {}
+      bestEl.textContent = best;
+      function size() { R = innerWidth < 600 ? 26 : 32; el.style.setProperty('--bs', R * 2 + 'px'); }
+      function floorY() { return innerHeight - R - (innerWidth < 600 ? 74 : 18); }
+      size(); x = innerWidth - (innerWidth < 600 ? 70 : 170); y = floorY();
+      function draw() {
+        el.style.transform = 'translate3d(' + (x - R) + 'px,' + (y - R) + 'px,0)';
+        skin.style.transform = 'rotate(' + ang + 'rad)';
+        if (hint.classList.contains('show')) { hint.style.transform = 'translate3d(' + (x - hint.offsetWidth / 2) + 'px,' + (y - R - 40) + 'px,0)'; }
+      }
+      function showHud() { hud.classList.add('show'); clearTimeout(hudTimer); hudTimer = setTimeout(function () { hud.classList.remove('show'); }, 2600); }
+      function setStreak(n) {
+        streak = n; nEl.textContent = n; nEl.classList.remove('pop'); void nEl.offsetWidth; nEl.classList.add('pop');
+        if (n > best) { best = n; bestEl.textContent = best; try { localStorage.setItem('kc-juggle-best', best); } catch (e) {} }
+        if (n === 5) burst(x, y, 60);
+        if (n === 10 || (n > 10 && n % 10 === 0)) celebrate();
+      }
+      function floatNum(n) {
+        var d = document.createElement('div'); d.className = 'kick-num'; d.textContent = n;
+        d.style.left = x + 'px'; d.style.top = (y - R - 30) + 'px'; body.appendChild(d); setTimeout(function () { d.remove(); }, 800);
+      }
+      var lastT = 0;
+      function wake() { if (!running) { running = true; lastT = 0; requestAnimationFrame(step); } }
+      function kick(hitX) {
+        hideHint();
+        var side = Math.max(-1, Math.min(1, (x - hitX) / R));
+        if (airborne) { setStreak(streak + 1); floatNum(streak); } else { streak = 0; nEl.textContent = 0; }
+        vy = -(13 + Math.random() * 3); vx = side * 7 + (Math.random() - .5) * 2;
+        airborne = true; showHud(); wake();
+        if (navigator.vibrate) navigator.vibrate(12);
+      }
+      function hideHint() { hint.classList.remove('show'); }
+      function step(now) {
+        // Time-based physics: 1 unit = one 60fps frame, so it plays the same on 60Hz and 120Hz screens
+        var dt = lastT ? Math.min(3, (now - lastT) / 16.667) : 1; lastT = now;
+        var g = innerWidth < 600 ? G * .85 : G;
+        if (!dragging) {
+          vy += g * dt; x += vx * dt; y += vy * dt; vx *= Math.pow(.998, dt);
+          var fy = floorY();
+          if (y > fy) {
+            y = fy;
+            if (vy > 2.5) { vy = -vy * BOUNCE; if (airborne && streak) showHud(); }
+            airborne = false; streak = 0;
+            if (Math.abs(vy) <= 2.5) { vy = 0; vx *= Math.pow(FRICTION, dt); }
+          }
+          if (y < R) { y = R; vy = Math.abs(vy) * .5; }
+          if (x < R) { x = R; vx = Math.abs(vx) * .7; }
+          if (x > innerWidth - R) { x = innerWidth - R; vx = -Math.abs(vx) * .7; }
+          ang += vx * dt / R;
+        }
+        draw();
+        if (!dragging && y >= floorY() - .5 && Math.abs(vx) < .05 && vy === 0) { running = false; return; }
+        requestAnimationFrame(step);
+      }
+      el.addEventListener('pointerdown', function (e) {
+        e.preventDefault(); el.setPointerCapture(e.pointerId);
+        dragging = true; downAt = performance.now(); downX = e.clientX; downY = e.clientY;
+        offX = e.clientX - x; offY = e.clientY - y; last = [{ x: e.clientX, y: e.clientY, t: downAt }];
+        vx = vy = 0; wake();
+      });
+      el.addEventListener('pointermove', function (e) {
+        if (!dragging) return;
+        var moved = Math.hypot(e.clientX - downX, e.clientY - downY);
+        if (moved > 6) { hideHint(); x = e.clientX - offX; y = Math.min(e.clientY - offY, floorY()); airborne = true; }
+        last.push({ x: e.clientX, y: e.clientY, t: performance.now() }); if (last.length > 5) last.shift();
+      });
+      function release(e) {
+        if (!dragging) return; dragging = false;
+        var moved = Math.hypot(e.clientX - downX, e.clientY - downY), dt = performance.now() - downAt;
+        if (moved < 6 && dt < 400) { kick(e.clientX); return; }
+        var a = last[0], b = last[last.length - 1], span = Math.max(16, b.t - a.t);
+        vx = Math.max(-40, Math.min(40, (b.x - a.x) / span * 16)); vy = Math.max(-40, Math.min(40, (b.y - a.y) / span * 16));
+        streak = 0; airborne = true; wake();
+      }
+      el.addEventListener('pointerup', release);
+      el.addEventListener('pointercancel', release);
+      el.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); kick(x - 4 + Math.random() * 8); } });
+      el.addEventListener('click', function (e) { if (e.detail === 0) return; e.preventDefault(); });
+      // A hard scroll bumps a resting ball
+      var lastS = scrollY;
+      addEventListener('scroll', function () {
+        var d = scrollY - lastS; lastS = scrollY;
+        if (!dragging && !reduce && Math.abs(d) > 60 && !airborne) { vy = -Math.min(10, Math.abs(d) / 12); vx += (Math.random() - .5) * 3; airborne = false; wake(); }
+      }, { passive: true });
+      addEventListener('resize', function () { size(); x = Math.min(x, innerWidth - R); y = Math.min(y, floorY()); wake(); });
+      draw();
+      setTimeout(function () { if (!hinted) { hinted = true; hint.classList.add('show'); draw(); setTimeout(hideHint, 6000); } }, 4000);
+    })();
 
     /* ---------- Light haptic tick on taps (Android) ---------- */
     if (navigator.vibrate) document.addEventListener('pointerdown', function (e) {
