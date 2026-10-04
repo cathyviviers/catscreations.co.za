@@ -2,6 +2,11 @@
   "outputDirectory": ".",
   "redirects": [
     {
+      "source": "/concepts/mochachos/:path*",
+      "destination": "https://mochachos.catscreations.co.za/:path*",
+      "permanent": true
+    },
+    {
       "source": "/clients/:client/:path*",
       "has": [
         {
@@ -204,7 +209,7 @@
       ]
     },
     {
-      "source": "/concepts/(.*)",
+      "source": "/clients/mochachos/(.*)",
       "headers": [
         { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
       ]
