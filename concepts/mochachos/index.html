@@ -104,10 +104,11 @@
   .delivery { display: flex; align-items: center; gap: 10px; margin-top: 18px; font-size: 0.85rem; color: #d8bfa8; }
   .delivery img { width: 34px; height: 34px; border-radius: 50%; }
   @keyframes float { 50% { transform: translateY(-12px) rotate(-2deg); } }
-  .flames { position: absolute; bottom: -2px; left: 0; width: 100%; height: 70px; }
+  .flames { position: absolute; bottom: -2px; left: 0; width: 100%; height: 70px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='70' viewBox='0 0 240 70'%3E%3Cpath d='M0 38 C 40 38 70 12 120 12 S 200 38 240 38 V70 H0 Z' fill='%23fbb417' fill-opacity='1'/%3E%3C/svg%3E") repeat-x, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='70' viewBox='0 0 320 70'%3E%3Cpath d='M0 30 C 55 30 95 4 160 4 S 265 30 320 30 V70 H0 Z' fill='%23f47a20' fill-opacity='0.75'/%3E%3C/svg%3E") repeat-x; background-size: 240px 70px, 320px 70px; background-position: 0 100%, 0 100%; animation: waves 7s linear infinite; }
+  @keyframes waves { to { background-position: 240px 100%, -320px 100%; } }
 
   /* Marquee */
-  .marquee { background: var(--sun); overflow: hidden; border-block: 3px solid var(--char); }
+  .marquee { background: var(--sun); overflow: hidden; box-shadow: inset 0 -1px 0 rgba(27,15,10,0.08), 0 10px 24px rgba(160,90,0,0.12); position: relative; z-index: 1; }
   .marquee-track { display: flex; gap: 40px; padding: 14px 0; width: max-content; animation: scroll 30s linear infinite; font-family: var(--display); font-size: 1.3rem; text-transform: uppercase; }
   .marquee-track span::after { content: "✦"; margin-left: 40px; color: var(--flame); }
   @keyframes scroll { to { transform: translateX(-50%); } }
@@ -638,9 +639,7 @@
         <div class="hero-sticker" aria-hidden="true"><span><b>100%</b>flame<br>grilled</span></div>
       </div></div>
     </div>
-    <svg class="flames" viewBox="0 0 1200 70" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M0 70V40c40 0 50-35 80-35s30 30 60 30 40-28 70-28 35 33 70 33 40-30 75-30 35 30 70 30 45-33 75-33 30 28 65 28 45-35 80-35 30 32 70 32 40-30 75-30 35 33 70 33 40-28 75-28 35 28 70 28 40-35 80-35 30 30 65 30 40-30 75-30 25 35 50 35V70z" fill="#fbb417"/>
-    </svg>
+    <div class="flames" aria-hidden="true"></div>
   </section>
 
   <div class="marquee" aria-hidden="true">
