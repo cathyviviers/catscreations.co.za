@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Premium Brand Distributors | Imaging &amp; Technology Brands for Africa (Design Concept)</title>
+  <meta name="description" content="A website redesign concept for Premium Brand Distributors by Cat's Creations. Authorised distributor and service centre for Nikon, Sony, Lexar, Atomos, Angelbird, Anker, eufy and YoloLiv since 1999." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://premiumbrands.catscreations.co.za/" />
+  <meta property="og:title" content="Premium Brand Distributors | World-class brands, on South African shelves in 48 hours" />
+  <meta property="og:description" content="Imaging, storage, video and smart power brands, imported, stocked and serviced from Centurion since 1999. A website redesign concept by Cat's Creations." />
+  <meta property="og:image" content="https://premiumbrands.catscreations.co.za/clients/premiumbrands/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://premiumbrands.catscreations.co.za/clients/premiumbrands/og-image.jpg" />
+  <!-- Pitch concept: keep out of search engines and the sitemap -->
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0b0d12" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/png" sizes="64x64" href="favicon.png" />
+  <link rel="apple-touch-icon" href="favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+  <style>
+    /* Brand tokens. Swap these for Premium Brand Distributors' official palette once supplied. */
+    :root {
+      --ink: #0b0d12;
+      --ink-2: #12151c;
+      --panel: #181c25;
+      --line: rgba(255,255,255,0.09);
+      --text: #f2f1ee;
+      --muted: #9a9ea8;
+      --brand: #ff6a2b;        /* signal orange: the "shutter" accent */
+      --brand-dark: #d94e12;   /* orange for text on light backgrounds */
+      --brand-soft: rgba(255,106,43,.14);
+      --cool: #7fb2ff;         /* cool secondary for data and routes */
+      --ok: #3ccf8e;
+      --paper: #f4f2ee;
+      --paper-2: #ebe8e2;
+      --paper-text: #14161b;
+      --paper-muted: #5b5f68;
+      --paper-line: #dcd8d0;
+      --radius: 18px;
+      --wrap: 1200px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: var(--ink); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    h1, h2, h3 { font-family: 'Bricolage Grotesque', 'Inter', sans-serif; line-height: 1.06; letter-spacing: -0.025em; font-weight: 700; }
+    a { color: inherit; text-decoration: none; }
+    img, svg { display: block; }
+    main { overflow-x: clip; }
+    button { font-family: inherit; }
+    .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
+    .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+    :focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; border-radius: 6px; }
+
+    /* Concept ribbon */
+    .concept { position: fixed; left: 16px; bottom: 16px; z-index: 60; display: flex; align-items: center; gap: 10px; max-width: calc(100vw - 92px);
+      font-size: 12.5px; color: #d6d3cc; padding: 8px 8px 8px 14px; border-radius: 999px;
+      background: rgba(14,16,22,.74); border: 1px solid rgba(255,255,255,.14); -webkit-backdrop-filter: blur(14px) saturate(150%); backdrop-filter: blur(14px) saturate(150%);
+      box-shadow: 0 16px 40px -16px rgba(0,0,0,.7); transition: opacity .3s ease, transform .3s ease; }
+    .concept.tuck, .concept.hide { opacity: 0; transform: translateY(14px); pointer-events: none; }
+    .concept-dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: #e0479a; box-shadow: 0 0 0 4px rgba(224,71,154,.18); }
+    .concept a { color: #ff8cc6; font-weight: 600; }
+    .concept button { flex: none; width: 26px; height: 26px; border-radius: 50%; border: 0; background: rgba(255,255,255,.08); color: #d6d3cc; font-size: 15px; line-height: 1; cursor: pointer; }
+    .concept button:hover { background: rgba(255,255,255,.16); }
+
+    /* Header */
+    header { position: sticky; top: 0; z-index: 50; background: rgba(11,13,18,.72); -webkit-backdrop-filter: blur(16px) saturate(140%); backdrop-filter: blur(16px) saturate(140%); border-bottom: 1px solid transparent; transition: border-color .3s ease, background .3s ease; }
+    header.scrolled { border-bottom-color: var(--line); background: rgba(11,13,18,.88); }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 76px; }
+    .logo { display: inline-flex; align-items: center; gap: 12px; }
+    .logo svg { width: 38px; height: 38px; flex: none; transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+    .logo:hover svg { transform: rotate(60deg); }
+    .logo-text { line-height: 1.05; }
+    .logo-text b { display: block; font-family: 'Bricolage Grotesque', sans-serif; font-size: 19px; letter-spacing: -.01em; }
+    .logo-text small { display: block; font-size: 10.5px; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
+    .nav ul { display: flex; gap: 6px; list-style: none; font-size: 14.5px; font-weight: 500; color: #c9c7c1; }
+    .nav ul a { padding: 8px 12px; border-radius: 999px; transition: background .2s ease, color .2s ease; }
+    .nav ul a:hover { color: #fff; background: rgba(255,255,255,.06); }
+    .nav ul a.active { color: #fff; background: rgba(255,255,255,.09); }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+    .burger { display: none; background: none; border: 1px solid var(--line); color: var(--text); border-radius: 12px; width: 44px; height: 44px; cursor: pointer; }
+    .burger span, .burger span::before, .burger span::after { display: block; width: 18px; height: 2px; background: currentColor; border-radius: 2px; margin: 0 auto; position: relative; transition: transform .25s ease, background .2s ease; }
+    .burger span::before, .burger span::after { content: ""; position: absolute; left: 0; }
+    .burger span::before { top: -6px; } .burger span::after { top: 6px; }
+    .burger[aria-expanded="true"] span { background: transparent; }
+    .burger[aria-expanded="true"] span::before { transform: translateY(6px) rotate(45deg); }
+    .burger[aria-expanded="true"] span::after { transform: translateY(-6px) rotate(-45deg); }
+    .progress { position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: linear-gradient(90deg, var(--brand), #ffb15c); transform-origin: 0 50%; transform: scaleX(0); }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 13px 22px; border-radius: 999px; font-weight: 600; font-size: 15px; border: 1px solid transparent; transition: transform .15s ease, background .2s ease, border-color .2s ease, color .2s ease; cursor: pointer; white-space: nowrap; }
+    .btn:hover { transform: translateY(-1px); }
+    .btn:active { transform: scale(.97); }
+    .btn-primary { background: var(--brand); color: #160700; }
+    .btn-primary:hover { background: #ff7d45; }
+    .btn-ghost { border-color: rgba(255,255,255,0.22); color: var(--text); background: transparent; }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.55); }
+    .btn-dark { background: var(--paper-text); color: var(--paper); }
+    .btn-dark:hover { background: #2a2d35; }
+    .btn-line { border-color: var(--paper-line); color: var(--paper-text); background: #fff; }
+    .btn-line:hover { border-color: var(--paper-text); }
+    .btn-sm { padding: 10px 18px; font-size: 14px; }
+    .btn .arr { transition: transform .2s ease; }
+    .btn:hover .arr { transform: translateX(3px); }
+
+    /* Hero */
+    .hero { position: relative; padding: 72px 0 0; overflow: hidden; }
+    .hero::before { content: ""; position: absolute; right: -12%; top: -18%; width: 900px; height: 900px; background: radial-gradient(circle, rgba(255,106,43,.16), transparent 62%); pointer-events: none; }
+    .hero::after { content: ""; position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1px); background-size: 26px 26px; mask-image: radial-gradient(ellipse at 30% 30%, #000 10%, transparent 70%); -webkit-mask-image: radial-gradient(ellipse at 30% 30%, #000 10%, transparent 70%); pointer-events: none; }
+    .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.08fr .92fr; gap: 48px; align-items: center; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; color: #c9c7c1; border: 1px solid var(--line); background: rgba(255,255,255,0.03); border-radius: 999px; padding: 6px 14px 6px 10px; }
+    .eyebrow i { width: 8px; height: 8px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 4px rgba(60,207,142,.15); }
+    .hero h1 { font-size: clamp(40px, 5vw, 66px); margin: 24px 0 22px; font-weight: 800; }
+    .hero h1 .ln { display: block; }
+    .hero h1 em { font-style: normal; color: var(--brand); }
+    .hero h1 .rack { display: inline-block; transition: filter 1.1s cubic-bezier(.2,.7,.2,1), opacity 1.1s ease, letter-spacing 1.1s ease; }
+    .pre .hero h1 .rack { filter: blur(14px); opacity: .35; letter-spacing: .02em; }
+    .hero p.lead { font-size: 18.5px; color: var(--muted); max-width: 560px; }
+    .hero p.lead strong { color: var(--text); font-weight: 600; }
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+    .hero-stats { display: grid; grid-template-columns: repeat(3, auto); gap: 40px; margin-top: 48px; padding-top: 26px; border-top: 1px solid var(--line); width: fit-content; }
+    .hero-stats strong { display: block; font-family: 'Bricolage Grotesque', sans-serif; font-size: 32px; font-weight: 700; letter-spacing: -.02em; }
+    .hero-stats strong sup { font-size: 16px; color: var(--brand); margin-left: 2px; }
+    .hero-stats span { font-size: 13px; color: var(--muted); }
+
+    /* The lens */
+    .lens-wrap { position: relative; aspect-ratio: 1; max-width: 520px; width: 100%; margin-left: auto; }
+    .lens-wrap svg.lens { width: 100%; height: 100%; overflow: hidden; }
+    .lens-hud { position: absolute; font-size: 11.5px; color: #c9c7c1; background: rgba(18,21,28,.8); border: 1px solid var(--line); padding: 6px 10px; border-radius: 10px; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); display: flex; gap: 8px; align-items: center; white-space: nowrap; }
+    .lens-hud b { color: #fff; font-weight: 500; }
+    .lens-hud.h1 { top: 8%; left: -4%; }
+    .lens-hud.h2 { bottom: 14%; right: -2%; }
+    .lens-hud.h3 { bottom: 2%; left: 10%; }
+    .lens-hud .af { width: 7px; height: 7px; border-radius: 50%; background: var(--ok); }
+    .lens-hud .af.hunt { background: #ffcf4a; animation: blink .5s infinite; }
+    @keyframes blink { 50% { opacity: .25; } }
+    .lens-tip { text-align: center; font-size: 12px; color: var(--muted); margin-top: 6px; }
+    .bracket { position: absolute; inset: 26%; pointer-events: none; transition: inset .5s cubic-bezier(.2,.8,.2,1), opacity .3s; }
+    .bracket i { position: absolute; width: 22px; height: 22px; border-color: var(--ok); border-style: solid; border-width: 0; }
+    .bracket i:nth-child(1) { left: 0; top: 0; border-left-width: 2px; border-top-width: 2px; }
+    .bracket i:nth-child(2) { right: 0; top: 0; border-right-width: 2px; border-top-width: 2px; }
+    .bracket i:nth-child(3) { left: 0; bottom: 0; border-left-width: 2px; border-bottom-width: 2px; }
+    .bracket i:nth-child(4) { right: 0; bottom: 0; border-right-width: 2px; border-bottom-width: 2px; }
+    .bracket.hunt { inset: 22%; }
+    .bracket.hunt i { border-color: #ffcf4a; }
+
+    /* Brand marquee */
+    .marquee { position: relative; margin-top: 72px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--ink-2); overflow: hidden; }
+    .marquee-track { display: flex; width: max-content; animation: slide 38s linear infinite; }
+    .marquee:hover .marquee-track { animation-play-state: paused; }
+    .marquee ul { display: flex; list-style: none; }
+    .marquee li { padding: 26px 40px; font-size: 26px; color: #8b8f99; white-space: nowrap; display: flex; align-items: center; gap: 40px; transition: color .2s; }
+    .marquee li::after { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--brand); opacity: .6; }
+    .marquee li:hover { color: #fff; }
+    .wm-nikon { font-family: 'Inter', sans-serif; font-weight: 600; font-style: italic; letter-spacing: -.02em; }
+    .wm-sony { font-family: 'Inter', sans-serif; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+    .wm-lexar { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; letter-spacing: .02em; text-transform: uppercase; }
+    .wm-atomos { font-family: 'Inter', sans-serif; font-weight: 400; letter-spacing: .2em; text-transform: uppercase; }
+    .wm-angelbird { font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: -.01em; text-transform: lowercase; }
+    .wm-anker { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; letter-spacing: .01em; }
+    .wm-eufy { font-family: 'Inter', sans-serif; font-weight: 600; letter-spacing: -.03em; text-transform: lowercase; }
+    .wm-yololiv { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; letter-spacing: .04em; }
+    @keyframes slide { to { transform: translateX(-50%); } }
+
+    /* Sections */
+    section { padding: 112px 0; }
+    .light { background: var(--paper); color: var(--paper-text); }
+    .kicker { display: inline-flex; align-items: center; gap: 10px; font-size: 12.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--brand); font-weight: 600; }
+    .kicker::before { content: ""; width: 18px; height: 2px; background: currentColor; }
+    .light .kicker { color: var(--brand-dark); }
+    .sec-head { max-width: 760px; margin-bottom: 52px; }
+    .sec-head h2 { font-size: clamp(34px, 4.4vw, 56px); margin: 16px 0 16px; }
+    .sec-head p { font-size: 18px; color: var(--muted); }
+    .light .sec-head p { color: var(--paper-muted); }
+    .sec-row { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap; margin-bottom: 40px; }
+    .sec-row .sec-head { margin-bottom: 0; }
+
+    /* Reveal */
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1); }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* Brand explorer */
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip { border: 1px solid var(--paper-line); background: #fff; color: var(--paper-text); padding: 9px 16px; border-radius: 999px; font-size: 14px; font-weight: 500; cursor: pointer; transition: background .2s, color .2s, border-color .2s; display: inline-flex; gap: 8px; align-items: center; }
+    .chip small { font-size: 11.5px; color: var(--paper-muted); background: var(--paper-2); border-radius: 999px; padding: 1px 7px; transition: inherit; }
+    .chip:hover { border-color: var(--paper-text); }
+    .chip[aria-pressed="true"] { background: var(--paper-text); color: var(--paper); border-color: var(--paper-text); }
+    .chip[aria-pressed="true"] small { background: rgba(255,255,255,.14); color: var(--paper); }
+    .brands { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .bcard { position: relative; display: flex; flex-direction: column; background: #fff; border: 1px solid var(--paper-line); border-radius: var(--radius); padding: 0; text-align: left; cursor: pointer; color: var(--paper-text); overflow: hidden;
+      transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease, border-color .3s ease, opacity .35s ease; }
+    .bcard.gone { display: none; }
+    .bcard.fade { opacity: 0; transform: scale(.96); }
+    .bcard .art { position: relative; aspect-ratio: 10/7; background: radial-gradient(circle at 50% 120%, var(--tint, #f1e7df), #f7f6f3 70%); display: grid; place-items: center; overflow: hidden; }
+    .bcard .art svg { width: 82%; height: auto; transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+    .bcard:hover .art svg { transform: translateY(-4px) scale(1.04) rotate(-1.5deg); }
+    .bcard .cat { position: absolute; top: 12px; left: 12px; font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--paper-muted); background: rgba(255,255,255,.85); border-radius: 999px; padding: 4px 10px; }
+    .bcard .body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+    .bcard .name { font-size: 24px; line-height: 1.1; }
+    .bcard .line { font-size: 14px; color: var(--paper-muted); }
+    .bcard .more { margin-top: auto; padding-top: 12px; font-size: 13.5px; font-weight: 600; color: var(--brand-dark); display: inline-flex; gap: 6px; align-items: center; }
+    .bcard .more .arr { transition: transform .2s; }
+    .bcard:hover .more .arr { transform: translateX(4px); }
+    .bcard::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .3s;
+      background: radial-gradient(360px circle at var(--mx, 50%) var(--my, 0%), rgba(255,106,43,.12), transparent 60%); }
+    @media (hover: hover) {
+      .bcard:hover { transform: translateY(-6px); border-color: #e7b79f; box-shadow: 0 30px 60px -34px rgba(20,22,27,.45); }
+      .bcard:hover::after { opacity: 1; }
+    }
+    .badge-auth { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: #1d7a52; font-weight: 600; }
+    .badge-auth::before { content: ""; width: 14px; height: 14px; border-radius: 50%; background: #1d7a52 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M4 7.2l2 2 4-4.4' fill='none' stroke='%23fff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/100% no-repeat; }
+
+    /* Brand drawer */
+    .drawer { position: fixed; inset: 0; z-index: 120; display: flex; justify-content: flex-end; background: rgba(8,9,12,0); transition: background .35s ease; }
+    .drawer[hidden] { display: none; }
+    .drawer.open { background: rgba(8,9,12,.55); }
+    .drawer-panel { width: min(520px, 100%); height: 100%; overflow-y: auto; background: var(--paper); color: var(--paper-text); transform: translateX(100%); transition: transform .45s cubic-bezier(.2,.8,.2,1); display: flex; flex-direction: column; }
+    .drawer.open .drawer-panel { transform: none; }
+    .drawer-art { position: relative; aspect-ratio: 16/10; display: grid; place-items: center; background: radial-gradient(circle at 50% 120%, var(--tint, #f1e7df), #f7f6f3 70%); }
+    .drawer-art svg { width: 70%; height: auto; }
+    .drawer-close { position: absolute; top: 16px; right: 16px; width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--paper-line); background: #fff; font-size: 20px; cursor: pointer; color: var(--paper-text); }
+    .drawer-body { padding: 28px 32px 36px; display: flex; flex-direction: column; gap: 18px; }
+    .drawer-body h3 { font-size: 40px; }
+    .drawer-body .intro { color: var(--paper-muted); font-size: 16px; }
+    .drawer-body h4 { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--paper-muted); margin-bottom: 8px; }
+    .ranges { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; }
+    .ranges li { background: #fff; border: 1px solid var(--paper-line); border-radius: 10px; padding: 8px 12px; font-size: 14px; font-weight: 500; }
+    .perks { list-style: none; display: grid; gap: 10px; }
+    .perks li { display: flex; gap: 12px; align-items: flex-start; font-size: 15px; }
+    .perks li::before { content: ""; flex: none; width: 20px; height: 20px; margin-top: 2px; border-radius: 6px; background: var(--brand-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M6 10.4l2.6 2.6L14 7.4' fill='none' stroke='%23d94e12' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/100% no-repeat; }
+    .drawer-ctas { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
+
+    /* Port to shelf */
+    .route-sec { background: var(--ink); position: relative; overflow: hidden; }
+    .route-sec::before { content: ""; position: absolute; left: -10%; bottom: -30%; width: 800px; height: 800px; background: radial-gradient(circle, rgba(127,178,255,.10), transparent 62%); pointer-events: none; }
+    .route-grid { position: relative; display: grid; grid-template-columns: .9fr 1.1fr; gap: 56px; align-items: center; }
+    .eta { margin-top: 30px; display: inline-flex; flex-direction: column; gap: 4px; padding: 18px 22px; border-radius: 16px; background: var(--panel); border: 1px solid var(--line); }
+    .eta small { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+    .eta strong { font-family: 'Bricolage Grotesque', sans-serif; font-size: 26px; font-weight: 700; }
+    .eta strong em { font-style: normal; color: var(--brand); }
+    .eta span { font-size: 13px; color: var(--muted); }
+    .metro { background: linear-gradient(180deg, #151922, #10131a); border: 1px solid var(--line); border-radius: 24px; padding: 26px; box-shadow: 0 40px 80px -40px rgba(0,0,0,.8); }
+    .metro svg { width: 100%; height: auto; overflow: visible; }
+    .metro .trk { fill: none; stroke: rgba(255,255,255,.12); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+    .metro .lit { fill: none; stroke: url(#routeGrad); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+    .metro .branch { fill: none; stroke: rgba(127,178,255,.55); stroke-width: 3; stroke-dasharray: 2 7; stroke-linecap: round; animation: dash 1.2s linear infinite; }
+    @keyframes dash { to { stroke-dashoffset: -18; } }
+    .metro .stop { fill: var(--ink); stroke: #fff; stroke-width: 3; transition: fill .3s, stroke .3s; }
+    .metro .stop.on { fill: var(--brand); stroke: var(--brand); }
+    .metro text { font-family: 'Inter', sans-serif; fill: #c9c7c1; font-size: 13px; }
+    .metro text.big { font-family: 'Bricolage Grotesque', sans-serif; fill: #fff; font-size: 16px; font-weight: 700; }
+    .metro text.city { font-size: 11.5px; fill: #9a9ea8; }
+    .metro .hr { font-family: 'JetBrains Mono', monospace; fill: var(--brand); font-size: 11px; }
+    .metro-legend { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 14px; font-size: 12.5px; color: var(--muted); }
+    .metro-legend span { display: inline-flex; gap: 8px; align-items: center; }
+    .metro-legend i { width: 18px; height: 4px; border-radius: 2px; background: var(--brand); }
+    .metro-legend i.b { background: repeating-linear-gradient(90deg, var(--cool) 0 2px, transparent 2px 6px); }
+    .steps4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 56px; list-style: none; counter-reset: s; position: relative; }
+    .steps4 li { background: var(--ink-2); border: 1px solid var(--line); border-radius: 16px; padding: 22px; counter-increment: s; transition: border-color .3s, transform .3s; }
+    .steps4 li:hover { border-color: rgba(255,106,43,.5); transform: translateY(-4px); }
+    .steps4 li::before { content: "0" counter(s); font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--brand); }
+    .steps4 h3 { font-size: 20px; margin: 10px 0 6px; }
+    .steps4 p { font-size: 14.5px; color: var(--muted); }
+
+    /* Service */
+    .svc-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 28px; align-items: start; }
+    .svc-cards { display: grid; gap: 12px; }
+    .svc { display: flex; gap: 18px; align-items: flex-start; padding: 22px; background: #fff; border: 1px solid var(--paper-line); border-radius: 18px; transition: border-color .3s, transform .3s, box-shadow .3s; }
+    .svc:hover { border-color: #e7b79f; transform: translateX(4px); box-shadow: 0 20px 40px -30px rgba(20,22,27,.4); }
+    .svc .ico { flex: none; width: 46px; height: 46px; border-radius: 14px; background: var(--brand-soft); color: var(--brand-dark); display: grid; place-items: center; }
+    .svc h3 { font-size: 20px; margin-bottom: 4px; }
+    .svc p { font-size: 14.5px; color: var(--paper-muted); }
+    .svc .go { margin-left: auto; align-self: center; font-size: 20px; color: var(--paper-muted); transition: transform .2s, color .2s; }
+    .svc:hover .go { transform: translateX(4px); color: var(--brand-dark); }
+    .tracker { background: var(--paper-text); color: var(--paper); border-radius: 24px; padding: 30px; position: relative; overflow: hidden; }
+    .tracker::before { content: ""; position: absolute; right: -120px; top: -120px; width: 320px; height: 320px; background: radial-gradient(circle, rgba(255,106,43,.28), transparent 65%); }
+    .tracker h3 { font-size: 26px; position: relative; }
+    .tracker > p { color: #a7a9b0; font-size: 14.5px; margin: 6px 0 20px; position: relative; }
+    .track-form { display: flex; gap: 10px; position: relative; }
+    .track-form input { flex: 1; min-width: 0; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.16); color: #fff; border-radius: 12px; padding: 13px 16px; font: 500 15px 'JetBrains Mono', monospace; letter-spacing: .04em; text-transform: uppercase; }
+    .track-form input::placeholder { color: #6f727a; }
+    .track-form input:focus { outline: none; border-color: var(--brand); }
+    .tl { list-style: none; margin-top: 26px; display: grid; gap: 0; position: relative; }
+    .tl li { position: relative; display: grid; grid-template-columns: 28px 1fr auto; gap: 14px; align-items: start; padding-bottom: 18px; color: #6f727a; transition: color .3s; }
+    .tl li:last-child { padding-bottom: 0; }
+    .tl li::before { content: ""; position: absolute; left: 13px; top: 26px; bottom: 0; width: 2px; background: rgba(255,255,255,.1); }
+    .tl li:last-child::before { display: none; }
+    .tl li::after { content: ""; position: absolute; left: 13px; top: 26px; width: 2px; height: 0; background: var(--brand); transition: height .4s ease; }
+    .tl li.done::after { height: calc(100% - 26px); }
+    .tl .dot { width: 28px; height: 28px; border-radius: 50%; border: 2px solid rgba(255,255,255,.18); display: grid; place-items: center; font-size: 12px; background: var(--paper-text); position: relative; z-index: 1; transition: border-color .3s, background .3s; }
+    .tl li.done .dot { background: var(--brand); border-color: var(--brand); color: #160700; }
+    .tl li.now .dot { border-color: var(--brand); box-shadow: 0 0 0 6px rgba(255,106,43,.18); }
+    .tl li.now .dot::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--brand); animation: blink 1s infinite; }
+    .tl li.done, .tl li.now { color: #f2f1ee; }
+    .tl b { display: block; font-weight: 600; font-size: 15px; }
+    .tl small { font-size: 13px; color: #8d9098; }
+    .tl time { font: 500 12px 'JetBrains Mono', monospace; color: #8d9098; padding-top: 4px; }
+    .track-note { margin-top: 18px; font-size: 12.5px; color: #8d9098; position: relative; }
+    .track-note.ok { color: #7fe0b2; }
+    .centre { margin-top: 12px; display: flex; gap: 16px; align-items: center; padding: 18px 22px; border-radius: 18px; border: 1px dashed var(--paper-line); font-size: 14.5px; color: var(--paper-muted); }
+    .centre strong { color: var(--paper-text); }
+
+    /* Partners */
+    .tabs { display: inline-flex; background: var(--panel); border: 1px solid var(--line); border-radius: 999px; padding: 4px; gap: 4px; position: relative; }
+    .tab { position: relative; z-index: 1; border: 0; background: none; color: var(--muted); padding: 11px 22px; border-radius: 999px; font-size: 15px; font-weight: 600; cursor: pointer; transition: color .25s; }
+    .tab[aria-selected="true"] { color: #160700; }
+    .tab-pill { position: absolute; top: 4px; bottom: 4px; left: 4px; border-radius: 999px; background: var(--brand); transition: transform .35s cubic-bezier(.2,.8,.2,1), width .35s cubic-bezier(.2,.8,.2,1); }
+    .tab-panel { margin-top: 40px; display: grid; grid-template-columns: .9fr 1.1fr; gap: 48px; align-items: start; animation: rise .5s ease; }
+    .tab-panel[hidden] { display: none; }
+    @keyframes rise { from { opacity: 0; transform: translateY(14px); } }
+    .tab-panel h3 { font-size: clamp(28px, 3.2vw, 40px); margin-bottom: 14px; }
+    .tab-panel > div > p { color: var(--muted); font-size: 17px; margin-bottom: 26px; }
+    .feat { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; list-style: none; }
+    .feat li { background: var(--ink-2); border: 1px solid var(--line); border-radius: 16px; padding: 20px; position: relative; overflow: hidden; transition: border-color .3s; }
+    .feat li:hover { border-color: rgba(255,106,43,.45); }
+    .feat li::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .3s; background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 0%), rgba(255,106,43,.14), transparent 60%); }
+    .feat li:hover::after { opacity: 1; }
+    .feat .fi { width: 38px; height: 38px; border-radius: 11px; background: rgba(255,106,43,.12); color: var(--brand); display: grid; place-items: center; margin-bottom: 14px; }
+    .feat h4 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 18px; margin-bottom: 4px; }
+    .feat p { font-size: 14px; color: var(--muted); }
+
+    /* About / timeline */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+    .about-grid .big { font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(26px, 2.8vw, 36px); line-height: 1.22; letter-spacing: -.02em; font-weight: 600; }
+    .about-grid .big em { font-style: normal; color: var(--brand-dark); }
+    .about-grid p.sub { margin-top: 20px; font-size: 16.5px; color: var(--paper-muted); }
+    .years { list-style: none; border-left: 2px solid var(--paper-line); padding-left: 0; }
+    .years li { position: relative; padding: 0 0 28px 30px; }
+    .years li:last-child { padding-bottom: 0; }
+    .years li::before { content: ""; position: absolute; left: -7px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--paper); border: 2px solid var(--brand-dark); }
+    .years li:last-child::before { background: var(--brand-dark); box-shadow: 0 0 0 6px rgba(217,78,18,.15); }
+    .years b { font: 500 13px 'JetBrains Mono', monospace; color: var(--brand-dark); }
+    .years h3 { font-size: 21px; margin: 4px 0 4px; }
+    .years p { font-size: 15px; color: var(--paper-muted); }
+
+    /* Contact */
+    .contact-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 48px; align-items: start; }
+    .cinfo { display: grid; gap: 12px; margin-top: 8px; }
+    .cinfo a, .cinfo div { display: flex; gap: 16px; align-items: center; padding: 18px 20px; border-radius: 16px; background: var(--ink-2); border: 1px solid var(--line); transition: border-color .25s; }
+    .cinfo a:hover { border-color: rgba(255,106,43,.5); }
+    .cinfo .ci { flex: none; width: 42px; height: 42px; border-radius: 12px; background: rgba(255,106,43,.12); color: var(--brand); display: grid; place-items: center; }
+    .cinfo small { display: block; font-size: 12px; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
+    .cinfo strong { font-weight: 600; }
+    .cform { background: var(--panel); border: 1px solid var(--line); border-radius: 24px; padding: 30px; display: grid; gap: 14px; }
+    .cform h3 { font-size: 26px; }
+    .who { display: flex; flex-wrap: wrap; gap: 8px; }
+    .who label { cursor: pointer; }
+    .who input { position: absolute; opacity: 0; pointer-events: none; }
+    .who span { display: inline-block; padding: 9px 14px; border-radius: 999px; border: 1px solid var(--line); font-size: 14px; color: #c9c7c1; transition: all .2s; }
+    .who input:checked + span { background: var(--brand); color: #160700; border-color: var(--brand); font-weight: 600; }
+    .who input:focus-visible + span { outline: 2px solid var(--brand); outline-offset: 2px; }
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .field { display: grid; gap: 6px; }
+    .field span { font-size: 13px; color: var(--muted); }
+    .field input, .field select, .field textarea { width: 100%; background: rgba(255,255,255,.04); border: 1px solid var(--line); color: var(--text); border-radius: 12px; padding: 12px 14px; font: inherit; font-size: 15px; }
+    .field select option { color: #111; }
+    .field textarea { resize: vertical; min-height: 96px; }
+    .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--brand); }
+    .form-note { font-size: 13px; color: var(--muted); }
+    .form-note.ok { color: #7fe0b2; }
+
+    /* Footer */
+    footer { border-top: 1px solid var(--line); padding: 64px 0 40px; background: #08090d; color: var(--muted); font-size: 14.5px; }
+    .foot { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; }
+    .foot h4 { color: var(--text); font-size: 14px; margin-bottom: 12px; font-family: 'Inter', sans-serif; letter-spacing: 0; }
+    .foot ul { list-style: none; display: grid; gap: 8px; }
+    .foot a:hover { color: var(--text); }
+    .foot-credit { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 13px; }
+    .foot-credit a { color: #ff8cc6; }
+
+    /* Intro: an iris opens on the page, once per visit */
+    .iris { position: fixed; inset: 0; z-index: 200; pointer-events: none; display: none; }
+    .iris.on { display: block; pointer-events: auto; cursor: pointer; }
+    .iris svg { width: 100%; height: 100%; }
+    .iris-mark { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); text-align: center; color: #fff; transition: opacity .3s ease; }
+    .iris-mark b { display: block; font-family: 'Bricolage Grotesque', sans-serif; font-size: 30px; letter-spacing: -.01em; }
+    .iris-mark small { font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: #9a9ea8; }
+    .iris.fade .iris-mark { opacity: 0; }
+
+    /* Back to top */
+    .totop { position: fixed; right: 18px; bottom: 18px; z-index: 60; width: 52px; height: 52px; padding: 0; border: 0; border-radius: 50%; cursor: pointer;
+      background: rgba(14,16,22,.8); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); opacity: 0; transform: translateY(12px); pointer-events: none; transition: opacity .3s, transform .3s, background .2s; }
+    .totop.show { opacity: 1; transform: none; pointer-events: auto; }
+    .totop svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+    .totop .ring-bg { fill: none; stroke: rgba(255,255,255,.12); stroke-width: 3; }
+    .totop .ring { fill: none; stroke: var(--brand); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 132; stroke-dashoffset: 132; }
+    .totop .arrow { fill: none; stroke: #fff; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; transform: rotate(90deg); transform-origin: 24px 24px; }
+
+    /* Responsive */
+    @media (max-width: 1080px) {
+      .brands { grid-template-columns: repeat(3, 1fr); }
+      .nav ul { gap: 0; }
+      .nav ul a { padding: 8px 9px; }
+    }
+    @media (max-width: 960px) {
+      .nav ul { display: none; position: absolute; top: 76px; left: 0; right: 0; flex-direction: column; gap: 2px; padding: 12px 16px 20px; background: rgba(11,13,18,.97); border-bottom: 1px solid var(--line); font-size: 17px; }
+      .nav ul.open { display: flex; }
+      .nav ul a { display: block; padding: 12px 14px; }
+      .burger { display: inline-grid; place-items: center; }
+      .hero-grid, .route-grid, .svc-grid, .tab-panel, .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      .lens-wrap { max-width: 420px; margin: 0 auto; }
+      .steps4 { grid-template-columns: 1fr 1fr; }
+      .foot { grid-template-columns: 1fr 1fr; }
+      .about-grid { gap: 40px; }
+    }
+    @media (max-width: 720px) {
+      section { padding: 80px 0; }
+      .wrap { padding: 0 16px; }
+      .hero { padding-top: 44px; }
+      .hero h1 .ln { display: inline; }
+      .eyebrow { font-size: 12px; }
+      .hero-stats { gap: 22px; grid-template-columns: repeat(3, 1fr); width: 100%; }
+      .hero-stats strong { font-size: 25px; }
+      .brands { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .bcard .body { padding: 14px; }
+      .bcard .name { font-size: 19px; }
+      .bcard .line { font-size: 13px; }
+      .bcard .cat { font-size: 10px; padding: 3px 8px; }
+      .feat, .row2 { grid-template-columns: 1fr; }
+      .steps4 { grid-template-columns: 1fr; }
+      .nav-right .btn { display: none; }
+      .lens-hud.h1 { left: 0; }
+      .lens-hud.h2 { right: 0; }
+      .marquee li { font-size: 21px; padding: 20px 28px; gap: 28px; }
+      .concept-long { display: none; }
+      .tracker, .cform { padding: 22px; }
+      .tab { padding: 10px 16px; font-size: 14px; }
+      .drawer-body { padding: 24px 20px 32px; }
+      .totop { width: 46px; height: 46px; right: 12px; bottom: 12px; }
+    }
+    @media (max-width: 400px) {
+      .brands { grid-template-columns: 1fr; }
+      .logo-text small { letter-spacing: .14em; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; }
+      .pre .hero h1 .rack { filter: none; opacity: 1; letter-spacing: normal; }
+    }
+  </style>
+</head>
+<body class="pre">
+  <!-- Intro iris: plays once per visit, click to skip -->
+  <div class="iris" id="iris" aria-hidden="true">
+    <svg id="irisSvg" preserveAspectRatio="xMidYMid slice"></svg>
+    <div class="iris-mark"><b>Premium Brand</b><small>Distributors</small></div>
+  </div>
+  <script>try { if (!sessionStorage.getItem('pbd-intro') && !matchMedia('(prefers-reduced-motion: reduce)').matches) document.getElementById('iris').classList.add('on'); } catch (e) {}</script>
+
+  <div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="dName" hidden>
+    <div class="drawer-panel">
+      <div class="drawer-art" id="dArt">
+        <button class="drawer-close" type="button" data-close aria-label="Close">&times;</button>
+      </div>
+      <div class="drawer-body">
+        <span class="badge-auth">Authorised distributor &amp; service centre</span>
+        <h3 id="dName"></h3>
+        <p class="intro" id="dIntro"></p>
+        <div><h4>Ranges we carry</h4><ul class="ranges" id="dRanges"></ul></div>
+        <div><h4>Backed locally by Premium</h4>
+          <ul class="perks">
+            <li>Official South African stock with local warranty</li>
+            <li>Repairs at our authorised service centre in Centurion</li>
+            <li>Dealer stock replenished nationally in 24 to 48 hours</li>
+          </ul>
+        </div>
+        <div class="drawer-ctas">
+          <a href="#contact" class="btn btn-dark" data-close data-who="retailer">Stock this brand <span class="arr">&rarr;</span></a>
+          <a href="#service" class="btn btn-line" data-close>Service &amp; repairs</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button type="button" class="totop" id="totop" aria-label="Back to top">
+    <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21" class="ring-bg"/><circle cx="24" cy="24" r="21" class="ring" id="totopRing"/><path d="M24 31V17M17 23l7-7 7 7" class="arrow"/></svg>
+  </button>
+
+  <div class="concept" id="concept" role="note">
+    <span class="concept-dot" aria-hidden="true"></span>
+    <span><b>Design concept</b> by <a href="https://catscreations.co.za" target="_blank" rel="noopener">Cat's Creations</a><span class="concept-long"> &middot; not the official Premium Brand Distributors website</span></span>
+    <button type="button" id="conceptClose" aria-label="Hide concept note">&times;</button>
+  </div>
+
+  <header>
+    <nav class="wrap nav" aria-label="Main">
+      <a href="#top" class="logo" aria-label="Premium Brand Distributors home">
+        <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#ff6a2b"/><g fill="#0b0d12"><path d="M20 7.5 L26.5 18 L13.5 18Z" opacity=".95"/><path d="M31.5 18.2 L25.8 29.2 L19.3 18.2Z" opacity=".75"/><path d="M8.5 18.2 L20.7 18.2 L14.2 29.2Z" opacity=".55"/></g><circle cx="20" cy="20" r="4.2" fill="#ff6a2b"/></svg>
+        <span class="logo-text"><b>Premium Brand</b><small>Distributors</small></span>
+      </a>
+      <ul id="menu">
+        <li><a href="#brands">Brands</a></li>
+        <li><a href="#logistics">Logistics</a></li>
+        <li><a href="#service">Service &amp; Support</a></li>
+        <li><a href="#partners">Partner with us</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <a href="#service" class="btn btn-primary btn-sm" data-track>Track a repair</a>
+        <button class="burger" id="burger" aria-label="Open menu" aria-controls="menu" aria-expanded="false" type="button"><span></span></button>
+      </div>
+    </nav>
+    <div class="progress" id="progress" aria-hidden="true"></div>
+  </header>
+
+  <main id="top">
+    <section class="hero" style="padding-bottom:0">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="eyebrow"><i></i>Authorised distributor &amp; service centre &middot; since 1999</span>
+          <h1>
+            <span class="ln">The world's best</span>
+            <span class="ln"><span class="rack">imaging &amp; tech</span> brands,</span>
+            <span class="ln">on African shelves <em>fast.</em></span>
+          </h1>
+          <p class="lead">Premium Brand Distributors imports, stocks, markets and services the brands photographers, creators and smart homes rely on. <strong>From port to retail shelf in 24 to 48 hours</strong>, with authorised after-sales support behind every box.</p>
+          <div class="hero-ctas">
+            <a href="#brands" class="btn btn-primary">Explore our brands <span class="arr">&rarr;</span></a>
+            <a href="#partners" class="btn btn-ghost">Become a dealer</a>
+          </div>
+          <div class="hero-stats">
+            <div><strong><span class="count" data-to="27">0</span><sup>+</sup></strong><span>years building brands</span></div>
+            <div><strong>24&ndash;<span class="count" data-to="48">0</span><sup>h</sup></strong><span>import to retail</span></div>
+            <div><strong><span class="count" data-to="8">0</span></strong><span>world-class brands</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="lens-wrap" id="lensWrap">
+            <svg class="lens" id="lens" viewBox="-260 -260 520 520" role="img" aria-label="A camera lens whose aperture opens and closes as you move">
+              <defs>
+                <radialGradient id="glass" cx="35%" cy="30%" r="80%"><stop offset="0" stop-color="#3a4a6b"/><stop offset=".45" stop-color="#151a26"/><stop offset="1" stop-color="#07080b"/></radialGradient>
+                <radialGradient id="flare" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ff9a5a" stop-opacity=".9"/><stop offset=".5" stop-color="#ff6a2b" stop-opacity=".35"/><stop offset="1" stop-color="#ff6a2b" stop-opacity="0"/></radialGradient>
+                <linearGradient id="barrel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2b303b"/><stop offset=".5" stop-color="#14171e"/><stop offset="1" stop-color="#22262f"/></linearGradient>
+                <clipPath id="irisClip"><circle r="150"/></clipPath>
+              </defs>
+              <circle r="250" fill="url(#barrel)" stroke="rgba(255,255,255,.08)"/>
+              <g id="knurl" opacity=".55"></g>
+              <circle r="214" fill="#0d0f14" stroke="rgba(255,255,255,.07)"/>
+              <g id="scale"></g>
+              <circle r="176" fill="#090a0e" stroke="#ff6a2b" stroke-opacity=".7" stroke-width="1.5"/>
+              <text x="0" y="-186" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#6f727a" letter-spacing="2">PREMIUM &#183; 24&#8211;70mm 1:2.8 &#183; &#216;77</text>
+              <circle r="150" fill="url(#glass)"/>
+              <circle r="44" fill="url(#flare)" id="glow"/>
+              <g clip-path="url(#irisClip)"><g id="blades"></g></g>
+              <circle r="150" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="2"/>
+              <ellipse cx="-52" cy="-60" rx="56" ry="26" fill="#fff" opacity=".07" transform="rotate(-38 -52 -60)"/>
+              <circle cx="58" cy="64" r="9" fill="#fff" opacity=".07"/>
+            </svg>
+            <div class="bracket" id="bracket" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+            <span class="lens-hud h1 mono" aria-hidden="true"><span class="af" id="afDot"></span><b id="afTxt">AF-C</b> focus locked</span>
+            <span class="lens-hud h2 mono" aria-hidden="true">APERTURE <b id="fnum">f/2.8</b></span>
+            <span class="lens-hud h3 mono" aria-hidden="true">ISO <b>100</b> &middot; 1/250 &middot; <b>RAW</b></span>
+          </div>
+          <p class="lens-tip">Move over the lens to stop it down &middot; tap to focus</p>
+        </div>
+      </div>
+
+      <div class="marquee" aria-label="Brands we distribute">
+        <div class="marquee-track">
+          <ul>
+            <li class="wm-nikon">Nikon</li><li class="wm-sony">SONY</li><li class="wm-lexar">Lexar</li><li class="wm-atomos">Atomos</li><li class="wm-angelbird">angelbird</li><li class="wm-anker">Anker</li><li class="wm-eufy">eufy</li><li class="wm-yololiv">YoloLiv</li>
+          </ul>
+          <ul aria-hidden="true">
+            <li class="wm-nikon">Nikon</li><li class="wm-sony">SONY</li><li class="wm-lexar">Lexar</li><li class="wm-atomos">Atomos</li><li class="wm-angelbird">angelbird</li><li class="wm-anker">Anker</li><li class="wm-eufy">eufy</li><li class="wm-yololiv">YoloLiv</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="brands" class="light">
+      <div class="wrap">
+        <div class="sec-row">
+          <div class="sec-head reveal">
+            <span class="kicker">Our brands</span>
+            <h2>Brands we don't just ship. We build them.</h2>
+            <p>Every brand in our portfolio is imported, marketed and serviced by us in South Africa. Pick a category, then open a brand to see what we carry.</p>
+          </div>
+          <div class="chips reveal" role="group" aria-label="Filter brands" id="chips">
+            <button class="chip" type="button" data-f="all" aria-pressed="true">All <small>8</small></button>
+            <button class="chip" type="button" data-f="imaging" aria-pressed="false">Imaging <small>2</small></button>
+            <button class="chip" type="button" data-f="storage" aria-pressed="false">Storage <small>2</small></button>
+            <button class="chip" type="button" data-f="video" aria-pressed="false">Video &amp; live <small>2</small></button>
+            <button class="chip" type="button" data-f="power" aria-pressed="false">Power &amp; smart home <small>2</small></button>
+          </div>
+        </div>
+        <div class="brands" id="brandGrid"></div>
+      </div>
+    </section>
+
+    <section id="logistics" class="route-sec">
+      <div class="wrap">
+        <div class="route-grid">
+          <div class="reveal">
+            <span class="kicker">Port to shelf</span>
+            <h2 style="font-size:clamp(34px,4.4vw,56px);margin:16px 0">One central warehouse. Every corner of the country.</h2>
+            <p style="color:var(--muted);font-size:18px">Warehousing and distribution for all our consumer brands runs from a single central warehouse in Centurion, staffed by a skilled team using the latest stock technology. That's how we take product from import to retail anywhere in South Africa within 24 to 48 hours.</p>
+            <div class="eta" aria-live="polite">
+              <small>Dealer order placed now</small>
+              <strong>On shelves by <em id="etaDay">Wednesday</em></strong>
+              <span id="etaNote">Typical delivery to major metros, 24 to 48 hours</span>
+            </div>
+          </div>
+          <div class="metro reveal" id="metro">
+            <svg viewBox="0 0 560 340" role="img" aria-label="Route from international brand to port, our Centurion warehouse, then retailers nationwide">
+              <defs><linearGradient id="routeGrad" x1="0" x2="1"><stop offset="0" stop-color="#ff6a2b"/><stop offset="1" stop-color="#ffb15c"/></linearGradient></defs>
+              <path class="trk" d="M40 70 H200 Q230 70 230 100 V150 Q230 180 260 180 H480"/>
+              <path class="lit" id="litPath" d="M40 70 H200 Q230 70 230 100 V150 Q230 180 260 180 H480"/>
+              <path class="branch" d="M380 180 V260 H480"/>
+              <path class="branch" d="M380 180 V300 H440"/>
+              <path class="branch" d="M380 180 Q380 120 430 110 H480"/>
+              <g id="stops">
+                <circle class="stop" cx="40" cy="70" r="10"/>
+                <circle class="stop" cx="230" cy="125" r="10"/>
+                <circle class="stop" cx="380" cy="180" r="14"/>
+                <circle class="stop" cx="480" cy="180" r="10"/>
+              </g>
+              <text class="big" x="40" y="40" text-anchor="middle">Brand</text>
+              <text x="40" y="104" text-anchor="middle">Global factory</text>
+              <text class="big" x="260" y="130">Import</text>
+              <text x="260" y="148">Port &amp; customs</text>
+              <text class="big" x="322" y="230" text-anchor="middle">Centurion</text>
+              <text x="322" y="248" text-anchor="middle">Central warehouse</text>
+              <text class="big" x="430" y="222" text-anchor="middle">Retail</text>
+              <text class="city" x="498" y="114">Durban</text>
+              <text class="city" x="498" y="184">Johannesburg</text>
+              <text class="city" x="498" y="264">Cape Town</text>
+              <text class="city" x="452" y="304">Gqeberha</text>
+              <text class="hr" x="430" y="200" text-anchor="middle">24&#8211;48h</text>
+              <g id="parcel">
+                <rect x="-11" y="-9" width="22" height="18" rx="3" fill="#ffb15c"/>
+                <path d="M-11 -2 H11 M0 -9 V-2" stroke="#7a3a0f" stroke-width="1.6"/>
+              </g>
+            </svg>
+            <div class="metro-legend"><span><i></i>Our supply chain</span><span><i class="b"></i>Dealer deliveries nationwide</span></div>
+          </div>
+        </div>
+        <ol class="steps4">
+          <li class="reveal"><h3>Import</h3><p>Direct from the brand principals, landed and cleared by our own team.</p></li>
+          <li class="reveal"><h3>Warehouse</h3><p>One central, tech-driven warehouse for every consumer brand we carry.</p></li>
+          <li class="reveal"><h3>Retail</h3><p>Specialist stores, national chains and online retailers stocked within 24 to 48 hours.</p></li>
+          <li class="reveal"><h3>After-sales</h3><p>Authorised service, training workshops and support long after the sale.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="service" class="light">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="kicker">Service &amp; support</span>
+          <h2>Your gear, back in your hands.</h2>
+          <p>We're the authorised service centre for every brand we distribute, so warranty repairs and servicing happen locally, by trained technicians, with genuine parts.</p>
+        </div>
+        <div class="svc-grid">
+          <div>
+            <div class="svc-cards">
+              <a class="svc reveal" href="#contact" data-who="customer" data-topic="Product registration">
+                <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span>
+                <span><h3>Register a product</h3><p>Register your purchase so your warranty is on record from day one.</p></span>
+                <span class="go">&rarr;</span>
+              </a>
+              <a class="svc reveal" href="#contact" data-who="customer" data-topic="Repair request">
+                <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg></span>
+                <span><h3>Request a repair</h3><p>Log a repair online and drop off or courier your item to our service centre.</p></span>
+                <span class="go">&rarr;</span>
+              </a>
+              <a class="svc reveal" href="#tracker">
+                <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+                <span><h3>How repairs work</h3><p>Receive, assess, quote, repair, test and return. Follow each step live.</p></span>
+                <span class="go">&rarr;</span>
+              </a>
+            </div>
+            <div class="centre reveal">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#d94e12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+              <span><strong>Service centre</strong><br />Premium House, Grey Owl Village, Centurion. Drop in or courier from anywhere in the country.</span>
+            </div>
+          </div>
+          <div class="tracker reveal" id="tracker">
+            <h3>Track your repair</h3>
+            <p>Enter the job number from your repair slip.</p>
+            <form class="track-form" id="trackForm" autocomplete="off">
+              <label class="sr" for="job" style="position:absolute;left:-9999px">Job number</label>
+              <input id="job" name="job" placeholder="PBD-104233" maxlength="12" />
+              <button class="btn btn-primary" type="submit">Track</button>
+            </form>
+            <ol class="tl" id="tl">
+              <li><span class="dot">1</span><span><b>Received</b><small>Booked in at the service centre</small></span><time></time></li>
+              <li><span class="dot">2</span><span><b>Assessed</b><small>Technician diagnosis complete</small></span><time></time></li>
+              <li><span class="dot">3</span><span><b>Quote approved</b><small>Or confirmed as a warranty repair</small></span><time></time></li>
+              <li><span class="dot">4</span><span><b>In repair</b><small>Genuine parts, factory procedures</small></span><time></time></li>
+              <li><span class="dot">5</span><span><b>Quality check</b><small>Tested and calibrated</small></span><time></time></li>
+              <li><span class="dot">6</span><span><b>Ready</b><small>For collection or courier</small></span><time></time></li>
+            </ol>
+            <p class="track-note" id="trackNote">Concept demo: try any job number to see the tracker in action.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="partners">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="kicker">Partner with us</span>
+          <h2>Two sides of the shelf. One partner.</h2>
+          <p>Whether you make the product or sell it, we're the team in the middle that makes it move.</p>
+        </div>
+        <div class="tabs reveal" role="tablist" aria-label="Partner type" id="tabs">
+          <span class="tab-pill" id="tabPill" aria-hidden="true"></span>
+          <button class="tab" role="tab" type="button" id="t-retail" aria-controls="p-retail" aria-selected="true">For retailers</button>
+          <button class="tab" role="tab" type="button" id="t-brand" aria-controls="p-brand" aria-selected="false" tabindex="-1">For brands</button>
+        </div>
+
+        <div class="tab-panel" id="p-retail" role="tabpanel" aria-labelledby="t-retail">
+          <div>
+            <h3>Stock the brands your customers ask for by name.</h3>
+            <p>From specialist camera stores to national chains and online retailers, we keep you stocked, trained and backed up.</p>
+            <a href="#contact" class="btn btn-primary" data-who="retailer">Apply to become a dealer <span class="arr">&rarr;</span></a>
+          </div>
+          <ul class="feat">
+            <li><span class="fi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg></span><h4>48-hour replenishment</h4><p>Fast, reliable restocks from our central warehouse.</p></li>
+            <li><span class="fi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></span><h4>Local warranty</h4><p>Official stock, honoured by our authorised service centre.</p></li>
+            <li><span class="fi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 19V5l8 4 8-4v14l-8 4z"/></svg></span><h4>Training workshops</h4><p>Product training so your floor staff sell with confidence.</p></li>
+            <li><span class="fi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></span><h4>Marketing support</h4><p>Launch campaigns, point-of-sale and brand assets.</p></li>
+          </ul>
+        </div>
+
+        <div class="tab-panel" id="p-brand" role="tabpanel" aria-labelledby="t-brand" hidden>
+          <div>
+            <h3>Your brand, built properly in Africa.</h3>
+            <p>Since 1999 we've been a distributor of choice for emerging and established technology brands. We don't just move boxes: we position, market and service your brand like it's our own.</p>
+            <a href="#contact" class="btn btn-primary" data-who="brand">Talk to our brand team <span class="arr">&rarr;</span></a>
+          </div>
+          <ul class="feat">
+            <li><span class="fi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></span><h4>Brand building</h4><p>Specialist positioning with a proven track record across categories.</p></li>
+            <li><span class="fi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 21V8l9-5 9 5v13"/><path d="M8 21v-7h8v7"/></svg></span><h4>Integrated logistics</h4><p>Import, warehousing and national distribution under one roof.</p></li>
+            <li><span class="fi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg></span><h4>Authorised after-sales</h4><p>A national service centre that protects your reputation.</p></li>
+            <li><span class="fi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 20c0-2.4 1-4.4 3-5"/></svg></span><h4>Retail network</h4><p>Established relationships with specialist and national retailers.</p></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="light">
+      <div class="wrap about-grid">
+        <div class="reveal">
+          <span class="kicker">About us</span>
+          <p class="big" style="margin-top:18px">Our journey started in 1999. Today we sit at the heart of the <em>Premium Group</em>, representing some of the world's premier professional and consumer technology brands across Africa.</p>
+          <p class="sub">What sets us apart is simple: we actively build every brand we carry, and we make sure our service centre can support customers nationally. Specialist expertise, a proven history, and a team that cares what happens after the sale.</p>
+        </div>
+        <ol class="years reveal">
+          <li><b>1999</b><h3>The journey starts</h3><p>Premium Brand Distributors opens its doors, focused on photographic and electronic brands.</p></li>
+          <li><b>Imaging</b><h3>Nikon &amp; Sony</h3><p>Authorised distributor and after-sales service provider for Nikon photographic and Sport Optics, and Sony photographic.</p></li>
+          <li><b>Creators</b><h3>Storage, video &amp; live</h3><p>Lexar, Angelbird, Atomos and YoloLiv join the portfolio for photographers, filmmakers and streamers.</p></li>
+          <li><b>Smart living</b><h3>Anker Innovations</h3><p>Appointed to grow eufy Security, eufy Appliances and Anker PowerHouse in South Africa.</p></li>
+          <li><b>Today</b><h3>Premium House, Centurion</h3><p>Head office, central warehouse and authorised service centre, all at Grey Owl Village.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap contact-grid">
+        <div class="reveal">
+          <span class="kicker">Contact</span>
+          <h2 style="font-size:clamp(34px,4.4vw,56px);margin:16px 0">Let's talk shop.</h2>
+          <p style="color:var(--muted);font-size:18px;margin-bottom:24px">Dealers, brands and customers: tell us who you are and we'll route you to the right team.</p>
+          <div class="cinfo">
+            <a href="tel:+27120037000"><span class="ci"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></span><span><small>Call</small><strong class="mono">012 003 7000</strong></span></a>
+            <a href="mailto:info@premiumgroup.co.za"><span class="ci"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg></span><span><small>Email</small><strong>info@premiumgroup.co.za</strong></span></a>
+            <div><span class="ci"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><span><small>Visit</small><strong>Premium House, Grey Owl Village</strong><br /><span style="color:var(--muted);font-size:14px">Cnr Brakfontein &amp; Erasmus Drive, Louwlardia X10, Centurion, 0157</span></span></div>
+          </div>
+        </div>
+        <form class="cform reveal" id="cform" novalidate>
+          <h3>Send us a message</h3>
+          <div class="who" role="radiogroup" aria-label="I am a">
+            <label><input type="radio" name="who" value="retailer" checked /><span>Retailer</span></label>
+            <label><input type="radio" name="who" value="brand" /><span>Brand</span></label>
+            <label><input type="radio" name="who" value="customer" /><span>Customer</span></label>
+            <label><input type="radio" name="who" value="media" /><span>Media</span></label>
+          </div>
+          <div class="row2">
+            <label class="field"><span>Name</span><input name="name" autocomplete="name" required /></label>
+            <label class="field"><span id="coLabel">Store / company</span><input name="company" autocomplete="organization" /></label>
+          </div>
+          <div class="row2">
+            <label class="field"><span>Email</span><input type="email" name="email" autocomplete="email" required /></label>
+            <label class="field"><span>Phone</span><input type="tel" name="phone" autocomplete="tel" /></label>
+          </div>
+          <label class="field"><span>Topic</span>
+            <select name="topic" id="topic"></select>
+          </label>
+          <label class="field"><span>Message</span><textarea name="msg" rows="4"></textarea></label>
+          <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+            <button class="btn btn-primary" type="submit">Send message <span class="arr">&rarr;</span></button>
+            <p class="form-note" id="formNote">Concept preview: this form doesn't send anything yet.</p>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot">
+        <div>
+          <a href="#top" class="logo" aria-label="Premium Brand Distributors home">
+            <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#ff6a2b"/><g fill="#0b0d12"><path d="M20 7.5 L26.5 18 L13.5 18Z" opacity=".95"/><path d="M31.5 18.2 L25.8 29.2 L19.3 18.2Z" opacity=".75"/><path d="M8.5 18.2 L20.7 18.2 L14.2 29.2Z" opacity=".55"/></g><circle cx="20" cy="20" r="4.2" fill="#ff6a2b"/></svg>
+            <span class="logo-text" style="color:var(--text)"><b>Premium Brand</b><small>Distributors</small></span>
+          </a>
+          <p style="margin-top:16px;max-width:320px">Premier professional and consumer technology brands for Africa, since 1999. Part of the Premium Group.</p>
+        </div>
+        <div>
+          <h4>Brands</h4>
+          <ul id="footBrands"></ul>
+        </div>
+        <div>
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#service">Register a product</a></li>
+            <li><a href="#service">Request a repair</a></li>
+            <li><a href="#tracker">Track a repair</a></li>
+            <li><a href="#partners">Become a dealer</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li class="mono">012 003 7000</li>
+            <li>info@premiumgroup.co.za</li>
+            <li>Premium House, Grey Owl Village, Centurion</li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot-credit">
+        <span>&copy; Premium Brand Distributors (Pty) Ltd. Brand names are trademarks of their owners. Content sourced from premiumbranddistributors.co.za.</span>
+        <span>Redesign concept by <a href="https://catscreations.co.za" target="_blank" rel="noopener">Cat's Creations</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var NS = 'http://www.w3.org/2000/svg';
+
+    // ---------- Product illustrations (drawn, so no third-party imagery) ----------
+    var ART = {
+      camera: '<svg viewBox="0 0 220 150" aria-hidden="true"><ellipse cx="110" cy="138" rx="86" ry="8" fill="#000" opacity=".08"/><path d="M38 44h34l10-14h40l10 14h50a10 10 0 0 1 10 10v66a10 10 0 0 1-10 10H38a10 10 0 0 1-10-10V54a10 10 0 0 1 10-10z" fill="#23262e"/><rect x="28" y="56" width="26" height="74" rx="10" fill="#1a1c22"/><rect x="88" y="34" width="28" height="8" rx="2" fill="#30343e"/><circle cx="165" cy="38" r="6" fill="#30343e"/><circle cx="182" cy="38" r="5" fill="#ff6a2b"/><circle cx="118" cy="88" r="40" fill="#15171c"/><circle cx="118" cy="88" r="32" fill="#2a2e38"/><circle cx="118" cy="88" r="24" fill="url(#g1)"/><circle cx="110" cy="80" r="6" fill="#fff" opacity=".25"/><circle cx="118" cy="88" r="36" fill="none" stroke="#ff6a2b" stroke-width="1.5" opacity=".7"/><defs><radialGradient id="g1" cx="35%" cy="30%"><stop offset="0" stop-color="#5b6d96"/><stop offset="1" stop-color="#090a0e"/></radialGradient></defs></svg>',
+      mirrorless: '<svg viewBox="0 0 220 150" aria-hidden="true"><ellipse cx="110" cy="138" rx="86" ry="8" fill="#000" opacity=".08"/><path d="M66 50l10-18h40l10 18z" fill="#2b2e35"/><rect x="40" y="48" width="140" height="80" rx="10" fill="#202227"/><rect x="40" y="48" width="36" height="80" rx="10" fill="#17181c"/><rect x="140" y="38" width="22" height="10" rx="2" fill="#2b2e35"/><circle cx="168" cy="58" r="4" fill="#e7a24a"/><circle cx="122" cy="90" r="38" fill="#121317"/><circle cx="122" cy="90" r="31" fill="#2b2e35"/><g stroke="#1b1c20" stroke-width="2"><path d="M122 59v6M122 115v6M91 90h6M147 90h6"/></g><circle cx="122" cy="90" r="22" fill="url(#g2)"/><circle cx="114" cy="82" r="5" fill="#fff" opacity=".25"/><rect x="84" y="56" width="14" height="3" rx="1.5" fill="#e7a24a"/><defs><radialGradient id="g2" cx="35%" cy="30%"><stop offset="0" stop-color="#6b7aa0"/><stop offset="1" stop-color="#0b0c10"/></radialGradient></defs></svg>',
+      cards: '<svg viewBox="0 0 220 150" aria-hidden="true"><ellipse cx="110" cy="138" rx="80" ry="8" fill="#000" opacity=".08"/><g transform="rotate(-10 80 80)"><path d="M48 26h54l12 12v82a6 6 0 0 1-6 6H48a6 6 0 0 1-6-6V32a6 6 0 0 1 6-6z" fill="#1d2027"/><rect x="50" y="40" width="56" height="44" rx="3" fill="#c9a443"/><text x="78" y="68" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="13" fill="#1d2027">SDXC</text><g fill="#d6b552"><rect x="52" y="30" width="5" height="8"/><rect x="60" y="30" width="5" height="8"/><rect x="68" y="30" width="5" height="8"/><rect x="76" y="30" width="5" height="8"/></g><text x="56" y="108" font-family="JetBrains Mono, monospace" font-size="9" fill="#fff">256GB</text></g><g transform="rotate(8 150 85)"><rect x="118" y="44" width="66" height="74" rx="6" fill="#2a2e38"/><rect x="124" y="50" width="54" height="40" rx="3" fill="#ff6a2b"/><text x="151" y="75" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="11" fill="#1d2027">CFexpress</text><text x="126" y="108" font-family="JetBrains Mono, monospace" font-size="9" fill="#fff">1TB &#183; Type B</text></g></svg>',
+      ssd: '<svg viewBox="0 0 220 150" aria-hidden="true"><ellipse cx="110" cy="138" rx="80" ry="8" fill="#000" opacity=".08"/><rect x="44" y="34" width="132" height="92" rx="16" fill="#2c3040"/><rect x="50" y="40" width="120" height="80" rx="12" fill="#363b4e"/><path d="M50 98 Q110 70 170 98 V108 a12 12 0 0 1-12 12H62a12 12 0 0 1-12-12z" fill="#ff6a2b" opacity=".9"/><circle cx="110" cy="64" r="10" fill="none" stroke="#c9ccd6" stroke-width="2"/><path d="M106 64 l4-6 4 6" stroke="#c9ccd6" stroke-width="2" fill="none"/><rect x="100" y="126" width="20" height="5" rx="2" fill="#20232d"/><circle cx="160" cy="50" r="2.5" fill="#3ccf8e"><animate attributeName="opacity" values="1;.2;1" dur="1.2s" repeatCount="indefinite"/></circle></svg>',
+      monitor: '<svg viewBox="0 0 220 150" aria-hidden="true"><ellipse cx="110" cy="138" rx="86" ry="8" fill="#000" opacity=".08"/><rect x="26" y="30" width="168" height="100" rx="10" fill="#1b1d23"/><rect x="34" y="38" width="152" height="84" rx="4" fill="#0e1016"/><rect x="34" y="38" width="152" height="84" rx="4" fill="url(#g3)"/><path d="M34 100 L60 84 L82 94 L108 70 L130 86 L150 76 L186 92 V122 H34z" fill="#1f3a2c" opacity=".9"/><circle cx="150" cy="58" r="10" fill="#ffcf7a" opacity=".85"/><rect x="40" y="44" width="34" height="10" rx="2" fill="#e5383b"/><text x="57" y="52" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#fff">&#9679; REC</text><text x="180" y="52" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="7" fill="#fff">ProRes RAW</text><g fill="none" stroke="#7fe0b2" stroke-width="1.2" opacity=".9"><path d="M42 116 q8-10 16 0 t16 0 t16 0"><animate attributeName="d" values="M42 116 q8-10 16 0 t16 0 t16 0;M42 116 q8-4 16 0 t16 0 t16 0;M42 116 q8-10 16 0 t16 0 t16 0" dur="1.4s" repeatCount="indefinite"/></path></g><defs><linearGradient id="g3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a7fbf"/><stop offset="1" stop-color="#e79a6a"/></linearGradient></defs></svg>',
+      yolobox: '<svg viewBox="0 0 220 150" aria-hidden="true"><ellipse cx="110" cy="138" rx="86" ry="8" fill="#000" opacity=".08"/><rect x="30" y="28" width="160" height="104" rx="14" fill="#25272e"/><rect x="40" y="38" width="140" height="84" rx="6" fill="#0e1016"/><rect x="44" y="42" width="88" height="54" rx="3" fill="#3a4f7a"/><circle cx="88" cy="66" r="12" fill="#e9b48a"/><path d="M68 96c0-12 9-18 20-18s20 6 20 18z" fill="#ff6a2b"/><rect x="136" y="42" width="40" height="24" rx="3" fill="#2f5d4a"/><rect x="136" y="70" width="40" height="26" rx="3" fill="#5a3b6b"/><rect x="44" y="100" width="40" height="18" rx="3" fill="#30343e"/><rect x="88" y="100" width="40" height="18" rx="3" fill="#30343e"/><rect x="132" y="100" width="44" height="18" rx="3" fill="#e5383b"/><text x="154" y="112" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#fff">LIVE</text><circle cx="52" cy="50" r="3" fill="#e5383b"><animate attributeName="opacity" values="1;.2;1" dur="1s" repeatCount="indefinite"/></circle></svg>',
+      power: '<svg viewBox="0 0 220 150" aria-hidden="true"><ellipse cx="110" cy="138" rx="86" ry="8" fill="#000" opacity=".08"/><path d="M70 30h80a8 8 0 0 1 8 8v4H62v-4a8 8 0 0 1 8-8z" fill="#2a2d35"/><rect x="40" y="42" width="140" height="88" rx="12" fill="#e9e9ec"/><rect x="40" y="42" width="140" height="88" rx="12" fill="none" stroke="#c9cad0"/><rect x="52" y="54" width="58" height="34" rx="4" fill="#15171c"/><text x="81" y="70" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#7fe0b2">87%</text><rect x="58" y="76" width="46" height="5" rx="2" fill="#2a2d35"/><rect x="58" y="76" width="40" height="5" rx="2" fill="#3ccf8e"><animate attributeName="width" values="34;40;34" dur="2.4s" repeatCount="indefinite"/></rect><g fill="#2a2d35"><rect x="122" y="56" width="16" height="12" rx="2"/><rect x="146" y="56" width="16" height="12" rx="2"/><rect x="122" y="76" width="16" height="12" rx="2"/><rect x="146" y="76" width="16" height="12" rx="2"/></g><g fill="#2a2d35"><circle cx="64" cy="108" r="6"/><circle cx="84" cy="108" r="6"/><rect x="104" y="104" width="10" height="8" rx="1.5"/><rect x="120" y="104" width="10" height="8" rx="1.5"/></g><rect x="148" y="100" width="22" height="16" rx="3" fill="#1aa3e8"/></svg>',
+      security: '<svg viewBox="0 0 220 150" aria-hidden="true"><ellipse cx="110" cy="138" rx="60" ry="8" fill="#000" opacity=".08"/><rect x="100" y="104" width="20" height="30" rx="4" fill="#d9dadf"/><rect x="84" y="128" width="52" height="8" rx="4" fill="#c9cad0"/><rect x="62" y="24" width="96" height="88" rx="30" fill="#f4f4f6"/><rect x="62" y="24" width="96" height="88" rx="30" fill="none" stroke="#d1d2d8"/><rect x="72" y="38" width="76" height="52" rx="22" fill="#15171c"/><circle cx="110" cy="64" r="16" fill="#23262e"/><circle cx="110" cy="64" r="10" fill="url(#g4)"/><circle cx="106" cy="60" r="3" fill="#fff" opacity=".35"/><circle cx="136" cy="50" r="2.5" fill="#1aa3e8"><animate attributeName="opacity" values="1;.2;1" dur="1.6s" repeatCount="indefinite"/></circle><path d="M164 44 a20 20 0 0 1 0 28 M172 36 a32 32 0 0 1 0 44" fill="none" stroke="#1aa3e8" stroke-width="2.5" stroke-linecap="round" opacity=".6"/><defs><radialGradient id="g4" cx="35%" cy="30%"><stop offset="0" stop-color="#4f6fa8"/><stop offset="1" stop-color="#090a0e"/></radialGradient></defs></svg>'
+    };
+
+    var BRANDS = [
+      { id: 'nikon', name: 'Nikon', wm: 'wm-nikon', cat: 'imaging', catName: 'Imaging', art: 'camera', tint: '#f3e2b8',
+        line: 'Cameras, NIKKOR lenses &amp; Sport Optics',
+        intro: 'Authorised distributor and after-sales service provider for Nikon photographic and Sport Optics equipment in South Africa.',
+        ranges: ['Mirrorless cameras', 'NIKKOR lenses', 'Speedlights', 'Binoculars', 'Laser rangefinders', 'Accessories'] },
+      { id: 'sony', name: 'Sony', wm: 'wm-sony', cat: 'imaging', catName: 'Imaging', art: 'mirrorless', tint: '#e2e4ea',
+        line: 'Photographic cameras &amp; lenses',
+        intro: 'Distribution and authorised after-sales service for Sony photographic products.',
+        ranges: ['Alpha cameras', 'E-mount lenses', 'Vlog cameras', 'Accessories'] },
+      { id: 'lexar', name: 'Lexar', wm: 'wm-lexar', cat: 'storage', catName: 'Storage', art: 'cards', tint: '#f2dfb3',
+        line: 'Memory cards, readers &amp; USB flash drives',
+        intro: 'Professional memory for photographers and filmmakers, from SD and CFexpress cards to readers and USB flash drives.',
+        ranges: ['SD cards', 'CFexpress', 'microSD', 'Card readers', 'USB flash drives', 'Portable SSDs'] },
+      { id: 'angelbird', name: 'Angelbird', wm: 'wm-angelbird', cat: 'storage', catName: 'Storage', art: 'ssd', tint: '#f6d3c0',
+        line: 'Pro media &amp; SSDs for cinema cameras',
+        intro: 'Ruggedly built storage designed and tested for professional cinema and photo workflows.',
+        ranges: ['CFexpress', 'SD cards', 'Camera-matched media', 'Portable SSDs'] },
+      { id: 'atomos', name: 'Atomos', wm: 'wm-atomos', cat: 'video', catName: 'Video &amp; live', art: 'monitor', tint: '#d9e3f3',
+        line: 'Monitor-recorders: Ninja &amp; Shogun',
+        intro: 'On-camera monitor-recorders that turn any camera into a pro production tool, recording high-quality codecs straight off the sensor.',
+        ranges: ['Ninja', 'Shogun 7', 'Accessories', 'Power kits'] },
+      { id: 'yololiv', name: 'YoloLiv', wm: 'wm-yololiv', cat: 'video', catName: 'Video &amp; live', art: 'yolobox', tint: '#f7d9cb',
+        line: 'YoloBox all-in-one live streaming',
+        intro: 'YoloBox puts professional multi-camera live streaming and switching in one portable device.',
+        ranges: ['YoloBox', 'Multi-camera switching', 'Accessories'] },
+      { id: 'anker', name: 'Anker', wm: 'wm-anker', cat: 'power', catName: 'Power &amp; smart home', art: 'power', tint: '#cfe7f6',
+        line: 'PowerHouse, PowerCore &amp; PowerLine',
+        intro: 'Appointed by Anker Innovations to grow Anker PowerHouse in South Africa, alongside PowerCore power banks and PowerLine cables. Made for load-shedding.',
+        ranges: ['Anker PowerHouse', 'Anker PowerCore', 'Anker PowerLine', 'Chargers'] },
+      { id: 'eufy', name: 'eufy', wm: 'wm-eufy', cat: 'power', catName: 'Power &amp; smart home', art: 'security', tint: '#d4ecf7',
+        line: 'Security, smart scales &amp; appliances',
+        intro: 'Official partner for eufy Security and eufy Appliances in South Africa: smart cameras, doorbells and home tech without monthly fees.',
+        ranges: ['eufy Security', 'eufy Smart Scale', 'eufy Appliances'] }
+    ];
+
+    // Render brand cards and footer list
+    var grid = document.getElementById('brandGrid');
+    grid.innerHTML = BRANDS.map(function (b, i) {
+      return '<button type="button" class="bcard reveal" data-cat="' + b.cat + '" data-i="' + i + '" style="--tint:' + b.tint + ';transition-delay:' + (i % 4) * 70 + 'ms">' +
+        '<span class="art"><span class="cat">' + b.catName + '</span>' + ART[b.art] + '</span>' +
+        '<span class="body"><span class="name ' + b.wm + '">' + b.name + '</span><span class="line">' + b.line + '</span>' +
+        '<span class="more">View range <span class="arr">&rarr;</span></span></span></button>';
+    }).join('');
+    document.getElementById('footBrands').innerHTML = BRANDS.map(function (b) { return '<li><a href="#brands" data-open="' + b.id + '">' + b.name + '</a></li>'; }).join('');
+
+    // Filter chips
+    var chips = document.querySelectorAll('.chip');
+    var cards = grid.querySelectorAll('.bcard');
+    chips.forEach(function (c) {
+      c.addEventListener('click', function () {
+        var f = c.dataset.f;
+        chips.forEach(function (x) { x.setAttribute('aria-pressed', x === c); });
+        cards.forEach(function (card) {
+          var show = f === 'all' || card.dataset.cat === f;
+          if (show) {
+            card.classList.remove('gone');
+            card.classList.add('fade');
+            requestAnimationFrame(function () { requestAnimationFrame(function () { card.classList.remove('fade'); }); });
+          } else {
+            card.classList.add('gone');
+          }
+        });
+      });
+    });
+
+    // Spotlight follows the pointer on cards
+    document.addEventListener('pointermove', function (e) {
+      var el = e.target.closest && e.target.closest('.bcard, .feat li');
+      if (!el) return;
+      var r = el.getBoundingClientRect();
+      el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      el.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    }, { passive: true });
+
+    // Brand drawer
+    var drawer = document.getElementById('drawer');
+    var lastFocus = null;
+    function openBrand(b) {
+      lastFocus = document.activeElement;
+      var art = document.getElementById('dArt');
+      art.style.setProperty('--tint', b.tint);
+      var old = art.querySelector('svg:not(.keep)');
+      if (old) old.remove();
+      art.insertAdjacentHTML('beforeend', ART[b.art]);
+      var nm = document.getElementById('dName');
+      nm.textContent = b.name; nm.className = b.wm;
+      document.getElementById('dIntro').innerHTML = b.intro;
+      document.getElementById('dRanges').innerHTML = b.ranges.map(function (r) { return '<li>' + r + '</li>'; }).join('');
+      drawer.hidden = false;
+      document.body.style.overflow = 'hidden';
+      requestAnimationFrame(function () { drawer.classList.add('open'); });
+      setTimeout(function () { drawer.querySelector('.drawer-close').focus(); }, 60);
+    }
+    function closeDrawer() {
+      drawer.classList.remove('open');
+      document.body.style.overflow = '';
+      setTimeout(function () { drawer.hidden = true; }, 400);
+      if (lastFocus) lastFocus.focus();
+    }
+    grid.addEventListener('click', function (e) {
+      var card = e.target.closest('.bcard');
+      if (card) openBrand(BRANDS[+card.dataset.i]);
+    });
+    document.getElementById('footBrands').addEventListener('click', function (e) {
+      var a = e.target.closest('[data-open]');
+      if (!a) return;
+      var b = BRANDS.filter(function (x) { return x.id === a.dataset.open; })[0];
+      setTimeout(function () { openBrand(b); }, 500);
+    });
+    drawer.addEventListener('click', function (e) {
+      if (e.target === drawer || e.target.closest('[data-close]')) closeDrawer();
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !drawer.hidden) closeDrawer(); });
+
+    // ---------- Mobile menu ----------
+    var burger = document.getElementById('burger');
+    var menu = document.getElementById('menu');
+    burger.addEventListener('click', function () {
+      var open = menu.classList.toggle('open');
+      burger.setAttribute('aria-expanded', open);
+      burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    menu.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') { menu.classList.remove('open'); burger.setAttribute('aria-expanded', 'false'); }
+    });
+
+    // ---------- The lens: an iris that stops down as the pointer nears ----------
+    var blades = document.getElementById('blades');
+    var N = 9, bladeEls = [];
+    for (var i = 0; i < N; i++) {
+      var p = document.createElementNS(NS, 'path');
+      p.setAttribute('fill', i % 2 ? '#1b1e26' : '#22262f');
+      p.setAttribute('stroke', '#0a0b0f');
+      p.setAttribute('stroke-width', '1.5');
+      blades.appendChild(p);
+      bladeEls.push(p);
+    }
+    // Each blade runs from one corner of the opening, tangentially out past the glass
+    function irisPaths(r, R, rot) {
+      var out = [];
+      for (var i = 0; i < N; i++) {
+        var a0 = rot + i * 2 * Math.PI / N, a1 = rot + (i + 1) * 2 * Math.PI / N;
+        var x0 = r * Math.cos(a0), y0 = r * Math.sin(a0), x1 = r * Math.cos(a1), y1 = r * Math.sin(a1);
+        var tx = -Math.sin(a0), ty = Math.cos(a0);
+        var ox = x0 + tx * R * 1.6, oy = y0 + ty * R * 1.6;
+        var a2 = a1 + 0.6;
+        out.push('M' + x0.toFixed(1) + ' ' + y0.toFixed(1) + 'L' + ox.toFixed(1) + ' ' + oy.toFixed(1) + 'L' + (R * 2 * Math.cos(a2)).toFixed(1) + ' ' + (R * 2 * Math.sin(a2)).toFixed(1) + 'L' + x1.toFixed(1) + ' ' + y1.toFixed(1) + 'Z');
+      }
+      return out;
+    }
+    var FSTOPS = [2.8, 3.5, 4, 5.6, 8, 11, 16, 22];
+    var irisR = 120, irisTarget = 120;
+    function drawIris() {
+      var rot = (130 - irisR) / 130 * 0.9;
+      irisPaths(irisR, 150, rot).forEach(function (d, i) { bladeEls[i].setAttribute('d', d); });
+      var k = Math.min(Math.max((120 - irisR) / (120 - 18), 0), 1);
+      document.getElementById('fnum').textContent = 'f/' + FSTOPS[Math.round(k * (FSTOPS.length - 1))];
+      var g = document.getElementById('glow');
+      g.setAttribute('r', (20 + irisR * .55).toFixed(1));
+      g.setAttribute('opacity', (0.35 + (1 - k) * .65).toFixed(2));
+    }
+    // Focus ring scale and grip knurling
+    (function () {
+      var sc = document.getElementById('scale'), kn = document.getElementById('knurl');
+      var marks = ['&#8734;', '10', '5', '3', '2', '1.5', '1', '.7', '.5'];
+      for (var i = 0; i < 72; i++) {
+        var a = i * 5 * Math.PI / 180, long = i % 6 === 0;
+        var l = document.createElementNS(NS, 'line');
+        l.setAttribute('x1', (196 * Math.cos(a)).toFixed(1)); l.setAttribute('y1', (196 * Math.sin(a)).toFixed(1));
+        l.setAttribute('x2', ((long ? 210 : 204) * Math.cos(a)).toFixed(1)); l.setAttribute('y2', ((long ? 210 : 204) * Math.sin(a)).toFixed(1));
+        l.setAttribute('stroke', long ? '#8b8f99' : '#3b3f49'); l.setAttribute('stroke-width', long ? 1.6 : 1);
+        sc.appendChild(l);
+      }
+      marks.forEach(function (m, i) {
+        var a = (160 - i * 17) * Math.PI / 180;
+        var t = document.createElementNS(NS, 'text');
+        t.setAttribute('x', (188 * Math.cos(a)).toFixed(1)); t.setAttribute('y', (188 * Math.sin(a) + 3).toFixed(1));
+        t.setAttribute('text-anchor', 'middle'); t.setAttribute('font-size', '9'); t.setAttribute('font-family', 'JetBrains Mono, monospace');
+        t.setAttribute('fill', i === 0 ? '#ff6a2b' : '#8b8f99'); t.innerHTML = m;
+        sc.appendChild(t);
+      });
+      for (var j = 0; j < 120; j++) {
+        var b = j * 3 * Math.PI / 180, q = document.createElementNS(NS, 'line');
+        q.setAttribute('x1', (222 * Math.cos(b)).toFixed(1)); q.setAttribute('y1', (222 * Math.sin(b)).toFixed(1));
+        q.setAttribute('x2', (246 * Math.cos(b)).toFixed(1)); q.setAttribute('y2', (246 * Math.sin(b)).toFixed(1));
+        q.setAttribute('stroke', '#0c0e12'); q.setAttribute('stroke-width', '2.4');
+        kn.appendChild(q);
+      }
+    })();
+    var lensWrap = document.getElementById('lensWrap');
+    var scaleG = document.getElementById('scale');
+    var focusTurn = 0;
+    function lensFromPointer(e) {
+      var r = lensWrap.getBoundingClientRect();
+      var cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+      var d = Math.hypot(e.clientX - cx, e.clientY - cy) / (r.width / 2);
+      // Close to the centre stops the lens right down; far away opens it wide
+      irisTarget = 18 + Math.min(Math.max(d, 0), 1.3) / 1.3 * 102;
+    }
+    lensWrap.addEventListener('pointermove', lensFromPointer);
+    lensWrap.addEventListener('pointerleave', function () { irisTarget = 120; });
+    // Tap to focus: the AF brackets hunt, the focus ring turns, then lock
+    var bracket = document.getElementById('bracket'), afDot = document.getElementById('afDot'), afTxt = document.getElementById('afTxt');
+    var hunting = false;
+    lensWrap.addEventListener('click', function () {
+      if (hunting) return;
+      hunting = true;
+      bracket.classList.add('hunt'); afDot.classList.add('hunt'); afTxt.textContent = 'AF-S';
+      focusTurn += 40;
+      scaleG.style.transition = 'transform .7s cubic-bezier(.3,1.4,.5,1)';
+      scaleG.style.transform = 'rotate(' + focusTurn + 'deg)';
+      setTimeout(function () {
+        bracket.classList.remove('hunt'); afDot.classList.remove('hunt'); afTxt.textContent = 'AF-C';
+        hunting = false;
+      }, 700);
+    });
+    function lensLoop() {
+      irisR += (irisTarget - irisR) * 0.12;
+      drawIris();
+      if (Math.abs(irisTarget - irisR) > 0.2) requestAnimationFrame(lensLoop); else lensRunning = false;
+    }
+    var lensRunning = false;
+    function kickLens() { if (!lensRunning) { lensRunning = true; requestAnimationFrame(lensLoop); } }
+    lensWrap.addEventListener('pointermove', kickLens);
+    lensWrap.addEventListener('pointerleave', kickLens);
+    drawIris();
+    // On touch screens, scrolling breathes the aperture instead
+    if (!window.matchMedia('(hover: hover)').matches && !reduce) {
+      window.addEventListener('scroll', function () {
+        if (scrollY > innerHeight) return;
+        irisTarget = 120 - Math.min(scrollY / (innerHeight * .7), 1) * 95;
+        kickLens();
+      }, { passive: true });
+    }
+
+    // ---------- Intro iris ----------
+    var iris = document.getElementById('iris');
+    function revealHero() {
+      document.body.classList.remove('pre');
+      setTimeout(function () { document.querySelectorAll('.hero .count').forEach(countUp); }, 200);
+    }
+    if (iris.classList.contains('on')) {
+      var isvg = document.getElementById('irisSvg');
+      var W = innerWidth, H = innerHeight, R = Math.hypot(W, H) / 2 + 20;
+      isvg.setAttribute('viewBox', (-W / 2) + ' ' + (-H / 2) + ' ' + W + ' ' + H);
+      var ib = [];
+      for (var q = 0; q < N; q++) {
+        var ip = document.createElementNS(NS, 'path');
+        ip.setAttribute('fill', q % 2 ? '#14161c' : '#1a1d24');
+        ip.setAttribute('stroke', '#050608');
+        ip.setAttribute('stroke-width', '2');
+        isvg.appendChild(ip); ib.push(ip);
+      }
+      var t0 = null, done = false;
+      function finishIntro() {
+        if (done) return; done = true;
+        iris.classList.remove('on');
+        try { sessionStorage.setItem('pbd-intro', '1'); } catch (e) {}
+        revealHero();
+      }
+      function introStep(t) {
+        if (done) return;
+        if (!t0) t0 = t;
+        var el = t - t0, hold = 750, dur = 900;
+        var k = Math.min(Math.max((el - hold) / dur, 0), 1), e = k < .5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
+        if (el > hold) iris.classList.add('fade');
+        var r = 2 + e * R;
+        irisPaths(r, R, (1 - e) * 1.2).forEach(function (d, i) { ib[i].setAttribute('d', d); });
+        if (k < 1) requestAnimationFrame(introStep); else finishIntro();
+      }
+      requestAnimationFrame(introStep);
+      iris.addEventListener('click', finishIntro);
+    } else {
+      setTimeout(revealHero, 80);
+    }
+
+    // ---------- Count-ups and reveals ----------
+    function countUp(el) {
+      if (el.dataset.done) return;
+      el.dataset.done = 1;
+      var to = +el.dataset.to, start = null, dur = 1300;
+      if (reduce) { el.textContent = to; return; }
+      function step(t) {
+        if (!start) start = t;
+        var k = Math.min((t - start) / dur, 1), e = 1 - Math.pow(1 - k, 3);
+        el.textContent = Math.round(to * e);
+        if (k < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    document.querySelectorAll('.steps4 li, .svc-cards .svc').forEach(function (el, i) { el.style.transitionDelay = (i % 4) * 90 + 'ms'; });
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (!en.isIntersecting) return;
+          en.target.classList.add('in');
+          (function (t) { setTimeout(function () { t.style.transitionDelay = ''; }, 1200); })(en.target);
+          io.unobserve(en.target);
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+      // Active nav link
+      var links = {};
+      document.querySelectorAll('#menu a').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+      var nio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (!en.isIntersecting) return;
+          Object.keys(links).forEach(function (k) { links[k].classList.toggle('active', k === en.target.id); });
+        });
+      }, { rootMargin: '-40% 0px -55% 0px' });
+      Object.keys(links).forEach(function (id) { var el = document.getElementById(id); if (el) nio.observe(el); });
+    } else {
+      document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+    }
+
+    // ---------- Port to shelf: parcel rides the route, stops light up ----------
+    var lit = document.getElementById('litPath'), parcel = document.getElementById('parcel');
+    var len = lit.getTotalLength();
+    lit.style.strokeDasharray = len; lit.style.strokeDashoffset = len;
+    var stops = document.querySelectorAll('#stops .stop');
+    var stopAt = [0, 0.33, 0.62, 1];
+    function setRoute(k) {
+      lit.style.strokeDashoffset = (len * (1 - k)).toFixed(1);
+      var pt = lit.getPointAtLength(len * k);
+      parcel.setAttribute('transform', 'translate(' + pt.x.toFixed(1) + ' ' + (pt.y - 18).toFixed(1) + ')');
+      stops.forEach(function (s, i) { s.classList.toggle('on', k >= stopAt[i] - .01); });
+    }
+    setRoute(0);
+    var metro = document.getElementById('metro');
+    function routeOnScroll() {
+      var r = metro.getBoundingClientRect();
+      var k = Math.min(Math.max((innerHeight * .85 - r.top) / (innerHeight * .6), 0), 1);
+      setRoute(reduce ? 1 : k);
+    }
+
+    // Next business-day ETA, two working days out
+    (function () {
+      var d = new Date(), add = 2;
+      while (add > 0) { d.setDate(d.getDate() + 1); if (d.getDay() !== 0 && d.getDay() !== 6) add--; }
+      var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      document.getElementById('etaDay').textContent = days[d.getDay()] + ' ' + d.getDate() + ' ' + months[d.getMonth()];
+    })();
+
+    // ---------- Repair tracker (concept) ----------
+    var tlItems = document.querySelectorAll('#tl li');
+    var trackNote = document.getElementById('trackNote');
+    var trackTimers = [];
+    function runTracker(code) {
+      trackTimers.forEach(clearTimeout); trackTimers = [];
+      tlItems.forEach(function (li) { li.classList.remove('done', 'now'); li.querySelector('time').textContent = ''; });
+      var h = 0;
+      for (var i = 0; i < code.length; i++) h = (h * 31 + code.charCodeAt(i)) >>> 0;
+      var stage = 1 + (h % 6);
+      var d = new Date(); d.setDate(d.getDate() - stage - 1);
+      tlItems.forEach(function (li, i) {
+        if (i >= stage) return;
+        trackTimers.push(setTimeout(function () {
+          var t = new Date(d); t.setDate(d.getDate() + i);
+          var stamp = String(t.getDate()).padStart(2, '0') + '/' + String(t.getMonth() + 1).padStart(2, '0');
+          if (i < stage - 1 || stage === 6) { li.classList.add('done'); li.querySelector('time').textContent = stamp; }
+          else { li.classList.add('now'); li.querySelector('time').textContent = 'now'; }
+        }, reduce ? 0 : 260 * i));
+      });
+      trackTimers.push(setTimeout(function () {
+        trackNote.classList.add('ok');
+        trackNote.textContent = stage === 6
+          ? 'Job ' + code + ' is ready. We’ve sent you an SMS with collection details.'
+          : 'Job ' + code + ': ' + tlItems[stage - 1].querySelector('b').textContent.toLowerCase() + '. We’ll SMS you at the next step. (Concept demo)';
+      }, reduce ? 0 : 260 * stage));
+    }
+    document.getElementById('trackForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var v = document.getElementById('job').value.trim().toUpperCase() || 'PBD-104233';
+      if (!/^PBD-/.test(v)) v = 'PBD-' + v.replace(/^PBD/, '');
+      document.getElementById('job').value = v;
+      runTracker(v);
+    });
+    document.querySelectorAll('[data-track]').forEach(function (a) {
+      a.addEventListener('click', function () { setTimeout(function () { document.getElementById('job').focus({ preventScroll: true }); }, 700); });
+      a.setAttribute('href', '#tracker');
+    });
+
+    // ---------- Partner tabs with a sliding pill ----------
+    var tabs = document.querySelectorAll('.tab'), pill = document.getElementById('tabPill');
+    function placePill(t) { pill.style.width = t.offsetWidth + 'px'; pill.style.transform = 'translateX(' + (t.offsetLeft - 4) + 'px)'; }
+    function selectTab(t) {
+      tabs.forEach(function (x) {
+        var on = x === t;
+        x.setAttribute('aria-selected', on);
+        x.tabIndex = on ? 0 : -1;
+        document.getElementById(x.getAttribute('aria-controls')).hidden = !on;
+      });
+      placePill(t);
+    }
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () { selectTab(t); });
+      t.addEventListener('keydown', function (e) {
+        if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+        var n = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
+        selectTab(n); n.focus();
+      });
+    });
+    placePill(tabs[0]);
+    window.addEventListener('resize', function () { placePill(document.querySelector('.tab[aria-selected="true"]')); });
+    document.fonts && document.fonts.ready.then(function () { placePill(document.querySelector('.tab[aria-selected="true"]')); });
+
+    // ---------- Contact form: topics follow who you are ----------
+    var TOPICS = {
+      retailer: ['Become a dealer', 'Place a stock order', 'Training workshop', 'Marketing support'],
+      brand: ['Distribution partnership', 'Brand building & marketing', 'After-sales service'],
+      customer: ['Repair request', 'Product registration', 'Track a repair', 'Where to buy', 'Product question'],
+      media: ['Press enquiry', 'Product review loan', 'Event']
+    };
+    var topicSel = document.getElementById('topic'), coLabel = document.getElementById('coLabel');
+    function setWho(w, topic) {
+      var radio = document.querySelector('.who input[value="' + w + '"]');
+      if (radio) radio.checked = true;
+      topicSel.innerHTML = TOPICS[w].map(function (t) { return '<option' + (t === topic ? ' selected' : '') + '>' + t + '</option>'; }).join('');
+      coLabel.textContent = w === 'retailer' ? 'Store / company' : w === 'brand' ? 'Brand / company' : w === 'media' ? 'Publication' : 'Product (optional)';
+    }
+    document.querySelectorAll('.who input').forEach(function (r) { r.addEventListener('change', function () { setWho(r.value); }); });
+    setWho('retailer');
+    document.querySelectorAll('[data-who]').forEach(function (a) {
+      a.addEventListener('click', function () { setWho(a.dataset.who, a.dataset.topic); });
+    });
+    document.getElementById('cform').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var n = document.getElementById('formNote');
+      n.textContent = 'Thanks! In the live build this goes straight to the right Premium team.';
+      n.classList.add('ok');
+      e.target.reset(); setWho('retailer');
+    });
+
+    // ---------- Concept note, back to top, progress, header ----------
+    var note = document.getElementById('concept');
+    try { if (sessionStorage.getItem('pbd-note') === '0') note.classList.add('hide'); } catch (e) {}
+    document.getElementById('conceptClose').addEventListener('click', function () {
+      note.classList.add('hide');
+      try { sessionStorage.setItem('pbd-note', '0'); } catch (e) {}
+    });
+    var totop = document.getElementById('totop'), ring = document.getElementById('totopRing');
+    totop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); });
+    var header = document.querySelector('header'), bar = document.getElementById('progress');
+    var ticking = false, lastY = 0;
+    function onScroll() {
+      var y = scrollY, h = document.documentElement.scrollHeight - innerHeight, k = h > 0 ? y / h : 0;
+      bar.style.transform = 'scaleX(' + k + ')';
+      ring.style.strokeDashoffset = (132 * (1 - k)).toFixed(1);
+      totop.classList.toggle('show', y > 700);
+      header.classList.toggle('scrolled', y > 30);
+      note.classList.toggle('tuck', y > 300 && y > lastY);
+      lastY = y;
+      routeOnScroll();
+      ticking = false;
+    }
+    window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+    window.addEventListener('resize', onScroll);
+    onScroll();
+
+    // A little nudge in the browser tab when the visitor switches away
+    var baseTitle = document.title;
+    document.addEventListener('visibilitychange', function () {
+      document.title = document.hidden ? '● Still in focus? Your brands are waiting' : baseTitle;
+    });
+  </script>
+</body>
+</html>
