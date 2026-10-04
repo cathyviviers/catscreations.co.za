@@ -4,36 +4,10 @@
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var touch = window.matchMedia('(hover: none)').matches;
 
-  // ── CURSOR TRAIL RING ─────────────────────────────────────────────────────
+  // ── MOUSE POSITION (used by sparkles) ────────────────────────────────────
   if (!touch) {
-    var trail = document.createElement('div');
-    trail.className = 'cc-cursor-trail';
-    document.body.appendChild(trail);
-
-    var mx = -100, my = -100, tx = -100, ty = -100;
-
     document.addEventListener('mousemove', function (e) {
-      mx = e.clientX; my = e.clientY;
-    });
-
-    // Lazy trail follows cursor
-    (function animateTrail() {
-      tx += (mx - tx) * 0.12;
-      ty += (my - ty) * 0.12;
-      trail.style.transform = 'translate(' + (tx - 18) + 'px,' + (ty - 18) + 'px)';
-      requestAnimationFrame(animateTrail);
-    })();
-
-    // Grow ring on interactive elements
-    document.addEventListener('mouseover', function (e) {
-      if (e.target.closest('a, button, .btn, .service-card, .blog-card, .team-card, .testimonial-card, .whatsapp-float')) {
-        trail.classList.add('cc-cursor-trail--hover');
-      }
-    });
-    document.addEventListener('mouseout', function (e) {
-      if (e.target.closest('a, button, .btn, .service-card, .blog-card, .team-card, .testimonial-card, .whatsapp-float')) {
-        trail.classList.remove('cc-cursor-trail--hover');
-      }
+      window._ccMx = e.clientX; window._ccMy = e.clientY;
     });
   }
 

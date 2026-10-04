@@ -1872,24 +1872,6 @@ footer a { color: var(--pink); text-decoration: none; }
 
 /* ── BELLS & WHISTLES ────────────────────────────────────────────────────── */
 
-/* Cursor trail ring */
-.cc-cursor-trail {
-  position: fixed;
-  top: 0; left: 0;
-  width: 36px; height: 36px;
-  border: 2px solid var(--pink);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 99998;
-  opacity: 0.35;
-  transition: width 0.3s, height 0.3s, opacity 0.3s;
-}
-.cc-cursor-trail--hover {
-  width: 52px; height: 52px;
-  margin-left: -8px; margin-top: -8px;
-  opacity: 0.18;
-}
-
 /* Sparkle dots */
 .cc-sparkle {
   position: fixed;
