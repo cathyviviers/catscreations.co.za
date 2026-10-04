@@ -501,6 +501,30 @@
     .house li.learn p { color: #d4e4f4; }
     .house-cta { margin-top: 20px; }
 
+
+    /* P1100 spotlight */
+    .spot { margin-top: 28px; display: grid; grid-template-columns: 1fr 1.15fr; background: #fff; border: 1px solid var(--paper-line); border-radius: 24px; overflow: hidden; }
+    .spot-info { padding: 34px; display: flex; flex-direction: column; gap: 12px; }
+    .spot-info h3 { font-size: clamp(26px, 2.8vw, 36px); }
+    .spot-info p { color: var(--paper-muted); font-size: 16px; }
+    .spot-row { margin-top: auto; display: flex; align-items: flex-end; gap: 18px; flex-wrap: wrap; }
+    .spot-cam { width: 200px; height: auto; mix-blend-mode: multiply; transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+    .spot:hover .spot-cam { transform: rotate(-4deg) translateY(-4px); }
+    .spot-ctas { display: flex; gap: 8px; flex-wrap: wrap; padding-bottom: 8px; }
+    .spot-stage { background: #050608; padding: 14px; display: flex; flex-direction: column; gap: 12px; }
+    .vf { position: relative; flex: 1; min-height: 340px; border-radius: 14px; overflow: hidden; background: #000; }
+    .vf .moon { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform-origin: 46% 47%; transform: scale(var(--s, .03)); will-change: transform; }
+    .vf .land { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 34%; transition: opacity .2s; }
+    .vf-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px); background-size: 33.33% 33.33%; pointer-events: none; }
+    .vf span { position: absolute; font-size: 12px; color: #e4e5e7; text-shadow: 0 1px 2px #000; }
+    .vf-tl { top: 12px; left: 14px; } .vf-tl { color: #ff5a5a !important; }
+    .vf-tr { top: 12px; right: 14px; }
+    .vf-zoom { bottom: 12px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,.55); padding: 4px 10px; border-radius: 999px; font-size: 13px !important; color: #fff !important; }
+    .zoom-ctl { display: flex; align-items: center; gap: 12px; color: #9a9ea8; font-size: 12px; padding: 0 6px 4px; }
+    .zoom-ctl input { flex: 1; accent-color: var(--brand); height: 28px; cursor: grab; }
+    @media (max-width: 960px) { .spot { grid-template-columns: 1fr; } .vf { min-height: 260px; } }
+    @media (max-width: 720px) { .spot-info { padding: 22px; } .spot-cam { width: 150px; } }
+
     /* Ambassador photography */
     .amb { margin-top: 80px; }
     .amb-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 18px; }
@@ -818,6 +842,31 @@
           </div>
         </div>
         <div class="brands" id="brandGrid"></div>
+        <div class="spot reveal" id="spot">
+          <div class="spot-info">
+            <span class="kicker">In the spotlight &middot; Nikon</span>
+            <h3>COOLPIX P1100. Close enough to touch the moon.</h3>
+            <p>125x optical zoom in a camera you can carry, from wide landscapes to lunar craters. Drag the zoom ring and see for yourself.</p>
+            <div class="spot-row">
+              <img class="spot-cam" src="img/p1100-cam.jpg" alt="Nikon COOLPIX P1100 camera" loading="lazy" />
+              <div class="spot-ctas">
+                <button type="button" class="btn btn-dark btn-sm" data-open-brand="nikon">Explore Nikon <span class="arr">&rarr;</span></button>
+                <a href="#where" class="btn btn-line btn-sm">Find a dealer</a>
+              </div>
+            </div>
+          </div>
+          <div class="spot-stage">
+            <div class="vf" id="vf">
+              <img class="moon" id="moon" src="img/p1100-moon.jpg" alt="The moon, photographed on the COOLPIX P1100" loading="lazy" />
+              <svg class="land" id="land" viewBox="0 0 600 120" preserveAspectRatio="none" aria-hidden="true"><path d="M0 120V82l40-10 30 8 46-22 38 16 30-6 52 24 44-30 36 12 28-8 50 22 40-18 34 10 46-14 30 12 56-20V120z" fill="#07080b"/><path d="M0 120V96l60-6 50 10 70-12 60 14 80-8 70 10 60-6 90 12 60-8V120z" fill="#0d0f14"/></svg>
+              <div class="vf-grid" aria-hidden="true"></div>
+              <span class="vf-tl mono" aria-hidden="true">&#9679; 4K &middot; P</span>
+              <span class="vf-tr mono" id="vfFocal" aria-hidden="true">24mm</span>
+              <span class="vf-zoom mono" id="vfZoom">1.0x</span>
+            </div>
+            <label class="zoom-ctl"><span class="mono">W</span><input type="range" id="zoom" min="0" max="1000" value="0" aria-label="Zoom from 1x to 125x" /><span class="mono">T</span></label>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1064,7 +1113,7 @@
               <li><img src="img/n-hollyland.jpg" alt="" loading="lazy" /><time>6 Nov 2025</time><b>Welcoming Hollyland to the PBD family</b><span>Wireless video, from Mars Series transmitters to Pyro Series monitors, with full local support.</span></li>
               <li><img src="img/n-ninjatxgo.jpg" alt="" loading="lazy" /><time>6 Nov 2025</time><b>Introducing the brand-new Atomos Ninja TX GO</b><span>The ultimate monitor-recorder for HDMI cameras.</span></li>
               <li><img src="img/n-reddot.jpg" alt="" loading="lazy" /><time>27 Jun 2025</time><b>Nikon Z6III and Z50II each win a Red Dot Design Award</b></li>
-              <li><img src="img/n-z5ii.jpg" alt="" loading="lazy" /><time>14 Apr 2025</time><b>Nikon Z5II sets a new standard for autofocus and low-light performance</b></li>
+              <li><img src="img/p-nikon-z5ii.jpg" alt="" loading="lazy" /><time>14 Apr 2025</time><b>Nikon Z5II sets a new standard for autofocus and low-light performance</b></li>
               <li><img src="img/n-p1100.jpg" alt="" loading="lazy" /><time>5 Feb 2025</time><b>Nikon COOLPIX P1100 arrives with 125x optical zoom</b><span>Sample shot on the P1100: close enough to count feathers.</span></li>
             </ul>
           </div>
@@ -1200,7 +1249,7 @@
     };
 
     var BRANDS = [
-      { id: 'nikon', gallery: ['img/p-nikon-z.jpg', 'img/p-nikon-lens.jpg', 'img/p-nikon-coolpix.jpg', 'img/p-nikon-binos.jpg', 'img/p-nikon-rangefinder.jpg', 'img/p-nikon-scope.jpg'], img: 'img/brand-nikon.jpg', imgPos: '60% 50%', name: 'Nikon', wm: 'wm-nikon', cat: 'imaging', catName: 'Imaging', art: 'camera', tint: '#f3e2b8',
+      { id: 'nikon', gallery: ['img/p-nikon-z5ii.jpg', 'img/p-nikon-z5ii-back.jpg', 'img/p-nikon-lens.jpg', 'img/p-nikon-p1100.jpg', 'img/p-nikon-sb5000.jpg', 'img/p-nikon-binos.jpg', 'img/p-nikon-rangefinder.jpg', 'img/p-nikon-scope.jpg'], img: 'img/brand-nikon.jpg', imgPos: '60% 50%', name: 'Nikon', wm: 'wm-nikon', cat: 'imaging', catName: 'Imaging', art: 'camera', tint: '#f3e2b8',
         line: 'Digital imaging &amp; Sport Optics',
         intro: 'One of the world&rsquo;s leading suppliers of opto-electronics and precision technology. We distribute and service Nikon digital imaging and Sport Optics, with Nikon Professional Services, firmware, manuals and product registration handled locally.',
         ranges: ['Z-series mirrorless', 'NIKKOR lenses', 'COOLPIX', 'Speedlights', 'Binoculars', 'Laser rangefinders', 'Spotting scopes'] },
@@ -1659,6 +1708,41 @@
       });
       more.addEventListener('click', function () { shown += PAGE * 2; render(); });
       render();
+    })();
+
+
+    // ---------- P1100 spotlight: drag from 1x to 125x and the moon fills the frame ----------
+    (function () {
+      var zoom = document.getElementById('zoom'), moon = document.getElementById('moon'), land = document.getElementById('land');
+      var zt = document.getElementById('vfZoom'), ft = document.getElementById('vfFocal'), touched = false;
+      function set(v) {
+        var t = v / 1000, z = Math.pow(125, t);
+        moon.style.setProperty('--s', Math.max(z / 125, 0.03).toFixed(4));
+        land.style.opacity = Math.max(0, 1 - (z - 1) / 5).toFixed(2);
+        zt.textContent = (z < 10 ? z.toFixed(1) : Math.round(z)) + 'x';
+        ft.textContent = Math.round(24 * z) + 'mm';
+      }
+      zoom.addEventListener('input', function () { touched = true; set(+zoom.value); });
+      set(0);
+      document.querySelectorAll('[data-open-brand]').forEach(function (b) {
+        b.addEventListener('click', function () { openBrand(BRANDS.filter(function (x) { return x.id === b.dataset.openBrand; })[0]); });
+      });
+      // a one-off demo zoom the first time the spotlight comes into view
+      if (!reduce && 'IntersectionObserver' in window) {
+        var sio = new IntersectionObserver(function (es) {
+          if (!es[0].isIntersecting) return;
+          sio.disconnect();
+          var t0 = null;
+          (function run(t) {
+            if (touched) return;
+            if (!t0) t0 = t + 500;
+            var k = Math.min(Math.max((t - t0) / 2600, 0), 1), e = k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+            zoom.value = Math.round(e * 1000); set(+zoom.value);
+            if (k < 1) requestAnimationFrame(run);
+          })(performance.now());
+        }, { threshold: .5 });
+        sio.observe(document.getElementById('spot'));
+      }
     })();
 
     // ---------- Ambassador gallery arrows ----------
