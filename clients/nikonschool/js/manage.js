@@ -63,10 +63,12 @@
   function drawNav() {
     $("#side-nav").innerHTML = views.map(function (v) {
       return '<button data-v="' + v[0] + '"' + (v[0] === current ? ' aria-current="page"' : "") + ">" + v[2] + v[1] + "</button>";
-    }).join("") + '<button data-site>' + icons.site + "View website</button>";
+    }).join("") + '<button data-site>' + icons.site + "View website</button>" +
+      '<button class="theme-btn admin-theme" data-theme-toggle aria-pressed="false" aria-label="Switch to night mode"><span style="position:relative;width:19px;height:19px;display:inline-grid;place-items:center">' + N.THEME_ICONS + '</span><span class="t-label">Night mode</span></button>';
     $("#mob-nav").innerHTML = views.map(function (v) {
       return '<button data-v="' + v[0] + '"' + (v[0] === current ? ' aria-current="page"' : "") + ">" + v[1] + "</button>";
-    }).join("");
+    }).join("") + '<button data-theme-toggle aria-pressed="false" aria-label="Switch to night mode"><span class="t-label">Night mode</span></button>';
+    N.setTheme(N.currentTheme());
   }
   document.addEventListener("click", function (e) {
     var b = e.target.closest("[data-v]");
@@ -108,10 +110,10 @@
       '<div class="kpi"><small>Free to paid</small><b>' + Math.round((paidCount / Math.max(1, free)) * 100) + '%</b><span class="up">of free attendees book a paid class</span></div>' +
       '<div class="kpi"><small>Seats filled</small><b>' + Math.round((takenAll / seatsAll) * 100) + "%</b><span class=\"up\">" + takenAll + " of " + seatsAll + " seats</span></div>" +
       "</div>" +
-      '<div class="two-col"><div class="panel"><div class="panel-head"><h2>Bookings per week</h2><div class="legend"><span><i style="background:#FFE100"></i>Free</span><span><i style="background:#0b0b0c"></i>Paid</span></div></div>' +
+      '<div class="two-col"><div class="panel"><div class="panel-head"><h2>Bookings per week</h2><div class="legend"><span><i style="background:#FFE100"></i>Free</span><span><i style="background:var(--text)"></i>Paid</span></div></div>' +
       '<div class="chart" role="img" aria-label="Weekly bookings, free and paid">' + weeks.map(function (w) {
         var tot = w.free + w.paid;
-        return '<div class="col" title="' + w.free + " free, " + w.paid + ' paid"><div class="stack" style="height:' + Math.max(4, (tot / max) * 150) + 'px"><i style="flex:' + w.paid + ';background:#0b0b0c"></i><i style="flex:' + w.free + ';background:#FFE100"></i></div><small>' + w.label + "</small></div>";
+        return '<div class="col" title="' + w.free + " free, " + w.paid + ' paid"><div class="stack" style="height:' + Math.max(4, (tot / max) * 150) + 'px"><i style="flex:' + w.paid + ';background:var(--text)"></i><i style="flex:' + w.free + ';background:#FFE100"></i></div><small>' + w.label + "</small></div>";
       }).join("") + "</div></div>" +
       '<div class="panel"><div class="panel-head"><h2>Top creator links</h2><button class="btn btn-ghost btn-sm" data-v="people">All links</button></div>' +
       '<table><tbody>' + linkStats.map(function (l) {

@@ -87,8 +87,6 @@
     if (head) {
       head.outerHTML =
         '<a class="skip" href="#main">Skip to content</a>' +
-        '<div class="concept"><div class="wrap"><span><strong>Concept preview</strong> for Nikon South Africa by Cat\'s Creations. Bookings and payments are simulated.</span>' +
-        '<a href="' + ROOT + 'proposal/">Read the proposal</a><a href="' + ROOT + 'manage/">See the admin dashboard</a></div></div>' +
         '<header class="site-head"><div class="wrap">' +
         '<a class="brand" href="' + ROOT + '"><img src="' + ROOT + 'images/logo.png" alt="Nikon School" width="52" height="52"><span>South<br>Africa</span></a>' +
         '<nav class="nav" id="nav" aria-label="Main">' +
@@ -98,6 +96,7 @@
         '<a href="' + ROOT + '#faq">FAQ</a>' +
         "</nav>" +
         '<div class="head-actions">' +
+        '<button class="icon-btn theme-btn" data-theme-toggle aria-pressed="false" aria-label="Switch to night mode">' + THEME_ICONS + "</button>" +
         '<a class="icon-btn" href="' + ROOT + '#my-bookings" id="my-bookings-btn" aria-label="My bookings">' + I.ticket + (bookings.length ? '<span class="dot">' + bookings.length + "</span>" : "") + "</a>" +
         '<a class="btn btn-yellow" href="' + ROOT + 'workshops/lightcraft-fundamentals/">Book free class</a>' +
         '<button class="icon-btn menu-btn" id="menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="nav">' + I.menu + "</button>" +
@@ -151,6 +150,78 @@
       "<p>In the live site, <b>" + esc(label) + "</b> opens its own page. This preview focuses on the workshops, the booking flow, the creator pages and the dashboard.</p>" +
       '<div class="mockup-actions"><button class="btn btn-dark" data-close>Got it</button><a class="btn btn-ghost" href="' + ROOT + 'proposal/">Read the proposal</a></div>' +
       "</div>");
+  }
+
+  /* ---------- day / night ---------- */
+  function currentTheme() { return document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light"; }
+  function setTheme(t) {
+    document.documentElement.setAttribute("data-theme", t);
+    try { localStorage.setItem("ns-theme", t); } catch (e) {}
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute("content", t === "dark" ? "#121316" : "#0b0b0c");
+    $$("[data-theme-toggle]").forEach(function (b) {
+      b.setAttribute("aria-pressed", t === "dark");
+      b.setAttribute("aria-label", t === "dark" ? "Switch to day mode" : "Switch to night mode");
+      var lbl = b.querySelector(".t-label");
+      if (lbl) lbl.textContent = t === "dark" ? "Day mode" : "Night mode";
+    });
+  }
+  function toggleTheme(btn) {
+    var next = currentTheme() === "dark" ? "light" : "dark";
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!document.startViewTransition || reduce) {
+      var root = document.documentElement;
+      if (!reduce) { root.classList.add("theme-fade"); setTimeout(function () { root.classList.remove("theme-fade"); }, 450); }
+      setTheme(next);
+      return;
+    }
+    var r = btn.getBoundingClientRect();
+    var x = r.left + r.width / 2, y = r.top + r.height / 2;
+    var radius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+    document.documentElement.classList.add("theme-vt");
+    var t = document.startViewTransition(function () { setTheme(next); });
+    t.finished.then(function () { document.documentElement.classList.remove("theme-vt"); }, function () { document.documentElement.classList.remove("theme-vt"); });
+    t.ready.then(function () {
+      document.documentElement.animate(
+        { clipPath: ["circle(0px at " + x + "px " + y + "px)", "circle(" + radius + "px at " + x + "px " + y + "px)"] },
+        { duration: 650, easing: "cubic-bezier(.4,0,.2,1)", pseudoElement: "::view-transition-new(root)" }
+      );
+    });
+  }
+  var THEME_ICONS = '<svg class="t-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>' +
+    '<svg class="t-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>';
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-theme-toggle]");
+    if (b) { e.preventDefault(); toggleTheme(b); }
+  });
+
+  /* ---------- concept note ---------- */
+  function conceptNote() {
+    var links = PAGE === "manage"
+      ? [["", "Website"], ["proposal/", "Proposal"]]
+      : [["proposal/", "Proposal"], ["manage/", "Dashboard"]];
+    var note = document.createElement("div");
+    note.className = "concept";
+    note.id = "concept";
+    note.setAttribute("role", "note");
+    note.innerHTML = '<span class="concept-dot" aria-hidden="true"></span>' +
+      '<span><b>Design concept</b> by <a href="https://catscreations.co.za" target="_blank" rel="noopener">Cat\'s Creations</a><span class="concept-long"> &middot; not the official Nikon School website</span></span>' +
+      '<span class="concept-links">' + links.map(function (l) { return '<a href="' + ROOT + l[0] + '">' + l[1] + "</a>"; }).join("") + "</span>" +
+      '<button type="button" aria-label="Hide concept note">&times;</button>';
+    document.body.appendChild(note);
+    // Hidden for the rest of the visit once closed
+    try { if (sessionStorage.getItem("ns-note") === "0") note.classList.add("hide"); } catch (e) {}
+    note.querySelector("button").addEventListener("click", function () {
+      note.classList.add("hide");
+      try { sessionStorage.setItem("ns-note", "0"); } catch (e) {}
+    });
+    // Tucks away while scrolling down, comes back on scroll up
+    var lastY = window.scrollY;
+    window.addEventListener("scroll", function () {
+      var y = window.scrollY;
+      note.classList.toggle("tuck", y > 300 && y > lastY);
+      lastY = y;
+    }, { passive: true });
   }
 
   var toastTimer;
@@ -606,6 +677,8 @@
 
   /* ---------- boot ---------- */
   renderLayout();
+  conceptNote();
+  setTheme(currentTheme());
   ({ home: pageHome, workshops: pageWorkshops, workshop: pageWorkshop, creators: pageCreators, creator: pageCreator }[PAGE] || function () {})();
-  window.NS = { I: I, art: art, avatar: avatar, money: money, dt: dt, person: person, workshop: workshop, seatsLeft: seatsLeft, nextSession: nextSession, toast: toast, copy: copy, esc: esc, roleLabel: roleLabel, ROOT: ROOT, LIVE_DOMAIN: LIVE_DOMAIN, openModal: openModal, closeModal: closeModal };
+  window.NS = { I: I, art: art, avatar: avatar, money: money, dt: dt, person: person, workshop: workshop, seatsLeft: seatsLeft, nextSession: nextSession, toast: toast, copy: copy, esc: esc, roleLabel: roleLabel, ROOT: ROOT, LIVE_DOMAIN: LIVE_DOMAIN, openModal: openModal, closeModal: closeModal, THEME_ICONS: THEME_ICONS, setTheme: setTheme, currentTheme: currentTheme };
 })();
