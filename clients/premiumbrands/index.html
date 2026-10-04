@@ -514,6 +514,17 @@
     .spot-stage { background: #050608; padding: 14px; display: flex; flex-direction: column; gap: 12px; }
     .vf { position: relative; flex: 1; min-height: 340px; border-radius: 14px; overflow: hidden; background: #000; }
     .vf .moon { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform-origin: 46% 47%; transform: scale(var(--s, .03)); will-change: transform; }
+    .vf .mode { position: absolute; inset: 0; }
+    .vf .mode[hidden] { display: none; }
+    .vf .night { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; filter: brightness(var(--b, .08)) contrast(var(--c, 1.3)) saturate(var(--sat, .4)); }
+    .vf .grain { position: absolute; inset: -50%; opacity: var(--g, .35); pointer-events: none; mix-blend-mode: screen;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E"); animation: grain .4s steps(3) infinite; }
+    @keyframes grain { 33% { transform: translate(3%, -2%); } 66% { transform: translate(-2%, 3%); } }
+    .spot-tabs { display: inline-flex; gap: 4px; padding: 4px; border-radius: 999px; background: var(--paper-2); width: fit-content; margin-bottom: 6px; }
+    .spot-tabs button { border: 0; background: none; padding: 8px 14px; border-radius: 999px; font-size: 13.5px; font-weight: 600; color: var(--paper-muted); cursor: pointer; transition: background .2s, color .2s; }
+    .spot-tabs button[aria-selected="true"] { background: #fff; color: var(--paper-text); box-shadow: 0 2px 8px -2px rgba(0,0,0,.15); }
+    .spot-copy { display: grid; gap: 12px; animation: rise .45s ease; }
+    .spot-copy[hidden] { display: none; }
     .vf .land { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 34%; transition: opacity .2s; }
     .vf-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px); background-size: 33.33% 33.33%; pointer-events: none; }
     .vf span { position: absolute; font-size: 12px; color: #e4e5e7; text-shadow: 0 1px 2px #000; }
@@ -844,11 +855,22 @@
         <div class="brands" id="brandGrid"></div>
         <div class="spot reveal" id="spot">
           <div class="spot-info">
-            <span class="kicker">In the spotlight &middot; Nikon</span>
-            <h3>COOLPIX P1100. Close enough to touch the moon.</h3>
-            <p>125x optical zoom in a camera you can carry, from wide landscapes to lunar craters. Drag the zoom ring and see for yourself.</p>
+            <div class="spot-tabs" role="tablist" aria-label="Spotlight">
+              <button type="button" role="tab" aria-selected="true" data-mode="zoom">COOLPIX P1100</button>
+              <button type="button" role="tab" aria-selected="false" data-mode="night">Z5II</button>
+            </div>
+            <div class="spot-copy" data-for="zoom">
+              <span class="kicker">In the spotlight &middot; Nikon</span>
+              <h3>COOLPIX P1100. Close enough to touch the moon.</h3>
+              <p>125x optical zoom in a camera you can carry, from wide landscapes to lunar craters. Drag the zoom ring and see for yourself.</p>
+            </div>
+            <div class="spot-copy" data-for="night" hidden>
+              <span class="kicker">In the spotlight &middot; Nikon</span>
+              <h3>Z5II. Made for the moments after dark.</h3>
+              <p>Stunning autofocus and powerful low-light performance in a full-frame mirrorless body. Drag the light and watch the scene come alive.</p>
+            </div>
             <div class="spot-row">
-              <img class="spot-cam" src="img/p1100-cam.jpg" alt="Nikon COOLPIX P1100 camera" loading="lazy" />
+              <img class="spot-cam" id="spotCam" src="img/p1100-cam.jpg" alt="Nikon COOLPIX P1100 camera" loading="lazy" />
               <div class="spot-ctas">
                 <button type="button" class="btn btn-dark btn-sm" data-open-brand="nikon">Explore Nikon <span class="arr">&rarr;</span></button>
                 <a href="#where" class="btn btn-line btn-sm">Find a dealer</a>
@@ -857,14 +879,20 @@
           </div>
           <div class="spot-stage">
             <div class="vf" id="vf">
-              <img class="moon" id="moon" src="img/p1100-moon.jpg" alt="The moon, photographed on the COOLPIX P1100" loading="lazy" />
-              <svg class="land" id="land" viewBox="0 0 600 120" preserveAspectRatio="none" aria-hidden="true"><path d="M0 120V82l40-10 30 8 46-22 38 16 30-6 52 24 44-30 36 12 28-8 50 22 40-18 34 10 46-14 30 12 56-20V120z" fill="#07080b"/><path d="M0 120V96l60-6 50 10 70-12 60 14 80-8 70 10 60-6 90 12 60-8V120z" fill="#0d0f14"/></svg>
+              <div class="mode" data-for="zoom">
+                <img class="moon" id="moon" src="img/p1100-moon.jpg" alt="The moon, photographed on the COOLPIX P1100" loading="lazy" />
+                <svg class="land" id="land" viewBox="0 0 600 120" preserveAspectRatio="none" aria-hidden="true"><path d="M0 120V82l40-10 30 8 46-22 38 16 30-6 52 24 44-30 36 12 28-8 50 22 40-18 34 10 46-14 30 12 56-20V120z" fill="#07080b"/><path d="M0 120V96l60-6 50 10 70-12 60 14 80-8 70 10 60-6 90 12 60-8V120z" fill="#0d0f14"/></svg>
+              </div>
+              <div class="mode" data-for="night" hidden>
+                <img class="night" id="night" src="img/z5ii-night2.jpg" alt="A portrait under neon light, photographed on the Z5II" loading="lazy" />
+                <span class="grain" id="grain" aria-hidden="true"></span>
+              </div>
               <div class="vf-grid" aria-hidden="true"></div>
-              <span class="vf-tl mono" aria-hidden="true">&#9679; 4K &middot; P</span>
+              <span class="vf-tl mono" aria-hidden="true">&#9679; REC</span>
               <span class="vf-tr mono" id="vfFocal" aria-hidden="true">24mm</span>
               <span class="vf-zoom mono" id="vfZoom">1.0x</span>
             </div>
-            <label class="zoom-ctl"><span class="mono">W</span><input type="range" id="zoom" min="0" max="1000" value="0" aria-label="Zoom from 1x to 125x" /><span class="mono">T</span></label>
+            <label class="zoom-ctl"><span class="mono" id="ctlA">W</span><input type="range" id="zoom" min="0" max="1000" value="0" aria-label="Zoom from 1x to 125x" /><span class="mono" id="ctlB">T</span></label>
           </div>
         </div>
       </div>
@@ -1711,36 +1739,61 @@
     })();
 
 
-    // ---------- P1100 spotlight: drag from 1x to 125x and the moon fills the frame ----------
+    // ---------- Nikon spotlight: P1100 zoom to the moon, or bring a Z5II night scene out of the dark ----------
     (function () {
       var zoom = document.getElementById('zoom'), moon = document.getElementById('moon'), land = document.getElementById('land');
-      var zt = document.getElementById('vfZoom'), ft = document.getElementById('vfFocal'), touched = false;
+      var night = document.getElementById('night'), grain = document.getElementById('grain'), cam = document.getElementById('spotCam');
+      var zt = document.getElementById('vfZoom'), ft = document.getElementById('vfFocal'), ctlA = document.getElementById('ctlA'), ctlB = document.getElementById('ctlB');
+      var mode = 'zoom', touched = {}, demoed = {}, pos = { zoom: 0, night: 0 };
+      var CAMS = { zoom: ['img/p1100-cam.jpg', 'Nikon COOLPIX P1100 camera'], night: ['img/p-nikon-z5ii.jpg', 'Nikon Z5II camera'] };
       function set(v) {
-        var t = v / 1000, z = Math.pow(125, t);
-        moon.style.setProperty('--s', Math.max(z / 125, 0.03).toFixed(4));
-        land.style.opacity = Math.max(0, 1 - (z - 1) / 5).toFixed(2);
-        zt.textContent = (z < 10 ? z.toFixed(1) : Math.round(z)) + 'x';
-        ft.textContent = Math.round(24 * z) + 'mm';
+        var t = v / 1000; pos[mode] = v;
+        if (mode === 'zoom') {
+          var z = Math.pow(125, t);
+          moon.style.setProperty('--s', Math.max(z / 125, 0.03).toFixed(4));
+          land.style.opacity = Math.max(0, 1 - (z - 1) / 5).toFixed(2);
+          zt.textContent = (z < 10 ? z.toFixed(1) : Math.round(z)) + 'x';
+          ft.textContent = Math.round(24 * z) + 'mm';
+        } else {
+          night.style.setProperty('--b', (0.08 + 0.92 * t).toFixed(3));
+          night.style.setProperty('--c', (1.3 - 0.3 * t).toFixed(3));
+          night.style.setProperty('--sat', (0.4 + 0.65 * t).toFixed(3));
+          grain.style.setProperty('--g', (0.35 * (1 - t)).toFixed(3));
+          zt.textContent = t < .15 ? 'Too dark?' : t < .85 ? 'Lifting the shadows' : 'Low light, handled';
+          ft.textContent = 'Full frame';
+        }
       }
-      zoom.addEventListener('input', function () { touched = true; set(+zoom.value); });
+      function demo() {
+        if (reduce || demoed[mode]) return;
+        demoed[mode] = true;
+        var m = mode, t0 = null;
+        (function run(t) {
+          if (touched[m] || mode !== m) return;
+          if (!t0) t0 = t + 400;
+          var k = Math.min(Math.max((t - t0) / 2400, 0), 1), e = k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+          zoom.value = Math.round(e * 1000); set(+zoom.value);
+          if (k < 1) requestAnimationFrame(run);
+        })(performance.now());
+      }
+      function setMode(m) {
+        mode = m;
+        document.querySelectorAll('.spot-tabs button').forEach(function (b) { b.setAttribute('aria-selected', b.dataset.mode === m); });
+        document.querySelectorAll('#spot [data-for]').forEach(function (el) { el.hidden = el.dataset.for !== m; });
+        cam.src = CAMS[m][0]; cam.alt = CAMS[m][1];
+        ctlA.textContent = m === 'zoom' ? 'W' : '☾'; ctlB.textContent = m === 'zoom' ? 'T' : '☀';
+        zoom.setAttribute('aria-label', m === 'zoom' ? 'Zoom from 1x to 125x' : 'Bring the scene out of the dark');
+        zoom.value = pos[m]; set(pos[m]);
+        demo();
+      }
+      zoom.addEventListener('input', function () { touched[mode] = true; set(+zoom.value); });
+      document.querySelectorAll('.spot-tabs button').forEach(function (b) { b.addEventListener('click', function () { setMode(b.dataset.mode); }); });
       set(0);
       document.querySelectorAll('[data-open-brand]').forEach(function (b) {
         b.addEventListener('click', function () { openBrand(BRANDS.filter(function (x) { return x.id === b.dataset.openBrand; })[0]); });
       });
-      // a one-off demo zoom the first time the spotlight comes into view
-      if (!reduce && 'IntersectionObserver' in window) {
-        var sio = new IntersectionObserver(function (es) {
-          if (!es[0].isIntersecting) return;
-          sio.disconnect();
-          var t0 = null;
-          (function run(t) {
-            if (touched) return;
-            if (!t0) t0 = t + 500;
-            var k = Math.min(Math.max((t - t0) / 2600, 0), 1), e = k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
-            zoom.value = Math.round(e * 1000); set(+zoom.value);
-            if (k < 1) requestAnimationFrame(run);
-          })(performance.now());
-        }, { threshold: .5 });
+      // play the zoom once, the first time the spotlight comes into view
+      if ('IntersectionObserver' in window) {
+        var sio = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { sio.disconnect(); demo(); } }, { threshold: .5 });
         sio.observe(document.getElementById('spot'));
       }
     })();
