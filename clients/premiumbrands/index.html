@@ -55,6 +55,8 @@
     main { overflow-x: clip; }
     button { font-family: inherit; }
     .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
+    /* Depth: the paper plane flies between section backgrounds and their content */
+    main .wrap, footer .wrap, .marquee { position: relative; z-index: 2; }
     .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
     :focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; border-radius: 6px; }
 
@@ -82,8 +84,9 @@
     .logo-text small { display: block; font-size: 9.5px; font-weight: 400; letter-spacing: .3em; color: var(--muted); margin-top: 3px; }
     .nav ul { display: flex; gap: 6px; list-style: none; font-size: 14.5px; font-weight: 500; color: #c9c7c1; }
     .nav ul a { padding: 8px 12px; border-radius: 999px; transition: background .2s ease, color .2s ease; }
-    .nav ul a:hover { color: #fff; background: rgba(255,255,255,.06); }
-    .nav ul a.active { color: #fff; background: rgba(255,255,255,.09); }
+    .nav ul a:hover, .nav ul a.active { color: #fff; }
+    .nav ul { position: relative; z-index: 0; }
+    .nav-ink { position: absolute; top: 50%; height: 36px; margin-top: -18px; left: 0; width: 0; border-radius: 999px; background: rgba(255,255,255,.09); box-shadow: inset 0 0 0 1px rgba(255,255,255,.06); z-index: -1; pointer-events: none; opacity: 0; transition: left .4s cubic-bezier(.2,.8,.2,1), width .4s cubic-bezier(.2,.8,.2,1), opacity .25s; }
     .nav-right { display: flex; align-items: center; gap: 12px; }
     .burger { display: none; background: none; border: 1px solid var(--line); color: var(--text); border-radius: 12px; width: 44px; height: 44px; cursor: pointer; }
     .burger span, .burger span::before, .burger span::after { display: block; width: 18px; height: 2px; background: currentColor; border-radius: 2px; margin: 0 auto; position: relative; transition: transform .25s ease, background .2s ease; }
@@ -95,8 +98,12 @@
     .progress { position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: linear-gradient(90deg, var(--brand), #8cc4f2); transform-origin: 0 50%; transform: scaleX(0); }
 
     .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 13px 22px; border-radius: 999px; font-weight: 600; font-size: 15px; border: 1px solid transparent; transition: transform .15s ease, background .2s ease, border-color .2s ease, color .2s ease; cursor: pointer; white-space: nowrap; }
-    .btn:hover { transform: translateY(-1px); }
-    .btn:active { transform: scale(.97); }
+    .btn { transform: translate(var(--tx, 0px), var(--ty, 0px)); }
+    .btn:hover { transform: translate(var(--tx, 0px), calc(var(--ty, 0px) - 1px)); }
+    .btn:active { transform: translate(var(--tx, 0px), var(--ty, 0px)) scale(.97); }
+    .btn-primary { position: relative; overflow: hidden; isolation: isolate; }
+    .btn-primary::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.35) 50%, transparent 70%); transform: translateX(-120%); transition: transform .8s cubic-bezier(.2,.8,.2,1); }
+    .btn-primary:hover::after { transform: translateX(120%); }
     .btn-primary { background: var(--brand); color: #ffffff; }
     .btn-primary:hover { background: #4b9ae0; }
     .btn-ghost { border-color: rgba(255,255,255,0.22); color: var(--text); background: transparent; }
@@ -113,7 +120,7 @@
     .hero { position: relative; padding: 72px 0 0; overflow: hidden; }
     .hero::before { content: ""; position: absolute; right: -12%; top: -18%; width: 900px; height: 900px; background: radial-gradient(circle, rgba(47,134,209,.16), transparent 62%); pointer-events: none; }
     .hero::after { content: ""; position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1px); background-size: 26px 26px; mask-image: radial-gradient(ellipse at 30% 30%, #000 10%, transparent 70%); -webkit-mask-image: radial-gradient(ellipse at 30% 30%, #000 10%, transparent 70%); pointer-events: none; }
-    .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.08fr .92fr; gap: 48px; align-items: center; }
+    .hero-grid { position: relative; z-index: 2; display: grid; grid-template-columns: 1.08fr .92fr; gap: 48px; align-items: center; }
     .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; color: #c9c7c1; border: 1px solid var(--line); background: rgba(255,255,255,0.03); border-radius: 999px; padding: 6px 14px 6px 10px; }
     .eyebrow i { width: 8px; height: 8px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 4px rgba(60,207,142,.15); }
     .hero h1 { font-size: clamp(40px, 5vw, 66px); margin: 24px 0 22px; font-weight: 800; }
@@ -211,7 +218,7 @@
     .bcard::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .3s;
       background: radial-gradient(360px circle at var(--mx, 50%) var(--my, 0%), rgba(47,134,209,.12), transparent 60%); }
     @media (hover: hover) {
-      .bcard:hover { transform: translateY(-6px); border-color: #a9c9e6; box-shadow: 0 30px 60px -34px rgba(20,22,27,.45); }
+      .bcard:hover { transform: perspective(900px) translateY(-6px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); border-color: #a9c9e6; box-shadow: 0 30px 60px -34px rgba(20,22,27,.45); }
       .bcard:hover::after { opacity: 1; }
     }
     .badge-auth { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: #1d7a52; font-weight: 600; }
@@ -588,6 +595,47 @@
       .gallery { grid-template-columns: repeat(3, 1fr); }
     }
 
+
+    /* ===== Interaction layer: classy, camera-inspired motion ===== */
+    /* Soft light that follows the pointer across dark sections */
+    .glow { background-image: radial-gradient(700px circle at var(--sx, 50%) var(--sy, -30%), rgba(47,134,209,.11), transparent 62%); }
+    /* AF focus cursor: brackets that trail the pointer and lock onto things */
+    .af { position: fixed; left: 0; top: 0; z-index: 150; width: 28px; height: 28px; pointer-events: none; opacity: 0; transition: opacity .3s; mix-blend-mode: difference; }
+    .af.on { opacity: 1; }
+    .af i { position: absolute; width: 9px; height: 9px; border: 0 solid #fff; transition: border-color .25s, width .25s, height .25s; }
+    .af i:nth-child(1) { left: 0; top: 0; border-left-width: 1.5px; border-top-width: 1.5px; }
+    .af i:nth-child(2) { right: 0; top: 0; border-right-width: 1.5px; border-top-width: 1.5px; }
+    .af i:nth-child(3) { left: 0; bottom: 0; border-left-width: 1.5px; border-bottom-width: 1.5px; }
+    .af i:nth-child(4) { right: 0; bottom: 0; border-right-width: 1.5px; border-bottom-width: 1.5px; }
+    .af b { position: absolute; left: 0; top: -18px; font: 600 9.5px 'JetBrains Mono', monospace; letter-spacing: .08em; color: #3ccf8e; opacity: 0; transform: translateY(4px); transition: opacity .25s, transform .25s; white-space: nowrap; }
+    .af.lock { mix-blend-mode: normal; }
+    .af.lock i { border-color: #3ccf8e; width: 12px; height: 12px; }
+    .af.lock b { opacity: 1; transform: none; }
+    .af.btnlock b { opacity: 0; }
+    .af.press i { border-color: #fff; }
+    /* Headlines rise in, word by word */
+    .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .1em; margin-bottom: -.1em; }
+    .w > span { display: inline-block; transform: translateY(108%); transition: transform 1s cubic-bezier(.2,.8,.2,1); transition-delay: calc(var(--i, 0) * 45ms + .1s); }
+    .in .w > span { transform: none; }
+    /* Photos open like a shutter */
+    .pics figure { clip-path: inset(100% 0 0 0 round 20px); transition: clip-path 1.2s cubic-bezier(.2,.8,.2,1); }
+    .pics figure + figure { transition-delay: .15s; }
+    .pics.in figure { clip-path: inset(0 0 0 0 round 20px); }
+    .band.reveal { clip-path: inset(10% 5% 10% 5% round 24px); transition: clip-path 1.4s cubic-bezier(.2,.8,.2,1), opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1); }
+    .band.reveal.in { clip-path: inset(0 0 0 0 round 24px); }
+    .house li img { transform: scale(1.14); transition: transform 1.6s cubic-bezier(.2,.8,.2,1); }
+    .house li.in img { transform: none; }
+    .house li { transition: opacity .8s ease, transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .4s; }
+    @media (hover: hover) {
+      .house li:hover, .feat li:hover { transform: perspective(900px) translateY(-6px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); box-shadow: 0 30px 60px -34px rgba(20,22,27,.45); }
+      .house li:hover img { transform: scale(1.05); }
+    }
+    .feat li { transition: border-color .3s, transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .4s; }
+    .lens-wrap { transform: translate(var(--lx, 0px), var(--ly, 0px)); transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+    .lens-hud { transform: translate(var(--hx, 0px), var(--hy, 0px)); transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+    @media (hover: none), (pointer: coarse) { .af { display: none; } }
+    @media (max-width: 960px) { .nav-ink { display: none; } }
+
     /* Intro: an iris opens on the page, once per visit */
     .iris { position: fixed; inset: 0; z-index: 200; pointer-events: none; display: none; }
     .iris.on { display: block; pointer-events: auto; cursor: pointer; }
@@ -600,15 +648,12 @@
     .iris.fade .iris-mark { opacity: 0; }
 
     /* The paper plane: the logo mark takes off from the hero and guides you down the page */
-    .dock { flex: none; width: 64px; height: 98px; }
     footer .logo .pbd-mark { transition: opacity .3s; }
     footer .logo .pbd-mark.landed { opacity: 0; }
-    .dock.static svg { width: 100%; height: 100%; }
-    .hero-top { display: flex; align-items: flex-end; gap: 18px; flex-wrap: wrap; }
-    .flight { position: fixed; inset: 0; z-index: 44; pointer-events: none; }
+    .flight { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
     .flight svg { width: 100%; height: 100%; }
     .flight path { fill: none; stroke: var(--brand); stroke-width: 2.4; stroke-linecap: round; stroke-dasharray: .5 9; opacity: .5; }
-    .plane { position: fixed; left: 0; top: 0; z-index: 46; width: 0; height: 0; padding: 0; border: 0; background: none; cursor: pointer; will-change: transform; }
+    .plane { position: fixed; left: 0; top: 0; z-index: 1; width: 0; height: 0; padding: 0; border: 0; background: none; cursor: pointer; will-change: transform; }
     .plane-body { position: absolute; left: 0; top: 0; transform-origin: 50% 50%; }
     .plane-body svg { width: 100%; height: 100%; overflow: visible; }
     .plane-tip { position: absolute; left: 34px; top: -14px; white-space: nowrap; font-size: 12.5px; font-weight: 600; color: #fff; background: rgba(14,16,22,.86); border: 1px solid rgba(255,255,255,.14); padding: 6px 11px; border-radius: 999px;
@@ -620,7 +665,7 @@
     .plane:not(.flying) { pointer-events: none; }
     .plane:focus-visible { outline: none; }
     .plane:focus-visible .plane-tip { opacity: 1; transform: none; }
-    @media (max-width: 720px) { .plane-tip { display: none; } .dock { width: 52px; height: 80px; } }
+    @media (max-width: 720px) { .plane-tip { display: none; } }
 
     /* Back to top */
     .totop { position: fixed; right: 18px; bottom: 18px; z-index: 60; width: 52px; height: 52px; padding: 0; border: 0; border-radius: 50%; cursor: pointer;
@@ -735,6 +780,7 @@
     <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21" class="ring-bg"/><circle cx="24" cy="24" r="21" class="ring" id="totopRing"/><path d="M24 31V17M17 23l7-7 7 7" class="arrow"/></svg>
   </button>
 
+  <div class="af" id="af" aria-hidden="true"><i></i><i></i><i></i><i></i><b>AF&middot;S &#9679;</b></div>
   <div class="flight" aria-hidden="true"><svg id="trailSvg"><path id="trail" d=""/></svg></div>
   <button type="button" class="plane" id="plane" aria-label="Fly to the next section">
     <span class="plane-body" id="planeBody"><svg viewBox="-30 -46 60 92" aria-hidden="true"><g id="wingL"><use href="#pbdLeft"/></g><g id="wingR"><use href="#pbdRight"/></g></svg></span>
@@ -750,10 +796,11 @@
   <header>
     <nav class="wrap nav" aria-label="Main">
       <a href="#top" class="logo" aria-label="Premium Brand Distributors home">
-        <svg class="pbd-mark" viewBox="-30 -46 60 92" aria-hidden="true"><use href="#pbdMark"/></svg>
+        <svg class="pbd-mark" id="dockHero" viewBox="-30 -46 60 92" aria-hidden="true"><use href="#pbdMark"/></svg>
         <span class="logo-text"><b>PREMIUM<em>BRAND</em></b><small>DISTRIBUTORS</small></span>
       </a>
       <ul id="menu">
+        <li aria-hidden="true" style="display:contents"><span class="nav-ink" id="navInk"></span></li>
         <li><a href="#brands">Brands</a></li>
         <li><a href="#where">Where to buy</a></li>
         <li><a href="#service">Service &amp; Support</a></li>
@@ -770,13 +817,10 @@
   </header>
 
   <main id="top">
-    <section class="hero" style="padding-bottom:0">
+    <section class="hero glow" style="padding-bottom:0">
       <div class="wrap hero-grid">
         <div>
-          <div class="hero-top">
-            <div class="dock" id="dockHero" aria-hidden="true"></div>
-            <span class="eyebrow"><i></i>Authorised distributor &amp; service centre &middot; since 1999</span>
-          </div>
+          <span class="eyebrow"><i></i>Authorised distributor &amp; service centre &middot; since 1999</span>
           <h1>
             <span class="ln">The world's best</span>
             <span class="ln"><span class="rack">imaging &amp; tech</span> brands,</span>
@@ -898,7 +942,7 @@
       </div>
     </section>
 
-    <section id="where" class="where-sec">
+    <section id="where" class="where-sec glow">
       <div class="wrap">
         <div class="sec-row">
           <div class="sec-head reveal">
@@ -1020,7 +1064,7 @@
       </div>
     </section>
 
-    <section id="logistics" class="route-sec">
+    <section id="logistics" class="route-sec glow">
       <div class="wrap">
         <div class="route-grid">
           <div class="reveal">
@@ -1080,7 +1124,7 @@
       </div>
     </section>
 
-    <section id="partners">
+    <section id="partners" class="glow">
       <div class="wrap">
         <div class="sec-head reveal">
           <span class="kicker">Partner with us</span>
@@ -1175,7 +1219,7 @@
       </div>
     </section>
 
-    <section id="contact">
+    <section id="contact" class="glow">
       <div class="wrap contact-grid">
         <div class="reveal">
           <span class="kicker">Contact</span>
@@ -1582,6 +1626,7 @@
           if (!en.isIntersecting) return;
           en.target.classList.add('in');
           en.target.querySelectorAll('.count').forEach(countUp);
+          en.target.querySelectorAll('.kicker').forEach(function (k) { if (window.pbdDecode) pbdDecode(k); });
           (function (t) { setTimeout(function () { t.style.transitionDelay = ''; }, 1200); })(en.target);
           io.unobserve(en.target);
         });
@@ -1595,6 +1640,7 @@
         entries.forEach(function (en) {
           if (!en.isIntersecting) return;
           Object.keys(links).forEach(function (k) { links[k].classList.toggle('active', k === en.target.id); });
+          if (window.pbdInk) pbdInk();
         });
       }, { rootMargin: '-40% 0px -55% 0px' });
       Object.keys(links).forEach(function (id) { var el = document.getElementById(id); if (el) nio.observe(el); });
@@ -1694,6 +1740,123 @@
     window.addEventListener('resize', function () { placePill(document.querySelector('.tab[aria-selected="true"]')); });
     document.fonts && document.fonts.ready.then(function () { placePill(document.querySelector('.tab[aria-selected="true"]')); });
 
+
+
+    // ===== Interaction layer =====
+    (function () {
+      var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+      // Headlines: wrap each word so it can rise in when its block is revealed
+      if (!reduce) document.querySelectorAll('.reveal h2, .sec-head h2, .reveal h3:not(.mini)').forEach(function (h) {
+        if (h.closest('.drawer, .tab-panel, .bcard')) return;
+        var i = 0;
+        Array.prototype.slice.call(h.childNodes).forEach(function (n) {
+          if (n.nodeType === 3) {
+            var frag = document.createDocumentFragment();
+            n.textContent.split(/(\s+)/).forEach(function (part) {
+              if (!part) return;
+              if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(' ')); return; }
+              var w = document.createElement('span'); w.className = 'w';
+              var inner = document.createElement('span'); inner.textContent = part; inner.style.setProperty('--i', i++);
+              w.appendChild(inner); frag.appendChild(w);
+            });
+            n.parentNode.replaceChild(frag, n);
+          } else if (n.nodeType === 1) {
+            var w2 = document.createElement('span'); w2.className = 'w';
+            n.parentNode.insertBefore(w2, n);
+            var inner2 = document.createElement('span'); inner2.style.setProperty('--i', i++);
+            inner2.appendChild(n); w2.appendChild(inner2);
+          }
+        });
+      });
+
+      // Section labels decode like a camera readout
+      var GLYPHS = '01<>/\\#*+=:.';
+      window.pbdDecode = function (el) {
+        if (reduce || el.dataset.decoded) return;
+        el.dataset.decoded = 1;
+        var txt = el.textContent, start = null;
+        (function run(t) {
+          if (!start) start = t;
+          var k = Math.min((t - start) / 700, 1), shown = Math.floor(txt.length * k);
+          el.textContent = txt.slice(0, shown) + txt.slice(shown).replace(/[^\s]/g, function () { return GLYPHS[Math.floor(Math.random() * GLYPHS.length)]; });
+          if (k < 1) requestAnimationFrame(run); else el.textContent = txt;
+        })(performance.now());
+      };
+
+      // Sliding highlight behind the nav links
+      var ink = document.getElementById('navInk'), menuEl = document.getElementById('menu'), hoverLink = null;
+      window.pbdInk = function () {
+        var a = hoverLink || menuEl.querySelector('a.active');
+        if (!a || innerWidth <= 960) { ink.style.opacity = 0; return; }
+        ink.style.left = a.offsetLeft + 'px'; ink.style.width = a.offsetWidth + 'px'; ink.style.opacity = 1;
+      };
+      menuEl.addEventListener('mouseover', function (e) { var a = e.target.closest('a'); if (a) { hoverLink = a; pbdInk(); } });
+      menuEl.addEventListener('mouseleave', function () { hoverLink = null; pbdInk(); });
+      window.addEventListener('resize', pbdInk);
+
+      if (!fine || reduce) return;
+
+      // AF focus cursor
+      var af = document.getElementById('af');
+      var LOCK = '.bcard, .pics figure, .band, .house li, .team-grid li, .amb-track li, .dealers li:not(.none), .svc, .feat li, .news li, .boutique li, .facts li, .vf, .gallery li, .drops li, .depts a, .spot-cam, .lens-wrap';
+      var BTN = '.btn, .chip, .prov button, .nav ul a, .faq summary, .tab, .spot-tabs button, .amb-nav button, .who span, .logo, .totop, .drawer-close, .burger';
+      var mx = -100, my = -100, x = -100, y = -100, w = 28, h = 28, target = null, isBtn = false, running = false;
+      function loop() {
+        var tx, ty, tw, th;
+        if (target && document.contains(target)) {
+          var r = target.getBoundingClientRect(), pad = isBtn ? 5 : 8;
+          tx = r.left - pad; ty = r.top - pad; tw = r.width + pad * 2; th = r.height + pad * 2;
+        } else { tw = 28; th = 28; tx = mx - 14; ty = my - 14; }
+        var k = target ? 0.2 : 0.3;
+        x += (tx - x) * k; y += (ty - y) * k; w += (tw - w) * k; h += (th - h) * k;
+        af.style.transform = 'translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px)';
+        af.style.width = w.toFixed(1) + 'px'; af.style.height = h.toFixed(1) + 'px';
+        if (Math.abs(tx - x) + Math.abs(ty - y) + Math.abs(tw - w) + Math.abs(th - h) > .5) requestAnimationFrame(loop); else running = false;
+      }
+      function kick() { if (!running) { running = true; requestAnimationFrame(loop); } }
+      document.addEventListener('pointermove', function (e) {
+        mx = e.clientX; my = e.clientY; af.classList.add('on');
+        var t = e.target.closest ? e.target.closest(BTN) : null;
+        isBtn = !!t;
+        if (!t) t = e.target.closest ? e.target.closest(LOCK) : null;
+        if (t !== target) { target = t; af.classList.toggle('lock', !!t); af.classList.toggle('btnlock', isBtn); }
+        kick();
+      }, { passive: true });
+      document.addEventListener('scroll', kick, { passive: true });
+      document.addEventListener('pointerleave', function () { af.classList.remove('on'); });
+      document.documentElement.addEventListener('mouseleave', function () { af.classList.remove('on'); });
+      document.addEventListener('pointerdown', function () { af.classList.add('press'); });
+      document.addEventListener('pointerup', function () { af.classList.remove('press'); });
+
+      // Magnetic buttons, gentle tilt on cards, light that follows the pointer, hero parallax
+      var hero = document.querySelector('.hero'), lens = document.getElementById('lensWrap'), huds = document.querySelectorAll('.lens-hud');
+      var mag = null, tilt = null;
+      document.addEventListener('pointermove', function (e) {
+        var b = e.target.closest('.btn, .amb-nav button, .totop');
+        if (mag && mag !== b) { mag.style.removeProperty('--tx'); mag.style.removeProperty('--ty'); }
+        mag = b;
+        if (b) {
+          var r = b.getBoundingClientRect();
+          b.style.setProperty('--tx', ((e.clientX - r.left - r.width / 2) * 0.22).toFixed(1) + 'px');
+          b.style.setProperty('--ty', ((e.clientY - r.top - r.height / 2) * 0.3).toFixed(1) + 'px');
+        }
+        var c = e.target.closest('.bcard, .house li, .feat li');
+        if (tilt && tilt !== c) { tilt.style.removeProperty('--rx'); tilt.style.removeProperty('--ry'); }
+        tilt = c;
+        if (c) {
+          var q = c.getBoundingClientRect(), px = (e.clientX - q.left) / q.width - .5, py = (e.clientY - q.top) / q.height - .5;
+          c.style.setProperty('--rx', (-py * 6).toFixed(2) + 'deg'); c.style.setProperty('--ry', (px * 7).toFixed(2) + 'deg');
+        }
+        var g = e.target.closest('.glow');
+        if (g) { var gr = g.getBoundingClientRect(); g.style.setProperty('--sx', (e.clientX - gr.left) + 'px'); g.style.setProperty('--sy', (e.clientY - gr.top) + 'px'); }
+        if (hero && e.clientY < hero.getBoundingClientRect().bottom) {
+          var dx = e.clientX / innerWidth - .5, dy = e.clientY / innerHeight - .5;
+          lens.style.setProperty('--lx', (dx * -14).toFixed(1) + 'px'); lens.style.setProperty('--ly', (dy * -10).toFixed(1) + 'px');
+          huds.forEach(function (hd, i) { hd.style.setProperty('--hx', (dx * (10 + i * 8)).toFixed(1) + 'px'); hd.style.setProperty('--hy', (dy * (8 + i * 6)).toFixed(1) + 'px'); });
+        }
+      }, { passive: true });
+    })();
 
     // ---------- Dealer finder (data: dealers.js, from PBD's specialist dealer list) ----------
     (function () {
@@ -1895,8 +2058,8 @@
     onScroll();
 
     // ---------- The paper plane ----------
-    // The PBD mark is a paper plane seen from above. It waits folded in the hero,
-    // opens its wings as you scroll, flies the page leaving a contrail, points the
+    // The PBD mark is a paper plane seen from above. It peels off the header logo
+    // as you scroll, flexes its wings, flies the page leaving a contrail, points the
     // way to the next section and folds up again to land on the footer logo.
     (function () {
       var plane = document.getElementById('plane'), body = document.getElementById('planeBody');
@@ -1905,7 +2068,6 @@
       var dockHero = document.getElementById('dockHero'), dockLand = document.getElementById('dockLand');
       if (reduce) {
         plane.remove(); document.querySelector('.flight').remove();
-        dockHero.classList.add('static'); dockHero.innerHTML = '<svg viewBox="-30 -46 60 92"><use href="#pbdMark"/></svg>';
         return;
       }
       var SECTIONS = [['brands', 'Brands'], ['where', 'Where to buy'], ['service', 'Service &amp; Support'], ['logistics', 'Port to shelf'], ['partners', 'Partner with us'], ['about', 'About'], ['contact', 'Contact']];
@@ -1920,7 +2082,7 @@
         // the flight lane weaves across the page; on phones it hugs the right edge
         var fx = small ? W - 30 + Math.sin(p * 22) * 6 : W * (0.5 + 0.4 * Math.sin(p * Math.PI * 5 + 0.9));
         var fy = H * (small ? 0.5 + 0.18 * Math.sin(p * 17) : 0.45 + 0.14 * Math.sin(p * Math.PI * 8)) + Math.sin(t / 600) * 5;
-        var up = ease(clamp(sy / (H * 0.55), 0, 1));
+        var up = ease(clamp(sy / (H * 0.4), 0, 1));
         var down = ease(clamp((H * 0.95 - b[1]) / (H * 0.4), 0, 1));
         var tx = a[0] + (fx - a[0]) * up, ty = a[1] + (fy - a[1]) * up;
         tx += (b[0] - tx) * down; ty += (b[1] - ty) * down;
@@ -1939,7 +2101,8 @@
         ang += d * 0.12;
         roll += (clamp(d / 40, -1, 1) - roll) * 0.15;
         lastX = x; lastDocY = y + sy;
-        var w = 0.3 + 0.7 * Math.max(open, down);
+        // the wings flex as it peels off the header logo, and again as it lands
+        var w = Math.min(1 - 0.55 * Math.sin(Math.PI * up), 1 - 0.55 * Math.sin(Math.PI * down));
         wingL.setAttribute('transform', 'scale(' + (w * (1 - roll * .35 * open)).toFixed(3) + ' 1)');
         wingR.setAttribute('transform', 'scale(' + (w * (1 + roll * .25 * open)).toFixed(3) + ' 1)');
         var bw = size * 60 / 92;
