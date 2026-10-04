@@ -1869,3 +1869,183 @@ footer a { color: var(--pink); text-decoration: none; }
   background-size: 60px 35px;
   background-attachment: fixed;
 }
+
+/* ── BELLS & WHISTLES ────────────────────────────────────────────────────── */
+
+/* Hide default cursor when custom cursor is active */
+@media (hover: hover) {
+  body, a, button, .btn, [role="button"] {
+    cursor: none !important;
+  }
+}
+
+/* Custom cursor dot */
+.cc-cursor {
+  position: fixed;
+  top: 0; left: 0;
+  width: 16px; height: 16px;
+  background: var(--pink);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  mix-blend-mode: difference;
+  transition: width 0.2s, height 0.2s, opacity 0.2s;
+}
+.cc-cursor--hover {
+  width: 32px; height: 32px;
+  margin-left: -8px; margin-top: -8px;
+  opacity: 0.6;
+}
+
+/* Cursor trail ring */
+.cc-cursor-trail {
+  position: fixed;
+  top: 0; left: 0;
+  width: 36px; height: 36px;
+  border: 2px solid var(--pink);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  opacity: 0.35;
+  transition: width 0.3s, height 0.3s, opacity 0.3s;
+}
+.cc-cursor-trail--hover {
+  width: 52px; height: 52px;
+  margin-left: -8px; margin-top: -8px;
+  opacity: 0.18;
+}
+
+/* Sparkle dots */
+.cc-sparkle {
+  position: fixed;
+  width: 5px; height: 5px;
+  background: var(--pink);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99997;
+  transform: translate(-50%, -50%);
+  animation: cc-sparkle-fade 0.7s ease forwards;
+}
+@keyframes cc-sparkle-fade {
+  0%   { opacity: 0.9; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -180%) scale(0.3); }
+}
+
+/* Reading progress bar */
+#cc-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--pink), var(--pink-light));
+  z-index: 200;
+  transition: width 0.1s linear;
+  border-radius: 0 2px 2px 0;
+}
+
+/* Scroll-to-top button */
+#cc-scroll-top {
+  position: fixed;
+  bottom: 90px; right: 20px;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--pink);
+  color: #fff;
+  border: none;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 150;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.3s, transform 0.3s;
+  box-shadow: 0 4px 16px rgba(208,23,122,0.35);
+  cursor: pointer;
+}
+#cc-scroll-top.cc-scroll-top--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+#cc-scroll-top:hover {
+  background: var(--pink-dark);
+  transform: translateY(-2px);
+}
+
+/* Shimmering pink hero text */
+@keyframes cc-shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+.hero-text h1 em {
+  background: linear-gradient(90deg, var(--pink) 0%, #ff69b4 40%, var(--pink-dark) 60%, var(--pink) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: cc-shimmer 3s linear infinite;
+}
+
+/* Badge pulse glow */
+@keyframes cc-badge-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(208,23,122,0.4); }
+  50%       { box-shadow: 0 0 0 7px rgba(208,23,122,0); }
+}
+.hero-badge {
+  animation: cc-badge-pulse 2.4s ease infinite;
+}
+.hero-badge-dot {
+  animation: cc-badge-pulse 2.4s ease infinite;
+}
+
+/* Get a Quote button gentle pulse */
+@keyframes cc-btn-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(208,23,122,0); }
+  50%       { box-shadow: 0 0 0 8px rgba(208,23,122,0.15); }
+}
+a.btn-outline[href="#contact"] {
+  animation: cc-btn-pulse 2.8s ease infinite;
+}
+
+/* Nav link slide-underline */
+nav ul a {
+  position: relative;
+}
+nav ul a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px; left: 0;
+  width: 0; height: 2px;
+  background: var(--pink);
+  border-radius: 2px;
+  transition: width 0.25s ease;
+}
+nav ul a:hover::after,
+nav ul a.nav-active::after {
+  width: 100%;
+}
+
+/* Service card 3d tilt */
+.service-card {
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+
+/* Theme toggle morph */
+#theme-toggle {
+  transition: transform 0.4s cubic-bezier(.34,1.56,.64,1), border-color 0.2s, background-color 0.25s ease;
+}
+#theme-toggle:hover {
+  transform: rotate(20deg) scale(1.15);
+}
+@media (prefers-reduced-motion: reduce) {
+  .cc-cursor, .cc-cursor-trail, .cc-sparkle,
+  .hero-text h1 em, .hero-badge, .hero-badge-dot,
+  a.btn-outline[href="#contact"], #cc-scroll-top,
+  nav ul a::after { animation: none !important; }
+  .hero-text h1 em {
+    background: none;
+    -webkit-text-fill-color: var(--pink);
+    color: var(--pink);
+  }
+}
