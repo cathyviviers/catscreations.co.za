@@ -110,15 +110,26 @@
     .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
     .magnetic { transition: transform .35s var(--ease), background .25s, color .25s, box-shadow .25s, border-color .25s; will-change: transform; }
 
-    /* Concept ribbon: makes it clear this is a pitch, not the club's site */
-    .concept-bar {
-      background: var(--gold); color: var(--black);
-      font-family: var(--cond); font-weight: 600; font-size: 14px; letter-spacing: .04em;
-      text-align: center; padding: 8px var(--gutter);
+    /* Concept notice: makes it clear this is a pitch, not the club's site */
+    .concept-pill {
+      position: fixed; left: 20px; bottom: calc(20px + env(safe-area-inset-bottom)); z-index: 150;
+      display: inline-flex; align-items: center; gap: 10px; max-width: calc(100vw - 40px);
+      padding: 9px 10px 9px 16px; border-radius: 999px;
+      background: rgba(20,20,20,.82); backdrop-filter: blur(14px) saturate(140%); -webkit-backdrop-filter: blur(14px) saturate(140%);
+      border: 1px solid rgba(245,185,21,.28); box-shadow: 0 12px 34px rgba(0,0,0,.45);
+      font-size: 13.5px; color: rgba(255,255,255,.72); line-height: 1.3;
+      transform: translateY(140%); opacity: 0; transition: transform .7s var(--ease), opacity .5s;
     }
-    .concept-bar a { text-decoration: underline; text-underline-offset: 2px; }
-    .present .concept-bar { display: none; }
-    .cb-short { display: none; }
+    .concept-pill.show { transform: none; opacity: 1; }
+    .concept-pill.gone { transform: translateY(140%); opacity: 0; pointer-events: none; }
+    .concept-pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); flex-shrink: 0; animation: pulse 1.8s infinite; }
+    .concept-pill b { color: var(--white); font-weight: 700; }
+    .concept-pill a { color: var(--gold); font-weight: 700; }
+    .concept-pill a:hover { text-decoration: underline; text-underline-offset: 2px; }
+    .concept-pill button { width: 24px; height: 24px; flex-shrink: 0; border-radius: 50%; display: grid; place-items: center; font-size: 15px; line-height: 1; color: rgba(255,255,255,.7); background: rgba(255,255,255,.08); transition: background .2s, color .2s; }
+    .concept-pill button:hover { background: var(--gold); color: var(--black); }
+    .present .concept-pill { display: none; }
+    .concept-pill .short { display: none; }
 
     /* Scroll progress */
     .progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 120; pointer-events: none; }
@@ -600,10 +611,10 @@
     }
     @media (max-width: 600px) {
       body { font-size: 16px; }
-      .cb-long { display: none; }
-      .cb-short { display: inline; }
-      .concept-bar { font-size: 13px; padding: 6px 12px; }
-      .hero { min-height: calc(100svh - 106px); padding: 0 0 40px; flex-direction: column; justify-content: flex-end; }
+      .concept-pill { left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); max-width: none; justify-content: space-between; font-size: 12.5px; }
+      .concept-pill .full { display: none; }
+      .concept-pill .short { display: inline; }
+      .hero { min-height: calc(100svh - 76px); padding: 0 0 84px; flex-direction: column; justify-content: flex-end; }
       .hero-photo { inset: 0 0 auto 0; height: 62%; }
       .hero-photo img { object-position: 38% 18%; animation-duration: 12s; }
       .hero-shade { background: linear-gradient(180deg, rgba(11,11,11,.2) 0%, rgba(11,11,11,0) 18%, rgba(11,11,11,.35) 40%, var(--black) 62%); }
@@ -660,8 +671,10 @@
   <div class="tip" id="tip" role="tooltip"></div>
   <canvas id="burst" aria-hidden="true"></canvas>
 
-  <div class="concept-bar" role="note">
-    <span class="cb-long">Design concept by <a href="https://catscreations.co.za/">Cat's Creations</a>. Not the official Kaizer Chiefs website. Fixtures, stats, player names and copy are placeholders.</span><span class="cb-short">Concept by <a href="https://catscreations.co.za/">Cat's Creations</a> &middot; not the official club site</span>
+  <div class="concept-pill" id="concept-pill" role="note">
+    <span class="dot" aria-hidden="true"></span>
+    <span><b>Design concept</b> by <a href="https://catscreations.co.za/">Cat's Creations</a><span class="full"> &middot; not the official Kaizer Chiefs website</span><span class="short"> &middot; unofficial</span></span>
+    <button type="button" aria-label="Dismiss concept notice">&times;</button>
   </div>
 
   <header class="site-header" id="top">
@@ -1093,6 +1106,15 @@
         s.style.setProperty('--i', ci++);
         line.appendChild(s);
       });
+    });
+
+    /* ---------- Concept notice pill ---------- */
+    var pill = $('#concept-pill'), dismissed = false;
+    try { dismissed = sessionStorage.getItem('kc-pill') === '1'; } catch (e) {}
+    if (!dismissed) setTimeout(function () { pill.classList.add('show'); }, reduce ? 0 : 1600);
+    $('button', pill).addEventListener('click', function () {
+      pill.classList.add('gone');
+      try { sessionStorage.setItem('kc-pill', '1'); } catch (e) {}
     });
 
     /* ---------- Mobile menu ---------- */
