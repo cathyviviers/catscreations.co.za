@@ -11,17 +11,6 @@
       ],
       "destination": "https://:client.catscreations.co.za/:path*",
       "permanent": true
-    },
-    {
-      "source": "/",
-      "has": [
-        {
-          "type": "host",
-          "value": "^(?<client>(?!www\\.)[a-z0-9-]+)\\.catscreations\\.co\\.za$"
-        }
-      ],
-      "destination": "/clients/:client/",
-      "permanent": false
     }
   ],
   "rewrites": [
