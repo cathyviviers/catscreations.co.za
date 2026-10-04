@@ -60,17 +60,28 @@ p { margin: 0 0 1em; }
 :focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
 .dark :focus-visible { outline-color: var(--yellow); }
 
-/* Concept bar */
+/* Concept note: a small frosted pill, same family as the other Cat's Creations pitches */
 .concept {
-  background: var(--ink);
-  color: #d8d9de;
-  font-size: .8rem;
-  padding: 7px 0;
+  position: fixed; left: 16px; bottom: 16px; z-index: 90; display: flex; align-items: center; gap: 10px; max-width: calc(100vw - 32px);
+  font-size: 12.5px; line-height: 1.35; color: #c9cad0; padding: 8px 8px 8px 14px; border-radius: 999px;
+  background: rgba(11,11,12,.74); border: 1px solid rgba(255,255,255,.14);
+  -webkit-backdrop-filter: blur(14px) saturate(150%); backdrop-filter: blur(14px) saturate(150%);
+  box-shadow: 0 16px 40px -16px rgba(0,0,0,.7); transition: opacity .3s ease, transform .3s ease;
 }
-.concept .wrap { display: flex; gap: 6px 18px; flex-wrap: wrap; align-items: center; justify-content: center; text-align: center; }
-.concept strong { color: #fff; font-weight: 600; }
-.concept a { color: var(--yellow); text-decoration: none; font-weight: 600; white-space: nowrap; }
+.concept.tuck { opacity: 0; transform: translateY(16px); pointer-events: none; }
+.concept.hide { opacity: 0; transform: translateY(12px); pointer-events: none; visibility: hidden; }
+.concept-dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: #e0479a; box-shadow: 0 0 0 4px rgba(224,71,154,.18); }
+.concept b { color: #fff; font-weight: 600; }
+.concept a { color: #ff8cc6; font-weight: 600; text-decoration: none; }
 .concept a:hover { text-decoration: underline; }
+.concept-links { display: inline-flex; gap: 12px; padding-left: 12px; border-left: 1px solid rgba(255,255,255,.18); white-space: nowrap; }
+.concept-links a { color: var(--yellow); }
+.concept button { flex: none; width: 26px; height: 26px; border-radius: 50%; border: 0; background: rgba(255,255,255,.08); color: #c9cad0; font-size: 15px; line-height: 1; }
+.concept button:hover { background: rgba(255,255,255,.16); }
+@media (max-width: 640px) {
+  .concept-long, .concept-links { display: none; }
+  .toast { bottom: 72px; }
+}
 
 /* Header */
 .site-head {

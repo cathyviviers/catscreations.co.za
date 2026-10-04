@@ -87,8 +87,6 @@
     if (head) {
       head.outerHTML =
         '<a class="skip" href="#main">Skip to content</a>' +
-        '<div class="concept"><div class="wrap"><span><strong>Concept preview</strong> for Nikon South Africa by Cat\'s Creations. Bookings and payments are simulated.</span>' +
-        '<a href="' + ROOT + 'proposal/">Read the proposal</a><a href="' + ROOT + 'manage/">See the admin dashboard</a></div></div>' +
         '<header class="site-head"><div class="wrap">' +
         '<a class="brand" href="' + ROOT + '"><img src="' + ROOT + 'images/logo.png" alt="Nikon School" width="52" height="52"><span>South<br>Africa</span></a>' +
         '<nav class="nav" id="nav" aria-label="Main">' +
@@ -194,6 +192,35 @@
     var b = e.target.closest("[data-theme-toggle]");
     if (b) { e.preventDefault(); toggleTheme(b); }
   });
+
+  /* ---------- concept note ---------- */
+  function conceptNote() {
+    var links = PAGE === "manage"
+      ? [["", "Website"], ["proposal/", "Proposal"]]
+      : [["proposal/", "Proposal"], ["manage/", "Dashboard"]];
+    var note = document.createElement("div");
+    note.className = "concept";
+    note.id = "concept";
+    note.setAttribute("role", "note");
+    note.innerHTML = '<span class="concept-dot" aria-hidden="true"></span>' +
+      '<span><b>Design concept</b> by <a href="https://catscreations.co.za" target="_blank" rel="noopener">Cat\'s Creations</a><span class="concept-long"> &middot; not the official Nikon School website</span></span>' +
+      '<span class="concept-links">' + links.map(function (l) { return '<a href="' + ROOT + l[0] + '">' + l[1] + "</a>"; }).join("") + "</span>" +
+      '<button type="button" aria-label="Hide concept note">&times;</button>';
+    document.body.appendChild(note);
+    // Hidden for the rest of the visit once closed
+    try { if (sessionStorage.getItem("ns-note") === "0") note.classList.add("hide"); } catch (e) {}
+    note.querySelector("button").addEventListener("click", function () {
+      note.classList.add("hide");
+      try { sessionStorage.setItem("ns-note", "0"); } catch (e) {}
+    });
+    // Tucks away while scrolling down, comes back on scroll up
+    var lastY = window.scrollY;
+    window.addEventListener("scroll", function () {
+      var y = window.scrollY;
+      note.classList.toggle("tuck", y > 300 && y > lastY);
+      lastY = y;
+    }, { passive: true });
+  }
 
   var toastTimer;
   function toast(msg) {
@@ -648,6 +675,7 @@
 
   /* ---------- boot ---------- */
   renderLayout();
+  conceptNote();
   setTheme(currentTheme());
   ({ home: pageHome, workshops: pageWorkshops, workshop: pageWorkshop, creators: pageCreators, creator: pageCreator }[PAGE] || function () {})();
   window.NS = { I: I, art: art, avatar: avatar, money: money, dt: dt, person: person, workshop: workshop, seatsLeft: seatsLeft, nextSession: nextSession, toast: toast, copy: copy, esc: esc, roleLabel: roleLabel, ROOT: ROOT, LIVE_DOMAIN: LIVE_DOMAIN, openModal: openModal, closeModal: closeModal, THEME_ICONS: THEME_ICONS, setTheme: setTheme, currentTheme: currentTheme };
