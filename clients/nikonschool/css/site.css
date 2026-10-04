@@ -1057,3 +1057,15 @@ html .reveal.in { opacity: 1; translate: 0 0; }
 .to-top svg { width: 20px; height: 20px; }
 .to-top.show { opacity: 1; transform: none; pointer-events: auto; }
 .to-top:hover { border-color: var(--yellow); }
+
+
+/* ---------- Background: a faint viewfinder focusing screen ---------- */
+:root { --grid-ink: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='192' height='192' viewBox='0 0 192 192'%3E%3Cg fill='none' stroke='%230b0b0c' stroke-width='1.2' stroke-linecap='round' opacity='.11'%3E%3Cpath d='M48 42v12M42 48h12M144 138v12M138 144h12'/%3E%3Cpath d='M135 41v-6h6M147 35h6v6M153 55v6h-6M141 61h-6v-6'/%3E%3C/g%3E%3Cg fill='%230b0b0c' opacity='.16'%3E%3Ccircle cx='0' cy='0' r='1.3'/%3E%3Ccircle cx='192' cy='0' r='1.3'/%3E%3Ccircle cx='0' cy='192' r='1.3'/%3E%3Ccircle cx='192' cy='192' r='1.3'/%3E%3Ccircle cx='96' cy='96' r='1.3'/%3E%3Ccircle cx='48' cy='144' r='1.6'/%3E%3C/g%3E%3C/svg%3E"); --grid-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='192' height='192' viewBox='0 0 192 192'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='1.2' stroke-linecap='round' opacity='.07'%3E%3Cpath d='M48 42v12M42 48h12M144 138v12M138 144h12'/%3E%3Cpath d='M135 41v-6h6M147 35h6v6M153 55v6h-6M141 61h-6v-6'/%3E%3C/g%3E%3Cg fill='%23ffffff' opacity='.11'%3E%3Ccircle cx='0' cy='0' r='1.3'/%3E%3Ccircle cx='192' cy='0' r='1.3'/%3E%3Ccircle cx='0' cy='192' r='1.3'/%3E%3Ccircle cx='192' cy='192' r='1.3'/%3E%3Ccircle cx='96' cy='96' r='1.3'/%3E%3Ccircle cx='48' cy='144' r='1.6'/%3E%3C/g%3E%3C/svg%3E"); }
+:root body, :root .cream, :root .admin-main { background-image: var(--grid-ink); background-size: 192px 192px; }
+:root .dark, :root .site-foot, :root .admin-side { background-image: var(--grid-light); background-size: 192px 192px; }
+:root[data-theme="dark"] body, :root[data-theme="dark"] .cream, :root[data-theme="dark"] .admin-main,
+:root[data-theme="dark"] .dark, :root[data-theme="dark"] .site-foot { background-image: var(--grid-light); background-size: 192px 192px; }
+/* Hero: let the pattern fade out behind the glow so the headline stays clean */
+:root .hero.dark { background-image: radial-gradient(ellipse at 30% 50%, var(--ink) 20%, transparent 70%), var(--grid-light); background-size: auto, 192px 192px; }
+:root[data-theme="dark"] .hero.dark { background-image: radial-gradient(ellipse at 30% 50%, #08090a 20%, transparent 70%), var(--grid-light); background-size: auto, 192px 192px; }
+@media print { :root body, :root .cream, :root .dark { background-image: none; } }
