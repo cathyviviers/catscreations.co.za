@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ouma se Nes | Home Industry Bakery, Waverley Plaza, Pretoria</title>
   <meta name="description" content="Ouma se Nes is a home industry bakery at Waverley Plaza, Pretoria. Custom themed cakes, platters, rusks, tarts and treats, plus gluten-free, sugar-free and vegan options on quote." />
+  <!-- Pitch concept: keep out of search engines and the sitemap -->
+  <meta name="robots" content="noindex, nofollow" />
   <link rel="canonical" href="https://oumasenes.catscreations.co.za/" />
   <meta name="theme-color" content="#71a6ae" />
   <link rel="icon" type="image/png" href="images/favicon.png" />
@@ -218,6 +220,19 @@
       .gallery { grid-template-columns: 1fr 1fr; grid-auto-rows: 150px; }
       .top .btn { padding: 10px 16px; font-size: .9rem; }
     }
+
+    /* Concept note (same pill as the other client concepts) */
+    .concept { position: fixed; left: 16px; bottom: 16px; z-index: 60; display: flex; align-items: center; gap: 10px; max-width: calc(100vw - 32px);
+      font-family: "Inter", system-ui, sans-serif; font-size: 12.5px; color: #c9d5e6; padding: 8px 8px 8px 14px; border-radius: 999px;
+      background: rgba(8, 24, 44, .72); border: 1px solid rgba(255, 255, 255, .14); -webkit-backdrop-filter: blur(14px) saturate(150%); backdrop-filter: blur(14px) saturate(150%);
+      box-shadow: 0 16px 40px -16px rgba(0, 0, 0, .7); transition: opacity .3s ease, transform .3s ease; }
+    .concept.tuck { opacity: 0; transform: translateY(16px); pointer-events: none; }
+    .concept.hide { opacity: 0; transform: translateY(12px); pointer-events: none; }
+    .concept-dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: #e0479a; box-shadow: 0 0 0 4px rgba(224, 71, 154, .18); }
+    .concept a { color: #ff8cc6; font-weight: 600; text-decoration: none; }
+    .concept button { flex: none; width: 26px; height: 26px; border-radius: 50%; border: 0; background: rgba(255, 255, 255, .08); color: #c9d5e6; font-size: 15px; line-height: 1; cursor: pointer; }
+    .concept button:hover { background: rgba(255, 255, 255, .16); }
+    @media (max-width: 600px) { .concept-long { display: none; } }
 
     /* ---------- Motion ---------- */
     @keyframes float { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-12px) rotate(-1.5deg); } }
@@ -450,6 +465,12 @@
     </section>
   </main>
 
+  <div class="concept" id="concept" role="note">
+    <span class="concept-dot" aria-hidden="true"></span>
+    <span><b>Design concept</b> by <a href="https://catscreations.co.za" target="_blank" rel="noopener">Cat's Creations</a><span class="concept-long"> &middot; not the official Ouma se Nes website</span></span>
+    <button type="button" id="conceptClose" aria-label="Hide concept note">&times;</button>
+  </div>
+
   <footer>
     <div class="wrap">
       <div class="social">
@@ -463,6 +484,27 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Concept note: hide for the rest of the visit when closed, and tuck away while scrolling down
+    (function () {
+      var note = document.getElementById('concept');
+      try { if (sessionStorage.getItem('osn-note') === '0') note.classList.add('hide'); } catch (e) {}
+      document.getElementById('conceptClose').addEventListener('click', function () {
+        note.classList.add('hide');
+        try { sessionStorage.setItem('osn-note', '0'); } catch (e) {}
+      });
+      var lastY = 0, ticking = false;
+      window.addEventListener('scroll', function () {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(function () {
+          var y = window.scrollY;
+          note.classList.toggle('tuck', y > 300 && y > lastY);
+          lastY = y;
+          ticking = false;
+        });
+      }, { passive: true });
+    })();
 
     // Every card on screen turns to face the mouse pointer, wherever it is on the page,
     // with a soft light on the side nearest the pointer.
