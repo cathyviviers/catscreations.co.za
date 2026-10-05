@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en-ZA" data-root="../" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Resolve every relative path from the presentation folder, whether opened at /presentation or /presentation/ -->
+  <base href="/clients/nikonschool/presentation/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Presentation | Nikon School South Africa</title>
+  <meta name="description" content="The Nikon School South Africa website proposal by Cat's Creations, as an interactive presentation." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Nikon School South Africa (design concept)" />
+  <meta property="og:title" content="Presentation | Nikon School South Africa" />
+  <meta property="og:description" content="The Nikon School South Africa website proposal by Cat's Creations, as an interactive presentation." />
+  <meta property="og:image" content="https://nikonschool.catscreations.co.za/clients/nikonschool/images/og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0b0b0c" />
+  <link rel="icon" type="image/png" href="../images/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..900&family=Inter:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="../css/site.css" />
+  <style>
+    :root { --y: #FFE100; --k: #0E0E10; --k2: #1A1B1F; --k3: #2C2D33; --p: #F6F5F1; --m: #A3A5AD; --b: #4A4C52; --s: 1; }
+    html, body { height: 100%; margin: 0; overflow: hidden; background: #050506 !important; background-image: none !important; color: var(--p); }
+    body { font-family: Inter, Arial, sans-serif; }
+    .viewport { position: fixed; inset: 0; }
+    .stage { position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px; transform: translate(-50%, -50%) scale(var(--s)); transform-origin: 50% 50%; overflow: hidden; border-radius: 6px; box-shadow: 0 30px 120px rgba(0,0,0,.6); }
+    .slide { position: absolute; inset: 0; padding: 128px; display: flex; flex-direction: column; gap: 48px; background: var(--k); color: var(--p); opacity: 0; visibility: hidden; transition: opacity .55s ease, visibility 0s linear .55s; }
+    .slide.on { opacity: 1; visibility: visible; transition: opacity .55s ease; z-index: 2; }
+    .slide.light { background: var(--p); color: var(--k); }
+    .slide.yellow { background: var(--y); color: var(--k); }
+    .slide.dark { background: var(--k); }
+    .slide.light, .slide.dark-grid { background-image: none; }
+    .slide.dark-grid { background-image: var(--grid-light); background-size: 192px 192px; }
+    .slide.light.grid { background-image: var(--grid-ink); background-size: 192px 192px; }
+    /* entrance: children marked .a rise in, staggered */
+    .slide .a { opacity: 0; translate: 0 28px; transition: opacity .6s ease, translate .7s cubic-bezier(.2,.8,.2,1); }
+    .slide.on .a { opacity: 1; translate: 0 0; }
+    .slide.on .a:nth-child(2) { transition-delay: .08s; } .slide.on .a:nth-child(3) { transition-delay: .16s; } .slide.on .a:nth-child(4) { transition-delay: .24s; } .slide.on .a:nth-child(5) { transition-delay: .32s; } .slide.on .a:nth-child(6) { transition-delay: .4s; }
+    .eyebrow2 { font: 700 24px/1.2 Inter, sans-serif; letter-spacing: 4px; text-transform: uppercase; color: var(--y); margin: 0; }
+    .light .eyebrow2 { color: #6B6D73; }
+    .yellow .eyebrow2 { color: #3A3200; }
+    .h1 { font: 800 96px/1.02 Archivo, sans-serif; letter-spacing: -2px; margin: 0; }
+    .h2 { font: 800 72px/1.08 Archivo, sans-serif; letter-spacing: -1px; margin: 0; }
+    .h3 { font: 700 32px/1.2 Archivo, sans-serif; margin: 0; }
+    .t { font-size: 28px; line-height: 1.45; margin: 0; color: var(--m); }
+    .light .t { color: var(--b); }
+    .sm { font-size: 24px; line-height: 1.45; margin: 0; color: var(--m); }
+    .light .sm { color: var(--b); }
+    .y { color: var(--y); }
+    .shot { display: block; border-radius: 20px; border: 1px solid var(--k3); object-fit: cover; box-shadow: 0 30px 80px rgba(0,0,0,.45); }
+    .light .shot { border-color: #E2E0D8; box-shadow: 0 30px 80px rgba(14,14,16,.18); }
+    .row { display: flex; gap: 32px; }
+    .col { display: flex; flex-direction: column; gap: 20px; }
+    .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .card2 { background: #FFFFFC; border: 1px solid #E2E0D8; border-radius: 20px; padding: 36px; }
+    .dark .card2, .dark-grid .card2 { background: var(--k2); border-color: var(--k3); }
+    .hint { position: absolute; right: 128px; bottom: 64px; font-size: 22px; color: var(--m); display: flex; gap: 10px; align-items: center; }
+    .light .hint { color: #6B6D73; }
+    kbd { font: 600 18px ui-monospace, monospace; border: 1px solid currentColor; border-radius: 6px; padding: 2px 8px; opacity: .8; }
+
+    /* cover */
+    .cover-art { position: absolute; right: 120px; top: 50%; translate: 0 -50%; width: 760px; height: 760px; border-radius: 50%; overflow: hidden; box-shadow: 0 0 0 14px #141518, 0 0 160px rgba(255,225,0,.25); }
+    .cover-art .art-box { width: 100%; height: 100%; }
+
+    /* flip cards */
+    .flip { perspective: 1400px; cursor: pointer; height: 250px; }
+    .flip-in { position: relative; width: 100%; height: 100%; transition: transform .7s cubic-bezier(.2,.8,.2,1); transform-style: preserve-3d; }
+    .flip.open .flip-in { transform: rotateY(180deg); }
+    .flip-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 20px; padding: 34px; display: flex; flex-direction: column; gap: 12px; }
+    .flip-front { background: #FFFFFC; border: 1px solid #E2E0D8; border-top: 6px solid #C8332B; }
+    .flip-back { background: var(--k); color: var(--p); border-top: 6px solid var(--y); transform: rotateY(180deg); }
+    .flip-back .sm { color: #C9CAD0; }
+    .flip-tag { font: 800 18px Inter, sans-serif; letter-spacing: 2px; text-transform: uppercase; }
+    .flip-front .flip-tag { color: #C8332B; } .flip-back .flip-tag { color: var(--y); }
+    .btn2 { font: 700 24px Inter, sans-serif; padding: 16px 30px; border-radius: 999px; border: 2px solid currentColor; background: transparent; color: inherit; cursor: pointer; }
+    .btn2.fill { background: var(--y); border-color: var(--y); color: var(--k); }
+    .btn2:hover { filter: brightness(1.08); }
+
+    /* funnel */
+    .fstep { position: relative; background: var(--k2); border-radius: 20px; padding: 40px; border-top: 6px solid var(--k3); display: flex; flex-direction: column; gap: 16px; cursor: pointer; transition: border-color .4s, transform .4s cubic-bezier(.2,.8,.2,1), background .4s; }
+    .fstep.lit { border-color: var(--y); transform: translateY(-10px); background: #222327; }
+    .fstep .num { font: 700 24px Inter, sans-serif; letter-spacing: 3px; color: var(--m); transition: color .4s; }
+    .fstep.lit .num { color: var(--y); }
+    .track { position: relative; height: 6px; background: var(--k3); border-radius: 3px; margin-top: 8px; }
+    .track i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--y); border-radius: 3px; width: 0; transition: width .6s cubic-bezier(.2,.8,.2,1); box-shadow: 0 0 18px rgba(255,225,0,.6); }
+
+    /* live site frame */
+    .browser { border-radius: 18px; overflow: hidden; border: 1px solid var(--k3); background: #fff; box-shadow: 0 40px 100px rgba(0,0,0,.55); }
+    .browser-bar { height: 56px; background: #1E1F23; display: flex; align-items: center; gap: 16px; padding: 0 20px; }
+    .browser-bar i { width: 14px; height: 14px; border-radius: 50%; background: #3A3B42; display: inline-block; }
+    .url { flex: 1; background: #2A2B30; color: #C9CAD0; border-radius: 10px; padding: 8px 16px; font: 500 20px ui-monospace, monospace; }
+    .browser iframe { display: block; border: 0; background: #fff; }
+    .tabs { display: flex; flex-wrap: wrap; gap: 12px; }
+    .tab { font: 600 22px Inter, sans-serif; padding: 12px 22px; border-radius: 999px; border: 1.5px solid var(--k3); background: var(--k2); color: var(--p); cursor: pointer; }
+    .tab.on { background: var(--y); color: var(--k); border-color: var(--y); }
+
+    /* booking stepper */
+    .stepshot { flex: 1; display: flex; flex-direction: column; gap: 18px; cursor: pointer; transition: flex .7s cubic-bezier(.2,.8,.2,1), opacity .4s; opacity: .55; }
+    .stepshot.big { flex: 2.2; opacity: 1; }
+    .stepshot img { width: 100%; height: 560px; object-fit: cover; object-position: top center; }
+
+    /* link builder */
+    .lb { background: var(--k2); border: 1px solid var(--k3); border-radius: 24px; padding: 40px; display: flex; flex-direction: column; gap: 26px; }
+    .lb label { font: 700 20px Inter, sans-serif; letter-spacing: 2px; text-transform: uppercase; color: var(--m); }
+    .lb select, .lb input { font: 500 28px Inter, sans-serif; padding: 14px 20px; border-radius: 14px; border: 1.5px solid var(--k3); background: #111214; color: var(--p); width: 100%; }
+    .plat { display: flex; gap: 12px; flex-wrap: wrap; }
+    .plat .tab { font-size: 20px; padding: 10px 18px; }
+    .lb-out { font: 500 24px/1.45 ui-monospace, monospace; background: #0B0B0C; border-radius: 14px; padding: 22px 24px; color: #E8E8EA; word-break: break-all; }
+    .lb-out b { color: var(--y); font-weight: 600; }
+
+    /* counters & kpis */
+    .big-num { font: 900 220px/0.9 Archivo, sans-serif; letter-spacing: -6px; margin: 0; }
+    .kpi2 { background: #FFFFFC; border: 1px solid #E2E0D8; border-radius: 20px; padding: 28px 30px; }
+    .kpi2 small { font-size: 22px; color: #6B6D73; font-weight: 600; }
+    .kpi2 b { display: block; font: 800 64px/1.1 Archivo, sans-serif; color: var(--k); margin-top: 6px; }
+
+    /* art gallery */
+    .gal { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .gal .art-box { height: 230px; border-radius: 18px; border: 1px solid var(--k3); }
+    .gal-cap { font-size: 20px; color: var(--m); margin-top: 8px; }
+
+    /* phases */
+    .ph { border-top: 4px solid var(--k3); padding-top: 28px; display: flex; flex-direction: column; gap: 14px; transition: border-color .5s; }
+    .ph.lit { border-color: var(--y); }
+    .ph .n { font: 900 64px/1 Archivo, sans-serif; color: var(--k3); transition: color .5s; }
+    .ph.lit .n { color: var(--y); }
+
+    /* chrome: controls, progress, notes, overview */
+    .progress2 { position: fixed; left: 0; top: 0; height: 4px; background: var(--y); z-index: 20; transition: width .5s cubic-bezier(.2,.8,.2,1); box-shadow: 0 0 12px rgba(255,225,0,.6); }
+    .ctrl { position: fixed; left: 50%; bottom: 20px; translate: -50% 0; z-index: 20; display: flex; align-items: center; gap: 6px; padding: 8px; border-radius: 999px; background: rgba(14,14,16,.78); border: 1px solid rgba(255,255,255,.14); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); transition: opacity .4s, translate .4s; }
+    .ctrl.idle { opacity: 0; translate: -50% 20px; pointer-events: none; }
+    .ctrl button { width: 44px; height: 44px; border-radius: 50%; border: 0; background: transparent; color: #E8E8EA; display: grid; place-items: center; cursor: pointer; }
+    .ctrl button:hover { background: rgba(255,255,255,.1); }
+    .ctrl button[aria-pressed="true"] { background: var(--y); color: var(--k); }
+    .ctrl svg { width: 20px; height: 20px; }
+    .ctrl .count { font: 600 15px Inter, sans-serif; color: #C9CAD0; min-width: 64px; text-align: center; }
+    .ctrl .sep { width: 1px; height: 24px; background: rgba(255,255,255,.16); margin: 0 4px; }
+    .ctrl a { font: 600 14px Inter, sans-serif; color: var(--y); text-decoration: none; padding: 0 12px; white-space: nowrap; }
+    .notes { position: fixed; left: 50%; bottom: 84px; translate: -50% 0; width: min(900px, calc(100vw - 32px)); z-index: 19; background: rgba(14,14,16,.92); border: 1px solid rgba(255,255,255,.14); border-radius: 18px; padding: 18px 22px; font-size: 16px; line-height: 1.55; color: #E8E8EA; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+    .notes[hidden] { display: none; }
+    .notes b { color: var(--y); display: block; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 6px; }
+    .ov { position: fixed; inset: 0; z-index: 30; background: rgba(5,5,6,.94); overflow: auto; padding: 48px 24px; }
+    .ov[hidden] { display: none; }
+    .ov h2 { font: 800 28px Archivo, sans-serif; text-align: center; margin: 0 0 28px; color: var(--p); }
+    .ov-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; max-width: 1200px; margin: 0 auto; }
+    .ov-item { aspect-ratio: 16/9; border-radius: 14px; border: 1px solid var(--k3); background: var(--k2); color: var(--p); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; text-align: left; cursor: pointer; font: inherit; }
+    .ov-item b { font: 800 34px Archivo, sans-serif; color: var(--m); }
+    .ov-item span { font-size: 15px; font-weight: 600; }
+    .ov-item.cur { border-color: var(--y); box-shadow: 0 0 0 2px var(--y); }
+    .ov-item.cur b { color: var(--y); }
+    .rotate { display: none; }
+    @media (max-width: 700px) and (orientation: portrait) {
+      .rotate { display: flex; position: fixed; left: 16px; right: 16px; top: 16px; z-index: 25; background: var(--y); color: var(--k); border-radius: 14px; padding: 10px 14px; font: 600 14px Inter, sans-serif; gap: 8px; align-items: center; }
+    }
+    @media (prefers-reduced-motion: reduce) { .slide, .slide .a, .flip-in, .stepshot, .fstep { transition: none !important; } }
+  </style>
+</head>
+<body data-page="presentation">
+  <div class="progress2" id="prog"></div>
+  <div class="rotate">Turn your phone sideways for the best view</div>
+
+  <div class="viewport">
+    <div class="stage" id="stage">
+
+      <!-- 1. Cover -->
+      <div class="slide dark-grid" data-title="Cover" data-notes="Thank them for the time. This is a working concept, not a mock-up: everything is clickable at nikonschool.catscreations.co.za. Move your mouse: the aperture follows you, like the artwork across the site.">
+        <div style="position:absolute;right:-200px;top:-200px;width:1100px;height:1100px;background:radial-gradient(circle, rgba(255,225,0,.18), transparent 62%)"></div>
+        <div class="col" style="width:900px;gap:40px;margin-top:40px">
+          <img class="a" src="../images/logo.png" alt="Nikon School" style="width:112px;height:112px">
+          <p class="eyebrow2 a">Website proposal &middot; October 2026</p>
+          <h1 class="h1 a">A Nikon School site that <span class="y">sells seats.</span></h1>
+          <p class="t a" style="font-size:32px">Prepared for Nikon South Africa by Cat's Creations</p>
+        </div>
+        <div class="cover-art a" id="coverArt"></div>
+        <p class="hint"><kbd>&rarr;</kbd> to begin</p>
+      </div>
+
+      <!-- 2. Today -->
+      <div class="slide light grid" data-title="Today" data-notes="The current site works technically, but it was set up as an online shop. Click a card to flip it and show the fix, or use Show all fixes. The free class, the best marketing Nikon School has, currently leads nowhere.">
+        <div class="col a" style="gap:16px">
+          <p class="eyebrow2">The starting point</p>
+          <h2 class="h2">Today, workshops are sold like boxes on a shelf</h2>
+        </div>
+        <div class="grid3 a" id="flips"></div>
+        <div class="row a" style="align-items:center;gap:20px">
+          <button class="btn2" id="flipAll" type="button">Show all fixes</button>
+          <p class="sm">Click any card to see what the new site does instead.</p>
+        </div>
+      </div>
+
+      <!-- 3. Big idea -->
+      <div class="slide yellow" data-title="The big idea" data-notes="The one idea to remember. Someone buys a Nikon, books the free class, and leaves with a clear next step. The site, the confirmation email and the class itself all point to a matching paid workshop." style="justify-content:center">
+        <p class="eyebrow2 a">The big idea</p>
+        <h1 class="a" style="font:900 150px/1 Archivo,sans-serif;letter-spacing:-4px;margin:0;color:var(--k)">Free class in.<br>Paid workshops out.</h1>
+        <p class="a" style="font-size:36px;line-height:1.4;color:#2A2600;width:1260px;margin:0">LightCraft becomes the front door. Every free booking ends with a recommended paid workshop, from a creator who shoots the photos that person wants to take.</p>
+      </div>
+
+      <!-- 4. Funnel -->
+      <div class="slide dark-grid" data-title="The path" data-notes="Watch the path light up step by step, or click a step. The key part is step three: today nothing happens after the free class. In the new site every free booking is followed by a recommendation, and the dashboard measures free-to-paid conversion." style="justify-content:space-between">
+        <div class="col a" style="gap:16px">
+          <p class="eyebrow2">How it works</p>
+          <h2 class="h2">One path from new owner to paying student</h2>
+        </div>
+        <div class="a">
+          <div class="grid4" id="funnel">
+            <div class="fstep" data-i="0"><span class="num">01 &middot; ATTRACT</span><h3 class="h3" style="font-size:36px">New Nikon owner</h3><p class="sm">Finds Nikon School through an ad, a creator's post, an in-box card or the retailer.</p></div>
+            <div class="fstep" data-i="1"><span class="num">02 &middot; START FREE</span><h3 class="h3" style="font-size:36px">Books LightCraft</h3><p class="sm">Two-minute booking, camera model captured, reminders sent automatically.</p></div>
+            <div class="fstep" data-i="2"><span class="num">03 &middot; RECOMMEND</span><h3 class="h3" style="font-size:36px">Gets a next step</h3><p class="sm">The confirmation, the class and the follow-up all point to a matching paid workshop.</p></div>
+            <div class="fstep" data-i="3"><span class="num">04 &middot; CONVERT</span><h3 class="h3" style="font-size:36px">Books a paid workshop</h3><p class="sm">Pays by card, instant EFT or QR. The dashboard tracks free-to-paid conversion.</p></div>
+          </div>
+          <div class="track" style="margin-top:40px"><i id="track"></i></div>
+        </div>
+      </div>
+
+      <!-- 5. Live site -->
+      <div class="slide dark" data-title="Try it live" data-notes="This is the real concept site running inside the slide. Click around: open a workshop, flip day and night mode, press / to search. The tabs jump to key pages." style="gap:32px">
+        <div class="row a" style="justify-content:space-between;align-items:flex-end">
+          <div class="col" style="gap:16px">
+            <p class="eyebrow2">Try it live</p>
+            <h2 class="h2">The real site, right here</h2>
+          </div>
+          <div class="tabs" id="liveTabs">
+            <button class="tab on" data-src="../">Home</button>
+            <button class="tab" data-src="../workshops/">Workshops</button>
+            <button class="tab" data-src="../workshops/lightcraft-fundamentals/">Free class</button>
+            <button class="tab" data-src="../creators/?role=ambassador">Ambassadors</button>
+            <button class="tab" data-src="../manage/">Dashboard</button>
+          </div>
+        </div>
+        <div class="browser a">
+          <div class="browser-bar"><i></i><i></i><i></i><span class="url" id="liveUrl">nikonschool.catscreations.co.za</span></div>
+          <iframe id="live" title="Live Nikon School concept site" data-src="../" style="width:1664px;height:700px" loading="lazy"></iframe>
+        </div>
+      </div>
+
+      <!-- 6. Booking -->
+      <div class="slide dark-grid" data-title="Booking" data-notes="Click each step to enlarge it, or let it play. Pick a date, pay by card, instant EFT or QR, and you're confirmed with a recommended next workshop. Payments are simulated in the concept; the live build uses PayFast, Yoco or Peach, so card details never touch the site." style="gap:40px">
+        <div class="col a" style="gap:16px">
+          <p class="eyebrow2">Booking</p>
+          <h2 class="h2">Booked and paid in under two minutes</h2>
+        </div>
+        <div class="row a" id="steps" style="gap:28px;align-items:flex-start">
+          <div class="stepshot big" data-i="0"><img class="shot" src="../images/presentation/workshop.jpg" alt="Workshop page with dates and seats left"><h3 class="h3">1. Pick a date</h3><p class="sm">Every date, venue and seat count on one page.</p></div>
+          <div class="stepshot" data-i="1"><img class="shot" src="../images/presentation/pay.jpg" alt="Payment step with card, instant EFT and QR"><h3 class="h3">2. Pay your way</h3><p class="sm">Card, instant EFT or scan to pay.</p></div>
+          <div class="stepshot" data-i="2"><img class="shot" src="../images/presentation/booked.jpg" alt="Booking confirmed with a recommended next workshop"><h3 class="h3">3. Confirmed</h3><p class="sm">Calendar invite, reminders and the next workshop.</p></div>
+        </div>
+      </div>
+
+      <!-- 7. People -->
+      <div class="slide light grid" data-title="Ambassadors &amp; Creators" data-notes="The News page becomes Ambassadors and Creators, loaded from Nikon SA's own roster. Each person has a profile, their workshops and a shareable link. Most profiles show a short line until each person sends a bio." style="flex-direction:row;align-items:center;gap:64px">
+        <div class="col" style="width:560px;gap:28px">
+          <p class="eyebrow2 a">News becomes people</p>
+          <h2 class="h2 a" style="font-size:64px">Ambassadors &amp; Creators</h2>
+          <div class="row a" style="align-items:flex-end;gap:20px"><p class="big-num" id="peopleNum">0</p><p class="t" style="width:280px;padding-bottom:20px">people, each with their own page and link</p></div>
+          <div class="row a" id="roleCounts" style="gap:12px;flex-wrap:wrap"></div>
+        </div>
+        <img class="shot a" src="../images/presentation/ambassadors.jpg" alt="Ambassadors page filtered by role" style="width:1040px;height:650px">
+      </div>
+
+      <!-- 8. Links -->
+      <div class="slide dark-grid" data-title="Trackable links" data-notes="This answers Nikon's brief directly: a link per person to use in advertising. Try it: pick a person and a platform, type a campaign name, and the tracked link builds itself. Any booking that starts from that link is credited to that person." style="gap:40px">
+        <div class="col a" style="gap:16px">
+          <p class="eyebrow2">Trackable links</p>
+          <h2 class="h2">Every creator link sells, and you can prove it</h2>
+        </div>
+        <div class="row a" style="gap:48px;align-items:flex-start">
+          <img class="shot" src="../images/presentation/profile.jpg" alt="Brett Florens profile page" style="width:820px;height:512px">
+          <div class="lb" style="flex:1">
+            <div class="col" style="gap:10px"><label for="lbPerson">Person</label><select id="lbPerson"></select></div>
+            <div class="col" style="gap:10px"><label>Where the ad runs</label><div class="plat" id="lbPlat"></div></div>
+            <div class="col" style="gap:10px"><label for="lbCamp">Campaign</label><input id="lbCamp" value="summer-workshops" autocomplete="off"></div>
+            <div class="lb-out" id="lbOut"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9. Dashboard -->
+      <div class="slide light grid" data-title="Dashboard" data-notes="The marketing team runs it day to day: point and click, no code. Numbers are sample data, but the layout is exactly what they'd use: bookings, revenue, free-to-paid conversion and seats filled." style="gap:40px">
+        <div class="col a" style="gap:16px">
+          <p class="eyebrow2">The dashboard</p>
+          <h2 class="h2">Run by the team, no developer needed</h2>
+        </div>
+        <div class="row a" style="gap:48px;align-items:flex-start">
+          <img class="shot" src="../images/presentation/admin.jpg" alt="Admin dashboard overview" style="width:1000px;height:625px">
+          <div class="col" style="flex:1;gap:20px">
+            <div class="kpi2"><small>Bookings this month</small><b data-count="179">0</b></div>
+            <div class="kpi2"><small>Free to paid</small><b data-count="54" data-suffix="%">0</b></div>
+            <div class="kpi2"><small>Seats filled</small><b data-count="42" data-suffix="%">0</b></div>
+            <p class="sm" style="color:#6B6D73">Sample figures from the concept dashboard.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10. Details -->
+      <div class="slide dark-grid" data-title="The details" data-notes="Move your mouse over the tiles: every illustration on the site is animated and reacts to the cursor, ready to swap for Nikon's own photography. Plus night mode, instant search and a mobile-first layout." style="gap:36px">
+        <div class="col a" style="gap:16px">
+          <p class="eyebrow2">The details</p>
+          <h2 class="h2">Made to feel like Nikon, on every screen</h2>
+        </div>
+        <div class="row a" style="gap:40px;align-items:flex-start">
+          <div style="flex:1">
+            <div class="gal" id="gallery"></div>
+            <p class="gal-cap">Live artwork from the site. Move your mouse over it.</p>
+          </div>
+          <div class="row" style="gap:20px">
+            <img class="shot" src="../images/presentation/mobile-home.jpg" alt="Home page on a phone" style="width:248px;height:537px;border-radius:30px;border:6px solid #2C2D33">
+            <img class="shot" src="../images/presentation/mobile-workshop.jpg" alt="Workshop page on a phone" style="width:248px;height:537px;border-radius:30px;border:6px solid #2C2D33">
+          </div>
+        </div>
+      </div>
+
+      <!-- 11. Behind the scenes -->
+      <div class="slide light grid" data-title="How it plugs together" data-notes="The concept simulates these parts. In the live build each one connects to a real service, chosen with Nikon's team. If Nikon wants to keep Shopify, it can stay as the checkout behind the new front end.">
+        <div class="col a" style="gap:16px">
+          <p class="eyebrow2">Behind the scenes</p>
+          <h2 class="h2">How it plugs together</h2>
+        </div>
+        <div class="a" style="display:grid;grid-template-columns:1fr 1fr;gap:28px">
+          <div class="card2 col" style="gap:10px"><h3 class="h3">Payments</h3><p class="sm">PayFast, Yoco or Peach for card, EFT and QR. Shopify can stay behind the scenes if Nikon prefers.</p></div>
+          <div class="card2 col" style="gap:10px"><h3 class="h3">Content management</h3><p class="sm">A simple dashboard for workshops, dates, people and photos.</p></div>
+          <div class="card2 col" style="gap:10px"><h3 class="h3">Email</h3><p class="sm">Confirmations, calendar invites, reminders and a follow-up with the next workshop.</p></div>
+          <div class="card2 col" style="gap:10px"><h3 class="h3">Tracking</h3><p class="sm">Google Analytics, Meta pixel and tagged links per creator and campaign.</p></div>
+        </div>
+      </div>
+
+      <!-- 12. Phases -->
+      <div class="slide dark-grid" data-title="Phases" data-notes="Indicative only; we firm it up after discovery. The point is a clear, staged process with a training session at the end, so the team can run the site themselves from day one." style="justify-content:space-between">
+        <div class="col a" style="gap:16px">
+          <p class="eyebrow2">Getting there</p>
+          <h2 class="h2">Five phases from concept to launch</h2>
+        </div>
+        <div class="a" id="phases" style="display:grid;grid-template-columns:repeat(5,1fr);gap:24px">
+          <div class="ph"><span class="n">1</span><h3 class="h3">Discovery</h3><p class="sm">Workshops, people, gateway and who manages what.</p></div>
+          <div class="ph"><span class="n">2</span><h3 class="h3">Design sign-off</h3><p class="sm">This concept refined with real photography and copy.</p></div>
+          <div class="ph"><span class="n">3</span><h3 class="h3">Build</h3><p class="sm">Payments, dashboard, email and tracking connected.</p></div>
+          <div class="ph"><span class="n">4</span><h3 class="h3">Test and train</h3><p class="sm">Real bookings end to end, then a hands-on team session.</p></div>
+          <div class="ph"><span class="n">5</span><h3 class="h3">Launch</h3><p class="sm">Live on nikonschool.co.za, then tuned on real numbers.</p></div>
+        </div>
+        <p class="sm a">Indicative only. We firm up the plan together after a discovery session.</p>
+      </div>
+
+      <!-- 13. Next -->
+      <div class="slide dark-grid" data-title="Next steps" data-notes="Invite them to click through the live concept on their own phones. Suggest the next step: a discovery session to agree the workshop list, people, payment gateway and who manages what. Then design sign-off with Nikon's real photography." style="flex-direction:row;align-items:center;gap:80px">
+        <div style="position:absolute;left:-200px;bottom:-300px;width:1100px;height:1000px;background:radial-gradient(circle, rgba(255,225,0,.14), transparent 62%)"></div>
+        <div class="col" style="flex:1;gap:36px">
+          <p class="eyebrow2 a">Next steps</p>
+          <h1 class="h1 a" style="font-size:112px">Click through it yourself.</h1>
+          <div class="row a" style="gap:16px;flex-wrap:wrap">
+            <a class="btn2 fill" href="../" target="_top" style="text-decoration:none">Open the live site</a>
+            <a class="btn2" href="../proposal/" target="_top" style="text-decoration:none;color:var(--p)">Read the proposal</a>
+            <a class="btn2" href="../manage/" target="_top" style="text-decoration:none;color:var(--p)">See the dashboard</a>
+          </div>
+          <p class="sm a">nikonschool.catscreations.co.za</p>
+        </div>
+        <div class="col" style="width:620px;gap:30px">
+          <div class="row a" style="gap:24px;align-items:flex-start"><span style="font:900 48px/1 Archivo, sans-serif;color:var(--y)">1</span><p class="t" style="color:var(--p)">Walk the Nikon team through the concept</p></div>
+          <div class="row a" style="gap:24px;align-items:flex-start"><span style="font:900 48px/1 Archivo, sans-serif;color:var(--y)">2</span><p class="t" style="color:var(--p)">Discovery session: workshops, people, payments</p></div>
+          <div class="row a" style="gap:24px;align-items:flex-start"><span style="font:900 48px/1 Archivo, sans-serif;color:var(--y)">3</span><p class="t" style="color:var(--p)">Design sign-off with Nikon's own photography</p></div>
+        </div>
+        <p style="position:absolute;left:128px;bottom:56px;font-size:22px;color:var(--m);margin:0">Cat's Creations &middot; catscreations.co.za &middot; Design concept, not the official Nikon School website</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="notes" id="notes" hidden><b>Speaker notes</b><span id="notesText"></span></div>
+  <div class="ov" id="ov" hidden><h2>All slides</h2><div class="ov-grid" id="ovGrid"></div></div>
+
+  <nav class="ctrl" id="ctrl" aria-label="Presentation controls">
+    <button id="prev" aria-label="Previous slide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+    <span class="count" id="count">1 / 13</span>
+    <button id="next" aria-label="Next slide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+    <span class="sep"></span>
+    <button id="btnNotes" aria-label="Speaker notes (N)" aria-pressed="false" title="Speaker notes (N)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 5h16v11H8l-4 4z"/></svg></button>
+    <button id="btnOv" aria-label="All slides (O)" title="All slides (O)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></button>
+    <button id="btnFs" aria-label="Fullscreen (F)" title="Fullscreen (F)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+    <span class="sep"></span>
+    <a href="../" target="_top">Live site &rarr;</a>
+  </nav>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/art.js"></script>
+  <script>
+  (function () {
+    var D = window.NS_DATA;
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    try { sessionStorage.setItem("ns-intro", "1"); sessionStorage.setItem("ns-note", "0"); } catch (e) {}
+    function $(s, c) { return (c || document).querySelector(s); }
+    function $$(s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); }
+    function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+
+    /* ---------- scale the 1920x1080 stage to the window ---------- */
+    var stage = $("#stage");
+    function fit() { stage.style.setProperty("--s", Math.min(innerWidth / 1920, innerHeight / 1080)); }
+    addEventListener("resize", fit); fit();
+
+    /* ---------- live artwork ---------- */
+    $("#coverArt").innerHTML = '<div class="art-box">' + nsArt("lightcraft") + "</div>";
+    $("#gallery").innerHTML = ["lightcraft", "zseries", "cityscape", "surf", "auto", "ocean"].map(function (k) { return '<div class="art-box">' + nsArt(k) + "</div>"; }).join("");
+
+    /* ---------- flip cards ---------- */
+    var flips = [
+      ["Shop language", "\"Regular price\", \"Sale price\", \"Your cart is empty\".", "Written for workshops: dates, venues, hosts and what you'll learn."],
+      ["Dates are hidden", "Date, city, host and seats only show after a click.", "Every card shows the next date, city and live seats left."],
+      ["The free class goes nowhere", "LightCraft sits beside paid workshops with no path.", "LightCraft is the front door, with a recommended next workshop."],
+      ["News has no job", "Ambassadors and hosts have nowhere to live.", "Ambassadors & Creators: one page and one link per person."],
+      ["No attribution", "No way to see which ad or creator brought a booking.", "Bookings credited to each creator's tracked link."],
+      ["It doesn't feel like Nikon", "A stock theme and \"Powered by Shopify\".", "Black, yellow, bold type and artwork that moves."]
+    ];
+    $("#flips").innerHTML = flips.map(function (f) {
+      return '<div class="flip" role="button" tabindex="0" aria-label="' + esc(f[0]) + ': show the fix"><div class="flip-in">' +
+        '<div class="flip-face flip-front"><span class="flip-tag">Today</span><h3 class="h3">' + esc(f[0]) + '</h3><p class="sm">' + esc(f[1]) + "</p></div>" +
+        '<div class="flip-face flip-back"><span class="flip-tag">The new site</span><h3 class="h3" style="color:var(--p)">' + esc(f[0]) + '</h3><p class="sm">' + esc(f[2]) + "</p></div></div></div>";
+    }).join("");
+    $("#flips").addEventListener("click", function (e) { var f = e.target.closest(".flip"); if (f) f.classList.toggle("open"); });
+    $("#flips").addEventListener("keydown", function (e) { if ((e.key === "Enter" || e.key === " ") && e.target.closest(".flip")) { e.preventDefault(); e.stopPropagation(); e.target.closest(".flip").classList.toggle("open"); } });
+    $("#flipAll").addEventListener("click", function () {
+      var all = $$(".flip"), anyClosed = all.some(function (f) { return !f.classList.contains("open"); });
+      all.forEach(function (f, i) { setTimeout(function () { f.classList.toggle("open", anyClosed); }, reduce ? 0 : i * 110); });
+      this.textContent = anyClosed ? "Show today again" : "Show all fixes";
+    });
+
+    /* ---------- funnel ---------- */
+    var funnelTimer;
+    function lightFunnel(n) {
+      $$("#funnel .fstep").forEach(function (s, i) { s.classList.toggle("lit", i <= n); });
+      $("#track").style.width = ((n + 1) / 4 * 100) + "%";
+    }
+    function playFunnel() {
+      clearInterval(funnelTimer); lightFunnel(-1);
+      var n = -1;
+      funnelTimer = setInterval(function () { n++; lightFunnel(n); if (n >= 3) clearInterval(funnelTimer); }, reduce ? 10 : 900);
+    }
+    $("#funnel").addEventListener("click", function (e) { var s = e.target.closest(".fstep"); if (s) { clearInterval(funnelTimer); lightFunnel(+s.getAttribute("data-i")); } });
+
+    /* ---------- live site frame ---------- */
+    var live = $("#live");
+    $("#liveTabs").addEventListener("click", function (e) {
+      var t = e.target.closest(".tab"); if (!t) return;
+      $$(".tab", this).forEach(function (x) { x.classList.toggle("on", x === t); });
+      live.src = t.getAttribute("data-src");
+      $("#liveUrl").textContent = "nikonschool.catscreations.co.za/" + t.getAttribute("data-src").replace(/^\.\.\//, "");
+    });
+
+    /* ---------- booking stepper ---------- */
+    var stepTimer, stepI = 0;
+    function showStep(i) { stepI = i; $$("#steps .stepshot").forEach(function (s, k) { s.classList.toggle("big", k === i); }); }
+    function playSteps() { clearInterval(stepTimer); showStep(0); if (reduce) return; stepTimer = setInterval(function () { showStep((stepI + 1) % 3); }, 3200); }
+    $("#steps").addEventListener("click", function (e) { var s = e.target.closest(".stepshot"); if (s) { clearInterval(stepTimer); showStep(+s.getAttribute("data-i")); } });
+
+    /* ---------- counters ---------- */
+    function countUp(el, to, suffix) {
+      if (reduce) { el.textContent = to + (suffix || ""); return; }
+      var t0 = performance.now(), dur = 1400;
+      (function tick(t) {
+        var p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(to * e) + (suffix || "");
+        if (p < 1) requestAnimationFrame(tick);
+      })(t0);
+    }
+    var roster = D.people.filter(function (p) { return ["ambassador", "collaborator", "creator"].indexOf(p.role) >= 0; });
+    var counts = { ambassador: 0, collaborator: 0, creator: 0 };
+    roster.forEach(function (p) { counts[p.role]++; });
+    $("#roleCounts").innerHTML = [["ambassador", "Ambassadors"], ["collaborator", "Collaborators"], ["creator", "Creators"]].map(function (r) {
+      return '<span style="font:700 24px Inter, sans-serif;padding:12px 22px;border-radius:999px;background:' + (r[0] === "ambassador" ? "#FFE100" : "#0E0E10") + ";color:" + (r[0] === "ambassador" ? "#0E0E10" : "#F6F5F1") + '">' + counts[r[0]] + " " + r[1] + "</span>";
+    }).join("");
+
+    /* ---------- link builder ---------- */
+    var people = D.people.filter(function (p) { return p.role !== "team"; });
+    $("#lbPerson").innerHTML = people.map(function (p) { return '<option value="' + p.slug + '"' + (p.slug === "brett-florens" ? " selected" : "") + ">" + esc(p.name) + "</option>"; }).join("");
+    var plat = "instagram";
+    $("#lbPlat").innerHTML = ["instagram", "facebook", "tiktok", "google", "newsletter"].map(function (x) { return '<button class="tab' + (x === plat ? " on" : "") + '" data-p="' + x + '" type="button">' + x.charAt(0).toUpperCase() + x.slice(1) + "</button>"; }).join("");
+    function buildLink() {
+      var c = ($("#lbCamp").value || "campaign").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+      $("#lbOut").innerHTML = "nikonschool.co.za/creators/<b>" + esc($("#lbPerson").value) + "</b>/?utm_source=<b>" + plat + "</b>&amp;utm_medium=paid&amp;utm_campaign=<b>" + esc(c || "campaign") + "</b>";
+    }
+    $("#lbPlat").addEventListener("click", function (e) { var b = e.target.closest(".tab"); if (!b) return; plat = b.getAttribute("data-p"); $$(".tab", this).forEach(function (x) { x.classList.toggle("on", x === b); }); buildLink(); });
+    $("#lbPerson").addEventListener("change", buildLink);
+    $("#lbCamp").addEventListener("input", buildLink);
+    buildLink();
+
+    /* ---------- phases ---------- */
+    function playPhases() { $$("#phases .ph").forEach(function (p, i) { p.classList.remove("lit"); setTimeout(function () { p.classList.add("lit"); }, reduce ? 0 : 300 + i * 260); }); }
+
+    /* ---------- deck navigation ---------- */
+    var slides = $$(".slide"), cur = -1;
+    function enter(i) {
+      var s = slides[i];
+      if (s.querySelector("#funnel")) playFunnel();
+      if (s.querySelector("#steps")) playSteps();
+      if (s.querySelector("#peopleNum")) countUp($("#peopleNum"), roster.length);
+      $$("[data-count]", s).forEach(function (el) { countUp(el, +el.getAttribute("data-count"), el.getAttribute("data-suffix")); });
+      if (s.querySelector("#phases")) playPhases();
+      if (s.querySelector("#live") && !live.src) live.src = live.getAttribute("data-src");
+    }
+    function go(i, push) {
+      i = Math.max(0, Math.min(slides.length - 1, i));
+      if (i === cur) return;
+      if (cur >= 0) slides[cur].classList.remove("on");
+      cur = i;
+      slides[i].classList.add("on");
+      $("#count").textContent = (i + 1) + " / " + slides.length;
+      $("#prog").style.width = ((i + 1) / slides.length * 100) + "%";
+      $("#notesText").textContent = slides[i].getAttribute("data-notes") || "";
+      $$(".ov-item").forEach(function (o, k) { o.classList.toggle("cur", k === i); });
+      if (push !== false) history.replaceState(null, "", "#" + (i + 1));
+      enter(i);
+    }
+    $("#ovGrid").innerHTML = slides.map(function (s, i) { return '<button class="ov-item" data-i="' + i + '"><b>' + (i + 1) + "</b><span>" + s.getAttribute("data-title") + "</span></button>"; }).join("");
+    $("#ovGrid").addEventListener("click", function (e) { var b = e.target.closest(".ov-item"); if (b) { go(+b.getAttribute("data-i")); toggleOv(false); } });
+    function toggleOv(show) { var ov = $("#ov"); ov.hidden = show === undefined ? !ov.hidden : !show; }
+    function toggleNotes() { var n = $("#notes"); n.hidden = !n.hidden; $("#btnNotes").setAttribute("aria-pressed", !n.hidden); }
+    function fullscreen() { if (!document.fullscreenElement) { (document.documentElement.requestFullscreen || function () {}).call(document.documentElement); } else { document.exitFullscreen(); } }
+
+    $("#prev").addEventListener("click", function () { go(cur - 1); });
+    $("#next").addEventListener("click", function () { go(cur + 1); });
+    $("#btnNotes").addEventListener("click", toggleNotes);
+    $("#btnOv").addEventListener("click", function () { toggleOv(); });
+    $("#btnFs").addEventListener("click", fullscreen);
+    document.addEventListener("keydown", function (e) {
+      if (/input|select|textarea/i.test(e.target.tagName)) return;
+      var k = e.key;
+      if (k === "ArrowRight" || k === "PageDown" || k === " ") { e.preventDefault(); go(cur + 1); }
+      else if (k === "ArrowLeft" || k === "PageUp") { e.preventDefault(); go(cur - 1); }
+      else if (k === "Home") go(0);
+      else if (k === "End") go(slides.length - 1);
+      else if (k === "n" || k === "N") toggleNotes();
+      else if (k === "o" || k === "O") toggleOv();
+      else if (k === "Escape") toggleOv(false);
+      else if (k === "f" || k === "F") fullscreen();
+    });
+    // swipe on touch screens
+    var sx = null;
+    document.addEventListener("touchstart", function (e) { sx = e.touches[0].clientX; }, { passive: true });
+    document.addEventListener("touchend", function (e) {
+      if (sx === null) return;
+      var dx = e.changedTouches[0].clientX - sx; sx = null;
+      if (Math.abs(dx) > 50 && !e.target.closest("iframe, .lb")) go(cur + (dx < 0 ? 1 : -1));
+    });
+    // controls fade when idle
+    var idleT, ctrl = $("#ctrl");
+    function wake() { ctrl.classList.remove("idle"); clearTimeout(idleT); idleT = setTimeout(function () { if ($("#ov").hidden) ctrl.classList.add("idle"); }, 2600); }
+    addEventListener("mousemove", wake); addEventListener("keydown", wake); wake();
+
+    var start = parseInt((location.hash || "#1").slice(1), 10);
+    go(isNaN(start) ? 0 : start - 1, false);
+    addEventListener("hashchange", function () { var n = parseInt(location.hash.slice(1), 10); if (!isNaN(n)) go(n - 1, false); });
+  })();
+  </script>
+</body>
+</html>
