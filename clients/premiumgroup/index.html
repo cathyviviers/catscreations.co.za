@@ -77,6 +77,8 @@
     .concept a { color: #ff8cc6; font-weight: 600; }
     .concept button { flex: none; width: 26px; height: 26px; border-radius: 50%; border: 0; background: rgba(255,255,255,.08); color: #d6d3cc; font-size: 15px; line-height: 1; cursor: pointer; }
     .concept button:hover { background: rgba(255,255,255,.16); }
+    .concept-links { display: flex; gap: 10px; padding-left: 10px; border-left: 1px solid rgba(255,255,255,.16); white-space: nowrap; }
+    .concept-links a { color: #8cc4f2; }
 
     /* Header */
     header { position: sticky; top: 0; z-index: 50; background: rgba(11,13,18,.72); -webkit-backdrop-filter: blur(16px) saturate(140%); backdrop-filter: blur(16px) saturate(140%); border-bottom: 1px solid transparent; transition: border-color .3s ease, background .3s ease; }
@@ -745,6 +747,7 @@
       .marquee li { padding: 16px 28px; gap: 28px; height: 72px; }
       .marquee li img { height: calc(var(--lh) * .85px); }
       .concept-long { display: none; }
+      .concept-deck { display: none; }
       .tracker, .cform { padding: 22px; }
       .tab { padding: 10px 16px; font-size: 14px; }
       .drawer-body { padding: 24px 20px 32px; }
@@ -825,6 +828,7 @@
   <div class="concept" id="concept" role="note">
     <span class="concept-dot" aria-hidden="true"></span>
     <span><b>Design concept</b> by <a href="https://catscreations.co.za" target="_blank" rel="noopener">Cat's Creations</a><span class="concept-long"> &middot; not the official Premium Brand Distributors website</span></span>
+    <span class="concept-links"><a href="proposal/">Proposal</a><a class="concept-deck" href="presentation/">Presentation</a></span>
     <button type="button" id="conceptClose" aria-label="Hide concept note">&times;</button>
   </div>
 
