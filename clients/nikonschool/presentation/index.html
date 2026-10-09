@@ -257,6 +257,89 @@
     .help.show { opacity: 1; transform: translate(-50%, 0); }
     .help .keycap { height: 22px; min-width: 24px; font-size: 11px; border-bottom-width: 2px; }
 
+
+    /* ===== Portrait phones and small tablets: the deck reflows into scrollable, full-screen slides ===== */
+    .portrait .stage { left: 0; top: 0; width: 100%; height: 100%; transform: none !important; border-radius: 0; box-shadow: none; }
+    .portrait .slide { padding: 28px 20px 44px; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; transform: translateX(24px); }
+    .portrait .slide.prev { transform: translateX(-24px); }
+    .portrait .slide.on { transform: none; }
+    .portrait .slide-no, .portrait .rotate { display: none !important; }
+    .portrait .kicker { font-size: 12px; gap: 10px; }
+    .portrait .kicker::before { width: 18px; }
+    .portrait .h-xl { font-size: clamp(38px, 11vw, 56px); }
+    .portrait .h-l { font-size: clamp(28px, 8vw, 40px); margin-top: 12px; }
+    .portrait .lede { font-size: 17px; margin-top: 14px; }
+    .portrait .slide.cover { padding: 0; }
+    .portrait .cover .inner { padding: 28px 20px 36px; max-width: none; }
+    .portrait .cover .lens { width: 280px; height: 280px; right: -70px; top: 104px; margin-top: 0; box-shadow: 0 0 0 8px #141518, 0 0 80px rgba(255,230,0,.25); }
+    .portrait .cover .glow { width: 600px; height: 600px; right: -260px; top: -160px; }
+    .portrait .cover h1 { font-size: clamp(40px, 11.5vw, 60px); position: relative; }
+    .portrait .lockup img { width: 52px; height: 52px; }
+    .portrait .lockup b { font-size: 18px; }
+    .portrait .lockup small { font-size: 10px; letter-spacing: .3em; }
+    .portrait .cover .by { flex-wrap: wrap; gap: 10px 14px; font-size: 15px; margin-top: 20px; }
+    .portrait .cover .start { margin-top: 24px; font-size: 14px; }
+    .portrait .stats { grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 28px; }
+    .portrait .stat { padding: 18px; border-radius: 16px; }
+    .portrait .stat strong { font-size: 42px; }
+    .portrait .stat strong sup { font-size: 20px; }
+    .portrait .stat > span { font-size: 14px; }
+    .portrait .finds { grid-template-columns: 1fr; gap: 12px; margin-top: 24px; }
+    .portrait .find { height: 172px; }
+    .portrait .find-f, .portrait .find-b { padding: 18px; gap: 6px; border-radius: 16px; }
+    .portrait .find h3 { font-size: 21px; }
+    .portrait .find p { font-size: 15px; }
+    .portrait .ipath, .portrait .goals { grid-template-columns: 1fr; gap: 18px; margin-top: 28px; }
+    .portrait .pstep, .portrait .goal { padding-top: 14px; }
+    .portrait .pstep h3, .portrait .goal h3 { font-size: 22px; margin: 6px 0; }
+    .portrait .pstep p, .portrait .goal p { font-size: 15px; }
+    .portrait .demo { display: flex; flex-direction: column; gap: 18px; height: auto; }
+    .portrait .demo-copy { gap: 12px; padding-top: 0; }
+    .portrait .demo-copy h2 { font-size: clamp(28px, 8vw, 38px); }
+    .portrait .demo-copy p, .portrait .feat-list li { font-size: 16px; }
+    .portrait .try { margin-top: 4px; font-size: 15px; padding: 14px 16px; border-radius: 14px; }
+    .portrait .browser { height: 68vh; min-height: 420px; flex: none; border-radius: 14px; }
+    .portrait .bar span { font-size: 11px; }
+    .portrait .phone { width: min(300px, 100%); height: 62vh; min-height: 460px; border-radius: 40px; padding: 10px; flex: none; }
+    .portrait .phone .frame-wrap { border-radius: 30px; }
+    .portrait .lb-wrap { grid-template-columns: 1fr; gap: 20px; margin-top: 24px; }
+    .portrait .lb { padding: 18px; gap: 16px; border-radius: 16px; }
+    .portrait .lb select, .portrait .lb input { font-size: 16px; }
+    .portrait .chips button { font-size: 14px; padding: 8px 13px; }
+    .portrait .lb-out { font-size: 13px; padding: 14px; }
+    .portrait .lb-why div { grid-template-columns: 40px 1fr; padding: 12px 0; }
+    .portrait .lb-why .n { font-size: 22px; }
+    .portrait .lb-why b { font-size: 18px; }
+    .portrait .lb-why span:not(.n) { font-size: 15px; }
+    .portrait .details { grid-template-columns: 1fr; gap: 12px; margin-top: 24px; }
+    .portrait .detail { min-height: 150px; padding: 20px; border-radius: 16px; }
+    .portrait .detail .ico { left: 20px; top: 18px; }
+    .portrait .detail h3 { font-size: 21px; margin-bottom: 6px; }
+    .portrait .detail p { font-size: 15px; }
+    .portrait .hood { grid-template-columns: 1fr; gap: 0; margin-top: 20px; }
+    .portrait .hood div { grid-template-columns: 40px 1fr; padding: 14px 0; gap: 4px 12px; }
+    .portrait .hood .n { font-size: 24px; }
+    .portrait .hood b { font-size: 18px; }
+    .portrait .hood span { font-size: 15px; }
+    .portrait .road { grid-template-columns: 1fr; gap: 22px; margin-top: 28px; }
+    .portrait .road::before { left: 23px; right: auto; top: 0; bottom: 0; width: 3px; height: auto; }
+    .portrait .road .fill { left: 23px; top: 0; width: 3px; height: 0; transition: height 1.6s cubic-bezier(.2,.8,.2,1) .4s; }
+    .portrait .slide.on .road .fill { width: 3px; height: 100%; }
+    .portrait .rstep { display: grid; grid-template-columns: 48px 1fr; column-gap: 16px; }
+    .portrait .rstep .dot { grid-row: span 2; }
+    .portrait .rstep h3 { font-size: 20px; margin: 2px 0 4px; }
+    .portrait .rstep p { font-size: 15px; }
+    .portrait .road-note { margin-top: 28px; flex-direction: column; gap: 6px; padding: 18px; }
+    .portrait .road-note b { font-size: 18px; white-space: normal; }
+    .portrait .road-note span { font-size: 15px; }
+    .portrait .thanks { grid-template-columns: 1fr; gap: 28px; height: auto; align-items: start; }
+    .portrait .ctas { margin-top: 22px; }
+    .portrait .cta { font-size: 16px; padding: 14px 22px; }
+    .portrait .contact { padding: 20px; gap: 12px; border-radius: 18px; }
+    .portrait .contact a.row { font-size: 15px; padding: 12px 14px; }
+    .portrait .overview { padding: 20px 16px; }
+    .portrait .ov-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .portrait .ov-grid span { font-size: 15px; }
     @media (max-width: 700px) {
       .chrome { gap: 8px; padding: 0 10px; }
       .chrome .title, .brandmini, #btnNotes, #btnFs { display: none; }
@@ -592,9 +675,16 @@
       document.getElementById('rosterLine').textContent = 'The full Nikon SA roster: ' + roster.length + ' people, each with their own page';
 
       // Fit the 1600x900 canvas to the window
+      // Portrait phones get a reflowed, scrollable layout instead of a tiny scaled canvas
+      var portraitQ = matchMedia('(orientation: portrait) and (max-width: 900px)');
       function fit() {
-        var s = Math.min(vp.clientWidth / 1600, vp.clientHeight / 900) * .96;
-        stage.style.transform = 'translate(-50%, -50%) scale(' + s + ')';
+        var portrait = portraitQ.matches;
+        document.documentElement.classList.toggle('portrait', portrait);
+        if (portrait) { stage.style.transform = ''; }
+        else {
+          var s = Math.min(vp.clientWidth / 1600, vp.clientHeight / 900) * .96;
+          stage.style.transform = 'translate(-50%, -50%) scale(' + s + ')';
+        }
         fitFrames();
       }
 
@@ -602,7 +692,8 @@
       function fitFrames() {
         document.querySelectorAll('.frame-wrap').forEach(function (fw) {
           var f = fw.querySelector('iframe'); if (!f) return;
-          var w = +fw.dataset.w, k = fw.clientWidth / w;
+          // In portrait the live site renders at phone width, so it shows its own mobile layout
+          var w = document.documentElement.classList.contains('portrait') ? Math.max(fw.clientWidth, 360) : +fw.dataset.w, k = fw.clientWidth / w;
           f.style.width = w + 'px'; f.style.height = (fw.clientHeight / k) + 'px';
           f.style.transform = 'scale(' + k + ')';
         });
@@ -700,6 +791,7 @@
         });
         cur = n;
         var s = slides[n];
+        s.scrollTop = 0;
         loadFrames(s);
         if (slides[n + 1]) loadFrames(slides[n + 1]); // warm up the next demo
         s.querySelectorAll('.cnt').forEach(countUp);
@@ -779,6 +871,7 @@
       setTimeout(function () { help.classList.add('show'); setTimeout(function () { help.classList.remove('show'); }, 4200); }, 900);
 
       window.addEventListener('resize', fit);
+      if (portraitQ.addEventListener) portraitQ.addEventListener('change', fit);
       fit();
       var start = parseInt(location.hash.slice(1), 10);
       go(start ? start - 1 : 0, true);
