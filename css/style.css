@@ -914,6 +914,37 @@ nav ul a.nav-active { color: var(--pink); }
   margin-bottom: 32px;
 }
 
+/* ── BLOG POST HERO (inverted banner: black in light mode, white in dark) ── */
+.blog-post-hero {
+  background-color: var(--black);
+}
+.blog-post-hero .page-hero-banner {
+  opacity: 0.55;
+}
+.blog-post-hero .breadcrumb,
+.blog-post-hero .breadcrumb a {
+  color: rgba(255,255,255,0.65);
+}
+.blog-post-hero .breadcrumb a:hover { color: var(--pink-light); }
+.blog-post-hero .page-hero-icon { background: rgba(255,255,255,0.14); }
+.blog-post-hero h1 { color: #ffffff; }
+.blog-post-hero .page-hero-desc { color: rgba(255,255,255,0.65); }
+
+:root[data-theme="dark"] .blog-post-hero {
+  background-color: var(--white);
+}
+:root[data-theme="dark"] .blog-post-hero .page-hero-banner {
+  opacity: 0.5;
+}
+:root[data-theme="dark"] .blog-post-hero .breadcrumb,
+:root[data-theme="dark"] .blog-post-hero .breadcrumb a {
+  color: rgba(0,0,0,0.6);
+}
+:root[data-theme="dark"] .blog-post-hero .breadcrumb a:hover { color: var(--pink); }
+:root[data-theme="dark"] .blog-post-hero .page-hero-icon { background: rgba(0,0,0,0.08); }
+:root[data-theme="dark"] .blog-post-hero h1 { color: var(--black); }
+:root[data-theme="dark"] .blog-post-hero .page-hero-desc { color: rgba(0,0,0,0.6); }
+
 /* ── SECTION SHARED ── */
 section { padding: 100px 60px; }
 

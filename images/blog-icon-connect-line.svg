@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="800" height="400" role="img" aria-hidden="true">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff5fa" />
+      <stop offset="1" stop-color="#ffffff" />
+    </linearGradient>
+  </defs>
+
+  <!-- blog card -->
+  <g transform="translate(190,120)">
+    <rect x="0" y="0" width="150" height="160" rx="14" fill="#ffffff" stroke="#d0177a" stroke-width="5" />
+    <rect x="22" y="26" width="106" height="14" rx="7" fill="#d0177a" />
+    <rect x="22" y="56" width="106" height="10" rx="5" fill="#e3c1d2" />
+    <rect x="22" y="76" width="80" height="10" rx="5" fill="#e3c1d2" />
+    <rect x="22" y="110" width="60" height="22" rx="11" fill="#fdeef6" stroke="#e8197a" stroke-width="3" />
+  </g>
+
+  <!-- connecting path -->
+  <path id="flowpath" d="M 352,195 C 440,120 500,280 560,210" fill="none" stroke="#e8197a" stroke-width="5" stroke-linecap="round" stroke-dasharray="2 16" opacity="0.8" />
+
+  <circle r="9" fill="#d0177a">
+    <animateMotion dur="3.2s" repeatCount="indefinite" rotate="auto">
+      <mpath href="#flowpath" />
+    </animateMotion>
+  </circle>
+  <circle r="6" fill="#e8197a" opacity="0.7">
+    <animateMotion dur="3.2s" begin="1.05s" repeatCount="indefinite" rotate="auto">
+      <mpath href="#flowpath" />
+    </animateMotion>
+  </circle>
+
+  <!-- social bubble -->
+  <g transform="translate(560,150)">
+    <animateTransform attributeName="transform" type="translate" additive="sum"
+      values="0,0; 0,-10; 0,0" keyTimes="0;0.5;1"
+      dur="4s" repeatCount="indefinite" calcMode="spline"
+      keySplines="0.45 0 0.55 1;0.45 0 0.55 1" />
+    <rect x="0" y="0" width="120" height="120" rx="28" fill="#ffffff" stroke="#a81262" stroke-width="5" />
+    <g transform="translate(60,54) scale(0.42)">
+      <path d="M 0,50 C -25,25 -62,0 -62,-32 C -62,-56 -40,-68 -19,-62 C -6,-58 0,-50 0,-44 C 0,-50 6,-58 19,-62 C 40,-68 62,-56 62,-32 C 62,0 25,25 0,50 Z" fill="#d0177a" />
+    </g>
+  </g>
+</svg>
