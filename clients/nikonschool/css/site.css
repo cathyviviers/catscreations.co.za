@@ -1,8 +1,14 @@
+/* Nikon imaging typeface (GT Eesti Pro), from Nikon's brand guideline */
+@font-face { font-family: "GT Eesti Pro Display"; src: url("../fonts/gt-eesti-pro-display-light.woff2") format("woff2"); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: "GT Eesti Pro Display"; src: url("../fonts/gt-eesti-pro-display-regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "GT Eesti Pro Display"; src: url("../fonts/gt-eesti-pro-display-medium.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "GT Eesti Pro Display"; src: url("../fonts/gt-eesti-pro-display-bold.woff2") format("woff2"); font-weight: 600 900; font-style: normal; font-display: swap; }
+
 /* Nikon School SA concept, by Cat's Creations */
 :root {
-  --yellow: #FFE100;
+  --yellow: #FFE600;
   --yellow-deep: #f5c400;
-  --ink: #0b0b0c;
+  --ink: #010203;
   --ink-2: #17181b;
   --ink-3: #24252a;
   --paper: #ffffff;
@@ -31,8 +37,8 @@
   --demo-bg: #f2f0ff;
   --demo-fg: #4535a8;
   color-scheme: light;
-  --head: "Archivo", "Helvetica Neue", Arial, sans-serif;
-  --body: "Inter", system-ui, -apple-system, sans-serif;
+  --head: "GT Eesti Pro Display", "Helvetica Neue", Arial, sans-serif;
+  --body: "GT Eesti Pro Display", system-ui, -apple-system, sans-serif;
 }
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
@@ -122,7 +128,7 @@ p { margin: 0 0 1em; }
 }
 .btn:active { transform: translateY(1px); }
 .btn-yellow { background: var(--yellow); color: var(--ink); }
-.btn-yellow:hover { background: var(--yellow-deep); box-shadow: 0 6px 18px rgba(255, 225, 0, .35); }
+.btn-yellow:hover { background: var(--yellow-deep); box-shadow: 0 6px 18px rgba(255, 230, 0, .35); }
 .btn-dark { background: var(--inv-bg); color: var(--inv-fg); }
 .btn-dark:hover { background: var(--inv-hover); }
 .btn-ghost { border-color: currentColor; background: transparent; }
@@ -168,8 +174,8 @@ section { padding: 88px 0; }
 .hero::before {
   content: ""; position: absolute; inset: 0;
   background:
-    radial-gradient(600px 400px at 85% 20%, rgba(255,225,0,.18), transparent 60%),
-    radial-gradient(500px 500px at 10% 110%, rgba(255,225,0,.08), transparent 60%);
+    radial-gradient(600px 400px at 85% 20%, rgba(255,230,0,.18), transparent 60%),
+    radial-gradient(500px 500px at 10% 110%, rgba(255,230,0,.08), transparent 60%);
   pointer-events: none;
 }
 .hero .wrap { position: relative; display: grid; grid-template-columns: 1.15fr .85fr; gap: 56px; align-items: center; }
@@ -269,7 +275,7 @@ section { padding: 88px 0; }
 }
 .session-pill small { display: block; color: var(--muted-dark); font-size: .78rem; }
 .session-pill:hover, .session-pill[aria-pressed="true"] { border-color: var(--yellow); }
-.session-pill[aria-pressed="true"] { background: rgba(255,225,0,.1); }
+.session-pill[aria-pressed="true"] { background: rgba(255,230,0,.1); }
 
 /* People */
 .people { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
@@ -437,7 +443,7 @@ section { padding: 88px 0; }
 .inp {
   width: 100%; padding: 12px 14px; border-radius: 10px; border: 1.5px solid var(--line); font: inherit; background: var(--surface); color: var(--text);
 }
-.inp:focus { border-color: var(--text); outline: none; box-shadow: 0 0 0 3px rgba(255,225,0,.6); }
+.inp:focus { border-color: var(--text); outline: none; box-shadow: 0 0 0 3px rgba(255,230,0,.6); }
 .check { display: flex; gap: 10px; align-items: flex-start; font-size: .88rem; color: var(--muted); }
 .check input { margin-top: 4px; accent-color: var(--text); }
 .pay-methods { display: grid; gap: 10px; margin-bottom: 20px; }
@@ -931,7 +937,7 @@ a.fcard:hover .ico { transform: rotate(-8deg) scale(1.1); }
 .ticks svg, .owner-item .num, .fcard .ico, .mockup-ico, .success .tick, .faq details[open] summary::after,
 .session[aria-checked="true"] .cal, .step.is-free, .admin-side button[aria-current="page"] { color: var(--ink); }
 :root[data-theme="dark"] .status.paid, :root[data-theme="dark"] .status.live { background: rgba(31,138,76,.2); color: #63d69a; }
-:root[data-theme="dark"] .status.free { background: rgba(255,225,0,.14); color: var(--yellow); }
+:root[data-theme="dark"] .status.free { background: rgba(255,230,0,.14); color: var(--yellow); }
 :root[data-theme="dark"] .status.pending, :root[data-theme="dark"] .status.draft { background: #2a2b31; color: #c9cad0; }
 :root[data-theme="dark"] .compare .after, :root[data-theme="dark"] .feature, :root[data-theme="dark"] .upsell { box-shadow: inset 0 0 0 1px var(--line); }
 :root[data-theme="dark"] .card .price-tag:not(.free) { background: var(--surface); color: var(--text); }
@@ -979,7 +985,7 @@ html.theme-vt::view-transition-new(root) { z-index: 2; }
 @keyframes introMark { 0% { opacity: 0; transform: scale(.9); } 25% { opacity: 1; transform: none; } 80% { opacity: 1; } 100% { opacity: 0; transform: scale(1.3); } }
 
 /* Reading progress */
-.progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 95; background: var(--yellow); transform-origin: 0 50%; transform: scaleX(0); pointer-events: none; box-shadow: 0 0 10px rgba(255,225,0,.6); }
+.progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 95; background: var(--yellow); transform-origin: 0 50%; transform: scaleX(0); pointer-events: none; box-shadow: 0 0 10px rgba(255,230,0,.6); }
 
 /* Scroll reveals */
 html .reveal { opacity: 0; translate: 0 26px; transition: opacity .75s ease, translate .8s cubic-bezier(.2,.8,.2,1), transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .25s ease, border-color .3s ease, background .3s ease; }

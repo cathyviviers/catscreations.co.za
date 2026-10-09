@@ -30,9 +30,6 @@ function page({ root, title, description, pageKey, slug, main }) {
   <meta name="theme-color" content="#0b0b0c" />
   <link rel="icon" type="image/png" href="${root}images/favicon.png" />
   <link rel="apple-touch-icon" href="${root}images/apple-touch-icon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..900&family=Inter:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="${root}css/site.css" />
 </head>
 <body data-page="${pageKey}"${slug ? ` data-slug="${slug}"` : ""}>

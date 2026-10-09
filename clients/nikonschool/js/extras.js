@@ -211,7 +211,7 @@
       if (!tick || tick._burst) return;
       tick._burst = true;
       var r = tick.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2;
-      var colours = ["#FFE100", "#FFE100", "#0b0b0c", "#ffffff", "#f5c400"];
+      var colours = ["#FFE600", "#FFE600", "#0b0b0c", "#ffffff", "#f5c400"];
       for (var i = 0; i < 34; i++) {
         var p = document.createElement("span");
         p.className = "confetti" + (i % 3 === 0 ? " blade" : "");
