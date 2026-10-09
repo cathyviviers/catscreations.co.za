@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="800" height="400" role="img" aria-hidden="true">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff5fa" />
+      <stop offset="1" stop-color="#ffffff" />
+    </linearGradient>
+  </defs>
+
+  <!-- document -->
+  <g transform="translate(300,90)">
+    <rect x="0" y="0" width="190" height="230" rx="14" fill="#ffffff" stroke="#e8197a" stroke-width="5" />
+    <rect x="28" y="38" width="134" height="12" rx="6" fill="#e3c1d2" />
+    <rect x="28" y="66" width="134" height="12" rx="6" fill="#e3c1d2" />
+    <rect x="28" y="94" width="110" height="14" rx="7" fill="#d0177a">
+      <animate attributeName="opacity" values="1;0.45;1" dur="2.6s" repeatCount="indefinite" />
+    </rect>
+    <rect x="28" y="124" width="134" height="12" rx="6" fill="#e3c1d2" />
+    <rect x="28" y="152" width="90" height="12" rx="6" fill="#e3c1d2" />
+  </g>
+
+  <!-- magnifying glass -->
+  <g transform="translate(420,150)">
+    <g>
+      <animateTransform attributeName="transform" type="translate"
+        values="0,0; 34,24; -8,-10; 0,0" keyTimes="0;0.4;0.75;1"
+        dur="7s" repeatCount="indefinite" calcMode="spline"
+        keySplines="0.45 0 0.55 1;0.45 0 0.55 1;0.45 0 0.55 1" />
+      <circle cx="0" cy="0" r="56" fill="#fdeef6" stroke="#a81262" stroke-width="9" />
+      <line x1="40" y1="40" x2="86" y2="86" stroke="#a81262" stroke-width="12" stroke-linecap="round" />
+    </g>
+  </g>
+</svg>

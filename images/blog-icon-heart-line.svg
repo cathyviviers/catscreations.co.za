@@ -5,7 +5,6 @@
       <stop offset="1" stop-color="#ffffff" />
     </linearGradient>
   </defs>
-  <rect width="800" height="400" fill="url(#bg)" />
 
   <!-- speech bubble (body + tail as one merged outline, no seam) -->
   <g transform="translate(400,210)">
