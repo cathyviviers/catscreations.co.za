@@ -37,6 +37,8 @@
       dur="4s" repeatCount="indefinite" calcMode="spline"
       keySplines="0.45 0 0.55 1;0.45 0 0.55 1" />
     <rect x="0" y="0" width="120" height="120" rx="28" fill="#2a1420" stroke="#a81262" stroke-width="5" />
-    <path d="M 60 82 C 34 60 34 36 52 30 C 60 27 66 32 60 44 C 54 32 60 27 68 30 C 86 36 86 60 60 82 Z" fill="#d0177a" />
+    <g transform="translate(60,54) scale(0.42)">
+      <path d="M 0,50 C -25,25 -62,0 -62,-32 C -62,-56 -40,-68 -19,-62 C -6,-58 0,-50 0,-44 C 0,-50 6,-58 19,-62 C 40,-68 62,-56 62,-32 C 62,0 25,25 0,50 Z" fill="#d0177a" />
+    </g>
   </g>
 </svg>
