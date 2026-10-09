@@ -41,22 +41,22 @@
 
   var scenes = {
     lightcraft: function (id) {
-      var d = lin(id + "b", ["#111214", "#1d1e22"]) + rad(id + "g", "#FFE100", "#FFE100") + rad(id + "y", "#fff8b3", "#FFE100") +
+      var d = lin(id + "b", ["#111214", "#1d1e22"]) + rad(id + "g", "#FFE600", "#FFE600") + rad(id + "y", "#fff8b3", "#FFE600") +
         '<clipPath id="' + id + 'c"><circle cx="200" cy="150" r="82"/></clipPath>';
       var beams = "";
       for (var i = 0; i < 7; i++) {
-        beams += '<path class="beam" style="animation-delay:' + (i * -0.7) + 's" d="M200 150 L' + (i * 70 - 20) + " -10 L" + (i * 70 + 10) + ' -10 Z" fill="#FFE100" opacity=".08"/>';
+        beams += '<path class="beam" style="animation-delay:' + (i * -0.7) + 's" d="M200 150 L' + (i * 70 - 20) + " -10 L" + (i * 70 + 10) + ' -10 Z" fill="#FFE600" opacity=".08"/>';
       }
       return svg(
         '<rect width="400" height="300" fill="url(#' + id + 'b)"/>' +
         px(-6, '<g class="aim-beams">' + beams + '</g><circle class="glow" cx="200" cy="150" r="120" fill="url(#' + id + 'g)" opacity=".35"/>') +
         px(6,
           '<circle cx="200" cy="150" r="92" fill="#0d0d0f" stroke="#2c2d33" stroke-width="10"/>' +
-          '<g clip-path="url(#' + id + 'c)"><circle cx="200" cy="150" r="82" fill="#FFE100"/><circle cx="200" cy="150" r="40" fill="url(#' + id + 'y)"/>' +
+          '<g clip-path="url(#' + id + 'c)"><circle cx="200" cy="150" r="82" fill="#FFE600"/><circle cx="200" cy="150" r="40" fill="url(#' + id + 'y)"/>' +
           '<g class="lc-iris"><g class="lc-breathe">' + aperture(200, 150, 104, 7, 0.33, "#24252a", "#3a3b42") + "</g></g></g>" +
           '<circle class="glint lc-glint" cx="191" cy="141" r="5" fill="#fff"/>' +
-          '<circle class="spin" cx="200" cy="150" r="110" fill="none" stroke="#FFE100" stroke-width="1.2" opacity=".55" stroke-dasharray="2 6"/>' +
-          '<circle class="spin rev" cx="200" cy="150" r="124" fill="none" stroke="#FFE100" stroke-width="1" opacity=".25" stroke-dasharray="18 10"/>'
+          '<circle class="spin" cx="200" cy="150" r="110" fill="none" stroke="#FFE600" stroke-width="1.2" opacity=".55" stroke-dasharray="2 6"/>' +
+          '<circle class="spin rev" cx="200" cy="150" r="124" fill="none" stroke="#FFE600" stroke-width="1" opacity=".25" stroke-dasharray="18 10"/>'
         ),
         d
       );
@@ -66,31 +66,31 @@
       var frames = "", holes = "", bars = "", r = rng(7);
       for (var i = 0; i < 6; i++) {
         frames += '<rect x="' + (28 + i * 90) + '" y="96" width="76" height="108" rx="6" fill="#26272d" stroke="#3b3c44"/>' +
-          '<path class="zv-shape" d="M' + (40 + i * 90) + " 190 Q" + (66 + i * 90) + " " + (130 + (i % 4) * 12) + " " + (92 + i * 90) + ' 190Z" fill="#FFE100" opacity="' + (0.25 + (i % 4) * 0.18) + '"/>' +
-          '<circle cx="' + (84 + i * 90) + '" cy="118" r="6" fill="#FFE100" opacity=".5"/>';
+          '<path class="zv-shape" d="M' + (40 + i * 90) + " 190 Q" + (66 + i * 90) + " " + (130 + (i % 4) * 12) + " " + (92 + i * 90) + ' 190Z" fill="#FFE600" opacity="' + (0.25 + (i % 4) * 0.18) + '"/>' +
+          '<circle cx="' + (84 + i * 90) + '" cy="118" r="6" fill="#FFE600" opacity=".5"/>';
       }
       for (var j = 0; j < 22; j++) {
         holes += '<rect x="' + (12 + j * 20) + '" y="74" width="10" height="8" rx="2" fill="#3b3c44"/><rect x="' + (12 + j * 20) + '" y="218" width="10" height="8" rx="2" fill="#3b3c44"/>';
       }
       for (var k = 0; k < 36; k++) {
-        bars += '<rect class="eq" x="' + f(20 + k * 10.3) + '" y="244" width="6" height="26" rx="2" fill="#FFE100" style="animation-duration:' + (0.5 + r() * 0.7).toFixed(2) + "s;animation-delay:-" + (r() * 1.2).toFixed(2) + 's"/>';
+        bars += '<rect class="eq" x="' + f(20 + k * 10.3) + '" y="244" width="6" height="26" rx="2" fill="#FFE600" style="animation-duration:' + (0.5 + r() * 0.7).toFixed(2) + "s;animation-delay:-" + (r() * 1.2).toFixed(2) + 's"/>';
       }
       return svg(
         '<rect width="400" height="300" fill="url(#' + id + 'b)"/>' +
         px(5, '<g class="aim-film"><g class="zv-holes">' + holes + '</g><g class="zv-film">' + frames + "</g></g>") +
         px(-3, '<g opacity=".85">' + bars + "</g>") +
-        '<circle class="blink" cx="356" cy="36" r="9" fill="#ff3b30"/><text x="300" y="41" fill="#f2f2f2" font-family="Archivo, sans-serif" font-size="14" font-weight="700" letter-spacing="2">REC</text>' +
+        '<circle class="blink" cx="356" cy="36" r="9" fill="#ff3b30"/><text x="300" y="41" fill="#f2f2f2" font-family="GT Eesti Pro Display, Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="2">REC</text>' +
         '<text class="zv-tc" x="22" y="41" fill="#a3a5ad" font-family="ui-monospace, monospace" font-size="12">00:00:12:08</text>',
         d
       );
     },
     zseries: function (id) {
-      var d = lin(id + "b", ["#1a1b1f", "#0e0f11"]) + rad(id + "g", "#FFE100", "#FFE100");
+      var d = lin(id + "b", ["#1a1b1f", "#0e0f11"]) + rad(id + "g", "#FFE600", "#FFE600");
       return svg(
         '<rect width="400" height="300" fill="url(#' + id + 'b)"/>' +
         px(-5, '<circle class="glow" cx="230" cy="170" r="140" fill="url(#' + id + 'g)" opacity=".18"/>') +
         px(5, '<g class="aim-cam">' +
-          '<g fill="none" stroke="#FFE100" stroke-width="3" stroke-linejoin="round">' +
+          '<g fill="none" stroke="#FFE600" stroke-width="3" stroke-linejoin="round">' +
           '<path class="draw" pathLength="1" d="M80 110 h60 l18 -28 h70 l18 28 h80 a14 14 0 0 1 14 14 v110 a14 14 0 0 1 -14 14 h-246 a14 14 0 0 1 -14 -14 v-110 a14 14 0 0 1 14 -14z"/>' +
           '<rect class="draw" pathLength="1" x="96" y="124" width="34" height="18" rx="4" opacity=".7"/>' +
           '<circle class="draw" pathLength="1" cx="300" cy="96" r="9" opacity=".7"/>' +
@@ -99,7 +99,7 @@
           '<circle class="draw" pathLength="1" cx="210" cy="180" r="34" opacity=".45"/>' +
           '<g class="zs-af"><path d="M196 172v-6h6M218 166h6v6M224 188v6h-6M202 194h-6v-6" stroke-width="2.4"/></g></g>' +
           "</g>" +
-          '<text x="168" y="104" fill="#FFE100" font-family="Archivo, sans-serif" font-size="13" font-weight="800" letter-spacing="3">Z</text>' +
+          '<text x="168" y="104" fill="#FFE600" font-family="GT Eesti Pro Display, Arial, sans-serif" font-size="13" font-weight="800" letter-spacing="3">Z</text>' +
           '<circle class="blink slow" cx="318" cy="134" r="4" fill="#3ddc84"/></g>'
         ),
         d
@@ -117,8 +117,8 @@
         '<g style="color:#244a63">' + birds(76) + "</g>" +
         px(2, '<path d="M0 220 L70 150 L120 190 L190 110 L260 180 L310 140 L400 210 V300 H0Z" fill="#3c6e8f"/><path d="M190 110 L215 135 L200 132 L185 140 L170 130Z" fill="#eef6fb"/>') +
         px(6, '<path d="M-10 250 L90 210 L170 240 L260 205 L410 250 V310 H-10Z" fill="#244a63"/>') +
-        '<g class="cp-zoom-h"><g class="cp-zoom"><g stroke="#FFE100" stroke-width="4" fill="none"><path d="M110 60 h-24 v24"/><path d="M290 60 h24 v24"/><path d="M110 240 h-24 v-24"/><path d="M290 240 h24 v-24"/></g></g></g>' +
-        '<rect x="150" y="262" width="100" height="18" rx="9" fill="#111" opacity=".75"/><text x="200" y="275" text-anchor="middle" fill="#FFE100" font-family="Archivo, sans-serif" font-size="11" font-weight="700">125x ZOOM</text>',
+        '<g class="cp-zoom-h"><g class="cp-zoom"><g stroke="#FFE600" stroke-width="4" fill="none"><path d="M110 60 h-24 v24"/><path d="M290 60 h24 v24"/><path d="M110 240 h-24 v-24"/><path d="M290 240 h24 v-24"/></g></g></g>' +
+        '<rect x="150" y="262" width="100" height="18" rx="9" fill="#111" opacity=".75"/><text x="200" y="275" text-anchor="middle" fill="#FFE600" font-family="GT Eesti Pro Display, Arial, sans-serif" font-size="11" font-weight="700">125x ZOOM</text>',
         d
       );
     },
@@ -144,7 +144,7 @@
         '<rect width="400" height="300" fill="url(#' + id + 's)"/>' +
         px(-4, '<g class="cs-sun-h"><g class="cs-sun"><circle class="glow" cx="250" cy="196" r="110" fill="url(#' + id + 'g)" opacity=".7"/><circle cx="250" cy="196" r="38" fill="#fff1c4"/></g></g>' +
           '<g style="color:#3a1a3e" opacity=".7">' + birds(70) + "</g>") +
-        px(6, '<g class="aim-lean"><g fill="#1a0f26">' + city + '</g><g fill="#FFE100" opacity=".9">' + lights + "</g></g>") +
+        px(6, '<g class="aim-lean"><g fill="#1a0f26">' + city + '</g><g fill="#FFE600" opacity=".9">' + lights + "</g></g>") +
         '<path class="flow" d="M0 293 Q200 273 400 293" stroke="#ffd36b" stroke-width="2" fill="none" opacity=".7" stroke-dasharray="10 8"/>',
         d
       );
@@ -154,16 +154,16 @@
       var streaks = "", r = rng(11);
       for (var i = 0; i < 18; i++) {
         var y = 20 + r() * 260, len = 80 + r() * 200;
-        streaks += '<rect class="streak" style="animation-duration:' + (1.6 + r() * 3).toFixed(2) + "s;animation-delay:-" + (r() * 4).toFixed(2) + 's" x="0" y="' + y.toFixed(0) + '" width="' + len.toFixed(0) + '" height="' + (1 + r() * 3).toFixed(1) + '" rx="2" fill="' + (i % 3 ? "#FFE100" : "#ff8a00") + '" opacity="' + (0.15 + r() * 0.5).toFixed(2) + '"/>';
+        streaks += '<rect class="streak" style="animation-duration:' + (1.6 + r() * 3).toFixed(2) + "s;animation-delay:-" + (r() * 4).toFixed(2) + 's" x="0" y="' + y.toFixed(0) + '" width="' + len.toFixed(0) + '" height="' + (1 + r() * 3).toFixed(1) + '" rx="2" fill="' + (i % 3 ? "#FFE600" : "#ff8a00") + '" opacity="' + (0.15 + r() * 0.5).toFixed(2) + '"/>';
       }
       var rings = "", ripples = "";
-      for (var k = 0; k < 6; k++) rings += '<circle cx="150" cy="150" r="' + (24 + k * 18) + '" fill="none" stroke="#FFE100" stroke-width="' + (k === 0 ? 6 : 1.5) + '" opacity="' + (0.9 - k * 0.13) + '"/>';
-      for (var m = 0; m < 3; m++) ripples += '<circle class="ripple" style="animation-delay:' + (m * 1.1) + 's" cx="150" cy="150" r="60" fill="none" stroke="#FFE100" stroke-width="2"/>';
+      for (var k = 0; k < 6; k++) rings += '<circle cx="150" cy="150" r="' + (24 + k * 18) + '" fill="none" stroke="#FFE600" stroke-width="' + (k === 0 ? 6 : 1.5) + '" opacity="' + (0.9 - k * 0.13) + '"/>';
+      for (var m = 0; m < 3; m++) ripples += '<circle class="ripple" style="animation-delay:' + (m * 1.1) + 's" cx="150" cy="150" r="60" fill="none" stroke="#FFE600" stroke-width="2"/>';
       return svg(
         '<rect width="400" height="300" fill="url(#' + id + 'b)"/>' +
         px(-8, streaks) +
         px(6, '<g class="mc-rings">' + rings + "</g>" + ripples + '<circle cx="150" cy="150" r="20" fill="#0b0b0c"/><circle class="glint" cx="143" cy="143" r="5" fill="#fff" opacity=".6"/>') +
-        px(10, '<g class="mc-play"><g class="aim-point"><path class="pulse" d="M262 190 l40 20 l-40 20z" fill="#FFE100"/></g></g>'),
+        px(10, '<g class="mc-play"><g class="aim-point"><path class="pulse" d="M262 190 l40 20 l-40 20z" fill="#FFE600"/></g></g>'),
         d
       );
     },
@@ -177,7 +177,7 @@
         '<path d="M40 150 Q200 30 360 150 Q200 270 40 150Z" fill="#fffdf7"/>' +
         '<g clip-path="url(#' + id + 'e)">' + px(18,
           '<circle cx="200" cy="150" r="62" fill="#111"/>' +
-          '<g clip-path="url(#' + id + 'i)"><circle cx="200" cy="150" r="56" fill="#FFE100"/><g class="lc-iris se"><g class="lc-breathe">' + aperture(200, 150, 74, 6, 0.3, "#1f1f22", "#3a3a40") + "</g></g></g>" +
+          '<g clip-path="url(#' + id + 'i)"><circle cx="200" cy="150" r="56" fill="#FFE600"/><g class="lc-iris se"><g class="lc-breathe">' + aperture(200, 150, 74, 6, 0.3, "#1f1f22", "#3a3a40") + "</g></g></g>" +
           '<circle cx="214" cy="132" r="8" fill="#fff" opacity=".85"/>'
         ) + "</g>" +
         '<path d="M40 150 Q200 30 360 150 Q200 270 40 150Z" fill="none" stroke="#111" stroke-width="4"/>' +
@@ -216,7 +216,7 @@
           '<g class="shoot late"><line x1="200" y1="50" x2="236" y2="31" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></g>'
         ) +
         px(5, '<path d="M-10 250 L60 230 L110 244 L170 214 L230 240 L300 222 L410 246 V310 H-10Z" fill="#06060a"/>' +
-          '<g class="aim-scope"><rect x="300" y="207" width="34" height="9" rx="3" fill="#1b1d2a" stroke="#FFE100" stroke-width="1"/><rect x="330" y="205" width="6" height="13" rx="2" fill="#2a2d40"/><circle class="blink slow" cx="336" cy="211.5" r="2.2" fill="#FFE100"/></g>' +
+          '<g class="aim-scope"><rect x="300" y="207" width="34" height="9" rx="3" fill="#1b1d2a" stroke="#FFE600" stroke-width="1"/><rect x="330" y="205" width="6" height="13" rx="2" fill="#2a2d40"/><circle class="blink slow" cx="336" cy="211.5" r="2.2" fill="#FFE600"/></g>' +
           '<path d="M304 212 L292 238 M304 212 L316 238 M304 212 L304 238" stroke="#06060a" stroke-width="3"/>'),
         d
       );
@@ -241,7 +241,7 @@
       var bulbs = "", r = rng(21);
       for (var i = 0; i < 16; i++) {
         var x = 10 + i * 26, y = 34 + Math.sin((i / 15) * Math.PI) * 26;
-        bulbs += '<circle class="tw" style="animation-duration:' + (1.8 + r() * 2.5).toFixed(1) + "s;animation-delay:-" + (r() * 3).toFixed(1) + 's" cx="' + x + '" cy="' + f(y + 4) + '" r="3.2" fill="#FFE100"/>';
+        bulbs += '<circle class="tw" style="animation-duration:' + (1.8 + r() * 2.5).toFixed(1) + "s;animation-delay:-" + (r() * 3).toFixed(1) + 's" cx="' + x + '" cy="' + f(y + 4) + '" r="3.2" fill="#FFE600"/>';
       }
       return svg(
         '<rect width="400" height="300" fill="url(#' + id + 'b)"/>' +
@@ -274,7 +274,7 @@
           '<path class="flow" d="M150 170 Q236 178 262 118 Q282 74 334 84" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" stroke-dasharray="14 10" opacity=".9"/>' +
           spray +
           '<g class="ride"><g class="aim-surfer">' +
-          '<ellipse cx="206" cy="182" rx="34" ry="5" fill="#FFE100" transform="rotate(-14 206 182)"/>' +
+          '<ellipse cx="206" cy="182" rx="34" ry="5" fill="#FFE600" transform="rotate(-14 206 182)"/>' +
           '<g fill="#0b1b26"><circle cx="208" cy="134" r="7"/><path d="M204 142 L196 160 L184 166 L188 170 L200 164 L204 156 L208 170 L198 180 L204 182 L216 170 L212 152 L224 146 L222 141 L210 145Z"/></g>' +
           "</g></g>"
         ) +
@@ -286,9 +286,9 @@
       var d = lin(id + "b", ["#07080b", "#151a24"]) + lin(id + "fl", ["#1b2130", "#07080b"]) + rad(id + "h", "#fff6d8", "#fff6d8");
       var car = "M56 222 Q64 198 106 190 L158 168 Q200 156 252 160 L302 176 Q332 182 346 196 L354 214 Q355 224 344 226 L68 226 Q56 226 56 222Z";
       var trails = "";
-      for (var i = 0; i < 5; i++) trails += '<path class="flow" style="animation-duration:' + (1.4 + i * 0.5) + 's" d="M-20 ' + (90 + i * 16) + " Q200 " + (40 + i * 22) + " 420 " + (110 + i * 12) + '" stroke="' + (i % 2 ? "#ff3b30" : "#FFE100") + '" stroke-width="' + (1 + (i % 3)) + '" fill="none" opacity="' + (0.25 + i * 0.1) + '" stroke-dasharray="60 30"/>';
+      for (var i = 0; i < 5; i++) trails += '<path class="flow" style="animation-duration:' + (1.4 + i * 0.5) + 's" d="M-20 ' + (90 + i * 16) + " Q200 " + (40 + i * 22) + " 420 " + (110 + i * 12) + '" stroke="' + (i % 2 ? "#ff3b30" : "#FFE600") + '" stroke-width="' + (1 + (i % 3)) + '" fill="none" opacity="' + (0.25 + i * 0.1) + '" stroke-dasharray="60 30"/>';
       function wheel(cx) {
-        return '<circle cx="' + cx + '" cy="226" r="22" fill="#0a0b0f" stroke="#2a2f3c" stroke-width="3"/><g class="wheel" style="transform-origin:' + cx + 'px 226px"><circle cx="' + cx + '" cy="226" r="13" fill="none" stroke="#8a92a6" stroke-width="2" stroke-dasharray="6 4"/></g><circle cx="' + cx + '" cy="226" r="4" fill="#FFE100"/>';
+        return '<circle cx="' + cx + '" cy="226" r="22" fill="#0a0b0f" stroke="#2a2f3c" stroke-width="3"/><g class="wheel" style="transform-origin:' + cx + 'px 226px"><circle cx="' + cx + '" cy="226" r="13" fill="none" stroke="#8a92a6" stroke-width="2" stroke-dasharray="6 4"/></g><circle cx="' + cx + '" cy="226" r="4" fill="#FFE600"/>';
       }
       return svg(
         '<rect width="400" height="300" fill="url(#' + id + 'b)"/><rect y="226" width="400" height="74" fill="url(#' + id + 'fl)"/>' +
@@ -320,7 +320,7 @@
           '<g class="swim"><g class="aim-diver">' +
           '<g fill="#04121c"><circle cx="204" cy="150" r="11"/>' +
           '<path d="M214 156 Q240 166 268 170 L300 176 L302 182 L268 182 Q238 180 210 170 Q196 166 196 158Z"/>' +
-          '<path d="M300 172 L344 156 L350 164 L346 180 L350 196 L344 204 L300 186Z" fill="#FFE100"/>' +
+          '<path d="M300 172 L344 156 L350 164 L346 180 L350 196 L344 204 L300 186Z" fill="#FFE600"/>' +
           '<path d="M196 152 L160 140 L158 146 L194 160Z"/></g>' +
           '<path d="M204 138 Q220 132 236 160" stroke="#6fd3e8" stroke-width="2" fill="none" opacity=".7"/>' +
           "</g></g>"
@@ -334,7 +334,7 @@
       var lanes = "";
       for (var i = 0; i < 7; i++) lanes += '<path class="flow fast" d="M-40 ' + (120 + i * 30) + " Q200 " + (80 + i * 34) + " 440 " + (130 + i * 28) + '" stroke="#fff" stroke-width="2" fill="none" opacity=".35" stroke-dasharray="26 14"/>';
       var blur = "";
-      for (var j = 0; j < 8; j++) blur += '<rect class="speed" style="animation-delay:-' + (j * 0.09).toFixed(2) + 's" x="' + (40 + j * 14) + '" y="' + (120 + j * 4) + '" width="' + (120 - j * 10) + '" height="3" fill="#FFE100" opacity="' + (0.6 - j * 0.06) + '"/>';
+      for (var j = 0; j < 8; j++) blur += '<rect class="speed" style="animation-delay:-' + (j * 0.09).toFixed(2) + 's" x="' + (40 + j * 14) + '" y="' + (120 + j * 4) + '" width="' + (120 - j * 10) + '" height="3" fill="#FFE600" opacity="' + (0.6 - j * 0.06) + '"/>';
       return svg(
         '<rect width="400" height="300" fill="#b54a2a"/>' +
         px(-3, '<rect width="400" height="96" fill="url(#' + id + 'b)"/>') +

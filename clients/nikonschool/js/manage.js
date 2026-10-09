@@ -110,10 +110,10 @@
       '<div class="kpi"><small>Free to paid</small><b>' + Math.round((paidCount / Math.max(1, free)) * 100) + '%</b><span class="up">of free attendees book a paid class</span></div>' +
       '<div class="kpi"><small>Seats filled</small><b>' + Math.round((takenAll / seatsAll) * 100) + "%</b><span class=\"up\">" + takenAll + " of " + seatsAll + " seats</span></div>" +
       "</div>" +
-      '<div class="two-col"><div class="panel"><div class="panel-head"><h2>Bookings per week</h2><div class="legend"><span><i style="background:#FFE100"></i>Free</span><span><i style="background:var(--text)"></i>Paid</span></div></div>' +
+      '<div class="two-col"><div class="panel"><div class="panel-head"><h2>Bookings per week</h2><div class="legend"><span><i style="background:#FFE600"></i>Free</span><span><i style="background:var(--text)"></i>Paid</span></div></div>' +
       '<div class="chart" role="img" aria-label="Weekly bookings, free and paid">' + weeks.map(function (w) {
         var tot = w.free + w.paid;
-        return '<div class="col" title="' + w.free + " free, " + w.paid + ' paid"><div class="stack" style="height:' + Math.max(4, (tot / max) * 150) + 'px"><i style="flex:' + w.paid + ';background:var(--text)"></i><i style="flex:' + w.free + ';background:#FFE100"></i></div><small>' + w.label + "</small></div>";
+        return '<div class="col" title="' + w.free + " free, " + w.paid + ' paid"><div class="stack" style="height:' + Math.max(4, (tot / max) * 150) + 'px"><i style="flex:' + w.paid + ';background:var(--text)"></i><i style="flex:' + w.free + ';background:#FFE600"></i></div><small>' + w.label + "</small></div>";
       }).join("") + "</div></div>" +
       '<div class="panel"><div class="panel-head"><h2>Top creator links</h2><button class="btn btn-ghost btn-sm" data-v="people">All links</button></div>' +
       '<table><tbody>' + linkStats.map(function (l) {
