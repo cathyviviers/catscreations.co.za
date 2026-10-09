@@ -111,3 +111,47 @@
   }
 
 })();
+
+
+// ── CAT PAW SCROLL TRAIL ──────────────────────────────────────────────────
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (window.matchMedia('(hover: none)').matches) return;
+
+  var PAW = '<svg viewBox="0 0 40 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><ellipse cx="20" cy="32" rx="11" ry="9"/><ellipse cx="8" cy="19" rx="5.5" ry="4.5"/><ellipse cx="16" cy="14" rx="5.5" ry="4.5"/><ellipse cx="25" cy="14" rx="5.5" ry="4.5"/><ellipse cx="33" cy="19" rx="5.5" ry="4.5"/></svg>';
+
+  var stepIndex = 0;
+  var lastScrollY = window.scrollY;
+  var dist = 0;
+  var STEP = 90;
+  var fadeTimer = null;
+  var paws = [];
+  var MAX = 25;
+
+  window.addEventListener('scroll', function () {
+    var y = window.scrollY;
+    dist += Math.abs(y - lastScrollY);
+    lastScrollY = y;
+
+    clearTimeout(fadeTimer);
+    paws.forEach(function (p) { p.classList.add('cc-paw--visible'); });
+
+    if (dist >= STEP) {
+      dist = 0;
+      var isLeft = stepIndex % 2 === 0;
+      var el = document.createElement('div');
+      el.className = 'cc-paw ' + (isLeft ? 'cc-paw--l' : 'cc-paw--r');
+      el.innerHTML = PAW;
+      el.style.top = (y + window.innerHeight * 0.55 + (stepIndex % 4) * 6) + 'px';
+      document.body.appendChild(el);
+      requestAnimationFrame(function () { el.classList.add('cc-paw--visible'); });
+      paws.push(el);
+      stepIndex++;
+      if (paws.length > MAX) { paws.shift().remove(); }
+    }
+
+    fadeTimer = setTimeout(function () {
+      paws.forEach(function (p) { p.classList.remove('cc-paw--visible'); });
+    }, 700);
+  }, { passive: true });
+})();

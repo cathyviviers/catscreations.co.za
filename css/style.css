@@ -1946,6 +1946,26 @@ footer a { color: var(--pink); text-decoration: none; }
   justify-content: center;
 }
 
+/* ── CAT PAW SCROLL TRAIL ────────────────────────────────────────────────── */
+.cc-paw {
+  position: absolute;
+  width: 26px;
+  height: 29px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.45s ease, transform 0.25s ease;
+  z-index: 1;
+  transform: scale(0.6);
+}
+.cc-paw.cc-paw--visible {
+  opacity: 1;
+  transform: scale(1);
+}
+.cc-paw svg { width: 100%; height: 100%; fill: #d0177a; opacity: 0.4; display: block; }
+.cc-paw--l { right: 14px; }
+.cc-paw--r { right: 38px; transform: scale(0.6) scaleX(-1); }
+.cc-paw--r.cc-paw--visible { transform: scale(1) scaleX(-1); }
+
 /* ── BELLS & WHISTLES ────────────────────────────────────────────────────── */
 
 /* Sparkle dots */
