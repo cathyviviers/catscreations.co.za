@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="/feed.xsl"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
   <title>Cat's Creations Blog</title>
@@ -10,11 +9,11 @@
   <lastBuildDate>Fri, 02 Oct 2026 09:00:00 GMT</lastBuildDate>
 
   <item>
-    <title>How Google&apos;s Passage Indexing Helps Your Business Get Found Online</title>
+    <title>How Google&apos;s Passage Indexing Helps Your Business Get Found</title>
     <link>https://catscreations.co.za/blog/posts/how-google-passage-indexing-helps-your-business-get-found.html</link>
     <guid isPermaLink="true">https://catscreations.co.za/blog/posts/how-google-passage-indexing-helps-your-business-get-found.html</guid>
     <pubDate>Fri, 02 Oct 2026 09:00:00 GMT</pubDate>
-    <description>Google can now rank individual paragraphs from your page — not just the page itself. Here&apos;s what passage indexing means for small business websites in South Africa, and how to make it work for you.</description>
+    <description>Google can now rank individual paragraphs from your page — not just the page itself. Here&apos;s what that means for your small business website, in plain English.</description>
     <author>Wallace</author>
   </item>
 
@@ -24,7 +23,7 @@
     <guid isPermaLink="true">https://catscreations.co.za/blog/posts/why-connect-your-blog-posts-to-social-media.html</guid>
     <pubDate>Wed, 30 Sep 2026 09:00:00 GMT</pubDate>
     <description>Your blog and your social media work far better together. Here&apos;s why connecting them gets you more readers, more reach and more enquiries.</description>
-    <author>Cat Viviers</author>
+    <author>Cathy Viviers</author>
   </item>
 
   <item>

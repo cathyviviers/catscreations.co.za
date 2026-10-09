@@ -230,6 +230,10 @@ nav ul a.nav-active { color: var(--pink); }
 .blog-card:hover .blog-card-thumb {
   transform: scale(1.04);
 }
+:root[data-theme="dark"] .blog-card-thumb {
+  background: #1c1c1c;
+  opacity: 0.88;
+}
 .blog-card-body {
   display: flex;
   flex-direction: column;
