@@ -169,7 +169,7 @@
     .detail p { font-size: 18px; color: var(--muted); line-height: 1.45; position: relative; }
     .detail .bgart { position: absolute; inset: 0; opacity: .38; transition: opacity .4s; }
     .detail .bgart .art-box { width: 100%; height: 100%; }
-    .detail:hover .bgart { opacity: .7; }
+    .detail:hover .bgart, .detail.tap .bgart { opacity: .7; }
     .detail .bgart::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 10%, var(--panel) 78%); }
     .detail .af { position: absolute; inset: 10px; pointer-events: none; opacity: 0; transition: opacity .25s, inset .35s cubic-bezier(.2,.8,.2,1); z-index: 2; }
     .detail .af i { position: absolute; width: 14px; height: 14px; border: 0 solid var(--ok); }
@@ -178,11 +178,11 @@
     .detail .af i:nth-child(3) { left: 0; bottom: 0; border-left-width: 2px; border-bottom-width: 2px; }
     .detail .af i:nth-child(4) { right: 0; bottom: 0; border-right-width: 2px; border-bottom-width: 2px; }
     .detail .af b { position: absolute; top: -2px; right: 18px; font: 600 10px 'JetBrains Mono', monospace; color: var(--ok); }
-    .detail:hover .af { opacity: 1; inset: 4px; }
+    .detail:hover .af, .detail.tap .af { opacity: 1; inset: 4px; }
     .theme-demo { position: absolute; right: 26px; top: 22px; width: 64px; height: 32px; border-radius: 999px; background: #f6f5f1; transition: background .5s; z-index: 1; }
     .theme-demo::after { content: ""; position: absolute; left: 4px; top: 4px; width: 24px; height: 24px; border-radius: 50%; background: var(--brand); box-shadow: 0 0 0 2px #0e0e10 inset; transition: transform .5s cubic-bezier(.2,.8,.2,1); }
-    .detail:hover .theme-demo { background: #2c2d33; }
-    .detail:hover .theme-demo::after { transform: translateX(32px); }
+    .detail:hover .theme-demo, .detail.tap .theme-demo { background: #2c2d33; }
+    .detail:hover .theme-demo::after, .detail.tap .theme-demo::after { transform: translateX(32px); }
     .search-demo { position: absolute; right: 26px; top: 22px; display: flex; gap: 6px; z-index: 1; }
 
     /* Under the hood */
@@ -396,7 +396,7 @@
         data-notes="Keep this constructive: these are quick wins, not criticism. The current site was set up as an online shop. Click each card to flip it and show how the concept handles it.">
         <span class="kicker" data-a>Quick wins</span>
         <h2 class="h-l" data-a style="--d:1">Today, workshops are sold like boxes on a shelf.</h2>
-        <p class="lede" data-a style="--d:2">Small details that quietly hold bookings back. Click a card to see how the concept fixes it.</p>
+        <p class="lede" data-a style="--d:2" data-touch="Small details that quietly hold bookings back. Tap a card to see how the concept fixes it.">Small details that quietly hold bookings back. Click a card to see how the concept fixes it.</p>
         <div class="finds" id="finds"></div>
         <span class="slide-no">03</span>
       </section>
@@ -438,10 +438,10 @@
             <h2 data-a style="--d:1">A first impression that says &ldquo;Nikon&rdquo;.</h2>
             <ul class="feat-list" data-a style="--d:2">
               <li>Black, yellow and bold type, straight from the brand</li>
-              <li>Artwork that follows your mouse and fires a shutter on click</li>
+              <li data-touch="Artwork that moves with you and fires a shutter when tapped">Artwork that follows your mouse and fires a shutter on click</li>
               <li>A clear learning path from first class to masterclass</li>
             </ul>
-            <div class="try" data-a style="--d:3"><b>TRY IT</b>Move your mouse over the page, then flip day and night mode at the top.</div>
+            <div class="try" data-a style="--d:3" data-touch="&lt;b&gt;TRY IT&lt;/b&gt;Tap the artwork to fire the shutter, then flip day and night mode with the moon at the top."><b>TRY IT</b>Move your mouse over the page, then flip day and night mode at the top.</div>
           </div>
           <div class="browser" data-a style="--d:2">
             <div class="bar"><i></i><i></i><i></i><span>nikonschool.catscreations.co.za</span><a href="../" target="_blank" rel="noopener">Open &#8599;</a></div>
@@ -544,9 +544,9 @@
         <span class="kicker" data-a>Craft</span>
         <h2 class="h-l" data-a style="--d:1">The details people feel, even if they can't name them.</h2>
         <div class="details">
-          <div class="detail" data-a style="--d:2"><div class="bgart" data-art="zseries"></div><span class="ico">01</span><h3>Artwork that moves</h3><p>Every illustration follows the mouse in depth. Move over this card.</p></div>
-          <div class="detail" data-a style="--d:3"><span class="af" aria-hidden="true"><i></i><i></i><i></i><i></i><b>AF&middot;S &#9679;</b></span><span class="ico">02</span><h3>Autofocus cursor</h3><p>Viewfinder brackets lock onto cards and buttons. Hover this card.</p></div>
-          <div class="detail" data-a style="--d:4"><span class="theme-demo" aria-hidden="true"></span><span class="ico">03</span><h3>Day and night</h3><p>A light and dark mode that follows the visitor's phone. Hover to switch.</p></div>
+          <div class="detail" data-a style="--d:2"><div class="bgart" data-art="zseries"></div><span class="ico">01</span><h3>Artwork that moves</h3><p data-touch="Every illustration moves in depth as you explore. Tap this card.">Every illustration follows the mouse in depth. Move over this card.</p></div>
+          <div class="detail" data-a style="--d:3"><span class="af" aria-hidden="true"><i></i><i></i><i></i><i></i><b>AF&middot;S &#9679;</b></span><span class="ico">02</span><h3>Autofocus cursor</h3><p data-touch="Viewfinder brackets lock onto cards and buttons. Tap this card.">Viewfinder brackets lock onto cards and buttons. Hover this card.</p></div>
+          <div class="detail" data-a style="--d:4"><span class="theme-demo" aria-hidden="true"></span><span class="ico">03</span><h3>Day and night</h3><p data-touch="A light and dark mode that follows the visitor's phone. Tap to switch.">A light and dark mode that follows the visitor's phone. Hover to switch.</p></div>
           <div class="detail" data-a style="--d:5"><span class="search-demo" aria-hidden="true"><span class="keycap">Ctrl</span><span class="keycap">K</span></span><span class="ico">04</span><h3>Instant search</h3><p>Press / anywhere to find any workshop or person in a keystroke.</p></div>
           <div class="detail" data-a style="--d:6"><div class="bgart" data-art="lightcraft"></div><span class="ico">05</span><h3>Shutter moments</h3><p>An aperture opens the site, and booking a seat ends in confetti.</p></div>
           <div class="detail" data-a style="--d:7"><span class="ico">06</span><h3>Respectful motion</h3><p>Visitors who prefer less motion automatically get a calm, still version.</p></div>
@@ -724,6 +724,13 @@
         })(performance.now());
       }
 
+      // Touch screens: say "tap" instead of "click", "hover" or "move your mouse"
+      var touch = matchMedia('(hover: none)').matches;
+      var tapWord = touch ? 'Tap' : 'Click';
+      if (touch) document.querySelectorAll('[data-touch]').forEach(function (el) { el.innerHTML = el.dataset.touch; });
+      // ...and a tap plays each detail card's hover effect
+      document.querySelectorAll('.detail').forEach(function (d) { d.addEventListener('click', function () { d.classList.toggle('tap'); }); });
+
       // Audit cards
       var finds = [
         ['CHECKOUT', 'Shop language', '<q>Regular price</q>, <q>Sale price</q> and <q>Your cart is empty</q> on a photography class.', 'Written for workshops', 'Dates, venues, hosts and what you will learn, in plain language.'],
@@ -735,8 +742,8 @@
       ];
       document.getElementById('finds').innerHTML = finds.map(function (f, i) {
         return '<div class="find" data-a style="--d:' + (i + 3) + '" tabindex="0" role="button" aria-label="Flip card: ' + f[1].replace(/&[^;]+;/g, '') + '"><div class="find-in">' +
-          '<div class="find-f"><span class="tag">' + f[0] + '</span><h3>' + f[1] + '</h3><p>' + f[2] + '</p><span class="hint">&#8635; Click to see the fix</span></div>' +
-          '<div class="find-b"><span class="tag">THE FIX</span><h3>' + f[3] + '</h3><p>' + f[4] + '</p><span class="hint">&#8635; Click to flip back</span></div>' +
+          '<div class="find-f"><span class="tag">' + f[0] + '</span><h3>' + f[1] + '</h3><p>' + f[2] + '</p><span class="hint">&#8635; ' + tapWord + ' to see the fix</span></div>' +
+          '<div class="find-b"><span class="tag">THE FIX</span><h3>' + f[3] + '</h3><p>' + f[4] + '</p><span class="hint">&#8635; ' + tapWord + ' to flip back</span></div>' +
           '</div></div>';
       }).join('');
       document.querySelectorAll('.find').forEach(function (f) {
